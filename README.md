@@ -1,4 +1,4 @@
-# cours-2021-2022
+# Cours-2021-2022
 
 ## Département STID, IUT Paris Descartes
 
