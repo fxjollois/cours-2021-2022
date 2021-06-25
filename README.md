@@ -2,8 +2,9 @@
 
 ## Département STID, IUT Paris Descartes
 
-- DUT STID 1ère année
+- BUT STID 1ère année
     - [Bases de données](stid-1a--bd)
+
 - DUT STID 2ème année
     - [NoSQL](stid-2afi--nosql)
     - [Travaux de fin d'études](stid-2afi--tfe)
@@ -11,12 +12,14 @@
     - [SID](stid-2afa--sid/)
     - [NoSQL](stid-2afa--nosql)
     - [Travaux de fin d'études](stid-2afa--tfe)
+
 - LP Santé
     - [Bases de données](lp-sante--bd)
     - [Tableaux de bord](lp-sante--tdb)
 - LP Data Mining
     - [Bases de données](lp-dm--bd)
-- DU Analyste Big Data
+
+- DU Analyste Data Science
     - [Introduction à **MongoDB**](du-abd)
 - DU Dataviz
     - [Introduction à Tableau](du-dataviz/tableau)
