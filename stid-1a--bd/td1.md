@@ -1,10 +1,16 @@
+---
+documentclass: article
+geometry:
+- margin=1in
+---
+
 # TD1 : Découverte d'une base de données
 
 ## Comment lire un schéma ?
 
 Le schéma ci-dessous est celui d'une base de données très simple sur des étudiants et leurs notes dans des matières.
 
-![text](Exemple.png)
+![Schéma de la BD exemple](Exemple.png)
 
 ### Tables
 

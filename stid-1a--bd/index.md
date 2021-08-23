@@ -20,3 +20,8 @@
     - [W3schools](http://www.w3schools.com/sql/) : en anglais avec possibilité de traduction
 - Logiciel [SQLite](https://www.sqlite.org/) et [SQLite Browser](http://sqlitebrowser.org/)
 
+<!--
+Pour md -> pdf :
+pandoc td1.md --pdf-engine=xelatex -o td1.pdf
+https://pandoc.org/demos.html
+-->
