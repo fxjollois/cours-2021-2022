@@ -18,6 +18,9 @@ A faire pour pouvoir utiliser l'outil sur votre ordinateur :
 
 - Installer [MongoDB](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/) en version Community (gratuite)
     - vous devez suivre les opérations
+        1. installer `brew` si ce n'est pas encore fait
+        1. installer le serveur
+        1. démarrer le serveur
     - pensez à lancer le service (comme indiqué à la fin)
     - l'outil n'est pas très gourmand en espace normalement
 - Installer l'outil [Compass](https://www.mongodb.com/try/download/compass)

@@ -33,4 +33,4 @@
 - [TP4 : Intéraction MongoDB/R](tp4)
 - [TP5 : Shiny et MongoDB](tp5)
 
-> Merci de suivre [ces instructions](infos) pour pouvoir utiliser sur votre ordinateur personnel.
+> Merci de suivre [ces instructions](../infos-mongo) pour pouvoir utiliser sur votre ordinateur personnel.
