@@ -13,7 +13,7 @@
 |          | LP Data Science  | [Bases de données](lp-ds--bd) |
 |          | LP Santé         | [Bases de données](lp-sante--bd) |
 |          |                  | [Tableaux de bord](lp-sante--tdb) |
-|          | DU Data Science  | [Python et MongoDB](du-abd/python-mongo) |
+|          | DU Data Science  | [Python et MongoDB](du-ads) |
 |          | DU Dataviz       | [Introduction à Tableau](du-dataviz/tableau) |
 |          |                  | [Introduction à d3.js](du-dataviz/d3js) |
 | **INFO** | LP IoT           | [Analyse Statistique des Données](lp-iot--python-ds) |

@@ -6,19 +6,12 @@ Le but de ce document est donc de montré les exemples d'utilisation des différ
 
 ## Exemples sur `restaurants`
 
-Ici, nous allons nous connecter sur un serveur distant, et travailler sur une base des restaurants New-Yorkais.
+Ici, nous allons nous connecter sur le serveur local, et travailler sur une base des restaurants New-Yorkais. Merci de suivre la procédure sur [cette page](../infos-mongo) pour importer les données si besoin.
 
-```r
-library(mongolite)
-USER = "user"
-PASS = "user"
-HOST = "cluster0.ougec.mongodb.net"
-URI = sprintf("mongodb+srv://%s:%s@%s/", USER, PASS, HOST)
-
-m = mongo(
-  collection = "restaurants", 
-  db = "sample_restaurants", 
-  url = URI)
+```python
+import pymongo
+client = pymongo.MongoClient()
+db = client.test
 ```
 
 Le premier document est présenté ci-dessous. La base contient les informations de plus de 25000 restaurants new-yorkais (base de test fournie par [Mongo](https://docs.mongodb.com/getting-started/shell/import-data/)).
@@ -64,19 +57,19 @@ Le premier document est présenté ci-dessous. La base contient les informations
 }
 ```
 
-### Document dans `R`
+### Document dans `python`
 
-`R` ne gérant pas nativement les données `JSON`, les documents sont traduits, pour la librairie `mongolite`, en `data.frame`. Pour récupérer le premier document, nous utilisons la fonction `find()` de l'objet créé `m`.
+Les données `JSON` sont similaires à un dictionnaire `python`. Pour récupérer le premier document, nous utilisons la fonction `find()` de l'objet créé `m`.
 
-```r
-d = m$find(limit = 1)
+```python
+d = db.restaurants.find(limit = 1)
 d
 class(d)
 ```
 
 Les objets `address` et `grades` sont particuliers, comme on peut le voir dans le `JSON`. Le premier est une liste, et le deuxième est un tableau. Voila leur classe en `R`.
 
-```r
+```python
 class(d$address)
 d$address
 class(d$grades)
@@ -89,32 +82,32 @@ Comme indiqué, on utilise la fonction `count()` pour dénombrer les documents :
 
 - Tous les restaurants
 
-```r
-m$count()
+```python
+db.restaurants.count()
 ```
 
 - Restaurants de *Brooklyn*
 
-```r
-m$count(query = '{ "borough": "Brooklyn" }')
+```python
+db.restaurants.count(query = '{ "borough": "Brooklyn" }')
 ```
 
 - Restaurants de *Brooklyn* proposant de la cuisine française
 
-```r
-m$count(query = '{ "borough": "Brooklyn", "cuisine": "French" }')
+```python
+db.restaurants.count(query = '{ "borough": "Brooklyn", "cuisine": "French" }')
 ```
 
 - Restaurants de *Brooklyn* proposant de la cuisine française ou italienne
 
-```r
-m$count(query = '{ "borough": "Brooklyn", "cuisine": { "$in": ["French", "Italian"]} }')
+```python
+db.restaurants.count(query = '{ "borough": "Brooklyn", "cuisine": { "$in": ["French", "Italian"]} }')
 ```
 
 - Idem mais écrit plus lisiblement
 
-```r
-m$count(
+```python
+db.restaurants.count(
   query = '{ 
     "borough": "Brooklyn", 
     "cuisine": { "$in": ["French", "Italian"]}
@@ -125,8 +118,8 @@ m$count(
 - Restaurants situés sur *Franklin Street*
     - Notez l'accès au champs `street` du champs `address`
 
-```r
-m$count(
+```python
+db.restaurants.count(
   query = '{ 
     "address.street": "Franklin Street"
   }'
@@ -136,8 +129,8 @@ m$count(
 
 - Restaurants ayant eu un score de 0
 
-```r
-m$count(
+```python
+db.restaurants.count(
   query = '{ 
     "grades.score": 0
   }'
@@ -146,8 +139,8 @@ m$count(
 
 - Restaurants ayant eu un score inférieur à 5
 
-```r
-m$count(
+```python
+db.restaurants.count(
   query = '{ 
     "grades.score": { "$lte": 5 }
   }'
@@ -161,14 +154,14 @@ On peut aussi voir la liste des valeurs distinctes d'un attribut, avec la foncti
 
 - Quartier (`borough`), pour tous les restaurants
 
-```r
-m$distinct(key = "borough")
+```python
+db.restaurants.distinct(key = "borough")
 ```
 
 - Cuisine pour les restaurants de *Brooklyn*
 
-```r
-m$distinct(
+```python
+db.restaurants.distinct(
   key = "cuisine",
   query = '{ "borough": "Brooklyn" }'
 )
@@ -176,8 +169,8 @@ m$distinct(
 
 - Grade des restaurants de *Brooklyn*
 
-```r
-m$distinct(
+```python
+db.restaurants.distinct(
   key = "grades.grade",
   query = '{ "borough": "Brooklyn" }'
 )
@@ -189,38 +182,38 @@ La fonction `find()` de l'objet `m` permet donc de réaliser les *restrictions* 
 
 - Restaurants *Shake Shack* (uniquement les attributs `"street"` et `"borough"`)
 
-```r
-m$find(query = '{ "name": "Shake Shack" }', 
+```python
+db.restaurants.find(query = '{ "name": "Shake Shack" }', 
        fields = '{ "address.street": 1, "borough": 1 }')
 ```
 
 - Idem sans l'identifiant interne
 
-```r
-m$find(query = '{ "name": "Shake Shack" }', 
+```python
+db.restaurants.find(query = '{ "name": "Shake Shack" }', 
        fields = '{ "_id": 0, "address.street": 1, "borough": 1 }')
 ```
 
 - 10 premiers restaurants du quartier *Queens*, avec une note A et un score supérieur à 50 (on affiche le nom et la rue du restaurant
     - Remarquez l'affichage des scores dans `R`.
 
-```r
-m$find(query = '{"borough": "Queens", "grades.score": { "$gte":  50}}',
+```python
+db.restaurants.find(query = '{"borough": "Queens", "grades.score": { "$gte":  50}}',
        fields = '{"_id": 0, "name": 1, "grades.score": 1, "address.street": 1}',
        limit = 10)
 ```
 
 - Restaurants *Shake Shack* dans différents quartiers (*Queens* et *Brooklyn*)
 
-```r
-m$find(query = '{"name": "Shake Shack", "borough": {"$in": ["Queens", "Brooklyn"]}}', 
+```python
+db.restaurants.find(query = '{"name": "Shake Shack", "borough": {"$in": ["Queens", "Brooklyn"]}}', 
        fields = '{"_id": 0, "address.street": 1, "borough": 1}')
 ```
 
 - Restaurants du Queens ayant une note supérieure à 50, mais trié par ordre décroissant de noms de rue, et ordre croissant de noms de restaurants
 
-```r
-m$find(query = '{"borough": "Queens", "grades.score": { "$gt":  50}}',
+```python
+db.restaurants.find(query = '{"borough": "Queens", "grades.score": { "$gt":  50}}',
        fields = '{"_id": 0, "name": 1, "address.street": 1}',
        sort = '{"address.street": -1, "name": 1}')
 ```
@@ -231,16 +224,16 @@ Ils sont réalisés avec la fonction `aggregate()`, qui permet de faire beaucoup
 
 - Limite aux 5 premiers restaurants
 
-```r
-m$aggregate(pipeline = '[
+```python
+db.restaurants.aggregate(pipeline = '[
     {"$limit": 10 }
 ]')
 ```
 
 - Idem avec tri sur le nom du restaurant
 
-```r
-m$aggregate(pipeline = '[
+```python
+db.restaurants.aggregate(pipeline = '[
     { "$limit": 10 },
     { "$sort": { "name": 1 }}
 ]')
@@ -249,8 +242,8 @@ m$aggregate(pipeline = '[
 - Idem en se restreignant à *Brooklyn*
     - Notez que nous obtenons uniquement 5 restaurants au final
     
-```r
-m$aggregate(pipeline = '[
+```python
+db.restaurants.aggregate(pipeline = '[
     { "$limit": 10 },
     { "$sort": { "name": 1 }},
     { "$match": { "borough": "Brooklyn" }}
@@ -260,8 +253,8 @@ m$aggregate(pipeline = '[
 - Mêmes opérations mais avec la restriction en amont de la limite
     - Nous avons ici les 10 premiers restaurants de *Brooklyn* donc
 
-```r
-m$aggregate(pipeline = '[
+```python
+db.restaurants.aggregate(pipeline = '[
     { "$match": { "borough": "Brooklyn" }},
     { "$limit": 10 },
     { "$sort": { "name": 1 }}
@@ -271,8 +264,8 @@ m$aggregate(pipeline = '[
 - Séparation des 5 premiers restaurants sur la base des évaluations (`grades`)
     - Chaque ligne correspond maintenant a une évaluation pour un restaurant
 
-```r
-m$aggregate(pipeline = '[
+```python
+db.restaurants.aggregate(pipeline = '[
     { "$limit": 10 },
     { "$unwind": "$grades" }
 ]')
@@ -280,8 +273,8 @@ m$aggregate(pipeline = '[
 
 - Idem précédemment, en se restreignant à celle ayant eu *B*
 
-```r
-m$aggregate(pipeline = '[
+```python
+db.restaurants.aggregate(pipeline = '[
     { "$limit": 10 },
     { "$unwind": "$grades" },
     { "$match": { "grades.grade": "B" }}
@@ -290,8 +283,8 @@ m$aggregate(pipeline = '[
 
 - Si on inverse les opérations `$unwind` et `$match`, le résultat est clairement différent
 
-```r
-m$aggregate(pipeline = '[
+```python
+db.restaurants.aggregate(pipeline = '[
     { "$limit": 10 },
     { "$match": { "grades.grade": "B" }},
     { "$unwind": "$grades" }
@@ -301,8 +294,8 @@ m$aggregate(pipeline = '[
 - On souhaite ici ne garder que le nom et le quartier des 10 premiers restaurants
     - Notez l'ordre (alphabétique) des variables, et pas celui de la déclaration
     
-```r
-m$aggregate(pipeline = '[
+```python
+db.restaurants.aggregate(pipeline = '[
     { "$limit": 10 },
     { "$project": { "name": 1, "borough": 1 } }
 ]')
@@ -310,8 +303,8 @@ m$aggregate(pipeline = '[
 
 - Ici, on supprime l'adresse et les évaluations 
 
-```r
-m$aggregate(pipeline = '[
+```python
+db.restaurants.aggregate(pipeline = '[
     { "$limit": 10 },
     { "$project": { "address": 0, "grades": 0 } }
 ]')
@@ -319,8 +312,8 @@ m$aggregate(pipeline = '[
 
 - En plus du nom et du quartier, on récupère l'adresse mais dans un nouveau champs 
 
-```r
-m$aggregate(pipeline = '[
+```python
+db.restaurants.aggregate(pipeline = '[
     { "$limit": 10 },
     { "$project": { "name": 1, "borough": 1 , "street": "$address.street"} }
 ]')
@@ -328,8 +321,8 @@ m$aggregate(pipeline = '[
 
 - On ajoute le nombre de visites pour chaque restaurant (donc la taille du tableau `grades`)
 
-```r
-m$aggregate(pipeline = '[
+```python
+db.restaurants.aggregate(pipeline = '[
     { "$limit": 10 },
     { "$project": { "name": 1, "borough": 1, "nb_grades": { "$size": "$grades" } } }
 ]')
@@ -339,8 +332,8 @@ m$aggregate(pipeline = '[
     - Notez qu'il y a des restaurants sans visite donc (pour lesquels `grades` est préent mais égal à `NULL`)
     - Dans l'idéal, ces restaurants ne devraient pas avoir de champs `grades`
 
-```r
-m$aggregate(pipeline = '[
+```python
+db.restaurants.aggregate(pipeline = '[
     { "$project": { "name": 1, "borough": 1, "nb_grades": { "$size": "$grades" } } },
     { "$sort": { "nb_grades": 1 }},
     { "$limit": 10 }
@@ -349,8 +342,8 @@ m$aggregate(pipeline = '[
 
 - On ne garde maintenant que le premier élément du tableau `grades` (indicé 0)
 
-```r
-m$aggregate(pipeline = '[
+```python
+db.restaurants.aggregate(pipeline = '[
     { "$limit": 10 },
     { "$project": { "name": 1, "borough": 1, "grade": { "$arrayElemAt": [ "$grades", 0 ]} } }
 ]')
@@ -358,8 +351,8 @@ m$aggregate(pipeline = '[
 
 - On peut aussi faire des opérations sur les chaînes, tel que la mise en majuscule du nom
 
-```r
-m$aggregate(pipeline = '[
+```python
+db.restaurants.aggregate(pipeline = '[
     { "$limit": 10 },
     { "$project": { "nom": { "$toUpper": "$name" }, "borough": 1 } }
 ]')
@@ -367,8 +360,8 @@ m$aggregate(pipeline = '[
 
 - On peut aussi vouloir ajouter un champs, comme ici le nombre d'évaluations
 
-```r
-m$aggregate(pipeline = '[
+```python
+db.restaurants.aggregate(pipeline = '[
     { "$limit": 10 },
     { "$addFields": { "nb_grades": { "$size": "$grades" } } }
 ]')
@@ -376,8 +369,8 @@ m$aggregate(pipeline = '[
 
 - On extrait ici les trois premières lettres du quartier
 
-```r
-m$aggregate(pipeline = '[
+```python
+db.restaurants.aggregate(pipeline = '[
     { "$limit": 10 },
     { "$project": { 
         "nom": { "$toUpper": "$name" }, 
@@ -389,8 +382,8 @@ m$aggregate(pipeline = '[
 - On fait de même, mais on met en majuscule et on note *BRX* pour le *Bronx*
     - on garde le quartier d'origine pour vérification ici
 
-```r
-m$aggregate(pipeline = '[
+```python
+db.restaurants.aggregate(pipeline = '[
     { "$limit": 10 },
     { "$addFields": { "quartier": { "$toUpper": { "$substr": [ "$borough", 0, 3 ] } } }},
     { "$project": { 
@@ -403,24 +396,24 @@ m$aggregate(pipeline = '[
 
 - On calcule ici le nombre total de restaurants
 
-```r
-m$aggregate(pipeline = '[
+```python
+db.restaurants.aggregate(pipeline = '[
     {"$group": {"_id": "Total", "NbRestos": {"$sum": 1}}}
 ]')
 ```
 
 - On fait de même, mais par quartier
 
-```r
-m$aggregate(pipeline = '[
+```python
+db.restaurants.aggregate(pipeline = '[
     {"$group": {"_id": "$borough", "NbRestos": {"$sum": 1}}}
 ]')
 ```
 
 - Pour faire le calcul des notes moyennes des restaurants du *Queens*, on exécute le code suivant
 
-```r
-m$aggregate('[
+```python
+db.restaurants.aggregate('[
     { "$match": { "borough": "Queens" }},
     { "$unwind": "$grades" },
     { "$group": { "_id": "null", "score": { "$avg": "$grades.score" }}}
@@ -429,8 +422,8 @@ m$aggregate('[
 
 -  Il est bien évidemment possible de faire ce calcul par quartier et de les trier selon les notes obtenues (dans l'ordre décroissant)
 
-```r
-m$aggregate('[
+```python
+db.restaurants.aggregate('[
     { "$unwind": "$grades" },
     { "$group": { "_id": "$borough", "score": { "$avg": "$grades.score" }}},
     { "$sort": { "score": -1 }}
@@ -440,8 +433,8 @@ m$aggregate('[
 - On peut aussi faire un regroupement par quartier et par rue (en ne prenant que la première évaluation - qui est la dernière en date a priori), pour afficher les 10 rues où on mange le plus sainement
     - Notez que le premier `$match` permet de supprimer les restaurants sans évaluations (ce qui engendrerait des moyennes = `NA`)
 
-```r
-m$aggregate(pipeline = '[
+```python
+db.restaurants.aggregate(pipeline = '[
     { "$project": { 
         "borough": 1, "street": "$address.street", 
         "eval": { "$arrayElemAt": [ "$grades", 0 ]} 
@@ -461,8 +454,8 @@ m$aggregate(pipeline = '[
     - `$addToSet` : valeurs distinctes
     - `$push` : toutes les valeurs présentes
 
-```r
-m$aggregate(pipeline = '[
+```python
+db.restaurants.aggregate(pipeline = '[
     { "$limit": 10 },
     { "$unwind": "$grades" },
     { "$group": { 
@@ -479,8 +472,8 @@ Il est possible de définir un curseur (de même type que PL/SQL par exemple), q
 
 - Affichage particulier des 10 premiers restaurants du *Queens* ayant un score supérieur à 50
 
-```r
-cursor = m$iterate(
+```python
+cursor = db.restaurants.iterate(
   query = '{"borough": "Queens", "grades.score": { "$gte":  50}}',
   fields = '{"_id": 0, "name": 1, "address.street": 1}',
   sort = '{"address.street": -1, "name": 1}',
@@ -494,8 +487,8 @@ Plutôt que d'avoir les documents un par un, il est ausi possible de les avoir p
 
 - Vue des différences entre les 3 opérateurs
 
-```r
-cursor = m$iterate(limit = 15)
+```python
+cursor = db.restaurants.iterate(limit = 15)
 cursor$batch(5)
 cursor$page(5)
 cursor$json(5)
@@ -503,8 +496,8 @@ cursor$json(5)
 
 - Calcul d'une moyenne par itération en `batch`
 
-```r
-cursor = m$iterate()
+```python
+cursor = db.restaurants.iterate()
 fin = FALSE
 n_batch = 5
 somme = 0
@@ -537,7 +530,7 @@ cat("Résultat du calcul :", round(somme/nombre, 5), "\n")
     - **MAIS** beaucoup plus gourmand en espace disque en local et en blocage réseau (pour tout récupérer d'un coup)
 
 ```
-df = m$find()
+df = db.restaurants.find()
 mean(Reduce(rbind, df$grades)$score, na.rm = T)
 ```
 
