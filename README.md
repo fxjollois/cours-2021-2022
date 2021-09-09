@@ -4,7 +4,7 @@
 
 | Département | Formation | Cours |
 |:-:|-|-|-|
-| **STID** | BUT STID - 1A    | [Bases de données](stid-1a--bd) |
+| **STID** | BUT STID - 1A    | [Exploitation des bases de données relationnelles](stid-1a--bd) |
 |          | DUT STID - 2A FI | [NoSQL](stid-2afi--nosql) |
 |          |                  | [Travaux de fin d'études](stid-2afi--tfe) |
 |          | DUT STID - 2A FA | [SID](stid-2afa--sid/) |
@@ -17,4 +17,10 @@
 |          | DU Dataviz       | [Introduction à Tableau](du-dataviz/tableau) |
 |          |                  | [Introduction à d3.js](du-dataviz/d3js) |
 | **INFO** | LP IoT           | [Analyse Statistique des Données](lp-iot--python-ds) |
+
+## Autres
+
+### INSA ROUEN, Mastère ESD
+
+- [Introduction au Machine Learning en Python](insa-ms-esd--ml)
 

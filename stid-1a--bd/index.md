@@ -1,6 +1,6 @@
-# Exploitation de données
+# Exploitation des bases de données relationnelles
 
-## 1ère année
+## BUT STID - 1ère année
 
 - [Cours](https://docs.google.com/presentation/d/e/2PACX-1vQSy4o2wWe3arD9jwSOzaqW-huL9dVrBH26hKH8JQ1PGoBF83ODpZI2MCM4xiGxXymdS5JlB-vpJHG5/pub?start=false&loop=true&delayms=3000)
 - [TD1](td1)
@@ -8,7 +8,7 @@
 - [TD3](td3)
 
 - Séances de TP directement sur [ce site](http://fxjollois.github.io/cours-sql) 
-    - application développée spécifiquement pour le cours d'**Exploitation de données** de STID 1ère année.
+    - application développée spécifiquement pour ce cours
 
 
 ## Liens intéressants :
