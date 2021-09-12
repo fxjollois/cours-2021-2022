@@ -1,0 +1,537 @@
+---
+title: "Rappels de Statistique"
+author: "FX Jollois"
+date: "TC - 2ème année - 2021/2022"
+output:
+  slidy_presentation: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+library(DT)
+```
+
+## Qu'est-ce que la statistique ?
+
+- Ensemble de méthodes permettant de décrire et d'analyser des observations (communément appelées **données** de nos jours)
+
+- Utilisé maintenant dans tous les secteurs d'activités
+  - Economie et finance : marketing, sondages...
+  - Industrie : fiabilité, contrôle qualité...
+  - Santé : recherche médicale, gestion des hôpitaux...
+  - Environnement : prévisions climatiques et météorologiques, pollution...
+  - Web : réseaux, publicité...
+  - ...
+
+- Essor important avec le développement des outils informatiques et du web
+
+## Définitions de base
+
+- **Population** : ensemble d'entités (personnes, objets...) étudiés
+- **Individu** (ou *unité statistique*) : entité étudié
+- **Variable** : caractéristique mesurée sur chaque individu
+- **Observation** : mesure 
+- **Série statistique** : série d'observations recueillies sur les individus
+- **Tableau de données** : stockage de la série statistique
+  - Individus croisant des variables 
+  - Chaque ligne représente un individu
+  - Chaque colonne représente une variable (ou attribut)
+  - C'est ce qu'on fait classiquement dans un tableur de type Excel
+
+## Données *Diamants*
+
+- Exemple utilisé dans ce document
+- ~54000 diamants (100 premières lignes ici)
+
+```{r donnees}
+datatable(
+  diamonds %>% slice(1:100), 
+  rownames = FALSE,
+  options = list(searching = FALSE, scrollX = TRUE, scrollY = TRUE,
+                 lengthChange = FALSE, ordering = FALSE)) 
+```
+
+## Recensement vs Sondage
+
+### Recensement
+
+Etude de tous les individus d'une population
+
+- Recueil exhaustif de toutes les informations sur tous les entités
+- Difficile à mettre en œuvre la plupart du temps
+
+
+### Sondage
+
+Etude d'une partie de la population pour extrapolation sur l'ensemble de la population
+
+- Partie des individus étudiés = **échantillon**
+- Représentativité de l'échantillon ?
+
+## Type de variables
+
+### Variable quantitative
+
+- Caractéristiques numériques : opérations de type somme ayant un sens
+- **Continue** : 
+  - Mesurable
+  - Ex : taille, poids, durée...
+- **Discrète** :
+  - Dénombrable ou mesurable en espace fini
+  - Ex : âge, quantité en stock...
+
+## Type de variables
+
+### Variable qualitative
+
+- Caractéristiques non numériques : opérations de type somme n'ayant pas de sens
+  - Valeurs possibles : **Modalités** (ou catégories)
+- **Nominale** :
+  - Modalités n'ayant pas de lien entre elles
+  - Ex : couleur des yeux, sexe...
+  - Cas particulier : *binaire*
+- **Ordinale** : 
+  - Modalités devant être triées dans un ordre spécifique
+  - Ex : mois, sentiment...
+
+## Transformation de variable
+
+### Quantitative en qualitative
+
+- Courant de transformer une variable **quantitative** en variable **qualitative ordinale**
+  - Ex : catégorie d'âge
+- Différents problèmes se posent
+  - Combien de modalités (*intervalles* ici) ? 
+  - Taille identique des intervalles ou variable (*amplitude*) ?
+  - Seuils des intervalles ?
+
+### Standardisation ou normalisation d'une variable quantitative
+
+- Obligatoire pour l'utilisation de certaines méthodes statistiques
+- 2 opérations sont réalisées :
+  - Centrage : on retire la moyenne à chaque valeur
+  - Réduction : on divise par la variance
+$$
+  x_{norm} = \frac{x - \bar{x}}{\sigma^2}
+$$
+
+## Premier problème : décrire les données
+
+On parle de **Statistique descriptive** ou **exploratoire**
+
+### Objectifs 
+
+- Résumer l'information contenue dans les données
+- Faire ressortir des éléments intéressants
+- Poser des hypothèses sur des phénomènes potentiellement existant dans les données
+
+### Outils
+
+- Description numérique (moyenne, occurrences, corrélation...)
+- Description graphique (histogramme, diagramme en barres, nuage de points...)
+
+
+## Variable quantitative
+
+- Moyenne $\bar{x}$
+$$
+\bar{x} = \frac{1}{n} \sum_{i=1}^n x_i
+$$
+- Variance (et écart-type $\sigma(x)$)
+$$
+  \sigma^2(x) = \frac{1}{n} \sum_{i=1}^n (x_i - \bar{x})^2
+$$
+- Médiane $med(x)$ : valeur permettant de séparer les valeurs ordonnées prises par $x$ en 2 groupes de même taille
+$$
+med(x) = m | p(x \le m) = .5
+$$
+  - si $n$ est impair : $med(x) = x_{(n + 1) / 2}$
+  - si $n$ est pair : $med(x) = \frac{x_{n/2} + x_{n/2 + 1}}{2}$
+  
+- Quantile $q_p(x)$ : valeur pour laquelle une proportion $p$ de valeurs sont inférieures
+$$
+  q_p(x) = q | p(x \le q) = p
+$$
+  - Quartiles $Q1$ et $Q3$ : respectivement 25% et 75% (utilisés dans les boîtes à moustaches)
+  
+
+## Variable quantitative
+
+### Exemple : prix des diamants
+
+<div class='left' style='float:left;width:48%'>
+### Représentation numérique
+
+```{r qt-num}
+x = diamonds$price
+tib = tibble(
+  Statistique = c("Moyenne", "Ecart-Type", "Variance", "Médiane", "Minimum", "Maximum"),
+  Valeur = sapply(c(mean, sd, var, median, min, max), function(f) { f(x, na.rm = TRUE) })
+)
+datatable(
+  tib,
+  rownames = FALSE,
+  options = list(searching = FALSE, lengthChange = FALSE, paging = FALSE, info = FALSE, ordering = FALSE)) %>%
+  formatRound(columns = 2, digits = 2, mark = " ")
+```
+</div>
+
+<div class='right' style='float:right;width:48%'>
+### Représentation graphique 
+Histogramme et boîte à moustaches
+
+```{r qt-graph-tous, warning=FALSE, message=FALSE}
+library(cowplot)
+g1 = ggplot(diamonds, aes(price)) + 
+  geom_histogram(fill = "steelblue") + 
+  geom_vline(xintercept = mean(diamonds$price), alpha = .5) +
+  annotate("text", x = mean(diamonds$price), y = 15000, label = "Moyenne", hjust = -.1) +
+  labs(y = "", x = "") +
+  theme_minimal() + xlim(c(0, 20000))
+g2 = ggplot(diamonds, aes(price, "")) + 
+  geom_boxplot(fill = "steelblue", outlier.alpha = 0.5) + 
+  labs(y = "", x = "") +
+  theme_minimal() + xlim(c(0, 20000))
+plot_grid(g1, g2, 
+          ncol = 1, rel_heights = c(2, 1),
+          align = 'v', axis = 'lr')  
+```
+</div>
+
+## Variable qualitative
+
+### Nominale
+
+- Modalités de la variable $x$ : $m_j$ (avec $j=1,\ldots,p$)
+- Effectif (ou occurrences) d'une modalité $n_j$ : nombre d'individus ayant la modalité $m_j$
+- Fréquence d'une modalité $f_j$
+$$
+  f_j = \frac{n_j}{n}
+$$
+
+### Ordinale
+
+- Effectif cumulé $n_j^{cum}$ : nombre d'individus ayant une modalité entre $n_1$ et $n_j$
+$$
+  n_j^{cum} = \sum_{k=1}^j n_k
+$$
+- Fréquence cumulée 
+$$
+  f_j^{cum} = \sum_{k=1}^j f_k
+$$
+
+## Variable qualitative
+
+### Exemple : Qualité de découpe (*ordinale* de plus)
+
+<div class='left' style='float:left;width:48%'>
+### Représentation numérique
+
+```{r ql-num}
+tab = table(diamonds$cut, useNA = "ifany")
+tib = tibble(
+  Modalités = labels(tab)[[1]],
+  Effectifs = tab,
+  "Effectifs cumulés" = cumsum(tab),
+  Fréquences = prop.table(tab),
+  "Fréquences cumulées" = cumsum(prop.table(tab))
+)
+datatable(tib,
+  rownames = FALSE,
+  options = list(searching = FALSE, lengthChange = FALSE, paging = FALSE, info = FALSE, ordering = FALSE)) %>%
+  formatRound(columns = 4:5, digits = 2) #%>%
+  #formatPercentage(columns = "Pourcentages", digits = 1)
+```
+</div>
+
+<div class='left' style='float:left;width:48%'>
+### Représentation graphique
+Diagramme en barres
+
+```{r ql-graph-bar}
+ggplot(diamonds, aes(cut, fill = cut)) +
+  geom_bar(show.legend = FALSE) +
+  theme_minimal()
+```
+</div>
+
+## Quantitative vs quantitative
+
+- Covariance
+$$
+  cov(x,y) = \frac{1}{n} \sum_{i=1}^n (x_i - \bar{x}) (y_i - \bar{y})
+$$
+  - Problème : non bornée et donc non exploitable
+  
+- Coefficient de corrélation linéaire (de *Pearson*)
+$$
+  \rho(x,y) = \frac{cov(x,y)}{\sigma^2(x) \sigma^2(y)}
+$$
+  - Covariance des variables normalisées
+  - Valeurs comprises entre -1 et 1
+    - $0$ : pas de lien linéaire (autre type de lien possible)
+    - $1$ : lien positif fort (si $x$ augmente, $y$ augmente)
+    - $-1$ : lien négatif fort (si $x$ augmente, $y$ diminue)
+
+## Quantitative vs quantitative
+
+### Exemple : Prix et Carat
+
+<div class='left' style='float:left;width:48%'>
+### Représentation numérique
+
+```{r qtqt-num}
+x = diamonds$price
+y = diamonds$carat
+tib = tibble(
+  Statistique = c("Covariance", "Corrélation"),
+  Valeur = sapply(c(cov, cor), function(f) { f(x, y) })
+)
+datatable(
+  tib,
+  rownames = FALSE,
+  options = list(searching = FALSE, lengthChange = FALSE, paging = FALSE, info = FALSE, ordering = FALSE)) %>%
+  formatRound(columns = 2, digits = 2, mark = " ")
+```
+</div>
+
+<div class='right' style='float:right;width:48%'>
+### Représentation graphique 
+Nuage de points
+
+```{r qtqt-graph, warning=FALSE, message=FALSE}
+ggplot(diamonds, aes(carat, price)) + 
+  geom_point(color = "steelblue") + theme_minimal()
+```
+</div>
+
+## Anscombe
+
+La visualisation est aussi importante (voire plus) que la représentation numérique !
+
+<div class='left' style='float:right;width:48%'>
+Entre ces quatres séries :
+
+- même moyenne et même variance pour $x$ et $y$
+- même coefficient de corrélation entre les deux
+
+```{r}
+a = lapply(1:4, function (i) { 
+  anscombe %>% 
+    select(ends_with(as.character(i))) %>% 
+    rename_with(function (n) { substr(n, 1, 1)}) %>%
+    mutate(id = i)
+  })
+c = sapply(a, function(df) {
+  res = c(m_x = mean(df$x), m_y = mean(df$y),
+          s_x = sd(df$y), s_y = sd(df$y),
+          cov = cov(df$x, df$y), cor = cor(df$x, df$y))
+})
+rownames(c) = c("Moyenne(x)", "Moyenne(y)", "Ecart-type(x)", "Ecart-type(y)", "Covariance", "Corrélation")
+datatable(
+  c,
+  colnames = 1:4,
+  options = list(searching = FALSE, lengthChange = FALSE, paging = FALSE, info = FALSE, ordering = FALSE)) %>%
+  formatRound(columns = 1:4, digits = 2, mark = " ")
+```
+</div>
+<div class='right' style='float:right;width:48%'>
+
+```{r}
+b = Reduce(rbind, a)
+ggplot(b, aes(x, y)) +
+  geom_point() +
+  facet_wrap(~ id) +
+  theme_minimal()
+```
+</div>
+
+## Qualitative vs qualitative
+
+<div class='left' style='float:left;width:48%'>
+- Table de contingence
+  - Croisement des 2 ensembles de modalités, avec le nombre d'individus ayant chaque couple de modalités
+  - $n_{ij}$ : Nombre d'observations ayant la modalité $i$ pour $x$ et $j$ pour $y$
+  - $n_{i.}$ : Effectif marginal (nombre d'observations ayant la modalité $i$ pour $x$)
+  - $n_{.j}$ : Effectif marginal (nombre d'observations ayant la modalité $j$ pour $y$)
+- Profils lignes et colonnes
+  - Distribution d'une variable conditionnellement aux modalités de l'autre
+</div>
+<div class='left' style='float:left;width:48%'>
+
+```{r}
+tab = matrix("", nrow = 6, ncol = 6)
+colnames(tab) = c(1, "...", "j", "...", "l", "total")
+rownames(tab) = c(1, "...", "i", "...", "k", "total")
+tab[3,3] = "n_ij"
+tab[3,6] = "n_i."
+tab[6,3] = "n_.j"
+tab[6,6] = "n_.. = n"
+datatable(
+  tab,
+  options = list(searching = FALSE, lengthChange = FALSE, paging = FALSE, info = FALSE, ordering = FALSE,
+                 columnDefs = list(list(className = 'dt-center', targets = "_all")))
+)
+```
+
+</div>
+
+## Qualitative vs qualitative
+
+### Exemple : Qualité et couleur
+
+<div class='left' style='float:left;width:48%'>
+### Représentation numérique
+
+```{r qlql-num}
+t = t(table(diamonds$cut, diamonds$color))
+tib = tibble(as.data.frame.matrix(t) %>% rownames_to_column("color"))
+datatable(
+  tib,
+  rownames = FALSE,
+  options = list(searching = FALSE, lengthChange = FALSE, paging = FALSE, info = FALSE, ordering = FALSE)) 
+```
+</div>
+
+<div class='right' style='float:right;width:48%'>
+### Représentation graphique 
+
+```{r qtql-graph, warning=FALSE, message=FALSE}
+ggplot(diamonds, aes(cut, fill = color)) +
+  geom_bar(position = "dodge") +
+  theme_minimal() +
+  labs(y = "")
+```
+</div>
+
+## Qualitative vs qualitative
+
+### Exemple : Qualité et couleur
+
+<div class='left' style='float:left;width:48%'>
+### Représentation numérique
+
+Profils colonnes ici (sommes en colonnes = 100%)
+
+```{r qlql-num-2}
+t = t(prop.table(table(diamonds$cut, diamonds$color), margin = 1))
+tib = tibble(as.data.frame.matrix(t) %>% rownames_to_column("color"))
+datatable(
+  tib,
+  rownames = FALSE,
+  options = list(searching = FALSE, lengthChange = FALSE, paging = FALSE, info = FALSE, ordering = FALSE))%>%
+  formatRound(columns = 2:6, digits = 2)
+```
+</div>
+
+<div class='right' style='float:right;width:48%'>
+### Représentation graphique 
+
+```{r qtql-graph-2, warning=FALSE, message=FALSE}
+ggplot(diamonds, aes(cut, fill = color)) +
+  geom_bar(position = "fill") +
+  theme_minimal()
+```
+</div>
+
+## Qualitative vs qualitative
+
+### Exemple : Qualité et couleur
+
+<div class='left' style='float:left;width:48%'>
+### Représentation numérique
+
+Profils lignes ici (sommes en lignes = 100%)
+
+```{r qlql-num-3}
+t = t(prop.table(table(diamonds$cut, diamonds$color), margin = 2))
+tib = tibble(as.data.frame.matrix(t) %>% rownames_to_column("cut"))
+datatable(
+  tib,
+  rownames = FALSE,
+  options = list(searching = FALSE, lengthChange = FALSE, paging = FALSE, info = FALSE, ordering = FALSE))%>%
+  formatRound(columns = 2:6, digits = 2)
+```
+</div>
+
+<div class='right' style='float:right;width:48%'>
+### Représentation graphique 
+
+```{r qtql-graph-3, warning=FALSE, message=FALSE}
+ggplot(diamonds, aes(color, fill = cut)) +
+  geom_bar(position = "fill") +
+  scale_fill_brewer(palette = "Accent") +
+  theme_minimal()
+```
+</div>
+
+
+## Qualitative vs quantitative
+
+- Soit $Y$ la variable qualitative à $m$ modalités, et $X$ la variable quantitative
+- Sous-populations déterminées par les modalités de $Y$
+- Indicateurs calculés pour chaque modalité
+$$
+  \bar{x_j} = \frac{1}{n_j} \sum_{i | y_i = j} x_i
+$$
+$$
+  \sigma^2(x_j) = \frac{1}{n_j} \sum_{i | y_i = j} (x_i - \bar{x_j})^2
+$$
+
+## Qualitative vs quantitative
+
+### Exemple : Qualité et prix
+
+<div class='left' style='float:left;width:48%'>
+### Représentation numérique
+
+```{r qlqt-num, message=FALSE}
+tib = diamonds %>% 
+  group_by(cut) %>% 
+  summarise(Moyenne = mean(price), "Ecart-type" = sd(price))
+datatable(
+  tib,
+  rownames = FALSE,
+  options = list(searching = FALSE, lengthChange = FALSE, paging = FALSE, info = FALSE))  %>%
+  formatRound(columns = 2:3, digits = 2, mark = " ")
+```
+</div>
+
+<div class='right' style='float:right;width:48%'>
+### Représentation graphique 
+Boîte à moustaches
+
+```{r qlqt-graph, warning=FALSE, message=FALSE}
+ggplot(diamonds, aes(cut, price, fill = cut)) +
+  geom_boxplot() +
+  theme_minimal()
+```
+</div>
+
+
+
+## Deuxième problème : Extrapoler à partir de données
+
+On parle alors de **statistique inférentielle**
+
+### Cadre
+
+- Données issues d'un échantillon d'une population
+- Modèle probabiliste sur la population 
+- Méthodes d'échantillonnage pour choisir au mieux l'échantillon
+
+### Objectifs 
+
+- Etendre les conclusions faites sur l'échantillon à toute la population
+- Valider (ou non) des hypothèses faites sur la population en analysant l'échantillon
+
+### Outils
+
+- Estimation : approximer des paramètres de la population à partir de l'échantillon
+- Test : valider les hypothèses
+- Modélisation : rechercher des liens entre variables, pour compréhension et prévision
+
+
+
+

@@ -24,3 +24,6 @@
 
 - [Introduction au Machine Learning en Python](insa-ms-esd--ml)
 
+### IUT Cherbourg, Département TC, 2ème année
+
+- [Statistiques appliquées et probabilités](tc-stats-probas)
