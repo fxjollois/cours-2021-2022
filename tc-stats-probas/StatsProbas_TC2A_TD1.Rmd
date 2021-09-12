@@ -175,6 +175,14 @@ datatable(
   options = list(searching = FALSE, lengthChange = FALSE, paging = FALSE, info = FALSE, ordering = FALSE)) %>%
   formatRound(columns = 2, digits = 2, mark = " ")
 ```
+
+A regarder aussi :
+
+- Divergence moyenne et médiane 
+  - Valeurs extrêmes présentes
+  - Déséquilibre de la répartition des valeurs 
+- Présence de valeurs aberrantes
+  - On parle d'**outliers**
 </div>
 
 <div class='right' style='float:right;width:48%'>
@@ -243,6 +251,12 @@ datatable(tib,
   formatRound(columns = 4:5, digits = 2) #%>%
   #formatPercentage(columns = "Pourcentages", digits = 1)
 ```
+
+A regarder aussi :
+
+- Différence entre les proportions 
+- Si modalités peu fréquentes, regroupement de modalités à envisager
+  - Attention au sens de ces regroupements
 </div>
 
 <div class='left' style='float:left;width:48%'>
@@ -294,6 +308,10 @@ datatable(
   options = list(searching = FALSE, lengthChange = FALSE, paging = FALSE, info = FALSE, ordering = FALSE)) %>%
   formatRound(columns = 2, digits = 2, mark = " ")
 ```
+
+A regarder aussi :
+
+- Présence d'**outliers** avec un comportement atypique
 </div>
 
 <div class='right' style='float:right;width:48%'>
@@ -392,6 +410,11 @@ datatable(
   rownames = FALSE,
   options = list(searching = FALSE, lengthChange = FALSE, paging = FALSE, info = FALSE, ordering = FALSE)) 
 ```
+
+A regarder aussi :
+
+- Couple de modalités très peu pris
+- Ici aussi, regroupement de modalités à envisager éventuellement
 </div>
 
 <div class='right' style='float:right;width:48%'>
@@ -496,6 +519,10 @@ datatable(
   options = list(searching = FALSE, lengthChange = FALSE, paging = FALSE, info = FALSE))  %>%
   formatRound(columns = 2:3, digits = 2, mark = " ")
 ```
+
+A regarder aussi :
+
+- Outliers
 </div>
 
 <div class='right' style='float:right;width:48%'>
