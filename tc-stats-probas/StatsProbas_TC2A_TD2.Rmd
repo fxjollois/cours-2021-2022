@@ -1,0 +1,735 @@
+---
+title: "Lois de probabilité et estimation"
+author: "FX Jollois"
+date: "TC - 2ème année - 2021/2022"
+output:
+  beamer_presentation:
+    theme: "Madrid"
+    colortheme: "seahorse"
+    fonttheme: "structurebold"
+header-includes:
+- \usepackage{booktabs}
+- \usepackage{longtable}
+- \usepackage{array}
+- \usepackage{multirow}
+- \usepackage{wrapfig}
+- \usepackage{float}
+- \usepackage{colortbl}
+- \usepackage{pdflscape}
+- \usepackage{tabu}
+- \usepackage{threeparttable}
+- \usepackage{threeparttablex}
+- \usepackage[normalem]{ulem}
+- \usepackage{makecell}
+- \usepackage{xcolor}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+set.seed(1234)
+```
+
+## Rappels de probabilités : Définitions
+
+- Expérience aléatoire : expérience dont le résultat ne peut pas être déterminé *a priori*
+- Univers de l'expérience : enseobme des résultats possibles (noté $\Omega$)
+- Résultat élémentaire : résultat possible de l'expérience (noté $\omega$)
+- Ensemble des parties : ensemble de constitué de tous les sous-ensembles possible de $\Omega$ (noté $\mathcal{P}(\Omega)$)
+- Evènement (aléatoire) : partie (sous-ensemble) de $\Omega$ (noté $A$)
+  - On parle de *réalisation* lorsque l'évènement se produit (*i.e* le résultat $\omega$ appartient au sous-ensembme $A$)
+  - $A=\Omega$ se réalise toujours
+  - $A=\emptyset$ ne se réalise jamais
+  - $A=\{\omega\}$ s'appelle donc un évènement élémentaire
+
+## Exemple simple
+
+Lancer d'un dé à 6 faces (non pipé), avec un jeu où on doit faire un nombre pair
+
+- $\Omega = \{1, 2, 3, 4, 5, 6\}$
+- $\mathcal{P}(\Omega)$ : ensemble des 64 sous-ensembles possibles
+  - $\emptyset$ et $\Omega$
+  - $\{1\}, \{2\}, \ldots$
+  - $\{1, 2\}, \{1, 3\}, \ldots$
+  - $\{1, 2, 3\}, \{1, 2, 4\}, \ldots$
+  - \ldots
+- $A=\{2, 4, 6\}$
+
+## Rappels de probabilités : Evènements 
+
+- Complémentaire de $A$ : évènement constitué des éléments de $\Omega$ non inclus dans $A$
+  - $\bar{A} = \{\omega \in \Omega, \omega \notin A \}$
+- Réunion de $A$ et $B$ : évènement constitué des éléments de $A$ et des éléments de $B$ (ou aux deux donc)
+  - $A \cup B = \{ w \in \Omega, \omega \in A \mbox{ ou } \omega \in B \}$
+- Intersection de $A$ et $B$ : événement constitué des éléments de $\Omega$ étant à la fois dans $A$ et dans $B$
+  - $A \cap B = \{ w \in \Omega, \omega \in A \mbox{ et } \omega \in B \}$
+
+## Rappels de probabilités : Evènements 
+
+- Inclusion : $A$ est inclus dans $B$ si tous les éléments de $A$ sont dans $B$
+  - $A \subset B \Leftrightarrow \left( \omega \in A \implies \omega \in B \right)$
+- Disjonction (ou incompatibilité) : $A$ et $B$ sont disjoints s'il n'y aucun élément commun entre les deux
+  - $A$ et $B$ disjoints $\Leftrightarrow A \cap B = \emptyset$
+- Système complet d'évènements : $(A_1, A_2, \ldots, A_n)$ constitue un système complet s'ils forment une partition de $\Omega$
+  - Ils sont 2 à 2 incompatibles : $\forall p \ne q, A_p \cap A_q = \emptyset$
+  - Leur réunion est égale à $\Omega$ : $\bigcup_{p=1}^n A_p = \Omega$
+
+## Rappels de probabilités
+
+**Probabilité** : fonction permettant de mesurer la chance de réalisation d'un évènement
+
+Quelques opérations :
+
+- $P(\emptyset) = 0$
+- $0 \le P(A) \le 1$
+- $P(A) = \sum_{\omega_i \in A} P(\omega_i)$
+- $P(\bar{A}) = 1 - P(A)$
+- $P(A) \le P(B)$ si $A \subset B$
+- $P(A \cup B) = P(A) + P(B) - P(A \cap B)$
+- $P(\bigcup_i A_i) \le \sum_i P(A_i)$
+
+## Rappels de probabilités
+
+- Probabilité conditionnelle de $A$ sachant $B$
+$$
+  P(A / B) = \frac{P(A \cap B)}{P(B)}
+$$
+- Indépendance de 2 évènements $A$ et $B$
+$$
+  P(A \cap B) = P(A) P(B)
+$$
+$$
+  P(A / B) = P(A) 
+$$
+$$
+  P(B / A) = P(B)
+$$
+  - 2 évènements disjoints ne sont pas considérés comme indépendant
+
+- Théorème de Bayes
+$$
+  P(A / B) = \frac{P(B / A) P(A)}{P(B)}
+$$
+
+## Variable aléatoire 
+
+::: block
+### Variable aléatoire
+Mesure d'un phénomène (*variable*) dont le résultat est déterminée par une expérience *aléatoire* (*i.e*. dépendant du hasard)
+:::
+
+- Exemples classiques : Pile/Face ou Lancer de dé
+- Chaque résultat d'une expérience : **issue**
+- Ensemble de toutes les issues possibles : **univers des possibles** $\Omega$
+- Sous-ensemble de $\Omega$ : **événement**
+  - Si ensemble à une seule issue *événement élémentaire*
+- Possibilité d'associer une valeur réelle à chaque issue
+  - Notion de gain par exemple
+
+## Variable aléatoire et loi de probabilité
+
+::: block
+### Définition
+Une **variable aléatoire** (ou *v.a.*) $\mathbf{X}$ est une fonction définie sur $\Omega$ et à valeur dans $\mathbb{R}$, à laquelle on associe une **loi de probabilité** (ou *distribution de probabilité*) dont la masse totale est égale à 1
+:::
+
+- V.a. *quantitative* si les valeurs de $X$ sont quantitatives
+- V.a. *discrète* si le nombre de résultats est faible ou si c'est qualitatif
+
+## Variable aléatoire 
+
+### Fonction de masse
+Soit $\mathbf{X}$ une *v.a.* prenant des valeurs $x_i$ discrètes.
+
+La *fonction de masse* de la v.a. associe une probabilité $P(X \le x_i)$ à chaque résultat élémentaire $x_i$
+
+### Densité de probabilité
+Soit $\mathbf{X}$ une *v.a.* prenant des valeurs $x$ réelles.
+
+La *fonction de densité* permet de calculer la probabilité d'appartenance à un domaine $P(a \le X \le b)$ (c'est la dérivée de la fonction de répartition).
+
+### Fonction de répartition
+Soit $\mathbf{X}$ une *v.a.* prenant des valeurs $x$ réelles ou discrètes.
+
+La *fonction de répartition* $F_X$ de la v.a. est la fonction qui associe une probabilité $P(X \le x)$ à tout  $x$.
+
+
+## Exemple de cas discret
+
+On lance un dé (à 6 faces), et on calcule notre gain avec
+
+::: columns
+
+:::: column
+
+- $+1$ si c'est pair
+- $-2$ si c'est $\le 3$
+- $+5$ si c'est 2
+
+::::
+
+:::: column
+
+```{r ex1}
+x = 1:6
+gain = ((x %% 2) == 0) + (x <= 3) * -2 + (x == 2) * 5
+kable(t(data.frame(x = x, gain = gain))) %>%
+  kable_styling(position = "center")
+```
+
+::::
+
+:::
+
+### A noter
+
+::: columns
+
+:::: column
+~
+
+- V.a. $\mathbf{X}$ *discrète* : gain d'un lancer
+- $\Omega$ : $1, \ldots, 6$
+- **Issues** : $-2, 0, 1, 4$
+- Loi de probabilité :
+
+```{r ex1-bis}
+tab = as.data.frame(table(gain), responseName = "p")
+kable(t(tab)) %>%
+  kable_styling(position = "center")
+```
+
+::::
+
+:::: column
+
+```{r ex1-ter, out.width='90%', fig.align='center'}
+ggplot(tab, aes(factor(gain), p / sum(p))) +
+  geom_bar(stat = "identity", fill = "steelblue") +
+  labs(x = "", y = "") +
+  theme_minimal() +
+  theme(text = element_text(size = 25)) +
+  ggtitle("Fonction de masse")
+```
+
+::::
+
+:::
+
+
+
+## Cas discret
+
+### Cas qualitatif
+
+- **Loi uniforme discrète** (résultats équi-probables)
+
+- **Loi de Bernouilli**
+
+- **Loi Binomiale**
+
+### Cas quantitatif discret
+
+- **Loi de Poisson**
+
+## Loi uniforme discrète
+
+### Définition
+Soit $\mathbf{X}$ une *v.a.* prenant des valeurs $k$ discrètes (avec $k=1,\ldots,n)$.
+
+$\mathbf{X}$ suit une **loi discrète** si pour chaque $i$, $P(X = k) = \frac{1}{n}$.
+
+::: example
+### Exemple
+
+Dé à 6 faces (non pipé) $\rightarrow P(X = k) = \frac{1}{6}$ (avec $k=1,\ldots,6$).
+:::
+
+### Espérance et variance
+$$
+  E(X) = \frac{n+1}{2} \mbox{ et } V(X) = \frac{n^2 - 1}{12}
+$$
+
+## Loi uniforme discrète
+
+```{r}
+n = 6
+ntry = 10000
+```
+
+$\rightarrow$ Simulation avec `r n` valeurs possibles, et `r ntry` tirages.
+
+```{r}
+tirages = sample(1:n, ntry, replace = TRUE)
+tab = tibble(essai = 1:ntry, tirage = tirages, cumul = cumsum(tirages)) %>%
+  mutate(moyenne = cumul / essai)
+```
+
+::: columns
+
+:::: column
+```{r}
+ggplot(tab, aes(factor(tirage))) +
+  geom_bar(fill = "steelblue") +
+  theme_minimal() +
+  labs(x = "", y = "") +
+  theme(text = element_text(size = 25))
+```
+
+::::
+
+:::: column
+```{r}
+ggplot(tab, aes(essai, moyenne)) +
+  geom_hline(yintercept = 3.5, color = "gray10", linetype = "dashed") +
+  geom_line(color = "steelblue", size = 2) +
+  ylim(3, 4) +
+  theme_minimal() +
+  labs(x = "", y = "") +
+  theme(text = element_text(size = 25)) +
+  ggtitle("Evolution de la moyenne")
+```
+
+::::
+
+:::
+
+
+## Loi de Bernouilli
+
+### Définition
+Soit $\mathbf{X}$ une *v.a.* prenant deux valeurs $0$ ou $1$
+
+$\mathbf{X}$ suit une **loi de Bernouilli** si $P(X = 1)=p$ et $P(X = 0) = q = 1-p$.
+
+::: example
+### Exemple
+
+Pile ou face avec une pièce équilibrée
+:::
+
+### Espérance et Variance
+$$
+  E(X) = p \mbox{ et } V(X) = pq
+$$
+
+## Loi de Bernouilli
+
+$\rightarrow$ Simulation avec une urne avec 100 boules oranges et 50 boules vertes. On considère qu'on veut des boules oranges, donc $P(X = 1) = \frac{100}{150}$. On fait toujours `r ntry` tirages, avec remise ici.
+
+```{r}
+tirages = rbernoulli(ntry, 2/3)
+tab = tibble(essai = 1:ntry, tirage = tirages, cumul = cumsum(tirages)) %>%
+  mutate(moyenne = cumul / essai)
+```
+
+::: columns
+
+:::: column
+```{r}
+ggplot(tab, aes(factor(tirage))) +
+  geom_bar(fill = c("darkgreen", "orange3")) +
+  theme_minimal() +
+  labs(x = "", y = "") +
+  theme(text = element_text(size = 25), axis.text.x = element_blank())
+```
+
+::::
+
+:::: column
+```{r}
+ggplot(tab, aes(essai, moyenne)) +
+  geom_hline(yintercept = 2/3, color = "gray10", linetype = "dashed") +
+  geom_line(color = "steelblue", size = 2) +
+  theme_minimal() +
+  labs(x = "", y = "") +
+  theme(text = element_text(size = 25)) +
+  ggtitle("Evolution de la moyenne")
+```
+
+::::
+
+:::
+
+
+## Loi Binomiale
+
+C'est la loi de la somme de $n$ v.a. indépendants de loi de Bernouilli.
+
+### Définition
+Soit $\mathbf{X}$ une *v.a.* prenant les valeurs $0$ (avec une probabilité $p$) ou $1$ (avec une probabilité $1-p$), et $n$ le nombre de tirages réalisés.
+
+$\mathbf{X}$ suit une **loi Binomiale** lorsque $P(X = k) = C_k^n p^k (1-p)^{n-k}$.
+
+$C_k^n = \frac{n!}{k!(n-k)!}$ se nomme le coefficient binomiale, et représente le nombre d'ensemble à $k$ éléments qu'on peut obtenir dans l'ensemble des $n$ éléments.
+
+::: example
+### Exemple
+
+Avec 100 tirages à pile ou face, on se pose la question de savoir combien de fois on aura pile.
+:::
+
+### Espérance et Variance
+$$
+  E(X) = np \mbox{ et } V(X) = np(1-p)
+$$
+
+## Loi Binomiale
+
+$\rightarrow$ Simulation avec notre urne avec 100 boules oranges et 50 boules vertes. Chaque essai comportera 100 tirages avec remise. On fait toujours `r ntry` essais. On cherche à savoir combien on aura de boules oranges dans ces 100 tirages.
+
+```{r}
+tirages = rbinom(ntry, 100, 2/3)
+tab = tibble(essai = 1:ntry, tirage = tirages, cumul = cumsum(tirages)) %>%
+  mutate(moyenne = cumul / essai)
+```
+
+::: columns
+
+:::: column
+```{r}
+ggplot(tab, aes(factor(tirage))) +
+  geom_bar(fill = "steelblue") +
+  theme_minimal() +
+  labs(x = "", y = "") +
+  theme(text = element_text(size = 25))
+```
+
+::::
+
+:::: column
+```{r}
+ggplot(tab, aes(essai, moyenne)) +
+  geom_hline(yintercept = 100*2/3, color = "gray10", linetype = "dashed") +
+  geom_line(color = "steelblue", size = 2) +
+  ylim(65, 68) +
+  theme_minimal() +
+  labs(x = "", y = "") +
+  theme(text = element_text(size = 25)) +
+  ggtitle("Evolution de la moyenne")
+```
+
+::::
+
+:::
+
+## Loi de Poisson
+
+### Définition
+Soit $\mathbf{X}$ une *v.a.* prenant des valeurs $k$ discrètes (avec $k=1,2,\ldots$).
+
+$\mathbf{X}$ suit une **loi de Poisson** $Pois(\lambda)$ si pour chaque $i$, $P(X = k) = \frac{\lambda^k}{k!}e^{-k}$ où
+
+- $e$ est la base de l'exponentielle
+- $\lambda$ représente le nombre moyen d'occurences dans un intervalle de temps fixé
+
+::: example
+### Exemple
+
+Nombre de personnes à l'arrêt d'un bus après une certaine durée
+
+:::
+
+### Espérance et Variance
+$$
+  E(X) = \lambda \mbox{ et } V(X) = \lambda
+$$
+
+
+## Loi de Poisson
+
+$\rightarrow$ Simulation en considérant un arrêt de bus. On considère que 2 personnes viennent toutes les minutes. On étudie le nombre de personnes sur une durée de 5 minutes. On choisit donc $\lambda = 10$.
+
+```{r}
+tirages = rpois(ntry, 10)
+tab = tibble(essai = 1:ntry, tirage = tirages, cumul = cumsum(tirages)) %>%
+  mutate(moyenne = cumul / essai)
+```
+
+::: columns
+
+:::: column
+```{r}
+ggplot(tab, aes(factor(tirage))) +
+  geom_bar(fill = "steelblue") +
+  theme_minimal() +
+  labs(x = "", y = "") +
+  theme(text = element_text(size = 25)) 
+```
+
+::::
+
+:::: column
+```{r}
+ggplot(tab, aes(essai, moyenne)) +
+  geom_hline(yintercept = 10, color = "gray10", linetype = "dashed") +
+  geom_line(color = "steelblue", size = 2) +
+  theme_minimal() +
+  labs(x = "", y = "") +
+  theme(text = element_text(size = 25)) +
+  ggtitle("Evolution de la moyenne")
+```
+
+::::
+
+:::
+
+
+## Cas continu
+
+- Loi uniforme
+
+- Loi Normale
+
+## Loi uniforme continue
+
+### Définition
+Soit $\mathbf{X}$ une *v.a.* prenant des valeurs $x$ réelles dans $[a;b]$.
+
+$\mathbf{X}$ suit une **loi uniforme continue** $U(a,b)$ si tous les intervalles de même longueur ont la même probabilité
+
+::: example
+### Exemple
+
+:::
+
+### Espérance, Variance
+$$
+  E(X) = \frac{a+b}{2} \mbox{ et } V(X) = \frac{(b-a)^2}{12} 
+$$
+
+## Loi uniforme continue
+
+::: columns
+
+:::: column
+### Densité de probabilité
+$$
+f(x) = \left\{
+  \begin{array}{rl}
+    \frac{1}{b-a}  & \mbox{ pour } x \in [a;b] \\
+    0 & \mbox{ sinon} \\
+  \end{array}
+\right.
+$$
+
+```{r uni-cont-dens}
+library(latex2exp)
+df <- data.frame(x = c(0, 1, 1, 1, 5, 5, 5, 6),
+                 y = c(.1, .1, NA, .7, .7, NA, .1, .1))
+df2 = data.frame(x = c(1, 5), y = .7)
+ggplot(df, aes(x, y)) + 
+  geom_point() + 
+  geom_line() +
+  geom_segment(data = df2, aes(xend = x, yend = .1), linetype = "dashed") +
+  labs(x = "", y = "") +
+  ylim(0, 1) +
+  theme_minimal() +
+  theme(axis.text = element_blank()) +
+  annotate("text", x = 1, y = .05, label = "a", size = 15) +
+  annotate("text", x = 5, y = .05, label = "b", size = 15) +
+  annotate("text", x = .5, y = .7, label = TeX("$\\frac{1}{b-a}$"), size = 15)
+```
+::::
+:::: column
+### Fonction de répartition
+$$
+ F(x) = \left\{
+  \begin{array}{rl}
+    0 & \mbox{pour } x < a \\
+    \frac{x - a}{b - a}  & \mbox{pour } x \in [a;b] \\
+    1 & \mbox{pour } x > b \\
+  \end{array}
+\right.
+$$
+
+```{r}
+df <- data.frame(x = c(0, 1, 5, 6),
+                 y = c(0, 0, 1, 1))
+ggplot(df, aes(x, y)) + 
+  geom_point() + 
+  geom_line() +
+  labs(x = "", y = "") +
+  ylim(-.1, 1) +
+  theme_minimal() +
+  theme(axis.text.x = element_blank()) +
+  annotate("text", x = 1, y = -.05, label = "a", size = 15) +
+  annotate("text", x = 5, y = -.05, label = "b", size = 15) 
+```
+
+::::
+:::
+
+
+## Loi uniforme continue
+
+$\rightarrow$ Simulation sur l'intervalle $[1;5]$
+
+```{r}
+tirages = runif(ntry, 1, 5)
+tab = tibble(essai = 1:ntry, tirage = tirages, cumul = cumsum(tirages)) %>%
+  mutate(moyenne = cumul / essai)
+```
+
+::: columns
+
+:::: column
+```{r}
+ggplot(tab, aes(tirage)) +
+  geom_histogram(fill = "steelblue", breaks = seq(1, 5, by = .1)) +
+  theme_minimal() +
+  labs(x = "", y = "") +
+  theme(text = element_text(size = 25)) +
+  ggtitle("Fonction de masse")
+```
+
+::::
+
+:::: column
+```{r}
+ggplot(tab, aes(essai, moyenne)) +
+  geom_hline(yintercept = 3, color = "gray10", linetype = "dashed") +
+  geom_line(color = "steelblue", size = 2) +
+  theme_minimal() +
+  labs(x = "", y = "") +
+  theme(text = element_text(size = 25)) +
+  ggtitle("Evolution de la moyenne")
+```
+
+::::
+
+:::
+
+
+## Loi Normale
+
+### Définition
+Soit $\mathbf{X}$ une *v.a.* prenant des valeurs $x$ réelles.
+
+$\mathbf{X}$ suit une **loi Normale** $N(\mu, \sigma^2)$ de moyenne $\mu$ et de variance $\sigma^2$.
+
+::: example
+### Exemple
+
+Mesure de la taille d'une population
+:::
+
+### Espérance et Variance
+$$
+  E(X) = \mu \mbox{ et } V(X) = \sigma^2
+$$
+
+## Loi Normale
+
+::: columns
+
+:::: column
+### Densité de probabilité
+$$
+f(x) = \frac{1}{\sigma \sqrt{2\pi}} \exp \left( -\frac{(x - \mu)^2}{2\sigma^2} \right)
+$$
+
+```{r}
+x = seq(-5, 5, by = .01)
+df = data.frame(x = x, y = dnorm(x))
+ggplot(df, aes(x, y)) + 
+  geom_line(color = "steelblue", size = 2) +
+  labs(x = "", y = "") +
+  theme_minimal()
+```
+::::
+:::: column
+### Fonction de répartition
+$$
+ F(x) = \frac{1}{2} \left( 1 + \mbox{erf} \frac{x - \mu}{\sigma\sqrt{2}} \right)
+$$
+
+```{r}
+x = seq(-5, 5, by = .01)
+df = data.frame(x = x, y = pnorm(x))
+ggplot(df, aes(x, y)) + 
+  geom_line(color = "steelblue", size = 2) +
+  labs(x = "", y = "") +
+  theme_minimal()
+```
+
+::::
+:::
+
+
+## Loi Normale
+
+$\rightarrow$ Simulation d'une loi Normale de moyenne $\mu = 170$ et d'écart-type $10$
+
+```{r}
+tirages = rnorm(ntry, 170, 10)
+tab = tibble(essai = 1:ntry, tirage = tirages, cumul = cumsum(tirages)) %>%
+  mutate(moyenne = cumul / essai)
+```
+
+::: columns
+
+:::: column
+```{r}
+ggplot(tab, aes(tirage)) +
+  geom_histogram(fill = "steelblue") +
+  theme_minimal() +
+  labs(x = "", y = "") +
+  theme(text = element_text(size = 25))
+```
+
+::::
+
+:::: column
+```{r}
+ggplot(tab, aes(essai, moyenne)) +
+  geom_hline(yintercept = 170, color = "gray10", linetype = "dashed") +
+  geom_line(color = "steelblue", size = 2) +
+  theme_minimal() +
+  labs(x = "", y = "") +
+  theme(text = element_text(size = 25)) +
+  ggtitle("Evolution de la moyenne")
+```
+
+::::
+
+:::
+
+## Exercices
+
+### Plus grand nombre tiré
+On joue à un jeu avec deux dés (non pipés), pendant lequel on note le plus grand chiffre obtenu. Quelle est la loi de la variable aléatoire  ?
+
+### Pile ou face à répétition
+On joue à pile ($p$) ou face ($f$), 4 fois de suite ($l_i, \forall i = 1, 2, 3, 4$). Et on note les résultats (dans l'ordre).
+
+1. Déterminer la loi de probabilité 
+2. Calculer les probabilités des 2 évènements suivants :
+  - $A$ : $\{ n_p > n_f \}$ et $B$ : $\{l_1 = p\}$
+
+### De l'utilité des probabilités dans les choix stratégiques d'un étudiant
+Un test comporte 10 questions, avec chacune 4 choix possibles et une seule réponse juste.
+
+1. Combien y a t'il de grilles de réponses possibles ?
+2. Quelle est la probabilité de répondre au hasard 6 fois correctement ?
+
+## Exercices - Loi uniforme continue
+
+### Exercice 1
+$X$ est une v.a. de loi uniforme sur l'intervalle $I$. Déterminer pour chaque intervalle ci-dessous la fonction de densité et calculer $P(4 \le X \le 5)$.
+
+1. $I = [4; 6]$
+2. $I = [0; 5]$
+
+### Exercice 2
+$X$ est une v.a. de loi uniforme sur $[-3;3]$.
+
+1. Calculer $P(X < 1)$, et $P(X \ge 0.5)$
+1. Donner l'espérance de $X$
+
+### Exercice 3
+Antoine doit venir voir Jean entre 14h45 et 16h30. Quelle est la probabilité qu'il arrive pendant la réunion de Jean qui a lieu entre 15h30 et 16h00 ?
+
+
