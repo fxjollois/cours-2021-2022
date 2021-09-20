@@ -376,6 +376,51 @@ $$
   E(X) = np \mbox{ et } V(X) = np(1-p)
 $$
 
+
+## Loi Binomiale
+
+::: columns
+
+:::: column
+### Fonction de masse
+$$
+P(X = k) = f(k) = C_k^n p^k (1-p)^{n-k}
+$$
+
+Exemple avec $n=10$ et $p=.6$
+```{r}
+x = seq(0, 20, by = 1)
+df = data.frame(x = x, y = dbinom(x, 10, .6))
+ggplot(df, aes(x, y)) + 
+  geom_bar(fill = "steelblue", stat = "identity", size = 2) +
+  labs(x = "", y = "") +
+  theme_minimal()
+```
+::::
+:::: column
+### Fonction de répartition
+$$
+F(x) = \left\{
+  \begin{array}{ll}
+    0 & \mbox{ pour } x \le 0\\
+    \sum_{k=0}^{\lfloor x \rfloor} f(k) & \mbox{ pour } 0 \le x \le n \\
+    1 & \mbox{ sinon} \\
+  \end{array}
+\right.
+$$
+
+```{r}
+df = data.frame(x = x, y = pbinom(x, 10, .6))
+ggplot(df, aes(x, y)) + 
+  geom_step(color = "steelblue", size = 2) +
+  labs(x = "", y = "") +
+  theme_minimal()
+```
+
+::::
+:::
+
+
 ## Loi Binomiale
 
 $\rightarrow$ Simulation avec notre urne avec 100 boules oranges et 50 boules vertes. Chaque essai comportera 100 tirages avec remise. On fait toujours `r ntry` essais. On cherche à savoir combien on aura de boules oranges dans ces 100 tirages.
@@ -436,6 +481,49 @@ Nombre de personnes à l'arrêt d'un bus après une certaine durée
 $$
   E(X) = \lambda \mbox{ et } V(X) = \lambda
 $$
+
+
+## Loi de Poisson
+
+::: columns
+
+:::: column
+### Fonction de masse
+$$
+P(X = k) = f(k) = \frac{\lambda^k}{k!}e^{-k}
+$$
+
+Exemple avec $\lambda=5$
+```{r}
+x = seq(0, 20, by = 1)
+df = data.frame(x = x, y = dpois(x, 5))
+ggplot(df, aes(x, y)) + 
+  geom_bar(fill = "steelblue", stat = "identity", size = 2) +
+  labs(x = "", y = "") +
+  theme_minimal()
+```
+::::
+:::: column
+### Fonction de répartition
+$$
+F(x) = \left\{
+  \begin{array}{ll}
+    0 & \mbox{ pour } x \le 0\\
+    \frac{\Gamma(\lfloor k+1 \rfloor, \lambda)}{\lfloor k \rfloor !} & \mbox{ sinon} \\
+  \end{array}
+\right.
+$$
+
+```{r}
+df = data.frame(x = x, y = ppois(x, 5))
+ggplot(df, aes(x, y)) + 
+  geom_step(color = "steelblue", size = 2) +
+  labs(x = "", y = "") +
+  theme_minimal()
+```
+
+::::
+:::
 
 
 ## Loi de Poisson
