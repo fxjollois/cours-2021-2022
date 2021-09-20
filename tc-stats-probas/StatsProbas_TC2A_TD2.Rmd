@@ -35,11 +35,11 @@ set.seed(1234)
 ## Rappels de probabilités : Définitions
 
 - Expérience aléatoire : expérience dont le résultat ne peut pas être déterminé *a priori*
-- Univers de l'expérience : enseobme des résultats possibles (noté $\Omega$)
+- Univers de l'expérience : ensemble des résultats possibles (noté $\Omega$)
 - Résultat élémentaire : résultat possible de l'expérience (noté $\omega$)
-- Ensemble des parties : ensemble de constitué de tous les sous-ensembles possible de $\Omega$ (noté $\mathcal{P}(\Omega)$)
+- Ensemble des parties : ensemble constitué de tous les sous-ensembles possible de $\Omega$ (noté $\mathcal{P}(\Omega)$)
 - Evènement (aléatoire) : partie (sous-ensemble) de $\Omega$ (noté $A$)
-  - On parle de *réalisation* lorsque l'évènement se produit (*i.e* le résultat $\omega$ appartient au sous-ensembme $A$)
+  - On parle de *réalisation* lorsque l'évènement se produit (*i.e* le résultat $\omega$ appartient au sous-ensemble $A$)
   - $A=\Omega$ se réalise toujours
   - $A=\emptyset$ ne se réalise jamais
   - $A=\{\omega\}$ s'appelle donc un évènement élémentaire
@@ -65,6 +65,8 @@ Lancer d'un dé à 6 faces (non pipé), avec un jeu où on doit faire un nombre 
   - $A \cup B = \{ w \in \Omega, \omega \in A \mbox{ ou } \omega \in B \}$
 - Intersection de $A$ et $B$ : événement constitué des éléments de $\Omega$ étant à la fois dans $A$ et dans $B$
   - $A \cap B = \{ w \in \Omega, \omega \in A \mbox{ et } \omega \in B \}$
+- Différence entre $A$ et $B$ (non symétrique) : ensemble constitué des éléments de $A$ n'étant pas dans $B$
+  - $A \setminus B = \{ w \in \Omega, \omega \in A \mbox{ et } \omega \notin B \}$
 
 ## Rappels de probabilités : Evènements 
 
