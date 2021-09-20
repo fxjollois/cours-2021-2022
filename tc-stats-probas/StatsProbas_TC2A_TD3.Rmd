@@ -792,3 +792,34 @@ ggplot(tab, aes(essai, moyenne)) +
 ### Plus grand nombre tiré
 On joue à un jeu avec deux dés (non pipés), pendant lequel on note le plus grand chiffre obtenu. Quelle est la loi de la variable aléatoire  ?
 
+### Pile ou face à répétition
+On joue à pile ($p$) ou face ($f$), 4 fois de suite ($l_i, \forall i = 1, 2, 3, 4$). Et on note les résultats (dans l'ordre).
+
+1. Déterminer la loi de probabilité 
+2. Calculer les probabilités des 2 évènements suivants :
+  - $A$ : $\{ n_p > n_f \}$ et $B$ : $\{l_1 = p\}$
+
+### De l'utilité des probabilités dans les choix stratégiques d'un étudiant
+Un test comporte 10 questions, avec chacune 4 choix possibles et une seule réponse juste.
+
+1. Combien y a t'il de grilles de réponses possibles ?
+2. Quelle est la probabilité de répondre au hasard 6 fois correctement ?
+
+## Exercices - Loi uniforme continue
+
+### Exercice 1
+$X$ est une v.a. de loi uniforme sur l'intervalle $I$. Déterminer pour chaque intervalle ci-dessous la fonction de densité et calculer $P(4 \le X \le 5)$.
+
+1. $I = [4; 6]$
+2. $I = [0; 5]$
+
+### Exercice 2
+$X$ est une v.a. de loi uniforme sur $[-3;3]$.
+
+1. Calculer $P(X < 1)$, et $P(X \ge 0.5)$
+1. Donner l'espérance de $X$
+
+### Exercice 3
+Antoine doit venir voir Jean entre 14h45 et 16h30. Quelle est la probabilité qu'il arrive pendant la réunion de Jean qui a lieu entre 15h30 et 16h00 ?
+
+
