@@ -34,11 +34,11 @@ set.seed(1234)
 
 ## Rappels de probabilités : Définitions
 
-- Expérience aléatoire : expérience dont le résultat ne peut pas être déterminé *a priori*
-- Univers de l'expérience : ensemble des résultats possibles (noté $\Omega$)
-- Résultat élémentaire : résultat possible de l'expérience (noté $\omega$)
-- Ensemble des parties : ensemble constitué de tous les sous-ensembles possible de $\Omega$ (noté $\mathcal{P}(\Omega)$)
-- Evènement (aléatoire) : partie (sous-ensemble) de $\Omega$ (noté $A$)
+- **Expérience aléatoire** : expérience dont le résultat ne peut pas être déterminé *a priori*
+- **Univers de l'expérience** : ensemble des résultats possibles (noté $\Omega$)
+- **Résultat élémentaire** : résultat possible de l'expérience (noté $\omega$)
+- **Ensemble des parties** : ensemble constitué de tous les sous-ensembles possible de $\Omega$ (noté $\mathcal{P}(\Omega)$)
+- **Evènement** (aléatoire) : partie (sous-ensemble) de $\Omega$ (noté $A$)
   - On parle de *réalisation* lorsque l'évènement se produit (*i.e* le résultat $\omega$ appartient au sous-ensemble $A$)
   - $A=\Omega$ se réalise toujours
   - $A=\emptyset$ ne se réalise jamais
@@ -59,22 +59,22 @@ Lancer d'un dé à 6 faces (non pipé), avec un jeu où on doit faire un nombre 
 
 ## Rappels de probabilités : Evènements 
 
-- Complémentaire de $A$ : évènement constitué des éléments de $\Omega$ non inclus dans $A$
+- **Complémentaire** de $A$ : évènement constitué des éléments de $\Omega$ non inclus dans $A$
   - $\bar{A} = \{\omega \in \Omega, \omega \notin A \}$
-- Réunion de $A$ et $B$ : évènement constitué des éléments de $A$ et des éléments de $B$ (ou aux deux donc)
+- **Union** de $A$ et $B$ : évènement constitué des éléments de $A$ et des éléments de $B$ (ou aux deux donc)
   - $A \cup B = \{ w \in \Omega, \omega \in A \mbox{ ou } \omega \in B \}$
-- Intersection de $A$ et $B$ : événement constitué des éléments de $\Omega$ étant à la fois dans $A$ et dans $B$
+- **Intersection** de $A$ et $B$ : événement constitué des éléments de $\Omega$ étant à la fois dans $A$ et dans $B$
   - $A \cap B = \{ w \in \Omega, \omega \in A \mbox{ et } \omega \in B \}$
-- Différence entre $A$ et $B$ (non symétrique) : ensemble constitué des éléments de $A$ n'étant pas dans $B$
+- **Différence** entre $A$ et $B$ (non symétrique) : ensemble constitué des éléments de $A$ n'étant pas dans $B$
   - $A \setminus B = \{ w \in \Omega, \omega \in A \mbox{ et } \omega \notin B \}$
 
 ## Rappels de probabilités : Evènements 
 
-- Inclusion : $A$ est inclus dans $B$ si tous les éléments de $A$ sont dans $B$
+- **Inclusion** : $A$ est inclus dans $B$ si tous les éléments de $A$ sont dans $B$
   - $A \subset B \Leftrightarrow \left( \omega \in A \implies \omega \in B \right)$
-- Disjonction (ou incompatibilité) : $A$ et $B$ sont disjoints s'il n'y aucun élément commun entre les deux
+- **Disjonction** (ou incompatibilité) : $A$ et $B$ sont disjoints s'il n'y aucun élément commun entre les deux
   - $A$ et $B$ disjoints $\Leftrightarrow A \cap B = \emptyset$
-- Système complet d'évènements : $(A_1, A_2, \ldots, A_n)$ constitue un système complet s'ils forment une partition de $\Omega$
+- **Système complet** d'évènements : $(A_1, A_2, \ldots, A_n)$ constitue un système complet s'ils forment une **partition** de $\Omega$
   - Ils sont 2 à 2 incompatibles : $\forall p \ne q, A_p \cap A_q = \emptyset$
   - Leur réunion est égale à $\Omega$ : $\bigcup_{p=1}^n A_p = \Omega$
 
@@ -84,7 +84,7 @@ Lancer d'un dé à 6 faces (non pipé), avec un jeu où on doit faire un nombre 
 
 Quelques opérations :
 
-- $P(\emptyset) = 0$
+- $P(\emptyset) = 0$ et $P(\Omega)=1$
 - $0 \le P(A) \le 1$
 - $P(A) = \sum_{\omega_i \in A} P(\omega_i)$
 - $P(\bar{A}) = 1 - P(A)$
@@ -125,8 +125,8 @@ Mesure d'un phénomène (*variable*) dont le résultat est déterminée par une 
 - Exemples classiques : Pile/Face ou Lancer de dé
 - Chaque résultat d'une expérience : **issue**
 - Ensemble de toutes les issues possibles : **univers des possibles** $\Omega$
-- Sous-ensemble de $\Omega$ : **événement**
-  - Si ensemble à une seule issue *événement élémentaire*
+- Sous-ensemble de $\Omega$ : **évènement**
+  - Si ensemble à une seule issue *évènement élémentaire*
 - Possibilité d'associer une valeur réelle à chaque issue
   - Notion de gain par exemple
 
@@ -137,15 +137,15 @@ Mesure d'un phénomène (*variable*) dont le résultat est déterminée par une 
 Une **variable aléatoire** (ou *v.a.*) $\mathbf{X}$ est une fonction définie sur $\Omega$ et à valeur dans $\mathbb{R}$, à laquelle on associe une **loi de probabilité** (ou *distribution de probabilité*) dont la masse totale est égale à 1
 :::
 
-- V.a. *quantitative* si les valeurs de $X$ sont quantitatives
-- V.a. *discrète* si le nombre de résultats est faible ou si c'est qualitatif
+- V.a. *continue* si les valeurs de $X$ sont quantitatives continues
+- V.a. *discrète* si le nombre de résultats est faible (ou si c'est qualitatif)
 
 ## Variable aléatoire 
 
 ### Fonction de masse
 Soit $\mathbf{X}$ une *v.a.* prenant des valeurs $x_i$ discrètes.
 
-La *fonction de masse* de la v.a. associe une probabilité $P(X \le x_i)$ à chaque résultat élémentaire $x_i$
+La *fonction de masse* de la v.a. associe une probabilité $P(X = x_i)$ à chaque résultat élémentaire $x_i$
 
 ### Densité de probabilité
 Soit $\mathbf{X}$ une *v.a.* prenant des valeurs $x$ réelles.
@@ -174,7 +174,7 @@ On lance un dé (à 6 faces), et on calcule notre gain avec
 
 :::: column
 
-```{r ex1}
+```{r ex1-def}
 x = 1:6
 gain = ((x %% 2) == 0) + (x <= 3) * -2 + (x == 2) * 5
 kable(t(data.frame(x = x, gain = gain))) %>%
@@ -197,8 +197,8 @@ kable(t(data.frame(x = x, gain = gain))) %>%
 - **Issues** : $-2, 0, 1, 4$
 - Loi de probabilité :
 
-```{r ex1-bis}
-tab = as.data.frame(table(gain), responseName = "p")
+```{r ex1-gain}
+tab = as.data.frame(table(gain) / 6, responseName = "p")
 kable(t(tab)) %>%
   kable_styling(position = "center")
 ```
@@ -207,7 +207,7 @@ kable(t(tab)) %>%
 
 :::: column
 
-```{r ex1-ter, out.width='90%', fig.align='center'}
+```{r ex1-plot, out.width='90%', fig.align='center'}
 ggplot(tab, aes(factor(gain), p / sum(p))) +
   geom_bar(stat = "identity", fill = "steelblue") +
   labs(x = "", y = "") +
@@ -224,15 +224,11 @@ ggplot(tab, aes(factor(gain), p / sum(p))) +
 
 ## Cas discret
 
-### Cas qualitatif
-
 - **Loi uniforme discrète** (résultats équi-probables)
 
 - **Loi de Bernouilli**
 
 - **Loi Binomiale**
-
-### Cas quantitatif discret
 
 - **Loi de Poisson**
 
@@ -241,7 +237,7 @@ ggplot(tab, aes(factor(gain), p / sum(p))) +
 ### Définition
 Soit $\mathbf{X}$ une *v.a.* prenant des valeurs $k$ discrètes (avec $k=1,\ldots,n)$.
 
-$\mathbf{X}$ suit une **loi discrète** si pour chaque $i$, $P(X = k) = \frac{1}{n}$.
+$\mathbf{X}$ suit une **loi uniforme discrète** si pour chaque $k$, $P(X = k) = \frac{1}{n}$.
 
 ::: example
 ### Exemple
@@ -256,14 +252,14 @@ $$
 
 ## Loi uniforme discrète
 
-```{r}
+```{r def-rand}
 n = 6
 ntry = 10000
 ```
 
 $\rightarrow$ Simulation avec `r n` valeurs possibles, et `r ntry` tirages.
 
-```{r}
+```{r uni-dis-sim-tab}
 tirages = sample(1:n, ntry, replace = TRUE)
 tab = tibble(essai = 1:ntry, tirage = tirages, cumul = cumsum(tirages)) %>%
   mutate(moyenne = cumul / essai)
@@ -272,7 +268,7 @@ tab = tibble(essai = 1:ntry, tirage = tirages, cumul = cumsum(tirages)) %>%
 ::: columns
 
 :::: column
-```{r}
+```{r uni-dis-sim-masse}
 ggplot(tab, aes(factor(tirage))) +
   geom_bar(fill = "steelblue") +
   theme_minimal() +
@@ -283,7 +279,7 @@ ggplot(tab, aes(factor(tirage))) +
 ::::
 
 :::: column
-```{r}
+```{r uni-dis-sim-esp}
 ggplot(tab, aes(essai, moyenne)) +
   geom_hline(yintercept = 3.5, color = "gray10", linetype = "dashed") +
   geom_line(color = "steelblue", size = 2) +
@@ -321,7 +317,7 @@ $$
 
 $\rightarrow$ Simulation avec une urne avec 100 boules oranges et 50 boules vertes. On considère qu'on veut des boules oranges, donc $P(X = 1) = \frac{100}{150}$. On fait toujours `r ntry` tirages, avec remise ici.
 
-```{r}
+```{r ber-sim-tab}
 tirages = rbernoulli(ntry, 2/3)
 tab = tibble(essai = 1:ntry, tirage = tirages, cumul = cumsum(tirages)) %>%
   mutate(moyenne = cumul / essai)
@@ -330,7 +326,7 @@ tab = tibble(essai = 1:ntry, tirage = tirages, cumul = cumsum(tirages)) %>%
 ::: columns
 
 :::: column
-```{r}
+```{r ber-sim-masse}
 ggplot(tab, aes(factor(tirage))) +
   geom_bar(fill = c("darkgreen", "orange3")) +
   theme_minimal() +
@@ -341,7 +337,7 @@ ggplot(tab, aes(factor(tirage))) +
 ::::
 
 :::: column
-```{r}
+```{r ber-sim-esp}
 ggplot(tab, aes(essai, moyenne)) +
   geom_hline(yintercept = 2/3, color = "gray10", linetype = "dashed") +
   geom_line(color = "steelblue", size = 2) +
@@ -390,7 +386,7 @@ P(X = k) = f(k) = C_k^n p^k (1-p)^{n-k}
 $$
 
 Exemple avec $n=10$ et $p=.6$
-```{r}
+```{r bin-masse}
 x = seq(0, 20, by = 1)
 df = data.frame(x = x, y = dbinom(x, 10, .6))
 ggplot(df, aes(x, y)) + 
@@ -411,7 +407,7 @@ F(x) = \left\{
 \right.
 $$
 
-```{r}
+```{r bin-rep}
 df = data.frame(x = x, y = pbinom(x, 10, .6))
 ggplot(df, aes(x, y)) + 
   geom_step(color = "steelblue", size = 2) +
@@ -427,7 +423,7 @@ ggplot(df, aes(x, y)) +
 
 $\rightarrow$ Simulation avec notre urne avec 100 boules oranges et 50 boules vertes. Chaque essai comportera 100 tirages avec remise. On fait toujours `r ntry` essais. On cherche à savoir combien on aura de boules oranges dans ces 100 tirages.
 
-```{r}
+```{r bin-sim-tab}
 tirages = rbinom(ntry, 100, 2/3)
 tab = tibble(essai = 1:ntry, tirage = tirages, cumul = cumsum(tirages)) %>%
   mutate(moyenne = cumul / essai)
@@ -436,7 +432,7 @@ tab = tibble(essai = 1:ntry, tirage = tirages, cumul = cumsum(tirages)) %>%
 ::: columns
 
 :::: column
-```{r}
+```{r bin-sim-masse}
 ggplot(tab, aes(factor(tirage))) +
   geom_bar(fill = "steelblue") +
   theme_minimal() +
@@ -447,7 +443,7 @@ ggplot(tab, aes(factor(tirage))) +
 ::::
 
 :::: column
-```{r}
+```{r bin-sim-esp}
 ggplot(tab, aes(essai, moyenne)) +
   geom_hline(yintercept = 100*2/3, color = "gray10", linetype = "dashed") +
   geom_line(color = "steelblue", size = 2) +
@@ -467,7 +463,7 @@ ggplot(tab, aes(essai, moyenne)) +
 ### Définition
 Soit $\mathbf{X}$ une *v.a.* prenant des valeurs $k$ discrètes (avec $k=1,2,\ldots$).
 
-$\mathbf{X}$ suit une **loi de Poisson** $Pois(\lambda)$ si pour chaque $i$, $P(X = k) = \frac{\lambda^k}{k!}e^{-k}$ où
+$\mathbf{X}$ suit une **loi de Poisson** $Pois(\lambda)$ si pour chaque $k$, $P(X = k) = \frac{\lambda^k}{k!}e^{-k}$ où
 
 - $e$ est la base de l'exponentielle
 - $\lambda$ représente le nombre moyen d'occurences dans un intervalle de temps fixé
@@ -496,7 +492,7 @@ P(X = k) = f(k) = \frac{\lambda^k}{k!}e^{-k}
 $$
 
 Exemple avec $\lambda=5$
-```{r}
+```{r pois-masse}
 x = seq(0, 20, by = 1)
 df = data.frame(x = x, y = dpois(x, 5))
 ggplot(df, aes(x, y)) + 
@@ -516,7 +512,7 @@ F(x) = \left\{
 \right.
 $$
 
-```{r}
+```{r pois-rep}
 df = data.frame(x = x, y = ppois(x, 5))
 ggplot(df, aes(x, y)) + 
   geom_step(color = "steelblue", size = 2) +
@@ -532,7 +528,7 @@ ggplot(df, aes(x, y)) +
 
 $\rightarrow$ Simulation en considérant un arrêt de bus. On considère que 2 personnes viennent toutes les minutes. On étudie le nombre de personnes sur une durée de 5 minutes. On choisit donc $\lambda = 10$.
 
-```{r}
+```{r pois-sim-tab}
 tirages = rpois(ntry, 10)
 tab = tibble(essai = 1:ntry, tirage = tirages, cumul = cumsum(tirages)) %>%
   mutate(moyenne = cumul / essai)
@@ -541,7 +537,7 @@ tab = tibble(essai = 1:ntry, tirage = tirages, cumul = cumsum(tirages)) %>%
 ::: columns
 
 :::: column
-```{r}
+```{r pois-sim-masse}
 ggplot(tab, aes(factor(tirage))) +
   geom_bar(fill = "steelblue") +
   theme_minimal() +
@@ -552,7 +548,7 @@ ggplot(tab, aes(factor(tirage))) +
 ::::
 
 :::: column
-```{r}
+```{r pois-sim-esp}
 ggplot(tab, aes(essai, moyenne)) +
   geom_hline(yintercept = 10, color = "gray10", linetype = "dashed") +
   geom_line(color = "steelblue", size = 2) +
@@ -635,7 +631,7 @@ $$
 \right.
 $$
 
-```{r}
+```{r uni-cont-rep}
 df <- data.frame(x = c(0, 1, 5, 6),
                  y = c(0, 0, 1, 1))
 ggplot(df, aes(x, y)) + 
@@ -657,7 +653,7 @@ ggplot(df, aes(x, y)) +
 
 $\rightarrow$ Simulation sur l'intervalle $[1;5]$
 
-```{r}
+```{r uni-cont-sim-tab}
 tirages = runif(ntry, 1, 5)
 tab = tibble(essai = 1:ntry, tirage = tirages, cumul = cumsum(tirages)) %>%
   mutate(moyenne = cumul / essai)
@@ -666,7 +662,7 @@ tab = tibble(essai = 1:ntry, tirage = tirages, cumul = cumsum(tirages)) %>%
 ::: columns
 
 :::: column
-```{r}
+```{r uni-cont-sim-dens}
 ggplot(tab, aes(tirage)) +
   geom_histogram(fill = "steelblue", breaks = seq(1, 5, by = .1)) +
   theme_minimal() +
@@ -678,7 +674,7 @@ ggplot(tab, aes(tirage)) +
 ::::
 
 :::: column
-```{r}
+```{r uni-cont-sim-esp}
 ggplot(tab, aes(essai, moyenne)) +
   geom_hline(yintercept = 3, color = "gray10", linetype = "dashed") +
   geom_line(color = "steelblue", size = 2) +
@@ -721,7 +717,7 @@ $$
 f(x) = \frac{1}{\sigma \sqrt{2\pi}} \exp \left( -\frac{(x - \mu)^2}{2\sigma^2} \right)
 $$
 
-```{r}
+```{r norm-dens}
 x = seq(-5, 5, by = .01)
 df = data.frame(x = x, y = dnorm(x))
 ggplot(df, aes(x, y)) + 
@@ -736,7 +732,7 @@ $$
  F(x) = \frac{1}{2} \left( 1 + \mbox{erf} \frac{x - \mu}{\sigma\sqrt{2}} \right)
 $$
 
-```{r}
+```{r norm-rep}
 x = seq(-5, 5, by = .01)
 df = data.frame(x = x, y = pnorm(x))
 ggplot(df, aes(x, y)) + 
@@ -753,7 +749,7 @@ ggplot(df, aes(x, y)) +
 
 $\rightarrow$ Simulation d'une loi Normale de moyenne $\mu = 170$ et d'écart-type $10$
 
-```{r}
+```{r norm-sim-tab}
 tirages = rnorm(ntry, 170, 10)
 tab = tibble(essai = 1:ntry, tirage = tirages, cumul = cumsum(tirages)) %>%
   mutate(moyenne = cumul / essai)
@@ -762,7 +758,7 @@ tab = tibble(essai = 1:ntry, tirage = tirages, cumul = cumsum(tirages)) %>%
 ::: columns
 
 :::: column
-```{r}
+```{r norm-sim-dens}
 ggplot(tab, aes(tirage)) +
   geom_histogram(fill = "steelblue") +
   theme_minimal() +
@@ -773,7 +769,7 @@ ggplot(tab, aes(tirage)) +
 ::::
 
 :::: column
-```{r}
+```{r norm-sim-esp}
 ggplot(tab, aes(essai, moyenne)) +
   geom_hline(yintercept = 170, color = "gray10", linetype = "dashed") +
   geom_line(color = "steelblue", size = 2) +
@@ -787,8 +783,46 @@ ggplot(tab, aes(essai, moyenne)) +
 
 :::
 
-## Exercices
+## Exercice
 
 ### Plus grand nombre tiré
 On joue à un jeu avec deux dés (non pipés), pendant lequel on note le plus grand chiffre obtenu. Quelle est la loi de la variable aléatoire  ?
+
+## Solution
+
+::: alert
+### Plus grand nombre tiré
+On définit $\Omega$ avec :
+$$
+  \Omega=\left\{\{1, 1\}, \{1, 2\}, \{1, 3\}, \ldots\right\}
+$$ 
+
+On peut donc faire le tableau suivant, avec en ligne les résultats du dé $A$ et en colonnes ceux du dé $B$. Chaque cellule représente donc le plus grand des 2 chiffres obtenus.
+```{r exo-tab}
+tab = data.frame(matrix(1, nrow = 6, ncol = 6))
+colnames(tab) = paste0("b=", 1:6)
+rownames(tab) = paste0("a=", 1:6)
+for (i in 1:6) 
+  for (j in 1:6)
+    tab[i,j] = max(i, j)
+kable(tab, format = "latex") %>%
+  kable_styling(position = "center")
+```
+:::
+
+## Solution
+
+::: alert
+### Plus grand nombre tiré
+
+On obtient ainsi la loi de probabilité suivante :
+```{r exo-loi}
+loi = sapply(1:6, function (x) return (sum(tab == x)))
+tib = tibble("Plus grand" = 1:6, "Nb" = loi) %>%
+  mutate("Px" = paste(loi, 36, sep = "/")) %>%
+  mutate("P" = loi / 36)
+kable(tib, digits = 2) %>%
+  kable_styling(position = "center")
+```
+:::
 
