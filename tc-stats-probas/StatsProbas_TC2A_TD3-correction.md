@@ -1,36 +1,4 @@
----
-title: "Lois de probabilité et estimation"
-author: "FX Jollois"
-date: "TC - 2ème année - 2021/2022"
-output:
-  beamer_presentation:
-    theme: "Madrid"
-    colortheme: "seahorse"
-    fonttheme: "structurebold"
-header-includes:
-- \usepackage{booktabs}
-- \usepackage{longtable}
-- \usepackage{array}
-- \usepackage{multirow}
-- \usepackage{wrapfig}
-- \usepackage{float}
-- \usepackage{colortbl}
-- \usepackage{pdflscape}
-- \usepackage{tabu}
-- \usepackage{threeparttable}
-- \usepackage{threeparttablex}
-- \usepackage[normalem]{ulem}
-- \usepackage{makecell}
-- \usepackage{xcolor}
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
-library(tidyverse)
-library(knitr)
-library(kableExtra)
-set.seed(1234)
-```
+# Exercices autour des lois et du calcul de probabilités - *correction*
 
 ## Exercices
 
