@@ -22,12 +22,80 @@ Antoine doit venir voir Jean entre 14h45 et 16h30. Quelle est la probabilité qu
 
 ## Lois discrètes
 
-<p class="codepen" data-height="300" data-default-tab="result" data-slug-hash="WNOYwqj" data-user="fxjollois" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
-  <span>See the Pen <a href="https://codepen.io/fxjollois/pen/WNOYwqj">
-  </a> by FX Jollois (<a href="https://codepen.io/fxjollois">@fxjollois</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
-</p>
-<script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+### Outil de calcul des probabilités d'une loi binomiale
+
+<script>
+function binom(n, p){
+	if (p < 0 || p > n){
+		return 0;
+	}
+	if (p > n / 2){
+		return binom(n, n - p);
+	}
+	else {
+		var c = 1;
+		for (var k = 1; k <= p; k++){
+			c = c * (n + 1 - k) / k;
+		}
+		return c;
+	}
+}
+
+function f(N, p, K){
+	return(binom(N, K) * Math.pow(p, K) * Math.pow(1-p, N-K));
+}
+
+function F(N, p, K){
+	var somme = 0;
+	for (var i = 0; i <= K; i++){
+		somme += f(N, p, i);
+	}
+	return(somme);
+}
+
+function arrondi(x, d){
+	var e, res;
+  if (x < 0.0001) {
+    res = "inférieur à 0.0001"
+  } else {
+    e = Math.pow(10, d);
+    res = Math.round(e * x) / e;
+  }
+	return(res);
+}
+
+
+function maj(){
+	N = parseInt(document.getElementById('entN').value);
+	N = Math.max(N,1);
+	N = Math.min(N,1000);
+	document.getElementById('entN').value = N;
+	document.getElementById('nbN').innerHTML = N;
+	p = parseFloat(document.getElementById('entp').value);
+	p = Math.max(p,0);
+	p = Math.min(p,1);
+	document.getElementById('entp').value = p;
+	K = parseInt(document.getElementById('entK').value);
+	K = Math.max(K,0);
+	K = Math.min(K,N);
+	document.getElementById('entK').value = K;
+	document.getElementById("Pegal").innerHTML = arrondi(f(N,p,K), 4);
+	document.getElementById("Pinf").innerHTML = arrondi(F(N,p,K), 4);
+}
+</script>
+
+<table>
+  <tr><th>Paramètre</th><th>Valeur</th><th>Limites</th></tr>
+  <tr><td>N</td><td><input id="entN" value=25 onChange="maj();"></td> <td>entre 1 et 1000</td></tr>
+  <tr><td>p</td><td><input id="entp" value=0.4 onChange="maj();"></td><td>entre 0 et 1</td></tr>
+  <tr><td>K</td><td><input id="entK" value=0 onChange="maj();"></td><td>entre 0 et <span id="nbN">25</span></td></tr>
+</table>
+
+<table>
+  <tr><th>Proba</th><th>Valeur</th></tr>
+  <tr><td>P(X = K)</td><td id="Pegal">--</td></tr>
+  <tr><td>P(X &le; K)</td><td id="Pinf">--</td></tr>
+</table>
 
 ### Pile ou face à répétition
 On joue à pile ou face, 4 fois de suite. Et on note les résultats (dans l'ordre).
