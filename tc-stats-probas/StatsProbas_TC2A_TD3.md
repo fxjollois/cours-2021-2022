@@ -86,9 +86,9 @@ function maj(){
 
 <table>
   <tr><th>Paramètre</th><th>Valeur</th><th>Limites</th></tr>
-  <tr><td>N</td><td><input id="entN" value=25 onChange="maj();"></td> <td>entre 1 et 1000</td></tr>
+  <tr><td>N</td><td><input id="entN" value=25  onChange="maj();"></td><td>entre 1 et 1000</td></tr>
   <tr><td>p</td><td><input id="entp" value=0.4 onChange="maj();"></td><td>entre 0 et 1</td></tr>
-  <tr><td>K</td><td><input id="entK" value=0 onChange="maj();"></td><td>entre 0 et <span id="nbN">25</span></td></tr>
+  <tr><td>K</td><td><input id="entK" value=0   onChange="maj();"></td><td>entre 0 et <span id="nbN">25</span></td></tr>
 </table>
 
 <table>
@@ -114,11 +114,11 @@ Un test comporte 10 questions, avec chacune 4 choix possibles et une seule répo
 
 ### Concerts
 
-Supposons un enseignant **J** ayant un groupe de rock et se produit à un concert **C** dans un bar à Cherbourg durant le mois d'octobre. On considère qu'un.e étudiant.e **E** a une probabilité de sortir le soir égale à *.5*, et a une probabilité de *.2* d'aller dans le bar où se produit le groupe.
+Supposons un enseignant **J** ayant un groupe de rock et se produit à un concert **C** dans un bar à Cherbourg durant le mois d'octobre. On considère qu'un.e étudiant.e **E** a une probabilité de sortir le soir égale à *.5*, et a une probabilité de *.5* d'aller dans le bar où se produit le groupe.
 
 1. Que puis-je dire de la variable aléatoire modélisant qu'un étudiant **E** voit un concert **C** ? Quelle est la probabilité de l'évènement *A* : **E** vient à **C** ?
 1. Maintenant, on se demande combien d'étudiants parmi les 85 de la promo viendront à un concert. Comment modéliser ce processus ? Quelle est la probabilité qu'au moins 10 étudiants viennent ?
-1. Enfin, l'enseignant se produit au final 3 fois dans le mois. On cherche donc à savoir quelle est la probabilité qu'un étudiant $E$ voient les trois concerts $C_1$, $C_2$ et $C_3$. Comment puis-je faire ?
+1. Enfin, l'enseignant se produit au final 3 fois dans le mois. On cherche donc à savoir quelle est la probabilité qu'un étudiant **E** voient les trois concerts **C1**, **C2** et **C3**. Comment puis-je faire ?
   - Quelle est la probabilité qu'un étudiant vienne à aucun concert ? à un seul concert ? à deux ? au trois ?
   - Sachant qu'un étudiant qui vient aux trois concerts aura la note maximale (donc 20), celui qui vient à 2 aura 15, à un seul 10, et 0 pour ceux qui ne viennent pas, comment puis-je estimer la moyenne de la promotion ?
 
