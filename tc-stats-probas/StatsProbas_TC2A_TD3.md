@@ -1,41 +1,6 @@
----
-title: "Lois de probabilités - Exercices"
-author: "FX Jollois"
-date: "TC - 2ème année - 2021/2022"
-output:
-  beamer_presentation:
-    theme: "Madrid"
-    colortheme: "seahorse"
-    fonttheme: "structurebold"
-header-includes:
-- \usepackage{booktabs}
-- \usepackage{longtable}
-- \usepackage{array}
-- \usepackage{multirow}
-- \usepackage{wrapfig}
-- \usepackage{float}
-- \usepackage{colortbl}
-- \usepackage{pdflscape}
-- \usepackage{tabu}
-- \usepackage{threeparttable}
-- \usepackage{threeparttablex}
-- \usepackage[normalem]{ulem}
-- \usepackage{makecell}
-- \usepackage{xcolor}
----
+# Exercices autour des lois et du calcul de probabilités
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
-library(tidyverse)
-library(knitr)
-library(kableExtra)
-set.seed(1234)
-```
-
-## Exercices
-
-### Plus grand nombre tiré
-On joue à un jeu avec deux dés (non pipés), pendant lequel on note le plus grand chiffre obtenu. Quelle est la loi de la variable aléatoire  ?
+## Lois discrètes
 
 ### Pile ou face à répétition
 On joue à pile ($p$) ou face ($f$), 4 fois de suite ($l_i, \forall i = 1, 2, 3, 4$). Et on note les résultats (dans l'ordre).
@@ -45,13 +10,13 @@ On joue à pile ($p$) ou face ($f$), 4 fois de suite ($l_i, \forall i = 1, 2, 3,
   - $A$ : $\{ n_p > n_f \}$ et $B$ : $\{l_1 = p\}$
 
 ### De l'utilité des probabilités dans les choix stratégiques d'un étudiant
+
 Un test comporte 10 questions, avec chacune 4 choix possibles et une seule réponse juste.
 
 1. Combien y a t'il de grilles de réponses possibles ?
 2. Quelle est la probabilité de répondre au hasard 6 fois correctement ?
 
-
-## Exercice - Concerts
+### Concerts
 
 Supposons $J$ un enseignant ayant un groupe de rock et se produisant à 3 concerts $C_1$, $C_2$ et $C_3$ dans des bars différents à Cherbourg durant le mois d'octobre. On considère qu'un.e étudiant.e $E$ a une probabilité de sortir le soir $p_s=.5$, et a une probabilité $p_b=.2$ d'aller dans le bar où se produit le groupe.
 
