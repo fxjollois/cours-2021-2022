@@ -184,4 +184,4 @@ présentent au guichet entre 10h et 11h.
 
 ### Centenaire
 
-Si dans une population une personne sur cent est centenaire, quelle est la probabilité de trouver au moins une personne centenaire parmi 100 personnes choisies au hasard ? Et parmi 200 personnes ?
+Si dans une population une personne sur cent est centenaire, quelle est la probabilité de trouver au moins une personne centenaire parmi 100 personnes choisies au hasard ? Et parmi 200 personnes ? Combien de personnes doit-on choisir au hasard pour être quasiment sûr de trouver un centenaire (avec probabilité de se tromper inférieur à 1%) ?
