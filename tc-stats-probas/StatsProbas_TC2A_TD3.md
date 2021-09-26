@@ -1,37 +1,6 @@
 # Exercices autour des lois et du calcul de probabilités
 
-## Lois discrètes
-
-### Pile ou face à répétition
-On joue à pile ($p$) ou face ($f$), 4 fois de suite ($l_i, \forall i = 1, 2, 3, 4$). Et on note les résultats (dans l'ordre).
-
-1. Déterminer la loi de probabilité 
-2. Calculer les probabilités des 2 évènements suivants :
-  - $A$ : $\{ n_p > n_f \}$ et $B$ : $\{l_1 = p\}$
-
-### De l'utilité des probabilités dans les choix stratégiques d'un étudiant
-
-Un test comporte 10 questions, avec chacune 4 choix possibles et une seule réponse juste.
-
-1. Combien y a t'il de grilles de réponses possibles ?
-2. Quelle est la probabilité de répondre au hasard 6 fois correctement ?
-
-### Concerts
-
-Supposons $J$ un enseignant ayant un groupe de rock et se produisant à 3 concerts $C_1$, $C_2$ et $C_3$ dans des bars différents à Cherbourg durant le mois d'octobre. On considère qu'un.e étudiant.e $E$ a une probabilité de sortir le soir $p_s=.5$, et a une probabilité $p_b=.2$ d'aller dans le bar où se produit le groupe.
-
-1. Que puis-je dire de la variable aléatoire modélisant qu'un étudiant $E$ voit un concert $C$ ? Quelle est la probabilité de l'évènement $A : E$ vient à $C$ ?
-1. Maintenant, je cherche à savoir quelle est la probabilité qu'un étudiant $E$ voient les trois concerts $C_1$, $C_2$ et $C_3$. Comment puis-je faire ?
-  - Quelle est la probabilité qu'un étudiant vienne à aucun concert ? à un seul concert ? à deux ? au trois ?
-
-## Exercice - Concerts
-
-1. On considère maintenant l'ensemble des $n=90$ étudiants de la formation $T$. On cherche à connaître modéliser le nombre d'étudiants venant à un concert $C$. Comment faire ?
-  - Quelle est la probabilité qu'aucun étudiant ne vienne ? qu'un étudiant vienne ? que 10 étudiant viennent ? que tous les étudiants viennent ?
-1. Je souhaite maintenant connaître la probabilité qu'au moins un étudiant vienne à au moins un concert ?
-  - Si $X \sim B(n, p)$ et $Y \sim B(m,p)$, $X+Y \sim B(n+m,p)$
-
-## Exercices - Loi uniforme continue
+## Loi uniforme continue
 
 ### Exercice 1
 $X$ est une v.a. de loi uniforme sur l'intervalle $I$. Déterminer pour chaque intervalle ci-dessous la fonction de densité et calculer $P(4 \le X \le 5)$.
@@ -47,5 +16,34 @@ $X$ est une v.a. de loi uniforme sur $[-3;3]$.
 
 ### Exercice 3
 Antoine doit venir voir Jean entre 14h45 et 16h30. Quelle est la probabilité qu'il arrive pendant la réunion de Jean qui a lieu entre 15h30 et 16h00 ?
+
+
+## Lois discrètes
+
+### Pile ou face à répétition
+On joue à pile ou face, 4 fois de suite. Et on note les résultats (dans l'ordre).
+
+1. Déterminer la loi de probabilité 
+2. Calculer les probabilités des 2 évènements suivants :
+  - *A* : il y a strictement plus de piles que de faces
+  - *B* : le premier lancer est pile
+
+### De l'utilité des probabilités dans les choix stratégiques d'un étudiant
+
+Un test comporte 10 questions, avec chacune 4 choix possibles et une seule réponse juste.
+
+1. Combien y a t'il de grilles de réponses possibles ?
+2. Quelle est la probabilité de répondre au hasard 6 fois correctement ?
+
+### Concerts
+
+Supposons un enseignant **J** ayant un groupe de rock et se produit à un concert **C** dans un bar à Cherbourg durant le mois d'octobre. On considère qu'un.e étudiant.e **E** a une probabilité de sortir le soir égale à *.5*, et a une probabilité de *.2* d'aller dans le bar où se produit le groupe.
+
+1. Que puis-je dire de la variable aléatoire modélisant qu'un étudiant **E** voit un concert **C** ? Quelle est la probabilité de l'évènement *A* : **E** vient à **C** ?
+1. Maintenant, on se demande combien d'étudiants parmi les 85 de la promo viendront à un concert. Comment modéliser ce processus ? Quelle est la probabilité qu'au moins 10 étudiants viennent ?
+1. Enfin, l'enseignant se produit au final 3 fois dans le mois. On cherche donc à savoir quelle est la probabilité qu'un étudiant $E$ voient les trois concerts $C_1$, $C_2$ et $C_3$. Comment puis-je faire ?
+  - Quelle est la probabilité qu'un étudiant vienne à aucun concert ? à un seul concert ? à deux ? au trois ?
+  - Sachant qu'un étudiant qui vient aux trois concerts aura la note maximale (donc 20), celui qui vient à 2 aura 15, à un seul 10, et 0 pour ceux qui ne viennent pas, comment puis-je estimer la moyenne de la promotion ?
+
 
 
