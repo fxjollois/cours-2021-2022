@@ -109,7 +109,7 @@ function fact(num)
 }
 
 function fpois(L, K) {
-    res = Math.pow(L, K) / fact(K) * Math.pow(Math.exp(1), -K);
+    res = Math.pow(L, K) / fact(K) * Math.pow(Math.exp(1), -L);
     return(res);
 }
 
@@ -129,8 +129,8 @@ function maj2(){
 	K = parseInt(document.getElementById('entK2').value);
 	K = Math.max(K,0);
 	document.getElementById('entK2').value = K;
-	document.getElementById("Pegal").innerHTML = arrondi(fpois(L,K), 4);
-	document.getElementById("Pinf").innerHTML = arrondi(Fpois(L,K), 4);
+	document.getElementById("Pegal2").innerHTML = arrondi(fpois(L,K), 4);
+	document.getElementById("Pinf2").innerHTML = arrondi(Fpois(L,K), 4);
 }
 </script>
 
@@ -181,3 +181,7 @@ présentent au guichet entre 10h et 11h.
 1. Définir une variable aléatoire adaptée. Combien de personnes peut on espérer dans l'heure considérée ?
 1. Donner les probabilités qu'aucune personne ne vienne ? qu'une seule personne ? que 6 personnes viennent ?
 2. Quelle est la probabilité pour qu'au moins 10 personnes se présentent au guichet entre 10h et 11h ?
+
+### Centenaire
+
+Si dans une population une personne sur cent est centenaire, quelle est la probabilité de trouver au moins une personne centenaire parmi 100 personnes choisies au hasard ? Et parmi 200 personnes ?

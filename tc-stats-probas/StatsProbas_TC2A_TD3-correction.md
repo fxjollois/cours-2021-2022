@@ -125,3 +125,11 @@ présentent au guichet entre 10h et 11h.
     - P(X = 0) = 6
 1.  Calculons maintenant la probabilité pour que au moins 10 personnes se présentent au guichet entre 10h et 11h :
     - 
+    
+### Centenaire
+
+Si dans une population une personne sur cent est centenaire, quelle est la probabilité de trouver au moins une personne centenaire parmi 100 personnes choisies au hasard ? Et parmi 200 personnes ?
+
+#### Solution
+
+Poisson (1 / 100)

@@ -463,7 +463,7 @@ ggplot(tab, aes(essai, moyenne)) +
 ### Définition
 Soit $\mathbf{X}$ une *v.a.* prenant des valeurs $k$ discrètes (avec $k=1,2,\ldots$).
 
-$\mathbf{X}$ suit une **loi de Poisson** $Pois(\lambda)$ si pour chaque $k$, $P(X = k) = \frac{\lambda^k}{k!}e^{-k}$ où
+$\mathbf{X}$ suit une **loi de Poisson** $Pois(\lambda)$ si pour chaque $k$, $P(X = k) = \frac{\lambda^k}{k!}e^{-\lambda}$ où
 
 - $e$ est la base de l'exponentielle
 - $\lambda$ représente le nombre moyen d'occurences dans un intervalle de temps fixé
@@ -488,7 +488,7 @@ $$
 :::: column
 ### Fonction de masse
 $$
-P(X = k) = f(k) = \frac{\lambda^k}{k!}e^{-k}
+P(X = k) = f(k) = \frac{\lambda^k}{k!}e^{-\lambda}
 $$
 
 Exemple avec $\lambda=5$
