@@ -87,7 +87,7 @@ function maj(){
 <table>
   <tr><th>Paramètre</th><th>Valeur</th><th>Limites</th></tr>
   <tr><td>N</td><td><input id="entN" value=25  onChange="maj();"></td><td>entre 1 et 1000</td></tr>
-  <tr><td>p</td><td><input id="entp" value=0.4 onChange="maj();"></td><td>entre 0 et 1</td></tr>
+  <tr><td>p</td><td><input id="entp" value=1 onChange="maj();"></td><td>entre 0 et 1</td></tr>
   <tr><td>K</td><td><input id="entK" value=0   onChange="maj();"></td><td>entre 0 et <span id="nbN">25</span></td></tr>
 </table>
 
