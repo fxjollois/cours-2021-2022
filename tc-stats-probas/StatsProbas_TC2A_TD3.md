@@ -97,6 +97,55 @@ function maj(){
   <tr><td>P(X &le; K)</td><td id="Pinf">--</td></tr>
 </table>
 
+### Outil de calcul des probabilités d'une loi de Poisson
+
+<script>
+function fact(num)
+{
+    var rval=1;
+    for (var i = 2; i <= num; i++)
+        rval = rval * i;
+    return rval;
+}
+
+function fpois(L, K) {
+    res = Math.pow(L, K) / fact(K) * Math.pow(Math.exp(1), -K);
+    return(res);
+}
+
+function Fpois(L, K) {
+    var somme = 0;
+	for (var i = 0; i <= K; i++){
+		somme += fpois(L, i);
+	}
+	return(somme);
+}
+
+function maj2(){
+	L = parseInt(document.getElementById('entL').value);
+	L = Math.max(L,0);
+	L = Math.min(L,1000);
+	document.getElementById('entL').value = L;
+	K = parseInt(document.getElementById('entK2').value);
+	K = Math.max(K,0);
+	document.getElementById('entK2').value = K;
+	document.getElementById("Pegal").innerHTML = arrondi(fpois(L,K), 4);
+	document.getElementById("Pinf").innerHTML = arrondi(Fpois(L,K), 4);
+}
+</script>
+
+<table>
+  <tr><th>Paramètre</th><th>Valeur</th><th>Limites</th></tr>
+  <tr><td>&lambda;</td><td><input id="entL" value=25  onChange="maj2();"></td><td>entre 0 et 1000</td></tr>
+  <tr><td>K</td><td><input id="entK2" value=0   onChange="maj2();"></td><td>&ge; 0</td></tr>
+</table>
+
+<table>
+  <tr><th>Proba</th><th>Valeur</th></tr>
+  <tr><td>P(X = K)</td><td id="Pegal2">--</td></tr>
+  <tr><td>P(X &le; K)</td><td id="Pinf2">--</td></tr>
+</table>
+
 ### Pile ou face à répétition
 On joue à pile ou face, 4 fois de suite. Et on note les résultats (dans l'ordre).
 
@@ -110,7 +159,7 @@ On joue à pile ou face, 4 fois de suite. Et on note les résultats (dans l'ordr
 Un test comporte 10 questions, avec chacune 4 choix possibles et une seule réponse juste.
 
 1. Combien y a t'il de grilles de réponses possibles ?
-2. Quelle est la probabilité de répondre au hasard 6 fois correctement ?
+2. Quelle est la probabilité de répondre au hasard 6 fois correctement ? et d'avoir au moins 6 réponses correctes ?
 
 ### Concerts
 
@@ -123,3 +172,12 @@ Supposons un enseignant **J** ayant un groupe de rock et se produit à un concer
   - Sachant qu'un étudiant qui vient aux trois concerts aura la note maximale (donc 20), celui qui vient à 2 aura 15, à un seul 10, et 0 pour ceux qui ne viennent pas, comment puis-je estimer la moyenne de la promotion ?
 
 > N'hésitez pas à contacter l'enseignant **J** pour plus de renseignements sur les concerts &#128521;
+
+### Guichet de poste
+
+Dans une poste d’un petit village, on remarque qu’entre 10 heures et 11 heures, la probabilité pour que deux personnes entrent durant la même minute est considérée comme nulle et que l’arrivée des personnes est indépendante de la minute considérée. On a observé que la probabilité pour qu’une personne se présente entre la minute *m* et la minute *m+1* est : *p = 0.1*. On veut calculer la probabilité pour que *n* personnes se
+présentent au guichet entre 10h et 11h.
+
+1. Définir une variable aléatoire adaptée. Combien de personnes peut on espérer dans l'heure considérée ?
+1. Donner les probabilités qu'aucune personne ne vienne ? qu'une seule personne ? que 6 personnes viennent ?
+2. Quelle est la probabilité pour qu'au moins 10 personnes se présentent au guichet entre 10h et 11h ?
