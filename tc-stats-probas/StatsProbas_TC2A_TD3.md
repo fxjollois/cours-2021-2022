@@ -3,22 +3,31 @@
 ## Loi uniforme continue
 
 ### Exercice 1
-$X$ est une v.a. de loi uniforme sur l'intervalle $I$. Déterminer pour chaque intervalle ci-dessous la fonction de densité et calculer $P(4 \le X \le 5)$.
 
-1. $I = [4; 6]$
-2. $I = [0; 5]$
+**X** est une v.a. de loi uniforme sur l'intervalle *I*. Déterminer pour chaque intervalle ci-dessous la fonction de densité et calculer *P(4 &le; X &le; 5)*.
+
+1. *I = [4; 6]*
+2. *I = [0; 5]*
 
 ### Exercice 2
-$X$ est une v.a. de loi uniforme sur $[-3;3]$.
 
-1. Calculer $P(X < 1)$, et $P(X \ge 0.5)$
-1. Donner l'espérance de $X$
+**X** est une v.a. de loi uniforme sur *[-3;3]*.
+
+1. Calculer *P(X < 1)*, et *P(X &ge; 0.5)*
+1. Donner l'espérance de **X**
 
 ### Exercice 3
 Antoine doit venir voir Jean entre 14h45 et 16h30. Quelle est la probabilité qu'il arrive pendant la réunion de Jean qui a lieu entre 15h30 et 16h00 ?
 
 
 ## Lois discrètes
+
+<p class="codepen" data-height="300" data-default-tab="result" data-slug-hash="WNOYwqj" data-user="fxjollois" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/fxjollois/pen/WNOYwqj">
+  </a> by FX Jollois (<a href="https://codepen.io/fxjollois">@fxjollois</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
 ### Pile ou face à répétition
 On joue à pile ou face, 4 fois de suite. Et on note les résultats (dans l'ordre).
@@ -45,5 +54,4 @@ Supposons un enseignant **J** ayant un groupe de rock et se produit à un concer
   - Quelle est la probabilité qu'un étudiant vienne à aucun concert ? à un seul concert ? à deux ? au trois ?
   - Sachant qu'un étudiant qui vient aux trois concerts aura la note maximale (donc 20), celui qui vient à 2 aura 15, à un seul 10, et 0 pour ceux qui ne viennent pas, comment puis-je estimer la moyenne de la promotion ?
 
-
-
+> N'hésitez pas à contacter l'enseignant **J** pour plus de renseignements sur les concerts &#128521;
