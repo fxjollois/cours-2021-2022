@@ -29,7 +29,7 @@ Vous pouvez bien évidemment **compléter** les données utilisées avec d'autre
 - Application web `shiny` à produire sur [`shinyapps.io`](https://www.shinyapps.io/)
     - version gratuite largement suffisante pour le projet
 - Soutenance de l'application **date à définir**
-    - chaque groupe présentera son appli **à toute la promo**
+    - chaque groupe présentera son appli **à tout le groupe**
 
 
 ### Pour S3
