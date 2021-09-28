@@ -52,10 +52,10 @@ Vous pouvez bien évidemment **compléter** les données utilisées avec d'autre
     - Analyse statistique
     - Tableaux et graphiques expliquant les résultats obtenus
 - A produire : **Application shiny**
-        - Présentation du sujet et problématique
-        - Description des données
-        - Analyse effectué et résultats obtenus
-        - Conclusion
+    - Présentation du sujet et problématique
+    - Description des données
+    - Analyse effectué et résultats obtenus
+    - Conclusion
 
 
 
