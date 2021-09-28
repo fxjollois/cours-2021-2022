@@ -1,36 +1,61 @@
 # TFE 2ème année FI
 
-## Données AirBnb
+## Travaux de fin d'études
 
-[AirBnB](http://www.airbnb.com/) est un site permettant la location de logement entre particuliers. L'offre est globale dans le monde. Le site [Inside AirBnB](http://insideairbnb.com/get-the-data.html) collecte régulièrement les données des logements proposés (en faisant des *snapshots* tous les 6 mois environ).
+Vous devez choisir un jeu de données ouvert (cf liste ci-dessous), pour effectuer une application `shiny`, permettant de visualiser les données et de montrer une analyse statistique de votre choix parmi celles vues en 2ème année (analyse de données, modélisation, data-mining, ...).
 
-A partir de ces données, vous devez analyser et comparer les villes d'un même pays / d'une même région.
+Pour évaluer votre application, elle devra être disponible sur le site [`shinyapps.io`](https://www.shinyapps.io/) (inscription gratuite). Cela vous permettra aussi d'utiliser cette application dans votre CV et vos recherches de stages/alternances/emplois futurs.
 
-## Possibilités
+## Données possibles
 
-Voici quelques possibilités de choix (1 choix = 1 groupe) :
+Vous trouverez ici une liste de données potentiellement intéressantes. Vous êtes libre de choisir d'autres données (sports, économies, transports, loisirs, ...) si vous le souhaitez.
 
-- **France** : Paris, Lyon, Bordeaux
-- **Royaume-Uni** : Londres, Manchester, Bristol
-- **Espagne** : Barcelone, Madrid, Séville
-- **Italie** : Milan, Naples, Rome
-- **Belgique** : Bruxelles, Ghent (Gand), Antwerp (Anvers)
+- AirBnB via [Inside AirBnB](http://insideairbnb.com/get-the-data.html) (il y a Paris par exemple)
+- [Indice de bonheur](https://happyplanetindex.org/about)
+- [Banque mondiale](https://donnees.banquemondiale.org/)
+- Climat via [Climate Research Unit](http://www.cru.uea.ac.uk/data)
+- Villes : [Paris](https://opendata.paris.fr/pages/home/), [New-York](https://opendata.cityofnewyork.us/), [San Francisco](https://datasf.org/)
+- Gouvernement (énormément de choix) : [data.gouv.fr](https://www.data.gouv.fr/fr/), [US](http://www.data.gov/), [Canada](http://ouvert.canada.ca/fr), [Royaume-Uni](http://data.gov.uk/), [Europe](http://data.europa.eu/euodp/fr/data), ...
+- [SNCF](https://data.sncf.com/), [Météo France](https://donneespubliques.meteofrance.fr/), [ENEDIS](https://www.enedis.fr/open-data), ...
+- [Portail mondial](https://opendatainception.io/) de sites proposant des open data
+- ...
 
-- **Europe** : 3 parmi les villes précédentes
+Vous pouvez bien évidemment **compléter** les données utilisées avec d'autres données (météo, INSEE, ...).
 
-Vous pouvez aussi proposer d'autres choix (Australie, Etats-Unis, Canada entre autres - 3 villes dans le monde - ...).
+## Demandes
 
-## Demande
+- Travail en groupe de 2 à 3 étudiants
+    - plus d'étudiants = plus de travail attendu
+- Application web `shiny` à produire sur [`shinyapps.io`](https://www.shinyapps.io/)
+    - version gratuite largement suffisante pour le projet
+- Soutenance de l'application **date à définir**
+    - chaque groupe présentera son appli **à toute la promo**
 
- Voici le plan de travail à suivre :
 
-- Importation et nettoyage des données (suppression des avis automatiques, recherche de données aberrantes, ...)
-- Parc locatif à disposition (description, cartographie, avis donnés, ...)
-- Similitudes et différences entre les villes (coût, parc, équipement, nombre d'avis, ...)
-- Modélisation du coût d'une location : **qu'est-ce qui influent sur le prix d'une location ?**
-    - globale sur le pays/la région
-    - par ville
-    - analyser les résultats (modèles identiques ? différents ? pourquoi ? comment ?)
-- Segmentation des locations : **existe-t'il des classes de locations ?**
-    - globale
-    - distinction entre les classes, s'il y en a 
+### Pour S3
+
+- A faire
+    - Choix des données
+    - Importation des données
+    - Nettoyage des données
+    - Premières analyses descriptives
+- A produire : **Rapport**
+    - Présentation des données et de leur contexte
+    - Problématique choisi pour l'analyse
+    - Description complète des données
+    - Premières pistes d'analyse selon la problématique
+
+### Pour S4
+
+- A faire
+    - Codage de l'application shiny
+    - Analyse statistique
+    - Tableaux et graphiques expliquant les résultats obtenus
+- A produire : **Application shiny**
+        - Présentation du sujet et problématique
+        - Description des données
+        - Analyse effectué et résultats obtenus
+        - Conclusion
+
+
+
