@@ -5,6 +5,7 @@
 ### Jour 1 : Analyse exploratoire
 
 - **ACP** : [Cours](acp-cours.html) - [Utilisation sous Python](acp-python.slides.html) - [Demande](acp-demande.html)
+	- [correction demande 1](acp-demande1.html)
 - **AFC** : [Cours](afc-cours.html) - [Utilisation sous Python](afc-python.slides.html) - [Demande](afc-demande.html)
 - **ACM** : [Cours](acm-cours.html) - [Utilisation sous Python](acm-python.slides.html)
 
