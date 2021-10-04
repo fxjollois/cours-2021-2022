@@ -5,7 +5,7 @@
 ### Jour 1 : Analyse exploratoire
 
 - **ACP** : [Cours](acp-cours.html) - [Utilisation sous Python](acp-python.slides.html) - [Demande](acp-demande.html)
-- **AFC** : [Cours](afc-cours.html) - [Utilisation sous Python](afc-python.slides.html) - [Demande](acp-demande.html)
+- **AFC** : [Cours](afc-cours.html) - [Utilisation sous Python](afc-python.slides.html) - [Demande](afc-demande.html)
 - **ACM** : [Cours](acm-cours.html) - [Utilisation sous Python](acm-python.slides.html)
 
 ### Jour 2 : Clustering
