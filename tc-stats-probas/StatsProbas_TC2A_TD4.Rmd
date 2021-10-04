@@ -1,0 +1,215 @@
+---
+title: "Estimation et Tests"
+author: "FX Jollois"
+date: "TC - 2ème année - 2021/2022"
+output:
+  beamer_presentation:
+    theme: "Madrid"
+    colortheme: "seahorse"
+    fonttheme: "structurebold"
+header-includes:
+- \usepackage{booktabs}
+- \usepackage{longtable}
+- \usepackage{array}
+- \usepackage{multirow}
+- \usepackage{wrapfig}
+- \usepackage{float}
+- \usepackage{colortbl}
+- \usepackage{pdflscape}
+- \usepackage{tabu}
+- \usepackage{threeparttable}
+- \usepackage{threeparttablex}
+- \usepackage[normalem]{ulem}
+- \usepackage{makecell}
+- \usepackage{xcolor}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+set.seed(1234)
+```
+
+## Introduction
+
+**Comment puis-je connaître un indicateur sur la population française ?**
+
+- Impossible à réaliser (trop coûteux, trop compliqué à mettre en oeuvre, ...)
+- Sélection d'un sous-ensemble de la population, appelé **échantillon**
+
+**Comment sélectionner correctement un échantillon ?**
+
+- Notion de représentativité
+- Méthodes de sondage pour répondre à ce problème
+
+## Que fait-on ?
+
+Quand on cherche à analyser un phénomène (biologique, économique, météorologique...), on a 2 possibilités
+
+### Loi de probabilité connue a priori
+On vérifie a posteriori que les observations faites à partir d’un échantillon sont en accord avec elle. On effectue alors un test d'ajustement entre la distribution théorique et la distribution observée
+
+### Loi de probabilité inconnue 
+Mais elle est suggérée par la description de l’échantillon (nature de la variable, forme de la distribution des fréquences, valeurs des paramètres descriptifs). Dans ce cas, il est nécessaire d’estimer les paramètres de la loi de probabilité à partir des paramètres établis sur l’échantillon.
+
+## Inférence statistique
+
+### Inférence
+Opération qui consiste à admettre une proposition en raison de son lien avec une proposition préalable tenue pour vraie.
+
+:::
+### Inférence statistique
+Ensemble de techniques permettant d'induire les caractéristiques d'un groupe général (la population) à partir de celles d'un groupe particulier (l'échantillon), en fournissant une mesure de la certitude de la prédiction (via la probabilité d'erreur)
+:::
+
+## 2 problèmes différents
+
+### Estimation
+Déterminer les **valeurs inconnues** des paramètres de la population à partir des données de l'échantillon. Il est alors nécessaire de déterminer la précision de ces estimations en établissant un *intervalle de confiance* autour des valeurs prédites.
+
+### Tests d'hypothèses
+A partir d'une hypothèse posée, déterminer les conséquences de cette hypothèse sur la population et/ou l'échantillon, et comparer ces conséquences aux observations faites sur l'échantillon. On conclut **en acceptant ou en rejetant l'hypothèse de travail** à partir de règles de décisions objectives. 
+
+## Distribution d'échantillonage
+
+Dans un problème d'estimation, il est nécessaire d'étudier la **loi de probabilité** suivie par l'estimateur
+
+Trois concepts importants :
+
+- Paramètres de la **population** (comme la proportion $p$, la moyenne $\mu$, ou la variance $\sigma^2$)
+- Paramètres de l'**échantillon** (comme la fréquence $f$, la moyenne $\bar{x}$, ou la variance $s^2$)
+- Variables aléatoires des paramètres (comme $\bar{X}$, ...)
+
+## Estimation
+
+- Problème statistique : estimation d'un paramètre inconnu de la population via un échantillon
+- Résumer l'échantillon à une statistique
+- Plusieurs catégories de paramètres :
+  - Paramètres de position
+	- Paramètres de dispersion
+	- Paramètres de liaison
+- Deux types d'estimation :
+  - Estimation ponctuelle
+	- Estimation par intervalle
+
+## Estimation ponctuelle
+
+- Estimation d'un résultat sur la population
+- Unique valeur mesurée dans l'échantillon
+
+### Définition
+Soit $\theta$ un paramètre inconnu intervenant dans la loi de probabilité (connue analytiquement) de la variable aléatoire $X$. Soient $x_1, x_2, \ldots, x_n$ les $n$ valeurs prises par la v.a. $X$ dans un échantillon de taille $n$. On appelle **estimateur** de $\theta$, noté $T_n$ la fonction qui fait correspondre aux valeurs $x_i$ de l'échantillon la valeur du paramètre $\theta$. On note la valeur numérique de cette estimation par
+$$ \hat\theta = T_n(x_1, x_2, \ldots, x_n) $$
+
+## Exemple d'estimation ponctuelle
+
+- Estimation de la taille moyenne de la population française
+- Echantillon : les étudiants de ce cours
+- Variable aléatoire suivant une loi normale
+- Proposer une estimation de la taille moyenne $\mu$, via l'échantillon ${x_i}$ ?
+  - la moyenne
+  - la médiane
+  - le mode
+  - la taille de l'individu 3
+  - \ldots
+
+## Quel estimateur ?
+
+- Meilleur estimateur de la taille moyenne ? 
+- Définition mathématique impossible de *meilleur*
+- Comparer les estimateurs avec certains critères :
+  - **Biais** : l'estimation ne doit pas être systématiquement décalée par rapport à la vraie valeur,
+  - **Précision** : la variation d'un échantillon à l'autre de l'estimation doit être faible,
+  - **Convergence** : lorsque la taille de l'échantillon augmente, l'estimateur converge vers le paramètre inconnu $\theta$,
+  - **Complexité** : le calcul de l'estimation ne doit pas nécessiter trop de calculs,
+  - **Robustesse** : les perturbations doivent avoir un impact très limité sur l'estimation.
+
+
+
+## Variable quantitative
+
+### Moyenne
+Soit $X$ une variable aléatoire d'espérance $\mu$ inconnue, la moyenne $\hat\mu$ (ou $\bar{x}$) de l'échantillon est un estimateur correct de $\mu$ ($E(\hat\mu) = \mu$ : sans biais et $V(\hat\mu) = \frac{\sigma^2}{n} \rightarrow 0$ : convergent).
+$$ \hat\mu = \frac{\sum_{i=1}^n x_i}{n} $$
+
+### Variance
+$\hat\sigma^2$ n'est pas un bon estimateur de $\sigma^2$ car $E(\hat\sigma^2) = \frac{n-1}{n} \sigma^2$. Par contre, $\hat{\sigma}^{*2}$ est un estimateur sans biais de $\sigma^2$, et convergent. Mais $\hat{\sigma}^*$ n'est pas un estimateur sans biais de $\sigma$.
+$$ \hat{\sigma}^2 = \frac{\sum_{i=1}^n (x_i - \bar{x})^2}{n} $$
+$$ \hat{\sigma}^{*2} = \frac{\sum_{i=1}^n (x_i - \bar{x})^2}{n - 1} $$
+
+
+## Variable quantitative (suite)
+
+### Médiane
+Valeur pour laquelle 50 \% des individus ont une valeur plus grande et 50 \% plus petite. Intéressant car insensible aux données aberrantes, contrairement à la moyenne.
+$$ \hat{m} : p(X < \hat{m}) = 0.5 $$
+En triant les données $x_i$ par ordre croissant, on obtient la médiane avec
+\begin{center}
+\begin{tabular}{ll}
+Si $n$ pair   & $\hat{m} = \frac{\displaystyle x_{n/2} + x_{n/2+1}}{2} $ \\
+Si $n$ impair & $\hat{m} = \frac{\displaystyle x_{(n+1)}}{2} $ \\
+\end{tabular}
+\end{center}
+
+
+## Variable qualitative
+
+### Mode
+Mesure prise le plus fréquemment.
+$$ x_{mode} : p(X = x_{mode}) = \max_x p(X = x) $$
+
+### Proportion
+Soit $\hat{p}$ l'estimation d'une proportion inconnu $p$ et $k$ le nombre d'individus présentant la caractéristique étudiée, la proportion $p$ approxime la vraie valeur de $p$ :
+$$ \hat{p} = \frac{k}{n} $$
+
+
+## Variable qualitative
+
+### Ecart-type d'une proportion
+Soit $F_n = \frac{k}{n}$, c'est une v.a. construite par la somme de $n$ v.a. suivant une loi de Bernouilli et de même paramètre $p$. C'est donc (d'après le TCL) une v.a. dont la loi de probabilité tend vers une loi normale de moyenne $p$. Son écart-type est estimé par 
+$$ \hat{\sigma_p} = \sqrt{\frac{\hat{p}(1-\hat{p})}{n}} $$
+
+Cette estimation n'est valable que pour les cas où $n > 30$.
+
+
+
+## Estimation par intervalles
+
+- Intervalle souvent plus intéressant et plus correct que l'affirmation $\hat\theta = c$
+- Estimation par intervalle de confiance (souvent symétrique)
+
+### Définition
+
+Soit $X$ une v.a., $\theta$ le paramètre inconnu et $\hat{\theta}$ son estimation sur $X$, on cherche ainsi $c1$ et $c2$ tel que 
+$$ p(c1 < X < c2 | \theta = \hat{\theta}) = 1 - \alpha $$
+
+### Choix de $\alpha$ dépendant du problème posé
+- Etude de marché prospective : $\alpha$ élevé (intervalles restreints)
+- Etude sur une maladie ou dans une centrale nucléaire : $\alpha$ très faible (intervalles grands)
+- Pratique : prendre un risque $\alpha$ égal à 5 \%.
+
+
+## Intervalle de confiance d'une moyenne
+
+### Si $\sigma$ est connu
+On a l'intervalle de confiance suivant (dans le cas très courant d'un intervalle symétrique) :
+$$ \hat\mu - u_{\alpha/2} \frac{\sigma}{\sqrt{n}} < \mu < \hat\mu + u_{\alpha/2} \frac{\sigma}{\sqrt{n}} $$
+où $u_{\alpha/2}$ est la valeur de la table de la loi normale pour laquelle $p(X > u_{\alpha/2}) = \frac{\alpha}{2}$. Puisqu'on choisit souvent $\alpha = 5\%$, on a $u_{\alpha/2} = 1.96$. 
+
+### Si $\sigma$ n'est pas connu
+On utilise ici l'intervalle de confiance suivant ($t_{\alpha/2}$ est la valeur de la table de la loi de Student pour laquelle $p(X > u_{\alpha/2}) = \frac{\alpha}{2}$) :
+$$ \hat{m} - t_{\alpha/2} \frac{\hat{\sigma}}{\sqrt{n-1}} < m < \hat{m} + t_{\alpha/2} \frac{\hat{\sigma}}{\sqrt{n-1}} $$
+Si $n$ est grand, on retrouve la valeur 1.96 pour $t_{\alpha/2}$ avec $\alpha = 5\%$.
+
+
+## Intervalle de confiance d'un pourcentage
+
+On se base sur le fait que si $n$ est grand, alors la variable alétoire du pourcentage suit approximativement une loi normale. On obtient donc l'intervalle suivant
+$$ \hat{p} - u_{\alpha/2} \sqrt{\frac{\hat{p}(1-\hat{p})}{n}} < X < \hat{p} + u_{\alpha/2} \sqrt{\frac{\hat{p}(1-\hat{p})}{n}} $$
+On a toujours $u_{\alpha/2} = 1.96$ pour $\alpha = 5\%$.
+
+
+
+

@@ -10,8 +10,8 @@ knitr::opts_chunk$set(echo = FALSE, fig.align = "center")
 ## Données
 
 ```{r import}
-pen.tra = read.table("../donnees/pendigits.tra", sep = ",")
-pen.tes = read.table("../donnees/pendigits.tes", sep = ",")
+pen.tra = read.table("https://fxjollois.github.io/donnees/pendigits.tra", sep = ",")
+pen.tes = read.table("https://fxjollois.github.io/donnees/pendigits.tes", sep = ",")
 pen = rbind(pen.tra, pen.tes)
 names(pen) = c(paste(c("X", "Y"), rep(1:8, each = 2), sep = ""), "chiffre")
 ```
