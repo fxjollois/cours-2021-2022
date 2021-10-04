@@ -8,6 +8,7 @@
 	- [correction demande 1](acp-demande1-correction.html)
 	- [correction demande 2](acp-demande2-correction.html)
 - **AFC** : [Cours](afc-cours.html) - [Utilisation sous Python](afc-python.slides.html) - [Demande](afc-demande.html)
+	- [correction demande](afc-demande-correction.html)
 - **ACM** : [Cours](acm-cours.html) - [Utilisation sous Python](acm-python.slides.html)
 
 ### Jour 2 : Clustering
