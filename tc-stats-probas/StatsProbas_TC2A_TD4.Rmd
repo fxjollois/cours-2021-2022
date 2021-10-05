@@ -61,10 +61,8 @@ Mais elle est suggérée par la description de l’échantillon (nature de la va
 ### Inférence
 Opération qui consiste à admettre une proposition en raison de son lien avec une proposition préalable tenue pour vraie.
 
-:::
 ### Inférence statistique
 Ensemble de techniques permettant d'induire les caractéristiques d'un groupe général (la population) à partir de celles d'un groupe particulier (l'échantillon), en fournissant une mesure de la certitude de la prédiction (via la probabilité d'erreur)
-:::
 
 ## 2 problèmes différents
 
@@ -90,11 +88,11 @@ Trois concepts importants :
 - Résumer l'échantillon à une statistique
 - Plusieurs catégories de paramètres :
   - Paramètres de position
-	- Paramètres de dispersion
-	- Paramètres de liaison
+  - Paramètres de dispersion
+  - Paramètres de liaison
 - Deux types d'estimation :
   - Estimation ponctuelle
-	- Estimation par intervalle
+  - Estimation par intervalle
 
 ## Estimation ponctuelle
 
@@ -224,7 +222,7 @@ Et pour les valeurs négatives ? On se base sur la symétrie de la loi Normale.
 - $P(X < -1.96) = P(X > 1.96) = 1 - P(X < 1.96) = \sim 0.975$
 
 ### Conclusion
-Pour une variable $X$ suivant une loi Normale centrée-réduite, on a donc 5% de chances que sa valeur soit comprise dans l'intervalle $[-1.96; 1.96]$.
+Pour une variable $X$ suivant une loi Normale centrée-réduite, on a donc 95% de chances que sa valeur soit comprise dans l'intervalle $[-1.96; 1.96]$.
 
 ## Intervalle de confiance d'une moyenne
 
@@ -255,7 +253,7 @@ On a toujours $u_{\alpha/2} = 1.96$ pour $\alpha = 5\%$.
   - Suit une loi Normale $N(\mu, \sigma)$
 
 - Estimation de la moyenne $\mu$ par $\bar{x} = 610.2222$
-- Estimation par intervalle de confiance à 5% : $[537.3567; 683.0877]$
+- Estimation par intervalle de confiance à 5% : $[537.3; 683.1]$
 
 # Tests statistiques
 
@@ -296,11 +294,12 @@ On a toujours $u_{\alpha/2} = 1.96$ pour $\alpha = 5\%$.
 - $\{\hat\mu > 655\}$ : **région critique** ou région de rejet
 - $\{\hat\mu \leq 655\}$ : **région d'acceptation**
 
+::: example
 ### Sur les données
 $\hat\mu = 610.2$
 
 $\rightarrow$ Conservation de $H_0$ (pas d'augmentation du niveau de pluie)
-
+:::
 
 ## Notions générales sur les tests statistiques
 
@@ -337,7 +336,7 @@ $\rightarrow$ Conservation de $H_0$ (pas d'augmentation du niveau de pluie)
 ## Notions générales sur les tests statistiques
 
 ### Pour effectuer un test, voici les étapes à suivre
-1. \'Etablir deux hypothèses contradictoires, 
+1. Etablir deux hypothèses contradictoires, 
 1. Déterminer la variable de décision,
 1. Calculer la région critique en fonction de $\alpha$,
 1. Calculer si possible la puissance $1 - \beta$,
@@ -357,7 +356,7 @@ $\rightarrow$ Conservation de $H_0$ (pas d'augmentation du niveau de pluie)
 
 - On a mesuré le niveau de pluie pendant 9 ans, et on a obtenu les valeurs suivantes :
   - $\bar{x} = 610.2222$ et $s = 111.5289$
-  - Intervalle de confiance à 5% : $[537.3567; 683.0877]$
+  - Intervalle de confiance à 5% : $[537.3; 683.1]$
 
 - Hypothèses
   - [$H_0$] : le niveau n'a pas changé
