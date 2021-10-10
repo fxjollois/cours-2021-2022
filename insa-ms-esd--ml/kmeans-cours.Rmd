@@ -1,0 +1,94 @@
+---
+title: Classification directe via $k$-means
+subtitle: Mastère ESD - Introduction au Machine Learning
+author: FX Jollois
+output: slidy_presentation
+---
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, fig.align = "center", fig.height = 5)
+library(ggplot2)
+library(dplyr)
+```
+
+
+# Classification directe
+
+- Pour $n$ grand, classification hiérarchique trop coûteuse en temps 
+- Recherche d'une partition en $k$ classes
+  - $k$ devant être fourni en paramètre de la méthode
+- Méthode de base :
+  - A partir d'une partition initiale, amélioration à chaque étape jusqu'à convergence
+  - Dépendant de l'initialisation (non déterministe - doit être effectué plusieurs fois)
+  - Critère de convergence à définir
+- Méthode la plus courante : $k$-means
+
+# Rappels
+
+Inertie
+
+
+# $k$-means
+
+## Algorithme
+
+1. Choisir $k$ individus différents, considérés comme les centres initiaux des classes
+  1. Une autre possibilité est d'assigner aléatoirement chaque individu à une des $k$ classes, et de calculer les centres de ces classes
+1. Assigner chaque objet à la classe la plus proche
+1. Calculer les nouveaux centres des classes
+1. Répéter les étapes 2 et 3 jusqu'à la convergence du critère
+
+A définir :
+
+- Distance entre les individus
+- Critère de convergence
+- Nombre de classes $k$
+
+# $k$-means
+
+## Distance
+
+On utilise généralement la distance euclidienne entre l'individu $i$ et la classe $k$ :
+$$
+  d^2(x_i,g_k) = \sum_{j=1}^d (x_i^j - g_k^j)^2
+$$
+
+## Critère
+
+En se basant sur la distance euclidienne, on cherche à minimiser l'inertie intra-classe :
+$$ 
+  W = \sum_{k=1}^K \sum_{i \in z_k} d^2 (x_i, g_k) = \sum_{k=1}^K \sum_{i \in z_k} \sum_{j=1}^d (x_i^j - g_k^j)^2 
+$$
+
+# Quelques points à noter
+
+- Il est nécessaire de normaliser les variables (sauf cas particulier)
+- On remarque qu'il suffit généralement de moins d'une trentaine d'itérations pour converger
+- Il est possible d'obtenir des classes vides, on a alors 2 possibilités :
+  - Stopper l'algorithme
+  - Choisir un nouveau centre aléatoirement
+- Pour décrire chaque classe, on utilise les centres des classes 
+
+
+# Initialisation
+
+Comme nous pouvons l'imaginer, le résultat de cet algorithme dépend très fortement de l'initialisation. On a donc 2 points à noter :
+
+- Lorsqu'on lance l'algorithme 2 fois, nous n'obtenons pas forcément le même résultat
+- Le résultat obtenu est un maximum local, et non un maximum global
+
+Pour éviter ce problème, nous avons 2 possibilités :
+
+- Lancer l'algorithme plusieurs fois et garder le meilleur résultat (*i.e.* celui avec $W$ minimal)
+- Choisir $k$ points initiaux les plus distants les uns des autres
+
+# $k$-means vs CAH
+
+| | CAH | $k$-means |
+|-|-|-|
+| Avantages | Pas de nombre de classes à donner | Complexité linéaire |
+|           | Plusieurs découpages proposés | Temps de calcul réduit |
+|           | | Méthode facile à comprendre et à mettre en œuvre |
+| Inconvénients | Complexité quadratique | Nombre de classes à définir |
+|               | Temps de calcul long | |
+

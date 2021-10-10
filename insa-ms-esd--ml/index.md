@@ -13,6 +13,13 @@
 
 ### Jour 2 : Clustering
 
+- [Cours](classif-cours.html)
+- Utilisation sous python : 
+    - [CAH](cah-python.slides.html) 
+    - [*k*-means](kmeans-python.slides.html) 
+    - [DBSCAN](dbscan-python.slides.html)
+- [Demande](classif-demande.html)
+    
 
 ### Jour 3 : Etude de cas
 

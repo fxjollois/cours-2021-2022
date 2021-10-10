@@ -1,24 +1,14 @@
 ---
-title: Classification Ascendante Hiérarchique (CAH)
-subtitle: DUT STID 2AFA
+title: Classification
+subtitle: Mastère ESD - Introduction au Machine Learning
 author: FX Jollois
-output: 
-    slidy_presentation:
-        footer: "CAH - STID2A2"
-        css: ../css/slidy-fxj.css
-        self_contained: false
+output: slidy_presentation
 ---
 
 ```{r, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, fig.align = "center", fig.height = 5)
 library(ggplot2)
 library(dplyr)
-library(NbClust)
-# library(tibble)
-# library(FactoMineR)
-# library(knitr)
-# library(kableExtra)
-# library(formattable)
 ```
 
 # Que veut-on faire ?
@@ -31,7 +21,7 @@ library(NbClust)
     - trop faible : peu informatif
     - trop élevé : trop spécifique et peu exploitable
 
-# Exemple : données `faithful` dans R
+# Exemple : données `faithful`
 
 ```{r}
 faithful %>% 
@@ -69,12 +59,13 @@ faithful %>%
 - **Partie** de $X$ : sous-ensemble $A = \{a_1,\ldots,a_p\}$
     - chaque $a_j \in X, \forall j=1,\ldots,p$
     - Si on compte l'ensemble vide et l'ensemble tout entier, il existe $2^n$ parties de $X$
-- Ensemble des parties muni de la relation d'ordre partiel ($A \subseteq B \Leftrightarrow(x \in A \Rightarrow x \in B)$)
-    - Deux parties d'un ensemble sont
-        - soit chevauchantes (non égales et d'intersection non nulle), 
-        - soit disjointes (sans élément commun), 
-        - soit incluses l'une dans l'autre, 
-        - soit identiques. 
+- Ensemble des parties muni de la relation d'ordre partiel 
+  - $A \subseteq B \Leftrightarrow(x \in A \Rightarrow x \in B)$
+  - Deux parties d'un ensemble sont
+    - soit chevauchantes (non égales et d'intersection non nulle), 
+    - soit disjointes (sans élément commun), 
+    - soit incluses l'une dans l'autre, 
+    - soit identiques. 
 
 # Partition
 
@@ -124,7 +115,7 @@ Considérons $X=\{a,b,c,d,e\}$.
 
 ```{r, fig.height=2.5,fig.width=2.5}
 x = data.frame(v = c(1, 2, 4, 5.5, 7), 
-               row.names = LETTERS[1:5])
+               row.names = letters[1:5])
 h = hclust(dist(x))
 par(mar = c(0, 0, 0, 0))
 plot(h, hang = -1, main = "", axes = FALSE)
@@ -147,6 +138,51 @@ $$
 	B = \frac{1}{n} \sum_{k=1}^K n_k {(g_k - g)}^2
 $$
         - Plus $B$ grand, plus les classes seront séparées
+
+
+# Illustration de l'inertie
+
+```{r inertia0}
+f = sample(faithful)[1:20,]
+k = kmeans(f, 2, nstart=20)
+g = apply(f, 2, mean)
+```
+
+
+```{r inertia1,fig=TRUE,echo=FALSE}
+plot(f, pch=3, main="Sample data", ylab="Waiting", xlab="Eruptions")
+points(g[1], g[2], col="blue", pch=15)
+points(k$centers, col="red", pch=19)
+legend("topleft", c("Cluster centers","Data center"), 
+	pch=c(19,15), col=c("red","blue"), bty="n")
+```
+
+# Illustration -- $I$
+
+```{r inertia2,fig=TRUE,echo=FALSE}
+<<inertia1>>
+for (i in 1:nrow(f)) 
+	lines(rbind(g, f[i,]), lty=2, col="gray50")
+```
+
+# Illustration -- $W$
+
+```{r inertia3,fig=TRUE,echo=FALSE}
+<<inertia1>>
+for (l in 1:2) 
+	for (i in which(k$cluster==l)) 
+		lines(rbind(k$centers[l,], f[i,]), lty=2, col="gray50")
+```
+
+
+# Illustration -- $B$
+
+```{r inertia4,fig=TRUE,echo=FALSE}
+<<inertia1>>
+for (l in 1:2) 
+	lines(rbind(g, k$centers[l,]), lty=2, col="gray50")
+```
+
 
 # Objectif
 
@@ -173,10 +209,10 @@ $$
     - Différents nombres de classes intéressants parfois
     - Discussion avec le *métier* importante pour cette étape
 - Vu ici : $R^2$, $CCC$ et $PseudoF$ 
-    - Car présents sous SAS et facilement obtenable sous R
-    - (mais beaucoup d'autres existent)
 
-# Critère $R^2$
+# Critères
+
+### $R^2$
 
 - Proportion de l'inertie explique par les classes 
 $$
@@ -185,16 +221,7 @@ $$
 - Plus il est proche de 1, meilleure est la classification
 - Un bon critère est de prendre $k+1$ classes lorsque le passage entre $K$ et $K+1$ reprèsente le dernier saut important.
 
-# Critère $CCC$
-
-- *Cubic Clustering Criterion* indique si la classification est
-    - Bonne ($CCC > 2$),
-    - A vérifier (entre 0 et 2)
-    - Susceptible d'être affectée par des outliers ($CCC < 0$)
-    - Si $CCC$ très légèrement négatif : présence de petites classes
-- Bonne partition en $K+1$ classes : creuxà $K$ classes et pic à $K+1$ classes, suivi par une évolution lente du $CCC$.
-
-# Critère $PseudoF$
+### $PseudoF$
 
 - Séparation entre toutes les classes
 $$
@@ -207,7 +234,6 @@ $$
 ```{r, warning=FALSE}
 res = lapply(1:20, function(k) return(kmeans(iris[-5], k)))
 r2 = sapply(res, function(r) return(r$betweenss / r$totss))
-ccc = c(NA, NbClust(iris[-5], method = "kmeans", index = "ccc", max.nc = 20)$All.index)
 psf = sapply(res, function(r) {
   r2 = r$betweenss / r$totss
   k = length(r$size)
@@ -216,13 +242,13 @@ psf = sapply(res, function(r) {
   (r2 / (k - 1)) / ((1 - r2) / (n - k))
 })
 data.frame(
-  k = rep(1:20, times = 3),
-  critere = rep(c("r2", "ccc", "pseudof"), each = 20),
-  valeur = c(r2, ccc, psf)
+  k = rep(1:20, times = 2),
+  critere = rep(c("R2", "Pseudo-F"), each = 20),
+  valeur = c(r2, psf)
 ) %>%
   ggplot(aes(k, valeur, color = critere)) +
   geom_vline(xintercept = 3, lty = 2, color = "grey50") +
-  geom_line(show.legend = FALSE) +
+  geom_line(show.legend = FALSE, size = 2) +
   facet_wrap(~ critere, scales = "free") +
   theme_classic()
 ```
@@ -231,7 +257,7 @@ data.frame(
 # Classification hiérarchique
 
 - Recherche d'une hiérarchie valuée
-- Partition compatible avec cette hiérachie : partition dont les classes sont des éléments (disjoints) 
+- Partition compatible avec cette hiérarchie : partition dont les classes sont des éléments (disjoints) 
     - Coupure de l'arbre selon une horizontale 
 - Basée sur la notion de **dissimilarité**/**distance** entre individus
     - Application $d$ : indice de distance si
@@ -248,7 +274,7 @@ data.frame(
 - Propriété ultramétrique :
 $$ d(a,b) \leq \sup\{d(a,c);d(b,c)\} \ \forall a, b, c $$
 
-Recherche de d'une classification hiérarchique = recherche d'une ultram�trique.
+Recherche de d'une classification hiérarchique = recherche d'une ultramétrique.
 
 > Connaissant une métrique sur $X$, en déduire une ultramétrique aussi proche que possible de la métrique de départ
 
@@ -303,13 +329,18 @@ Les données
 ```{r}
 df = faithful[1:5,]
 plot(df)
-do = dist(df)
 ```
 
 La matrice de distance initiale
 
 ```{r}
-round(do)
+do = as.data.frame(as.matrix(dist(df)))
+for (i in 1:4)
+  for (j in (i+1):5) {
+    do[i,j] = NA
+  }
+options(knitr.kable.NA = '')
+knitr::kable(round(do), row.names = TRUE) 
 ```
 
 L'arbre obtenu (lien complet)
@@ -322,12 +353,18 @@ plot(h)
 L'ultramétrique obtenu
 
 ```{r}
-du = do
+du = dist(df)
 du[1:length(du)] = h$height[4]
 du[2] = h$height[1]
 du[6] = h$height[2]
 du[c(4,9)] = h$height[3]
-round(du)
+du = as.data.frame(as.matrix(du))
+for (i in 1:4)
+  for (j in (i+1):5) {
+    du[i,j] = NA
+  }
+options(knitr.kable.NA = '')
+knitr::kable(round(du), row.names = TRUE) 
 ```
 
 # Iris
@@ -341,4 +378,127 @@ text(150, 22, "en 2 classes", adj = c(1, -.5), col = "gray50")
 abline(h = 9, lty = 2, col = "gray50")
 text(150, 9, "en 3 classes", adj = c(1, -.5), col = "gray50")
 ```
+
+
+
+
+# Classification directe
+
+- Pour $n$ grand, classification hiérarchique trop coûteuse en temps 
+- Recherche d'une partition en $k$ classes
+  - $k$ devant être fourni en paramètre de la méthode
+- Méthode de base :
+  - A partir d'une partition initiale, amélioration à chaque étape jusqu'à convergence
+  - Dépendant de l'initialisation (non déterministe - doit être effectué plusieurs fois)
+  - Critère de convergence à définir
+- Méthode la plus courante : $k$-means
+
+# $k$-means
+
+## Algorithme
+
+1. Choisir $k$ individus différents, considérés comme les centres initiaux des classes
+  1. Une autre possibilité est d'assigner aléatoirement chaque individu à une des $k$ classes, et de calculer les centres de ces classes
+1. Assigner chaque objet à la classe la plus proche
+1. Calculer les nouveaux centres des classes
+1. Répéter les étapes 2 et 3 jusqu'à la convergence du critère
+
+A définir :
+
+- Distance entre les individus
+- Critère de convergence
+- Nombre de classes $k$
+
+# $k$-means
+
+## Distance
+
+On utilise généralement la distance euclidienne entre l'individu $i$ et la classe $k$ :
+$$
+  d^2(x_i,g_k) = \sum_{j=1}^d (x_i^j - g_k^j)^2
+$$
+
+## Critère
+
+En se basant sur la distance euclidienne, on cherche à minimiser l'inertie intra-classe :
+$$ 
+  W = \sum_{k=1}^K \sum_{i \in z_k} d^2 (x_i, g_k) = \sum_{k=1}^K \sum_{i \in z_k} \sum_{j=1}^d (x_i^j - g_k^j)^2 
+$$
+
+# Quelques points à noter
+
+- Il est nécessaire de normaliser les variables (sauf cas particulier)
+- On remarque qu'il suffit généralement de moins d'une trentaine d'itérations pour converger
+- Il est possible d'obtenir des classes vides, on a alors 2 possibilités :
+  - Stopper l'algorithme
+  - Choisir un nouveau centre aléatoirement
+- Pour décrire chaque classe, on utilise les centres des classes 
+
+
+# Initialisation
+
+Comme nous pouvons l'imaginer, le résultat de cet algorithme dépend très fortement de l'initialisation. On a donc 2 points à noter :
+
+- Lorsqu'on lance l'algorithme 2 fois, nous n'obtenons pas forcément le même résultat
+- Le résultat obtenu est un maximum local, et non un maximum global
+
+Pour éviter ce problème, nous avons 2 possibilités :
+
+- Lancer l'algorithme plusieurs fois et garder le meilleur résultat (*i.e.* celui avec $W$ minimal)
+- Choisir $k$ points initiaux les plus distants les uns des autres
+
+# $k$-means vs CAH
+
+| | CAH | $k$-means |
+|-|-|-|
+| Avantages | Pas de nombre de classes à donner | Complexité linéaire |
+|           | Plusieurs découpages proposés | Temps de calcul réduit |
+|           | | Méthode facile à comprendre et à mettre en œuvre |
+| Inconvénients | Complexité quadratique | Nombre de classes à définir |
+|               | Temps de calcul long | |
+|               | Pas de remise en cause d'un regroupement | |
+
+
+# Classification hybride
+
+Pour combiner les avantages des 2 algorithmes (et finalement éviter les inconvénients des deux), on utilise la méthode de Wong, nommée *classification hybride*, présentée ci-dessous :
+
+1. Réduire les données, en appliquant $k$-means avec un nombre de classes important (entre 10 et 100 - avec une limite a $n^{0.3}$)
+    - On obtient ainsi des classes très compacts et homogènes, avec très peu de perte d'iformations
+2. Trouver un nombre de classes approprié avec une CAH (e, utilisant le critière de Ward) sur les centres des classes obtenues dans l'étape 1
+3. Regrouper les classes de $k$-means en se basant sur la méta-partition obtenue dans l'étape 2
+4. Optimiser la partition précédente avec $k$-means
+
+
+
+# Quelques alternatives
+
+Il existe bien d'autres méthodes, donc les suivantes :
+
+- Méthode hiérarchique
+  - BIRCH
+- Méthodes directes
+  - Fuzzy $c$-means
+  - DBSCAN
+  - Spectral clustering
+
+
+
+# DBSCAN
+
+> DBSCAN : Density-based spatial clustering of applications with noise
+
+- Basé sur la notion de densité
+- Une classe est définie sur l'*accessibilité* de la densité
+  - Un individu est directement accessible à un autre individu si la distance entre les deux est plus petite qu'un seuil défini en amont
+  - 2 individus sont accessible entre eux s'il existe une chaîne de points directement accessible 2 à 2 entre les deux
+  - Une classe est composée d'individus accessibles entre eux
+- Algorithme
+  - Pour chaque nouvel individu, on cherche les individus accessible directement
+  - S'il y en a un dans une classe, on affecte ce nouveau point à la classe
+  - A la fin, les classes avec peu d'individus ne sont pas conservées
+- On obtient donc un ensemble de classes et un ensemble d'outliers (individus dans aucune classe)
+- Deux paramètres sont à déterminer :
+  - Seuil minimal de distance pour considéré deux points comme accessible
+  - Nombre minimal d'objets dans une classe
 
