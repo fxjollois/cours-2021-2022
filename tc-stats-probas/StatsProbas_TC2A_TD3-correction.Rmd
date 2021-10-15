@@ -1,0 +1,258 @@
+---
+title: "Exercices autour des lois et du calcul de probabilités"
+subtitle: "Correction"
+author: "FX Jollois"
+date: "TC - 2ème année - 2021/2022"
+output: html_document
+---
+
+## Loi uniforme continue
+
+---
+
+### Exercice 1
+
+**X** est une v.a. de loi uniforme sur l'intervalle $I$. Déterminer pour chaque intervalle ci-dessous la fonction de densité et calculer $P(4 \le X \le 5)$.
+
+1. $I = [4; 6]$
+2. $I = [0; 5]$
+
+#### Solution
+
+Pour rappel, nous avons comme définition de la fonction de répartition :
+
+$$F(x) = P(X \le x) = \frac{x - a}{b - a}$$
+
+De plus, nous savons que 
+
+$$
+  P(a \le X \le b) = P(X \le b) - P(X \le a)
+$$
+
+##### Avec $I = [4; 6]$
+
+On reprend la formule pour calculer $P(X \le 5)$. Par contre, $P(X \le 4)$ est forcément égal à 0, car les valeurs sont entre 4 et 6 (donc il n'y aucune chance d'avoir une valeure inférieure à 4). Et, de plus, on sait que $P(X = x) = 0$ dans le cas continu (donc $P(X = 4) = 0$).
+
+\begin{eqnarray*}
+P(4 \le X \le 5)  &=& P(X \le 5) - P(X \le 4) \\
+                  &=& \frac{5 - 4}{6 - 5} - 0 \\
+                  &=& .5
+\end{eqnarray*}
+
+##### Avec $I = [0; 5]$
+
+
+
+\begin{eqnarray*}
+P(4 \le X \le 5)  &=& P(X \le 5) - P(X \le 4) \\
+                  &=& 1 - \frac{4 - 0}{5 - 0} \\
+                  &=& .2
+\end{eqnarray*}
+
+---
+
+### Exercice 2
+
+$\mathbf{X}$ est une v.a. de loi uniforme sur $[-3;3]$.
+
+1. Calculer $P(X \le 1)$, et $P(X > 0.5)$
+1. Donner l'espérance de $\mathbf{X}$
+
+#### Solution
+
+
+##### Calcul de $P(X \le 1)$
+
+$$
+  P(X \le 1) = \frac{1 - (-3)}{3 - (-3)} = \frac{4}{6} = .6667
+$$
+
+##### Calcul de $P(X > 0.5)$
+
+On sait que ${X \le 5}$ est le complémentaire de ${X > 5}$, donc on a l'égalité suivante :
+
+$$
+  P(X > 0.5) = 1 - P(X \le 5)
+$$
+
+On a donc le calcul suivant :
+
+\begin{eqnarray*}
+P(X > 5)  &=& 1 - P(X \le 0.5)  \\
+          &=& 1 - \frac{0.5 - (-3)}{3 - (-3)} \\
+          &=& 1 - \frac{3.5}{6} \\
+          &=& \frac{2.5}{6} \\
+          &=& 0.4167
+\end{eqnarray*}
+
+##### Calcul de l'espérance
+
+On a la formule suivante :
+
+$$
+  E(X) = \frac{a + b}{2}
+$$
+
+On a ainsi :
+
+$$
+  E(X) = \frac{a + b}{2} = \frac{-3 + 3}{2} = 0
+$$
+
+---
+
+### Exercice 3
+
+Antoine doit venir voir Jean entre 14h45 et 16h30. Quelle est la probabilité qu'il arrive pendant la réunion de Jean qui a lieu entre 15h30 et 16h00 ?
+
+#### Solution
+
+On considère donc $\mathbf{X}$ la v.a. de loi uniforme continue sur l'intervale $[14.75; 16.5]$. Et on calcule $P(15.5 \le X \le 16)$.
+
+\begin{eqnarray*}
+P(15.5 \le X \le 16) &=& P(X \le 16) - P(X \le 15.5)\\
+                    &=& \frac{16 - 14.75}{16.5 - 14.75} - \frac{15.30 - 14.75}{16.5 - 14.75}\\
+                    &=& \frac{1.25}{1.75} - \frac{.75}{1.75}\\
+                    &=& \frac{.5}{1.75}\\
+                    &=& 0.2857
+\end{eqnarray*}
+
+
+
+---
+
+---
+
+
+## Lois discrètes
+
+---
+
+### Pile ou face à répétition
+On joue à pile ou face, 4 fois de suite. Et on note les résultats (dans l'ordre).
+
+1. Déterminer la loi de probabilité 
+2. Calculer les probabilités des 2 évènements suivants :
+  - $A$ : il y a strictement plus de piles que de faces
+  - $B$ : le premier lancer est pile
+
+#### Solution
+
+##### Loi 
+
+On a une loi discrète à 16 issues (l'ordre a du sens a priori) équi-probable (avec $1$ : pile et $2$ : face) :
+
+\begin{eqnarray*}
+  \Omega &= \{&1111, 1112, 1121, 1122, 1211, 1212, 1221, 1222,\\
+         &    &2111, 2112, 2121, 2122, 2211, 2212, 2221, 2222\}
+\end{eqnarray}
+
+Pour chaque évènement élémentaire $\omega$, on a donc 
+$$
+  P(\omega) = \frac{1}{16}
+$$
+
+##### Calcul
+
+On sait que la probabilité d'un évènement $A$ est égale, dans le cas discret, à la somme des probabilités des évènements élémentaires qui le composent ($P(A) = \sum_{\omega_i \in A} P(\omega_i)$)
+
+On a donc pour l'évènement $A$
+$$
+  P(A) = P(1111) + P(1112) + P(1121) + P(1211) + P(2111) = \frac{5}{16} = .3125
+$$
+
+Pour l'éveénement $B$, nous n'avons finalement pas besoin de regarder plus loin que juste le premier lancer. On a une chance sur deux d'avoir pile lors du premier jet.
+$$
+  P(B) = .5
+$$
+
+---
+
+### De l'utilité des probabilités dans les choix stratégiques d'un étudiant
+
+Un test comporte 10 questions, avec chacune 4 choix possibles et une seule réponse juste.
+
+1. Combien y a t'il de grilles de réponses possibles ?
+2. Quelle est la probabilité de répondre au hasard 6 fois correctement ? et d'avoir au moins 6 réponses correctes ?
+
+#### Solution
+
+1. On a $4^{10} = 1048576$ grilles possibles
+1. On a dix tirages aléatoires d'une loi de Bernouilli avec $p=.25$ donc $\mathbf{X} \sim B(10, .25)$
+    - On utilise l'outil disponible sur la page de cours pour faire les calculs
+    - $P(X = 6) = 0.016222$
+    - $P(X \ge 6) = 1 - P(X \le 5) = 1 - 0.9802723 = 0.01972771$
+
+---
+
+### Concerts
+
+Supposons un enseignant $\mathbf{J}$ ayant un groupe de rock et se produit à un concert $\mathbf{C}$ dans un bar à Cherbourg durant le mois d'octobre. On considère qu'un.e étudiant.e $\mathbf{E}$ a une probabilité de sortir le soir égale à $.5$, et a une probabilité de $.5$ d'aller dans le bar où se produit le groupe.
+
+1. Que puis-je dire de la variable aléatoire modélisant qu'un étudiant $\mathbf{E}$ voit un concert $\mathbf{C}$ ? Quelle est la probabilité de l'évènement $A$ : $\mathbf{E}$ vient à $\mathbf{C}$ ?
+1. Maintenant, on se demande combien d'étudiants parmi les 85 de la promo viendront à un concert. Comment modéliser ce processus ? Quelle est la probabilité qu'au moins 10 étudiants viennent ?
+1. Enfin, l'enseignant se produit au final 3 fois dans le mois. On cherche donc à savoir quelle est la probabilité qu'un étudiant $\mathbf{E}$ voient les trois concerts $\mathbf{C1}$, $\mathbf{C2}$ et $\mathbf{C3}$. Comment puis-je faire ?
+  - Quelle est la probabilité qu'un étudiant vienne à aucun concert ? à un seul concert ? à deux ? au trois ?
+  - Sachant qu'un étudiant qui vient aux trois concerts aura la note maximale (donc 20), celui qui vient à 2 aura 15, à un seul 10, et 0 pour ceux qui ne viennent pas, comment puis-je estimer la moyenne de la promotion ?
+
+> N'hésitez pas à contacter l'enseignant $\mathbf{J}$ pour plus de renseignements sur les concerts &#128521;
+
+#### Solution
+
+On utilise ici aussi l'outil pour les calculs concernant la loi Binomiale.
+
+1. $\mathbf{X}$ suit une loi de Bernouilli $p = .25$
+    - $P(E à C) = P(Bar \cap Sortie) = .5 \times .5 = .25$
+1. $\mathbf{Y}$ suit une loi Binomiale $ \sim B(84, .25)$
+    - $P(Y \le 10) = 0.0024$
+    - $P(Y \ge 20) = 1 - P(Y \le 19) = 1 - 0.3597 = 0.6403$
+    - $P(Y \ge 50) = 1 - P(Y \le 49) = 1 - 1 = 0$
+1. $\mathbf{Z}$ suit une loi Binomiale $\sim B(3, .25)$
+    - Calcul des probabilités
+        - $P(Z = 0) = 0.4219$
+        - $P(Z = 1) = 0.4219$
+        - $P(Z = 2) = 0.1406$
+        - $P(Z = 3) = 0.0156$
+    - On peut estimer $N_{note} = 84 \times P(Z = note)$ le nombre d'étudiants ayant $note$ sur 20.
+        - $E(Z') = \frac{1}{84} \times \sum_{note} \left( note \times 84 \times P(Z = note) \right)$
+        - $E(Z') = 6.64$
+
+
+---
+
+### Guichet de poste
+
+Dans une poste d’un petit village, on remarque qu’entre 10 heures et 11 heures, la probabilité pour que deux personnes entrent durant la même minute est considérée comme nulle et que l'arrivée des personnes est indépendante de la minute considérée. On a observé que la probabilité pour qu'une personne se présente entre la minute $m$ et la minute $m+1$ est : $p = 0.1$. On veut calculer la probabilité pour que $n$ personnes se
+présentent au guichet entre 10h et 11h.
+
+1. Définir une variable aléatoire adaptée. Combien de personnes peut on espérer dans l'heure considérée ?
+1. Donner les probabilités qu'aucune personne ne vienne ? qu'une seule personne ? que 6 personnes viennent ?
+2. Quelle est la probabilité pour qu'au moins 10 personnes se présentent au guichet entre 10h et 11h ?
+
+#### Solution
+
+1. Une variable aléatoire adaptée à ce problème est le nombre $X$ de personnes se présentant au guichet entre 10h et 11h. Compte tenu des hypothèses, on partage l'heure en 60 minutes. Alors $X$ suit une loi de Poisson de paramètre $\lambda = 60×0.1 = 6$.
+1. On peut alors calculer les probabilités demandées : 
+    - $P(X = 0) = 0.0025$
+1.  Calculons maintenant la probabilité pour que au moins 10 personnes se présentent au guichet entre 10h et 11h :
+    - $P(X \ge 10) = 1 - P(X \le 9) = 1 - 0.9161 = 0.0839$
+    
+---
+
+### Centenaire
+
+Si dans une population une personne sur cent est centenaire, quelle est la probabilité de trouver au moins une personne centenaire parmi 100 personnes choisies au hasard ? Et parmi 200 personnes ?
+
+#### Solution
+
+On considère $X$ suivant une loi de Poisson d'espérance $\lambda = 100 \times \frac{1}{100} = 1$. On peut ainsi calculer les valeurs suivantes :
+$$
+  P(X \ge 1) = 1 - P(X = 0) = 1 - 0.3679 = 0.6321
+$$
+
+Si on a 200 personnes, $Y$ suit une loi de Poisson avec $\lambda = 200 \times \frac{1}{100} = 2$. On a ainsi 
+$$
+  P(Y \ge 1) = 1 - P(Y = 0) = 1 - 0.1353 = 0.8647
+$$
+
+
