@@ -22,8 +22,10 @@
 	- [correction demande 1](classif-demande1-correction.html)
 	- [correction demande 2](classif-demande2-correction.html)
 
-### Jour 3 : Etude de cas
+### Jour 3 : Etude de cas et évaluation
 
+- [Etude de cas](etude-de-cas-pendigits.html)
+- [Sujet TP noté](tp-note.html)
 
 ### Liens intéressants 
 
