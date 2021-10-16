@@ -1,0 +1,96 @@
+---
+title: "Exercices autour de l'estimation et des tests"
+author: "FX Jollois"
+date: "TC - 2ème année - 2021/2022"
+output: html_document
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library(dplyr)
+library(kableExtra)
+```
+
+## Rappels
+
+### Moyenne
+
+Soit $X$ une v.a. mesurant un indicateur sur $n$ individus d'un échantillon, on peut estimer la moyenne $\mu$ de la population grâce avec $\hat{\mu}$ moyenne de l'échantillon :
+$$
+  \hat{\mu} = \frac{1}{n} \sum_{i=1}^n x_i
+$$
+où les $x_i$ sont les valeurs prises pour les $n$ individus de l'échantillon.
+
+Lorsque $n$ est grand (supérieur à 30), on peut définir un intervalle de confiance avec une probabilité $\alpha$ avec la formule suivante :
+$$
+  \left[
+    \hat{\mu} - u_{\alpha/2} \sqrt{\frac{s^2}{n}} ;
+    \hat{\mu} + u_{\alpha/2} \sqrt{\frac{s^2}{n}}
+  \right]
+$$
+où $s^2$ est la variance calculée sur l'échantillon ($\frac{1}{n-1}\sum_{i=1}^n(x_i - \hat{\mu})^2$) et $u_{\alpha/2}$ représente la valeur dans la table de la loi Normale centrée-réduite telle que $P(X > u_{\alpha/2}) = \frac{\alpha}{2}$).
+
+### Proportion
+
+Soit $X$ une v.a. mesurant l'apparition d'une propriété pour $n$ individus, on a $\hat{p}$ l'estimateur de la proportion dans le population égal à :
+$$
+  \hat{p} = \frac{k}{n}
+$$
+où $k$ est le nombre d'individus ayant la propriété dans l'échantillon.
+
+Lorsque $n$ est grand (supérieur à 30), et $p$ compris dans l'intervalle $[0.1, 0.9]$, on peut définir un intervalle de confiance avec une probabilité $\alpha$ comme suit :
+$$
+  \left[ 
+    \hat{p} - u_{\alpha/2} \sqrt{\frac{\hat{p} (1 - \hat{p})}{n}}; 
+    \hat{p} + u_{\alpha/2} \sqrt{\frac{\hat{p} (1 - \hat{p})}{n}}
+  \right]
+$$
+où $u_{\alpha/2}$ représente la valeur dans la table de la loi Normale centrée-réduite telle que $P(X > u_{\alpha/2}) = \frac{\alpha}{2}$).
+
+### Table de la loi Normale
+
+```{r}
+m = matrix(pnorm(seq(0, 2.49, by = 0.01)), ncol = 10, byrow = TRUE)
+m = as.data.frame(m)
+colnames(m) = paste0("0,0", 0:9)
+rownames(m) = sub("\\.", ",", as.character(seq(0, 2.4, by = .1)))
+kable(m, digits = 4, escape = F) %>%
+  kable_styling()
+```
+
+### Exercice 1 - Âge moyen des clients
+
+Une entreprise souhaite connaître l'âge de ces clients. Pour cela, elle réalise un sondage sur $120$ personnes. Sur cet échantillon, on obtient un âge moyen de $35.0$ et une variance de $15.08$.
+
+- On souhaite avoir un intervalle de confiance de la moyenne des clients à $95\%$. Quel est-il ?
+- Et vous $90\%$ ?
+
+### Exercice 2 - Gauchers dans la population
+
+On cherche à connaître le nombre de gaucher dans la population. On étudie un échantillon de $300$ personnes, dans lequel nous observons $15\%$ de gauchers.
+
+- Donner un intervalle de confiance de la proportion de gauchers dans la population à $95\%$
+- Idem, mais à $92\%$
+
+### Exercice 3 - Poids des bébés à la naissance
+
+Un hôpital fait une étude sur le poids des bébés à la naissance. Lors du mois écoulé, le poids moyen des $49$ enfants nés a été de $3.55 kg$ et une variance de $0.32$.
+
+- Déterminer les intervalles de confiance à $90\%$, $95\%$ et  $99\%$.
+- Une précédente étude avait conclus à un poids moyen à la naissance de $3.4 kg$. Que peut-on dire ?
+
+### Exercice 4 - Prix du menu au restaurant
+
+Le gérant d'une brasserie souhaite faire passer le prix du menu à $15.90€$. Il souhaite estimer la proportion de clients qui seraient prêts à venir déjeuner à ce tarif. Il réalise un sondage auprès des clients présents le midi ce jour-là. Sur les $50$ personnes interrogées, $39$ se disent prêtes à venir déjeuner à ce tarif.
+
+- Quelle est la proportion de personnes qui estiment la hausse raisonnable ?
+- Le gérant a posé comme condition, pour augmenter le prix, qu'il y ait plus de $60\%$ des clients favorables à ce changement. Déterminer l'intervalle de confiance de la proportion à $95\%$. Qu'en déduira le gérant ? Et s'il avait dit qu'il fallait plus de $70\%$ ?
+
+
+### Exercice 5 
+
+
+### Exercice 6
+
+
+
