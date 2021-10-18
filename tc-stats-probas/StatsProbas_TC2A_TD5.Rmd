@@ -76,7 +76,7 @@ On cherche à connaître le nombre de gaucher dans la population. On étudie un 
 
 Un hôpital fait une étude sur le poids des bébés à la naissance. Lors du mois écoulé, le poids moyen des $49$ enfants nés a été de $3.55 kg$ et une variance de $0.32$.
 
-- Déterminer les intervalles de confiance à $90\%$, $95\%$ et  $99\%$.
+- Déterminer les intervalles de confiance à $90\%$, $95\%$ et $99\%$.
 - Une précédente étude avait conclus à un poids moyen à la naissance de $3.4 kg$. Que peut-on dire ?
 
 ### Exercice 4 - Prix du menu au restaurant
@@ -87,10 +87,24 @@ Le gérant d'une brasserie souhaite faire passer le prix du menu à $15.90€$. 
 - Le gérant a posé comme condition, pour augmenter le prix, qu'il y ait plus de $60\%$ des clients favorables à ce changement. Déterminer l'intervalle de confiance de la proportion à $95\%$. Qu'en déduira le gérant ? Et s'il avait dit qu'il fallait plus de $70\%$ ?
 
 
-### Exercice 5 
+### Exercice 5 - Circuits électroniques
 
+Nous souhaitons estimer un intervalle de confiance du gain d'un circuit électronique. On admet que le gain est distribué selon une loi normale d'espérance inconnue $\mu$ et d'écart-type connu $\sigma=20$.Quelle doit être la taille de l'échantillon $n$ pour que la longueur de l'intervalle de confiance à $95\%$  soit égale à 4 ?
 
-### Exercice 6
+On compare deux circuits électroniques, dont on veut savoir si le gain est identique entre les deux. Nous réalisons 500 mesures pour chacun des circuits, et obtenons les moyennes ($m_i$) et écarts-type ($s_i$) suivants :
 
+- $m_1 = 15.1$ et $s_1 = 4.5$
+- $m_2 = 15.9$ et $s_2 = 4.4$
 
+Peut-on dire qu'il y a une différence entre les deux avec un seuil de confiance à $90%$ ? et à $95\%$ ?
+
+### Exercice 6 - Référendum
+
+<!--
+Exercices%20CORRIGES%20sur%20les%20Intervalles%20de%20confiance.pdf
+-->
+
+On prévoit de réaliser un référendum. On sait que la réponse *Oui* se situe autour de $50\%$. On se demande donc combien de personnes faudrait-il interroger pour que la proportion de *Oui* soit connue à $1\%$ près  (en plus ou en moins).
+
+Lors de la réalisation de ce sondage, finalement pratiqué sur $1000$ personnes, nous avons obtenu $55\%$ pour le *Oui* et $45\%$ pour le *Non*. Peut-on prévoir le résultat du référendum, avec un taux de confiance de $95\%$ ?
 
