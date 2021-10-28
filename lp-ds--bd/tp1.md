@@ -17,10 +17,10 @@ Vous devez réaliser les étapes suivantes :
   - A faire en 2 étapes :
     1. Importer les données d'un fichier dans une table temporaire
     2. Les insérer dans la table de destination, à l'aide de la commande `INSERT INTO` :
-      ```
+```
 INSERT INTO TABLE_DESTINATION (liste des champs)
    SELECT ... FROM TABLE_SOURCE;
-      ```
+```
 3. Répondre aux demandes suivantes :
   - Compter le nombre de clients 
   - Compter le nombre de pays d'origine des clients
