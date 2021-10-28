@@ -2,7 +2,7 @@
 
 ## Modèle des données
 
-Nous avons les données (au format CSV) correspondant à un data-mart centré sur les ventes Internet d'une entreprise. Voici le MRD obtenu :
+Nous avons les données (au format CSV) correspondant à un data-mart centré sur les ventes Internet d'une entreprise. Voici le MRD obtenu (il est possible de zoomer pour mieux voir le schéma) :
 
 <iframe width="560" height="315" src='https://dbdiagram.io/embed/617974a7fa17df5ea671e8d8'> </iframe>
 
@@ -18,15 +18,20 @@ Vous devez réaliser les étapes suivantes :
     1. Importer les données d'un fichier dans une table temporaire
     2. Les insérer dans la table de destination, à l'aide de la commande `INSERT INTO` :
       ```
-      INSERT INTO TABLE_DESTINATION (liste des champs)
-        SELECT ... FROM TABLE_SOURCE;
+INSERT INTO TABLE_DESTINATION (liste des champs)
+   SELECT ... FROM TABLE_SOURCE;
       ```
 3. Répondre aux demandes suivantes :
   - Compter le nombre de clients 
   - Compter le nombre de pays d'origine des clients
+  - Donner par catégorie, le nombre de produits et le nombre de sous-catégories
   - Donner les 10 produits les plus vendus
   - Calculer le montant total du CA
   - Donner les 10 clients ayant le CA le plus élevé
+  - Calculer le CA par année (en considérant la date de commande)
+  - Idem, mais par mois
+  - Idem, mais par jour de la semaine
+  - Idem, mais par jour sur toute la période
 
 
 ## Script SQL de création des tables
