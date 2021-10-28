@@ -32,7 +32,9 @@ INSERT INTO TABLE_DESTINATION
   - Idem, mais par mois
   - Idem, mais par jour de la semaine
   - Idem, mais par jour sur toute la période
-
+  - Calculer le nombre de ventes pour chaque catégorie de produit et pour chaque jour de la semaine
+  - Calculer le CA pour chaque catégorie de produit et pour chaque pays du client
+  - Calculer le CA pour chaque catégorie pour chaque année pour chaque pays de vente pour chaque promotion
 
 ## Script SQL de création des tables
 
