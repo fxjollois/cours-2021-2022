@@ -35,6 +35,9 @@ INSERT INTO TABLE_DESTINATION
   - Calculer le nombre de ventes pour chaque catégorie de produit et pour chaque jour de la semaine
   - Calculer le CA pour chaque catégorie de produit et pour chaque pays du client
   - Calculer le CA pour chaque catégorie pour chaque année pour chaque pays de vente pour chaque promotion
+  - Existe-t'il des clients ayant acheté des produits dans chaque catégorie ? si oui lesquels ?
+  - Existe-t'il une promotion ayant fonctionné dans chaque pays ? si oui lesquelles ?
+
 
 ## Script SQL de création des tables
 
