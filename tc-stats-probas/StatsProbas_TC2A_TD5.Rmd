@@ -11,6 +11,8 @@ library(dplyr)
 library(kableExtra)
 ```
 
+> [Lien vers émulateur calculatrice scientifique](https://www.numworks.com/fr/simulateur/)
+
 ## Rappels
 
 ### Moyenne
@@ -63,7 +65,7 @@ kable(m, digits = 4, escape = F) %>%
 Une entreprise souhaite connaître l'âge de ces clients. Pour cela, elle réalise un sondage sur $120$ personnes. Sur cet échantillon, on obtient un âge moyen de $35.0$ et une variance de $15.08$.
 
 - On souhaite avoir un intervalle de confiance de la moyenne des clients à $95\%$. Quel est-il ?
-- Et vous $90\%$ ?
+- Et à $90\%$ ?
 
 ### Exercice 2 - Gauchers dans la population
 

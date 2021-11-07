@@ -1,0 +1,112 @@
+---
+title: "Exercices autour des tests"
+author: "FX Jollois"
+date: "TC - 2ème année - 2021/2022"
+output: html_document
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library(dplyr)
+library(kableExtra)
+```
+
+> [Lien vers émulateur calculatrice scientifique](https://www.numworks.com/fr/simulateur/)
+
+## Rappels
+
+| Statistique | Intervalle de confiance |
+|-|-|-|
+| Moyenne | $$
+  \left[
+    \hat{\mu} - u_{\alpha/2} \sqrt{\frac{s^2}{n}} ;
+    \hat{\mu} + u_{\alpha/2} \sqrt{\frac{s^2}{n}}
+  \right]
+$$ | 
+| Proportion | $$
+  \left[ 
+    \hat{p} - u_{\alpha/2} \sqrt{\frac{\hat{p} (1 - \hat{p})}{n}}; 
+    \hat{p} + u_{\alpha/2} \sqrt{\frac{\hat{p} (1 - \hat{p})}{n}}
+  \right]
+$$ |
+
+Valeurs importantes de la table de la loi Normale
+
+```{r}
+v = c(0.001, 0.005, 0.01, 0.025, 0.05, 0.10)
+knitr::kable(tibble(`P(X < u)` = 1 - v, `u` = qnorm(1 - v))) %>%
+  kable_styling()
+```
+
+## Exercices
+
+### Exercice 1 - Circuits électroniques
+
+On compare deux circuits électroniques, dont on veut savoir si le gain est identique entre les deux. Nous réalisons 500 mesures pour chacun des circuits, et obtenons les moyennes ($m_i$) et écarts-type ($s_i$) suivants :
+
+- $m_1 = 15.1$ et $s_1 = 4.5$
+- $m_2 = 15.8$ et $s_2 = 4.4$
+
+Peut-on dire qu'il y a une différence entre les deux avec un seuil de confiance à $90%$ ? et à $95\%$ ?
+
+### Exercice 2 - Référendum
+
+<!--
+Exercices%20CORRIGES%20sur%20les%20Intervalles%20de%20confiance.pdf
+-->
+
+On prévoit de réaliser un référendum. On sait que la réponse *Oui* se situe autour de $50\%$. On se demande donc combien de personnes faudrait-il interroger pour que la proportion de *Oui* soit connue à $1\%$ près  (en plus ou en moins).
+
+Lors de la réalisation de ce sondage, finalement pratiqué sur $1000$ personnes, nous avons obtenu $55\%$ pour le *Oui* et $45\%$ pour le *Non*. Peut-on prévoir le résultat du référendum, avec un taux de confiance de $95\%$ ?
+
+### Exercice 3 - Qualité de production
+
+On désire comparer la qualité de deux doseuses pour boîtes de haricots verts de quantité nominale égale à $800 g$. On prélève un échantillon de 200 éléments sur chacune des deux machines, ce qui donne les deux valeurs moyennes suivantes :
+
+- $m_1 = 807$ et $s^2 = 20$ pour la première machine
+- $m_2 = 805$ et $s^2 = 16$ pour la deuxième machine
+
+Les dosages moyens de ces deux machines sont-ils différents au risque de $5\%$ ? Sont-elles fiables par rapport au dosage de $800g$ à obtenir ?
+
+### Exercice 4 - Satisfaction
+
+Une marque interroge 1000 clients auxquels elle a vendu un des deux modèles qu'elle souhaite comparer. On veut savoir si la perception de la qualité du véhicule est liée au modèle. Le questionnaire donne les résultats suivants :
+
+|  | Très satisfait | Satisfait | Mécontent |
+|-|-:|-:|-:|
+| Modèle 1 | 300 | 150 | 90  |
+| Modèle 2 | 240 | 120 | 100 |
+
+Est-ce que les clients sont mécontents de façon identique entre les 2 modèles, au risque de $5\%$ ?
+
+### Exercice 5 - Changement de rendement
+
+Dans une usine, on cherche à savoir si un changement de l'environnement (musique dans les ateliers en particulier) peut modifier le rendement. Ce dernier est mesuré ici par le nombre moyen de pièces produites à l'heure par chaque ouvrier. 
+
+On compare un même groupe de 33 ouvriers avant et après changement de l'environnement, et on obtient les valeurs suivantes :
+
+|  | Nombre moyen de pièces | Ecart-type |
+|-|-:|-:|
+| Avant | $40.85$ | $6.60$ |
+| Après | $42.88$ | $7.52$ |
+| Différence | $2.03$ | $4.41$ |
+
+1. En comparant les deux résultats avant et après, peut-on dire que le changement d'environnement a impacté le rendement, au risque de $5\%$ ?
+1. Nous avons noté la différence du rendement de chaque ouvrier entre avant et après le changement d'environnement (dernière ligne du tableau). En considérant cet écart, que peut-on dire maintenant ?
+
+### Exercice 6 - Impact d'un débat
+
+Un débat télévisé est organisé entre deux candidats à une élection. Pour connaître l'impact du débat, on prévoit de sonder 200 électeurs avant et après le débat. Les résultats des intentions de vote sont les suivants :
+
+| | Candidat A | Candidat B |
+|-|-:|-:|
+| Avant le débat |  95 | 105 |
+| Après le débat | 104 |  96 |
+
+1. Peut-on dire que le débat a été bénéfique au candidat A dans les intentions de vote, au seuil de $5\%$ ?
+2. En considérant qu'il n'y a 9 personnes qui ont changé leur intention de vote (en passant de B à A), que peut-on dire ?
+
+
+
+
+
