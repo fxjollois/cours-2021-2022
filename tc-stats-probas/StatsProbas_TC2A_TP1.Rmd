@@ -1,0 +1,121 @@
+---
+title: "Estimation et tests sous Excel"
+author: "FX Jollois"
+date: "TC - 2ème année - 2021/2022"
+output: html_document
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library(dplyr)
+library(kableExtra)
+```
+
+Fichier Excel de base à télécharger : [base](base.xlsx)
+
+## Calculette d'intervalles
+
+Dans la première feuille **Calculette intervalles**, nous allons réaliser une petite calculatrice permettant d'obtenir les bornes de l'intervalle de confiance d'une moyenne. Pour cela, nous permettrons la saisie des valeurs de base (moyenne, variance et nombre d'individus). Réalisez les étapes suivantes (nous reprenons les valeurs de l'exercice 1 du [TD5](StatsProbas_TC2A_TD5-correction.html)):
+
+- Dans la cellule `A1`, écrire "Moyenne". Puis dans `B1`, écrire la valeur $35$
+- Dans la cellule `A2`, écrire "Variance". Puis dans `B2`, écrire la valeur $15.08$
+- Dans la cellule `A3`, écrire "Nombre". Puis dans `B3`, écrire la valeur $120$
+
+Nous avons maintenant toutes les valeurs nécessaires pour le calcul de l'intervalle (*i.e* $\hat{\mu}$, $s$ et $n$), exceptée le coefficient $u_{\alpha/2}$. Pour cela, nous allons écrire ensemble de commande permettant de calculer automatiquement sa valeur en fonction du risque indiqué dans une cellule. 
+
+- Dans la cellule `A5`, écrire "Risque choisi". Puis dans `B5`, écrire "5" (on pourra par la suite changer cette valeur si on veut un autre risque - 1%, 10%, \ldots)
+- Dans la cellule `A6`, écrire "alpha/2". Puis dans `B6`, écrire `B5/2/100`
+- Dans la cellule `A7`, écrire "U_alpha/2". Puis dans `B7`, écrire `LOI.NORMALE.INVERSE.N(1-B6;0;1)`
+  - cette fonction permet de calculer automatiquement $u_{\alpha/2}$ à partir de $1 - \alpha/2$
+
+Nous pouvons maintenant passer au calcul de l'intervalle directement.
+
+- Dans la cellule `A9`, écrire "Borne inférieure". Puis dans `B9`, écrire la formule `B1-B7*RACINE(B2/B3)`
+- Dans la cellule `A10`, écrire "Borne supérieure". Puis dans `B10`, écrire la formule `B1+B7*RACINE(B2/B3)`
+
+Nous avons donc maintenant l'intervalle. Nous pouvons améliorer la lisibilité de notre calculette en sélectionnant les 2 cellules contenant les bornes, et en choisissant le format "Nombre" (pour avoir 2 chiffres après la virgule).
+
+#### A FAIRE
+
+1. Vérifier votre calculette avec les valeurs des exercices 1 et 3 du TD5
+2. Réaliser, sur la même feuille, la calculette permettant d'avoir l'intervalle de confiance d'une proportion
+  - Vérifier votre calculette avec les valeurs des exercices 2 et 4 du TD5
+
+## Directement à partir de valeurs
+
+Dans la feuille **Données** du fichier, nous avons des données provenant d'une étude sur une enquête aux USA sur le salaire (inférieur ou supérieur à 50K$), dont nous avons gardé uniquement certaines variables (âge, niveau d'études, sexe, nombre d'heures par semaine, salaire).
+
+### Intervalles simples sur l'âge et le nombre d'heures
+
+Nous allons déjà calculer les intervalles de confiance pour l'âge et le nombre d'heures au global. Pour cela, réalisez les étapes suivante :
+
+- En `G3` et en dessous, écrire : "Moyenne", "Variance", "Nombre", cellule vide, "Risque", "U_alpha/2", cellule vide, "Borne inférieure" et "Borne supérieur"
+- En `H2`, écrire **Age** et en `I2`, écrire **Heures**
+- En `H3`, écrire `MOYENNE(A:A)`
+- En `H4`, écrire `PUISSANCE(ECARTYPE.STANDARD(A:A); 2)`
+  - la variance n'est pas directement obtenable, on passe donc par l'écart-type
+- En `H5`, écrire `NB(A:A)`
+  - cela calcule le nombre de valeurs numériques dans la colonne `A`
+- En `H7`, écrire la valeur $5$
+- En `H8`, écrire `LOI.NORMALE.INVERSE.N(1-H7/2/100; 0; 1)`
+- En `H10`, écrire la formule `H3-H8*RACINE(H4/H5)`
+- En `H11`, écrire la formule `H3+H8*RACINE(H4/H5)`
+
+#### A FAIRE
+
+Faire de même pour le nombre d'heures de travail par semaine
+
+### Intervalles simples sur le sexe et le salaire
+
+Nous allons maintenant chercher à faire les intervalles de confiance de la proportion de femmes et des personnes ayant un salaire supérieur à 50K$. Réalisez les étapes suivantes :
+
+- En `H14`, écrire **Sexe: Female** et en `I14`, écrire **Salaire: >50K**
+- En `G15` et en dessous, écrire "Nombre", "Proportion", cellule vide, "Risque", "U_alpha/2", cellule vide, "Borne inf" et borne sup"
+- En `H15`, écrire `NBVAL(C:C)-1`
+  - On retire un car ``NBVAL()` compte le nombre de cellules non vides, en incluant celle de titre donc
+- En `H16`, écrire `NB.SI(C:C; " Female")/H15`
+  - `NB.SI()` permet donc de compte le nombre de cellules respectant une condition d'égalité
+  - Ne pas oublier l'espace avant "Female" dans la formule
+- En `H18`, écrire la valeur $5$
+- En `H19`, écrire `LOI.NORMALE.INVERSE.N(1-H18/2/100; 0; 1)`
+- En `H21`, écrire la formule `H16-H19*RACINE(H16*(1-H16)/H15)`
+- En `H22`, écrire la formule `H16+H19*RACINE(H16*(1-H16)/H15)`
+
+#### A FAIRE
+
+Faire de même pour la proportion de personnes ayant un salaire supérieur à 50K$ (modalité `" >50K"`, sans oublier l'espace devant la aussi)
+
+
+### Comparaison basé sur le salaire
+
+Nous cherchons maintenant à savoir s'il y a une différence entre ceux gagnant plus de 50K$ et ceux gagnant moins. Pour cela, nous allons calculer d'abord pour l'âge. Réalisez les étapes suivantes :
+
+- Fusionner les cellules `K1` et `L1`, et écrire dedans **Âge**
+- Ecrire en `K2` et `L2` les modalités *<=50K* et * >50K*
+- En `K3`, écrire `MOYENNE.SI(A:A;"<=50K";D:D)` et en `L3`, écrire `MOYENNE.SI(A:A;" >50K";D:D)`
+  - Comme `NB.SI()`, `MOYENNE.SI()` réalise une moyenne de certaines cellules (ici, celles de la colonne `D` dont la ligne a la valeur "<=50K" dans la colonne `A`)
+- En `K4` et en `I4`, écrire `H4`  
+  - Il n'est pas possible de faire la même chose avec l'écart-type (en tout cas, aussi simplement). Nous allons donc considérer que la variance est la même dans les groupes qu'au global. 
+- En `K5` et en `I5`, écrire `NB(A:A)`
+- Pour `K7` et `L7`, on écrit la valeur $5$ 
+- Pour `K8` et `L8`, on écrire `LOI.NORMALE.INVERSE.N(1-H18/2/100; 0; 1)`
+- Pour `K10`, on écrit `K3-K8*RACINE(K4/K5)` (idem pour `L10` avec des `I` au lieu des `K`)
+- Pour `K11`, on écrit `K3+K8*RACINE(K4/K5)` (idem pour `L10` avec des `I` au lieu des `K`)
+
+On voit donc que l'âge n'est pas le même selon le salaire.
+
+#### A FAIRE
+
+- Faire de même pour le nombre d'heures
+- Faire de même pour le sexe (attention, ici, ce sont des proportions)
+
+
+
+
+
+
+
+
+
+
+
