@@ -266,7 +266,7 @@ summary {
 <li>En <code>G15</code> et en dessous, écrire “Nombre”, “Proportion”, cellule vide, “Risque”, “U_alpha/2”, cellule vide, “Borne inf” et borne sup”</li>
 <li>En <code>H15</code>, écrire <code>NBVAL(C:C)-1</code>
 <ul>
-<li>On retire un car `<code>NBVAL()</code> compte le nombre de cellules non vides, en incluant celle de titre donc</li>
+<li>On retire un car <code>NBVAL()</code> compte le nombre de cellules non vides, en incluant celle de titre donc</li>
 </ul></li>
 <li>En <code>H16</code>, écrire <code>NB.SI(C:C; &quot; Female&quot;)/H15</code>
 <ul>
@@ -288,20 +288,20 @@ summary {
 <p>Nous cherchons maintenant à savoir s’il y a une différence entre ceux gagnant plus de 50K$ et ceux gagnant moins. Pour cela, nous allons calculer d’abord pour l’âge. Réalisez les étapes suivantes :</p>
 <ul>
 <li>Fusionner les cellules <code>K1</code> et <code>L1</code>, et écrire dedans <strong>Âge</strong></li>
-<li>Ecrire en <code>K2</code> et <code>L2</code> les modalités <em>&lt;=50K</em> et * &gt;50K*</li>
+<li>Ecrire en <code>K2</code> et <code>L2</code> les modalités <em>&lt;=50K</em> et <em>&gt;50K</em></li>
 <li>En <code>K3</code>, écrire <code>MOYENNE.SI(E:E;&quot;&lt;=50K&quot;;A:A)</code> et en <code>L3</code>, écrire <code>MOYENNE.SI(E:E;&quot; &gt;50K&quot;;A:A)</code>
 <ul>
 <li>Comme <code>NB.SI()</code>, <code>MOYENNE.SI()</code> réalise une moyenne de certaines cellules (ici, celles de la colonne <code>D</code> dont la ligne a la valeur “&lt;=50K” dans la colonne <code>A</code>)</li>
 </ul></li>
-<li>En <code>K4</code> et en <code>I4</code>, écrire <code>H4</code>
+<li>En <code>K4</code> et en <code>L4</code>, écrire <code>H4</code>
 <ul>
 <li>Il n’est pas possible de faire la même chose avec l’écart-type (en tout cas, aussi simplement). Nous allons donc considérer que la variance est la même dans les groupes qu’au global.</li>
 </ul></li>
-<li>En <code>K5</code> et en <code>I5</code>, écrire <code>NB(A:A)</code></li>
+<li>En <code>K5</code> et en <code>L5</code>, écrire <code>NB(A:A)</code></li>
 <li>Pour <code>K7</code> et <code>L7</code>, on écrit la valeur <span class="math inline">\(5\)</span></li>
 <li>Pour <code>K8</code> et <code>L8</code>, on écrire <code>LOI.NORMALE.INVERSE.N(1-H18/2/100; 0; 1)</code></li>
-<li>Pour <code>K10</code>, on écrit <code>K3-K8*RACINE(K4/K5)</code> (idem pour <code>L10</code> avec des <code>I</code> au lieu des <code>K</code>)</li>
-<li>Pour <code>K11</code>, on écrit <code>K3+K8*RACINE(K4/K5)</code> (idem pour <code>L10</code> avec des <code>I</code> au lieu des <code>K</code>)</li>
+<li>Pour <code>K10</code>, on écrit <code>K3-K8*RACINE(K4/K5)</code> (idem pour <code>L10</code> avec des <code>L</code> au lieu des <code>K</code>)</li>
+<li>Pour <code>K11</code>, on écrit <code>K3+K8*RACINE(K4/K5)</code> (idem pour <code>L10</code> avec des <code>L</code> au lieu des <code>K</code>)</li>
 </ul>
 <p>On voit donc que l’âge n’est pas le même selon le salaire.</p>
 <div id="a-faire-3" class="section level4">

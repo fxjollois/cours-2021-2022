@@ -72,7 +72,7 @@ Nous allons maintenant chercher à faire les intervalles de confiance de la prop
 - En `H14`, écrire **Sexe: Female** et en `I14`, écrire **Salaire: >50K**
 - En `G15` et en dessous, écrire "Nombre", "Proportion", cellule vide, "Risque", "U_alpha/2", cellule vide, "Borne inf" et borne sup"
 - En `H15`, écrire `NBVAL(C:C)-1`
-  - On retire un car ``NBVAL()` compte le nombre de cellules non vides, en incluant celle de titre donc
+  - On retire un car `NBVAL()` compte le nombre de cellules non vides, en incluant celle de titre donc
 - En `H16`, écrire `NB.SI(C:C; " Female")/H15`
   - `NB.SI()` permet donc de compte le nombre de cellules respectant une condition d'égalité
   - Ne pas oublier l'espace avant "Female" dans la formule
@@ -91,16 +91,16 @@ Faire de même pour la proportion de personnes ayant un salaire supérieur à 50
 Nous cherchons maintenant à savoir s'il y a une différence entre ceux gagnant plus de 50K$ et ceux gagnant moins. Pour cela, nous allons calculer d'abord pour l'âge. Réalisez les étapes suivantes :
 
 - Fusionner les cellules `K1` et `L1`, et écrire dedans **Âge**
-- Ecrire en `K2` et `L2` les modalités *<=50K* et * >50K*
-- En `K3`, écrire `MOYENNE.SI(A:A;"<=50K";D:D)` et en `L3`, écrire `MOYENNE.SI(A:A;" >50K";D:D)`
+- Ecrire en `K2` et `L2` les modalités *<=50K* et *>50K*
+- En `K3`, écrire `MOYENNE.SI(E:E;"<=50K";A:A)` et en `L3`, écrire `MOYENNE.SI(E:E;" >50K";A:A)`
   - Comme `NB.SI()`, `MOYENNE.SI()` réalise une moyenne de certaines cellules (ici, celles de la colonne `D` dont la ligne a la valeur "<=50K" dans la colonne `A`)
-- En `K4` et en `I4`, écrire `H4`  
+- En `K4` et en `L4`, écrire `H4`  
   - Il n'est pas possible de faire la même chose avec l'écart-type (en tout cas, aussi simplement). Nous allons donc considérer que la variance est la même dans les groupes qu'au global. 
-- En `K5` et en `I5`, écrire `NB(A:A)`
+- En `K5` et en `L5`, écrire `NB(A:A)`
 - Pour `K7` et `L7`, on écrit la valeur $5$ 
 - Pour `K8` et `L8`, on écrire `LOI.NORMALE.INVERSE.N(1-H18/2/100; 0; 1)`
-- Pour `K10`, on écrit `K3-K8*RACINE(K4/K5)` (idem pour `L10` avec des `I` au lieu des `K`)
-- Pour `K11`, on écrit `K3+K8*RACINE(K4/K5)` (idem pour `L10` avec des `I` au lieu des `K`)
+- Pour `K10`, on écrit `K3-K8*RACINE(K4/K5)` (idem pour `L10` avec des `L` au lieu des `K`)
+- Pour `K11`, on écrit `K3+K8*RACINE(K4/K5)` (idem pour `L10` avec des `L` au lieu des `K`)
 
 On voit donc que l'âge n'est pas le même selon le salaire.
 

@@ -84,7 +84,7 @@ Le gérant d'une brasserie souhaite faire passer le prix du menu à $15.90€$. 
 
 #### Solution
 
-Il y a donc une proportion de `r `39/50*100` % de clients qui sont OK pour payer plus cher.
+Il y a donc une proportion de `r 39/50*100` % de clients qui sont OK pour payer plus cher.
 
 ```{r}
 IC_proportion(50, .78, 5)
