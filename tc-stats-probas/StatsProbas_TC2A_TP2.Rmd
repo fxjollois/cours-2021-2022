@@ -1,0 +1,52 @@
+---
+title: "Travail sous Excel"
+author: "FX Jollois"
+date: "TC - 2ème année - 2021/2022"
+output: html_document
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library(dplyr)
+library(kableExtra)
+```
+
+Fichier de base à télécharger : [base-tp2.xlsx](base-tp2.xlsx)
+
+Ce fichier comporte 4 onglets :
+
+- 2 onglets concernant les données *AirBnB* (`AirBnB-Paris` et `AirBnB-Lyon`)
+- 2 onglets concernant les données *INSEE* (`INSEE-1968` et `INSEE-2017`)
+
+## Données AirBnB
+
+Pour les villes de Paris et de Lyon, nous avons un échantillon de logements AirBnB (500 pour chaque ville) proposés à la location, avec quelques informations sur ceux-ci. Nous nous posons en particulier ces questions auxquelles vous devez répondre :
+
+- Pour chaque ville séparemment :
+  - Le prix d'un logement de type *"Entire home/appt"* est-il plus élevé que les autres logements ?
+  - La proportion de logement ayant le Wifi est-elle la même entre les logements complets (*"Entire home/appt"*) et les autres logements ?
+  - Même question pour la télévision ?
+  
+- Comparaison entre Paris et Lyon
+  - Le prix des logements est-il le même entre les deux villes ?
+  - La répartition de logements complets (*"Entire home/appt"*) est-elle identique ?
+
+## Données INSEE
+
+Nous avons, par département et sur les années 1968 et 2017, le nombre de travailleurs et de chômeurs selon le sexe. Nous nous posons ces questions :
+
+- Pour chaque année
+  - Les proportions d'hommes et de femmes chômeurs sont-elles identiques ?
+
+- Entre les deux années :
+  - La proportion globale de chômeurs hommes est-elle différente entre les deux années ?
+  - Idem pour les femmes ?
+  - Y-a-t'il une différence de proportions de chômeurs hommes (et resp. femmes) entre les deux années dans les départements ?
+
+
+
+
+
+
+
+

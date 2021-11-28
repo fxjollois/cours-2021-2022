@@ -1,0 +1,36 @@
+---
+title: "Estimation et tests sous Excel - *correction*"
+author: "FX Jollois"
+date: "TC - 2ème année - 2021/2022"
+output: html_document
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library(dplyr)
+library(kableExtra)
+```
+
+Fichiers de corrections :
+
+- [Format Microsoft Excel](StatsProbas_TC2A_TP1-correction.xlsx)
+- [Format LibreOffice Calc](StatsProbas_TC2A_TP1-correction.ods)
+- [Format MacOS Numbers](StatsProbas_TC2A_TP1-correction.numbers)
+- [Format Google Spreadsheet](https://docs.google.com/spreadsheets/d/1hsHbMGsbVNpfpGGY2VOqYJJdWmSwIZML/edit?usp=sharing&ouid=105804391941262515515&rtpof=true&sd=true)
+
+Ce qu'il faut noter :
+
+- L'âge semble bien différent entre les individus gagnant moins de 50 K\$ (ayant un âge compris entre 36,61 et 36,95) et ceux gagnant plus de 50K\$ (qui eux ont un âge compris entre 43,95 et 44,55) ;
+
+- On retrouve la même différente entre ces deux groupes sur le nombre d'heures par semaine (entre 38,69 et 38,99 heures pour ceux gagnant moins de 50k$ et entre 45,20 et 45,75 heures pour ceux gagnant plus) ;
+
+- La proportion de femmes parmi ceux qui gagnent plus de 50K\$ (entre 14,25 % et 15,83 %) est moins importante que la proportion de femmes parmi ceux qui gagnent moins de 50K\$.
+
+
+
+
+
+
+
+
+
