@@ -63,7 +63,7 @@ dbListTables(cpt)
 dbReadTable(cpt, "Messager")
 dbGetQuery(cpt, "SELECT * FROM Messager;")
 ```
-4. D'intégrer une nouvelle table `aaaaa` dans le data-mart
+4. D'intégrer une nouvelle table `tabA` dans le data-mart
     1. Création d'un data frame dans R nommé `a`, avec 2 variables
         - `x`: 1, 2, ..., 5
         - `y`: "a", "b", ..., "e" 
@@ -72,49 +72,46 @@ dbGetQuery(cpt, "SELECT * FROM Messager;")
     4. Lecture du contenu de cette table
 ```r
 a = data.frame(x = 1:5, y = letters[1:5])
-dbWriteTable(dm, "aaaaa", a)
+dbWriteTable(dm, "tabA", a)
 dbListTables(dm)
-dbReadTable(dm, "aaaaa")
+dbReadTable(dm, "tabA")
 ```
 5. Ajouter une ligne dans la table `Messager`
     1. Exécution de la requête `INSERT INTO ...`
     2. Lecture du contenu pour voir la modification
 ```r
-dbExecute(cpt, "INSERT INTO Messager (NoMess, NomMess) VALUES (5, 'La Poste')")
+dbExecute(cpt, "INSERT INTO Messager (NoMess, NomMess) VALUES (5, 'La Poste');")
 dbReadTable(cpt, "Messager")
 ```
 6. Ajouter une nouvelle table dans le data-mart
-    1. Création d'une table `B` avec le formalisme SQL, et 2 attributs
+    1. Création d'une table `tabB` avec le formalisme SQL, et 2 attributs
         - `cle` : clé primaire
-        - `ref` : qui fait référence à l'attribut `x` de `A`
+        - `ref` : qui fait référence à l'attribut `x` de `tabA`
     2. Population de cette table avec des valeurs
         - `cle` : 1, 2, ..., 10
         - `ref` : une valeur entre 1 et 5 aléatoire
     3. Listing du contenu de cette table
 ```r
 dbExecute(dm, "
-CREATE TABLE B (
+CREATE TABLE tabB (
   cle INT NOT NULL PRIMARY KEY,
-  ref INT REFERENCES A (x)
+  ref INT REFERENCES tabA (x)
 );
            ")
-for (i in 1:10) {
-  cle = i
-  ref = sample(1:5)[1]
-  requete = paste0("INSERT INTO B VALUES (", cle, ", ", ref, ")")
-  print(requete)
-  dbExecute(dm, requete)
-}
-dbReadTable(dm, "B")
+dbExecute(
+  dm, 
+  "INSERT INTO tabB VALUES (?, ?);",
+  params = list(1:10, sample(1:5, size = 10, replace = TRUE))
+)
 ```
 7. Exécuter une requête type, avec jointure et agrégat
 ```r
 dbGetQuery(dm, "
 SELECT x, COUNT(*) AS Nb
-  FROM aaaaa, B
-  WHERE aaaaa.x = B.ref
+  FROM tabA, tabB
+  WHERE tabA.x = tabB.ref
   GROUP BY x
-  ORDER BY 2 DESC
+  ORDER BY 2 DESC;
            ")
 ```
 8. Se déconnecter des BDs
