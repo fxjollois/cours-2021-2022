@@ -14,3 +14,4 @@
 - [Séance 7](StatsProbas_TC2A_TP1.html) - Estimation et tests sous Excel
     - [correction](StatsProbas_TC2A_TP1-correction.html)
 - [Séance 8](StatsProbas_TC2A_TP2.html) - Travail sous Excel
+    - [correction](StatsProbas_TC2A_TP2-correction.html)

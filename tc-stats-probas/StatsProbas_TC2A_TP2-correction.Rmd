@@ -1,0 +1,54 @@
+---
+title: "Travail sous Excel - *correction*"
+author: "FX Jollois"
+date: "TC - 2ème année - 2021/2022"
+output: html_document
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library(dplyr)
+library(kableExtra)
+```
+
+Fichiers de corrections :
+
+- [Format Microsoft Excel](StatsProbas_TC2A_TP2-correction.xlsx)
+- [Format LibreOffice Calc](StatsProbas_TC2A_TP2-correction.ods)
+- [Format MacOS Numbers](StatsProbas_TC2A_TP2-correction.numbers)
+- [Format Google Spreadsheet](https://docs.google.com/spreadsheets/d/1B7vv2yMAI6aoTndYimmiuCVFeQlX6OBk/edit?usp=sharing&ouid=105804391941262515515&rtpof=true&sd=true)
+
+## Données AirBnB
+
+### Analyse sur Paris
+
+Les prix des logements entiers sont compris entre 110,34€ et 131,16€, alors que les prix des autres types de logements sont compris entre 91,86€ et 138,87€. Les deux intervalles se chevauchant, nous ne pouvons pas conclure à une différence de prix entre les logements entiers et les autres.
+
+Concernant la disponibilité du Wifi, nous n'observons pas non plus de différence entre les logements entiers (avec une proportion entre 1,81 % et 5,37 %) et les autres logements (1,68 % et 12,95 %).
+
+Par contre, concernant la présence de la TV, les logements entiers en sont moins souvent équipés (entre 47,60 % et 57,18 %) que les autres types de logements (avec un taux équipement entre 58,22 % et 78,36 %).
+
+### Analyse sur Lyon
+
+Les prix des logements entiers (entre 81,26€ et 152,58€) ne sont pas différents des prix pour les autres logements (entre 1,39€ et 122,97€).
+
+Le Wifi n'est pas plus souvent présent dans les logements entiers (avec un taux compris entre 6,90 % et 12,99 %) que dans les autres logements (entre 0,55 % et 7,26 % de logements équipés).
+
+Et la TV n'est pas plus présente dans les autres logements (entre 50,06 % et 67,13 % de taux d'équipement) que dans les logements entiers (avec un taux entre 43,84 % et 54,00 %).
+
+### Comparaison entre Paris et Lyon
+
+Le prix moyen d'un logement sur Paris est compris entre 110,35€ et 129,39€, alors que sur Lyon, les prix sont compris entre 72,15€ et 133,66€. Nous ne concluons pas à une différence de prix entre les deux. Mais nous pouvons tout de même remarquer la grande variabilité des prix sur Lyon.
+
+Par contre, il y a entre 80,35 % et 86,85 % de logements entiers proposés sur Paris, alors que sur Lyon, la proportion est elle entre 70,57 % et 78,23 %. Nous pouvons donc dire que sur Paris, la tendance est plus à louer des logements entiers.
+
+## Données INSEE
+
+> correction non faite, mais pas utile pour le TP noté
+
+
+
+
+
+
+
