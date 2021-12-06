@@ -15,3 +15,9 @@
     - [correction](StatsProbas_TC2A_TP1-correction.html)
 - [Séance 8](StatsProbas_TC2A_TP2.html) - Travail sous Excel
     - [correction](StatsProbas_TC2A_TP2-correction.html)
+
+
+Lien vers les cours **eCampus** :
+
+- [RCP - Groupes GIIa, GIIb, GIIc](https://ecampus.unicaen.fr/course/view.php?id=22901)
+- [OS - Groupe GIII](https://ecampus.unicaen.fr/course/view.php?id=22902)
