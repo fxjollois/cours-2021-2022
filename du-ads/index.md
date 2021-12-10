@@ -1,7 +1,7 @@
 # Introduction à MongoDB (avec R)
 
 - [Présentation de MongoDB](mongo.html)
-- [Introduction à Python et MongoDB](du-abd--r-mongodb)
+- [Introduction à Python et MongoDB](python-mongodb.html)
 
 ## Pour travail à la maison
 
