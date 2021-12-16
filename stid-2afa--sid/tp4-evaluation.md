@@ -2,15 +2,15 @@
 
 ## Rendu
 
-Vous devez rendre votre fichier `.twbx` (obtenable en choisissant *Exporter le tableau complet* - ceci permet d'intégrer les données dans le fichier) dans l'espace ci-dessous.
+Vous devez rendre votre fichier `.twbx` (obtenable en choisissant *Exporter le tableau complet* - ceci permet d'intégrer les données dans le fichier) dans l'espace Moodle ci-dessous.
 
-<https://cloud.parisdescartes.fr/index.php/s/dGLp73Tnt7bie6a>
+<https://moodle.u-paris.fr/mod/assign/view.php?id=405645>
 
 **ATTENTION** : Indiquer vos **noms** dans le nom du fichier, sinon je ne pourrais pas savoir qui a fait quoi (et vous auriez 0 comme note du coup... )
 
 ## Données
 
-Suite aux étapes précédentes (modélisation puis intégration des données), dans une situation professionnelle, nous devons mettre en place un ou plusieurs tableaux de bords. Nous allons continuer le travail sur le data mart créé la dernière fois, et que vous pouvez récupérer au[format ACCESS](datamart.accdb) ou au [format EXCEL](datamart_tables.xlsx) (jointures possibles entre table avec Excel). 
+Suite aux étapes précédentes (modélisation puis intégration des données), dans une situation professionnelle, nous devons mettre en place un ou plusieurs tableaux de bords. Nous allons continuer le travail sur le data mart créé la dernière fois, et que vous pouvez récupérer au [format ACCESS](datamart.accdb) ou au [format EXCEL](datamart_tables.xlsx) (jointures possibles entre table avec Excel). 
 
 Dans cette base ACCESS, nous avons aussi programmer 2 vues :
 
