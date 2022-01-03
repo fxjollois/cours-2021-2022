@@ -1,4 +1,4 @@
-# Introduction à MongoDB (avec R)
+# Introduction à MongoDB (avec Python)
 
 - [Introduction à MongoDB](python-mongodb.slides.html)
 
