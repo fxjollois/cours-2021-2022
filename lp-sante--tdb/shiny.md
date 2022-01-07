@@ -41,7 +41,7 @@ Elle peut aussi prendre deux autres paramètres optionnels :
 
 Voici donc le contenu initial de notre nouvelle application (à mettre dans un nouveau répertoire donc, et dans un fichier `app.R`).
 
-```
+```r
 library(shiny)
 library(shinydashboard)
 
