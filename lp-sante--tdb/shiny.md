@@ -28,7 +28,7 @@ Nous allons utiliser le package `shinydashboard`, qui permet de créer des table
 
 ### Squelette
 
-Nous allons commencer par créer le squelette du tableau de bord. Ainsi,nous allons utiliser la fonction `dashboardPage()`, qui prend au minimum trois arguments :
+Nous allons commencer par créer le squelette du tableau de bord. Ainsi, nous allons utiliser la fonction `dashboardPage()`, qui prend au minimum trois arguments :
 
 - l'en-tête, créée avec la fonction `dashboardHeader()`
 - la partie gauche (pour les interactions a priori), créée avec la fonction `dashboardSidebar()`
@@ -82,12 +82,12 @@ library(shinydashboard)
 shinyApp(
   ui = dashboardPage(
     dashboardHeader(
-      title = "Texas Housing Dashboard",
+      title = "Dashboard sur la Production scientifique",
       titleWidth = 300
     ),
     dashboardSidebar(),
     dashboardBody(),
-    title = "Texas Housing",
+    title = "Production scientifique",
     skin = "red"
   ),
   server = function(input, output) {
@@ -111,8 +111,8 @@ shinyApp(
     dashboardSidebar(),
     dashboardBody(
       box(
-        title = "Evolution du volume de ventes",
-        footer = "en US$",
+        title = "Evolution de la production scientifique",
+        footer = "Nombre de documents scientifiques par année",
         status = "info",
         solidHeader = TRUE,
         width = 8,
@@ -121,28 +121,28 @@ shinyApp(
       infoBox(
         title = "Progression",
         value = "+ ??%",
-        subtitle = "Entre 2000 et 2015",
-        icon = icon("line-chart"),
+        subtitle = "Entre 1996 et 2020",
+        icon = icon("chart-line"),
         fill = TRUE,
         color = "light-blue",
         width = 4
       ),
       valueBox(
         value = "??",
-        subtitle = "Volume totale des ventes (en milliards)",
-        icon = icon("usd"),
+        subtitle = "Nombre de documents scientifiques produits sur la periode 1996-2020",
+        icon = icon("newspaper"),
         color = "green",
         width = 4
       ),
       tabBox(
         title = "Informations",
         width = 4,
-        tabPanel(title = "Prix médian", "contenu 1"),
-        tabPanel(title = "Nombre", "contenu 2")
+        tabPanel(title = "Titre 1", "contenu 1"),
+        tabPanel(title = "Titre 2", "contenu 2")
       )
     ),
-    title = "Titre dans le navigateur",
-    skin = "yellow"
+    title = "Production scientifique",
+    skin = "red"
   ),
   server = function(input, output) {
   }
@@ -186,7 +186,7 @@ Mais il est aussi possible de donner la possibilité d'avoir plusieurs *écrans*
 
 Le menu se déclare avec la fonction `sidebarMenu()`, et les items du menu par des `menuItem()`. On doit définir le texte à afficher et l'identifiant de l'item. On peut y ajouter des icônes pour personnaliser le menu. On peut aussi insérer un lien si on le souhaite.
 
-En exécutant le code qui suit, vous verrez comment avoir deux pages, un lien vers le [site](https://www.recenter.tamu.edu/) d'où proviennent les données et un lien vers la liste des icônes disponibles (sur le site [*Font awesome*](http://fontawesome.io/icons/)).
+En exécutant le code qui suit, vous verrez comment avoir deux pages, un lien vers le [site](http://www.scimagojr.com/) d'où proviennent les données et un lien vers la liste des icônes disponibles (sur le site [*Font awesome*](http://fontawesome.io/icons/)).
 
 ```
 library(shiny)
@@ -195,24 +195,24 @@ library(shinydashboard)
 shinyApp(
   ui = dashboardPage(
     dashboardHeader(
-      title = "Texas Housing Dashboard",
+      title = "Dashboard sur la Production scientifique",
       titleWidth = 300
     ),
     dashboardSidebar(
       sidebarMenu(
-        menuItem("Vue globale", tabName = "vue", icon = icon("dashboard")),
-        menuItem("TOPs", tabName = "top", icon = icon("list-ol")),
-        menuItem("Données", icon = icon("database"), href = "https://www.recenter.tamu.edu/"),
+        menuItem("Vue globale", tabName = "global", icon = icon("list-ol")),
+        menuItem("Par pays", tabName = "pays", icon = icon("globe-europe")),
+        menuItem("Données", icon = icon("database"), href = "http://www.scimagojr.com/"),
         menuItem("Liste des icônes", icon = icon("font-awesome"), href = "http://fontawesome.io/icons/")
       )
     ),
     dashboardBody(
       tabItems(
         tabItem(
-          "vue",
+          "global",
           box(
-            title = "Evolution du volume de ventes",
-            footer = "en US$",
+            title = "Evolution de la production scientifique",
+            footer = "Nombre de documents scientifiques par année",
             status = "info",
             solidHeader = TRUE,
             width = 8,
@@ -221,35 +221,33 @@ shinyApp(
           infoBox(
             title = "Progression",
             value = "+ ??%",
-            subtitle = "Entre 2000 et 2015",
-            icon = icon("line-chart"),
+            subtitle = "Entre 1996 et 2020",
+            icon = icon("chart-line"),
             fill = TRUE,
             color = "light-blue",
             width = 4
           ),
           valueBox(
             value = "??",
-            subtitle = "Volume totale des ventes (en milliards)",
-            icon = icon("usd"),
+            subtitle = "Nombre de documents scientifiques produits sur la periode 1996-2020",
+            icon = icon("newspaper"),
             color = "green",
             width = 4
           ),
           tabBox(
             title = "Informations",
             width = 4,
-            tabPanel(title = "Prix médian", "contenu 1"),
-            tabPanel(title = "Nombre", "contenu 2")
+            tabPanel(title = "Titre 1", "contenu 1"),
+            tabPanel(title = "Titre 2", "contenu 2")
           )
         ),
         tabItem(
-          "top",
-          box(title = "Ville", width = 4, "TOP des meilleures villes"),
-          box(title = "Année", width = 4, "TOP des meilleurs années"),
-          box(title = "Mois", width = 4, "TOP des meilleurs mois")
+          "pays",
+          "Vide pour le moment"
         )
       )
     ),
-    title = "Texas Housing",
+    title = "Production scientifique",
     skin = "red"
   ),
   server = function(input, output) {
@@ -276,34 +274,35 @@ Pour notre exemple, voici le code, qui permet d'afficher l'évolution pour toute
 ```
 library(shiny)
 library(shinydashboard)
-library(dplyr)
-library(ggplot2)
+library(tidyverse)
 
-evol_globale = txhousing %>%
-  group_by(year) %>%
-  summarise(volume = sum(volume, na.rm = T))
+prod = read.csv("https://fxjollois.github.io/donnees/scimagojr/scimagojr.csv")
+
+prod_global = prod %>%
+  group_by(Year) %>%
+  summarise(Documents = sum(Documents))
 
 shinyApp(
   ui = dashboardPage(
     dashboardHeader(
-      title = "Texas Housing Dashboard",
+      title = "Dashboard sur la Production scientifique",
       titleWidth = 300
     ),
     dashboardSidebar(
       sidebarMenu(
-        menuItem("Vue globale", tabName = "vue", icon = icon("dashboard")),
-        menuItem("TOPs", tabName = "top", icon = icon("list-ol")),
-        menuItem("Données", icon = icon("database"), href = "https://www.recenter.tamu.edu/"),
+        menuItem("Vue globale", tabName = "global", icon = icon("list-ol")),
+        menuItem("Par pays", tabName = "pays", icon = icon("globe-europe")),
+        menuItem("Données", icon = icon("database"), href = "http://www.scimagojr.com/"),
         menuItem("Liste des icônes", icon = icon("font-awesome"), href = "http://fontawesome.io/icons/")
       )
     ),
     dashboardBody(
       tabItems(
         tabItem(
-          "vue",
+          "global",
           box(
-            title = "Evolution du volume de ventes",
-            footer = "en US$",
+            title = "Evolution de la production scientifique",
+            footer = "Nombre de documents scientifiques par année",
             status = "info",
             solidHeader = TRUE,
             width = 8,
@@ -312,49 +311,47 @@ shinyApp(
           infoBox(
             title = "Progression",
             value = "+ ??%",
-            subtitle = "Entre 2000 et 2015",
-            icon = icon("line-chart"),
+            subtitle = "Entre 1996 et 2020",
+            icon = icon("chart-line"),
             fill = TRUE,
             color = "light-blue",
             width = 4
           ),
           valueBox(
             value = "??",
-            subtitle = "Volume totale des ventes (en milliards)",
-            icon = icon("usd"),
+            subtitle = "Nombre de documents scientifiques produits sur la periode 1996-2020",
+            icon = icon("newspaper"),
             color = "green",
             width = 4
           ),
           tabBox(
             title = "Informations",
             width = 4,
-            tabPanel(title = "Prix médian", "contenu 1"),
-            tabPanel(title = "Nombre", "contenu 2")
+            tabPanel(title = "Titre 1", "contenu 1"),
+            tabPanel(title = "Titre 2", "contenu 2")
           )
         ),
         tabItem(
-          "top",
-          box(title = "Ville", width = 4, "TOP des meilleures villes"),
-          box(title = "Année", width = 4, "TOP des meilleurs années"),
-          box(title = "Mois", width = 4, "TOP des meilleurs mois")
+          "pays",
+          "Vide pour le moment"
         )
       )
     ),
-    title = "Texas Housing",
+    title = "Production scientifique",
     skin = "red"
   ),
   server = function(input, output) {
     output$evolution <- renderPlot({
-      ggplot(evol_globale, aes(year, volume)) +
+      ggplot(prod_global, aes(Year, Documents)) +
         geom_line() +
         theme_minimal() +
-        labs(x = "", y = "Volume des ventes")
+        labs(x = "", y = "Nombre de documents")
     })
   }
 )
 ```
 
-Vous remarquerez que nous avons ajouter les deux librairies `dplyr` et `ggplot2` au début de notre code. Nous calculons l'évolution globale au démarrage de l'application, car ce calcul ne dépend pas des actions de l'utilisateur. Et dans la fonction `renderPlot()`, nous créons uniquement le graphique voulu.
+Vous remarquerez que nous avons ajouter la librairie `tidyverse` (contenant en particulier `dplyr` et `ggplot2`) au début de notre code. Nous calculons l'évolution globale au démarrage de l'application, car ce calcul ne dépend pas des actions de l'utilisateur. Et dans la fonction `renderPlot()`, nous créons uniquement le graphique voulu.
 
 ### Texte
 
@@ -368,34 +365,35 @@ Ainsi, nous obtenons le code suivant.
 ```
 library(shiny)
 library(shinydashboard)
-library(dplyr)
-library(ggplot2)
+library(tidyverse)
 
-evol_globale = txhousing %>%
-  group_by(year) %>%
-  summarise(volume = sum(volume, na.rm = T))
+prod = read.csv("https://fxjollois.github.io/donnees/scimagojr/scimagojr.csv")
+
+prod_global = prod %>%
+  group_by(Year) %>%
+  summarise(Documents = sum(Documents))
 
 shinyApp(
   ui = dashboardPage(
     dashboardHeader(
-      title = "Texas Housing Dashboard",
+      title = "Dashboard sur la Production scientifique",
       titleWidth = 300
     ),
     dashboardSidebar(
       sidebarMenu(
-        menuItem("Vue globale", tabName = "vue", icon = icon("dashboard")),
-        menuItem("TOPs", tabName = "top", icon = icon("list-ol")),
-        menuItem("Données", icon = icon("database"), href = "https://www.recenter.tamu.edu/"),
+        menuItem("Vue globale", tabName = "global", icon = icon("list-ol")),
+        menuItem("Par pays", tabName = "pays", icon = icon("globe-europe")),
+        menuItem("Données", icon = icon("database"), href = "http://www.scimagojr.com/"),
         menuItem("Liste des icônes", icon = icon("font-awesome"), href = "http://fontawesome.io/icons/")
       )
     ),
     dashboardBody(
       tabItems(
         tabItem(
-          "vue",
+          "global",
           box(
-            title = "Evolution du volume de ventes",
-            footer = "en US$",
+            title = "Evolution de la production scientifique",
+            footer = "Nombre de documents scientifiques par année",
             status = "info",
             solidHeader = TRUE,
             width = 8,
@@ -404,50 +402,47 @@ shinyApp(
           infoBox(
             title = "Progression",
             value = textOutput("progression"),
-            subtitle = "Entre 2000 et 2015",
-            icon = icon("line-chart"),
+            subtitle = "Entre 1996 et 2020",
+            icon = icon("chart-line"),
             fill = TRUE,
             color = "light-blue",
             width = 4
           ),
           valueBox(
             value = textOutput("volume"),
-            subtitle = "Volume totale des ventes (en milliards)",
-            icon = icon("usd"),
+            subtitle = "Nombre de documents scientifiques produits sur la periode 1996-2020",
+            icon = icon("newspaper"),
             color = "green",
             width = 4
           ),
           tabBox(
             title = "Informations",
             width = 4,
-            tabPanel(title = "Prix médian", "contenu 1"),
-            tabPanel(title = "Nombre", "contenu 2")
+            tabPanel(title = "Titre 1", "contenu 1"),
+            tabPanel(title = "Titre 2", "contenu 2")
           )
         ),
         tabItem(
-          "top",
-          box(title = "Ville", width = 4, "TOP des meilleures villes"),
-          box(title = "Année", width = 4, "TOP des meilleurs années"),
-          box(title = "Mois", width = 4, "TOP des meilleurs mois")
+          "pays",
+          "Vide pour le moment"
         )
       )
     ),
-    title = "Texas Housing",
+    title = "Production scientifique",
     skin = "red"
   ),
   server = function(input, output) {
     output$evolution <- renderPlot({
-      ggplot(evol_globale, aes(year, volume)) +
+      ggplot(prod_global, aes(Year, Documents)) +
         geom_line() +
         theme_minimal() +
-        labs(x = "", y = "Volume des ventes")
+        labs(x = "", y = "Nombre de documents")
     })
-    
     output$progression <- renderText({
-      paste(round(tail(evol_globale$volume, 1) / head(evol_globale$volume, 1) * 100), "%")
+      paste(round(tail(prod_global$Documents, 1) / head(prod_global$Documents, 1) * 100), "%")
     })
     output$volume <- renderText({
-      round(sum(evol_globale$volume, na.rm = T) / 1e+9, 1)
+      round(sum(prod_global$Documents, na.rm = T), 1)
     })
   }
 )
@@ -455,7 +450,7 @@ shinyApp(
 
 ### Tableau
 
-Maintenant, nous allons ajouter des tableaux calculés directement : quelques infos sur le prix médian et le nombre de ventes. Encore une fois, nous allons définir deux éléments :
+Maintenant, nous allons ajouter des tableaux calculés directement : le TOP 10 des pays sur la production et le TOP 10 des pays sur l'évolution. Encore une fois, nous allons définir deux éléments :
 
 - dans l'**UI** : un objet nommé `tableOutput("nom")` indiquant où, dans l'interface, s'affichera le tableau ;
 - dans le **serveur** : on affectera le retour de la fonction `renderTable()` à l'objet `nom`.
@@ -465,34 +460,49 @@ Le code deviendra donc le suivant.
 ```
 library(shiny)
 library(shinydashboard)
-library(dplyr)
-library(ggplot2)
+library(tidyverse)
 
-evol_globale = txhousing %>%
-  group_by(year) %>%
-  summarise(volume = sum(volume, na.rm = T))
+prod = read.csv("https://fxjollois.github.io/donnees/scimagojr/scimagojr.csv")
+
+prod_global = prod %>%
+  group_by(Year) %>%
+  summarise(Documents = sum(Documents))
+
+top10_prod = prod %>%
+  group_by(Country) %>%
+  summarise(Documents = sum(Documents)) %>%
+  arrange(desc(Documents)) %>%
+  head(10)
+
+top10_evol = prod %>%
+  filter(Year %in% c(1996, 2020)) %>%
+  select(Country, Year, Documents) %>%
+  pivot_wider(names_from = Year, values_from = Documents, names_prefix = "Year") %>%
+  mutate(Evolution = 100 * (Year2020 / Year1996 - 1)) %>%
+  arrange(desc(Evolution)) %>%
+  head(10)
 
 shinyApp(
   ui = dashboardPage(
     dashboardHeader(
-      title = "Texas Housing Dashboard",
+      title = "Dashboard sur la Production scientifique",
       titleWidth = 300
     ),
     dashboardSidebar(
       sidebarMenu(
-        menuItem("Vue globale", tabName = "vue", icon = icon("dashboard")),
-        menuItem("TOPs", tabName = "top", icon = icon("list-ol")),
-        menuItem("Données", icon = icon("database"), href = "https://www.recenter.tamu.edu/"),
+        menuItem("Vue globale", tabName = "global", icon = icon("list-ol")),
+        menuItem("Par pays", tabName = "pays", icon = icon("globe-europe")),
+        menuItem("Données", icon = icon("database"), href = "http://www.scimagojr.com/"),
         menuItem("Liste des icônes", icon = icon("font-awesome"), href = "http://fontawesome.io/icons/")
       )
     ),
     dashboardBody(
       tabItems(
         tabItem(
-          "vue",
+          "global",
           box(
-            title = "Evolution du volume de ventes",
-            footer = "en US$",
+            title = "Evolution de la production scientifique",
+            footer = "Nombre de documents scientifiques par année",
             status = "info",
             solidHeader = TRUE,
             width = 8,
@@ -501,71 +511,53 @@ shinyApp(
           infoBox(
             title = "Progression",
             value = textOutput("progression"),
-            subtitle = "Entre 2000 et 2015",
-            icon = icon("line-chart"),
+            subtitle = "Entre 1996 et 2020",
+            icon = icon("chart-line"),
             fill = TRUE,
             color = "light-blue",
             width = 4
           ),
           valueBox(
             value = textOutput("volume"),
-            subtitle = "Volume totale des ventes (en milliards)",
-            icon = icon("usd"),
+            subtitle = "Nombre de documents scientifiques produits sur la periode 1996-2020",
+            icon = icon("newspaper"),
             color = "green",
             width = 4
           ),
           tabBox(
-            title = "Informations",
+            title = "TOP 10",
             width = 4,
-            tabPanel(title = "Prix médian", tableOutput("info_prix")),
-            tabPanel(title = "Nombre", tableOutput("info_nombre"))
+            tabPanel(title = "Production", tableOutput("top_prod")),
+            tabPanel(title = "Evolution", tableOutput("top_evol"))
           )
         ),
         tabItem(
-          "top",
-          box(title = "Ville", width = 4, "TOP des meilleures villes"),
-          box(title = "Année", width = 4, "TOP des meilleurs années"),
-          box(title = "Mois", width = 4, "TOP des meilleurs mois")
+          "pays",
+          "Vide pour le moment"
         )
       )
     ),
-    title = "Texas Housing",
+    title = "Production scientifique",
     skin = "red"
   ),
   server = function(input, output) {
     output$evolution <- renderPlot({
-      ggplot(evol_globale, aes(year, volume)) +
+      ggplot(prod_global, aes(Year, Documents)) +
         geom_line() +
         theme_minimal() +
-        labs(x = "", y = "Volume des ventes")
+        labs(x = "", y = "Nombre de documents")
     })
-    
     output$progression <- renderText({
-      paste(round(tail(evol_globale$volume, 1) / head(evol_globale$volume, 1) * 100), "%")
+      paste(round(tail(prod_global$Documents, 1) / head(prod_global$Documents, 1) * 100), "%")
     })
     output$volume <- renderText({
-      round(sum(evol_globale$volume, na.rm = T) / 1e+9, 1)
+      round(sum(prod_global$Documents, na.rm = T), 1)
     })
-    
-    output$info_prix <- renderTable({
-      data.frame(
-        Statistique = c("Minimum", "Médiane", "Maximum"),
-        Valeur = c(
-          min(txhousing$median, na.rm = T),
-          median(txhousing$median, na.rm = T),
-          max(txhousing$median, na.rm = T)
-        )
-      )
+    output$top_prod <- renderTable({
+      top10_prod
     })
-    output$info_nombre <- renderTable({
-      data.frame(
-        Statistique = c("Minimum", "Médiane", "Maximum"),
-        Valeur = c(
-          min(txhousing$sales, na.rm = T),
-          median(txhousing$sales, na.rm = T),
-          max(txhousing$sales, na.rm = T)
-        )
-      )
+    output$top_evol <- renderTable({
+      top10_evol
     })
   }
 )
