@@ -75,7 +75,7 @@ Dans la partie en-tête, déclarée avec la fonction `dashboardHeader()`, nous a
 
 Pour ajouter un titre au tableau de bord, il suffit de donner une valeur au paramètre `title` de la fonction `dashboardHeader()`. Commençons par lui donner un titre (et modifier celui de la page).
 
-```
+```r
 library(shiny)
 library(shinydashboard)
 
@@ -101,7 +101,7 @@ Il est possible d'ajouter d'autres éléments dans la barre de menu, que nous ne
 
 En plus des `outputs` classiques que l'on peut avoir, il est possible de déclarer des *boîtes* pouvant inclure du contenu. En exécutant le code suivant, vous verrez le rendu des boîtes disponibles dans le package `shinydashboard`.
 
-```
+```r
 library(shiny)
 library(shinydashboard)
 
@@ -188,7 +188,7 @@ Le menu se déclare avec la fonction `sidebarMenu()`, et les items du menu par d
 
 En exécutant le code qui suit, vous verrez comment avoir deux pages, un lien vers le [site](http://www.scimagojr.com/) d'où proviennent les données et un lien vers la liste des icônes disponibles (sur le site [*Font awesome*](http://fontawesome.io/icons/)).
 
-```
+```r
 library(shiny)
 library(shinydashboard)
 
@@ -276,7 +276,7 @@ Pour ajouter un graphique calculé par **R**, il est nécessaire de définir deu
 
 Pour notre exemple, voici le code, qui permet d'afficher l'évolution pour toutes les villes.
 
-```
+```r
 library(shiny)
 library(shinydashboard)
 library(tidyverse)
@@ -372,7 +372,7 @@ Nous allons ici indiquer les valeurs pour la progression (dans l'`infoBox`) et l
 
 Ainsi, nous obtenons le code suivant.
 
-```
+```r
 library(shiny)
 library(shinydashboard)
 library(tidyverse)
@@ -472,7 +472,7 @@ Maintenant, nous allons ajouter des tableaux calculés directement : le TOP 10 d
 
 Le code deviendra donc le suivant.
 
-```
+```r
 library(shiny)
 library(shinydashboard)
 library(tidyverse)
@@ -596,7 +596,7 @@ Nous allons utiliser ce choix à deux moments pour le moment :
 - pour le calcul du taux de progression.
 
 
-```
+```r
 library(shiny)
 library(shinydashboard)
 library(tidyverse)
@@ -733,7 +733,7 @@ shinyApp(
 
 Dans le code ci-dessus, il y a deux fois le test sur le choix du pays, pour avoir le tableau d'évolution qui nous sert à la fois pour le graphique et pour la progression. L'idéal serait de faire une fonction permettant de calculer ce tableau, directement après le choix d'un pays par l'utilisateur. Pour cela, nous devons utiliser la fonction `reactive()`, tel que ci-dessous.
 
-```
+```r
 library(shiny)
 library(shinydashboard)
 library(tidyverse)
