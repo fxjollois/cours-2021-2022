@@ -274,7 +274,7 @@ Pour ajouter un graphique calculé par **R**, il est nécessaire de définir deu
 - dans l'**UI** : un objet nommé `plotOutput("nom_graphique")` indiquant où, dans l'interface, s'affichera le graphique ;
 - dans le **serveur** : on affectera le retour de la fonction `renderPlot()` à l'objet `nom_graphique`.
 
-Pour notre exemple, voici le code, qui permet d'afficher l'évolution pour toutes les villes.
+Pour notre exemple, voici le code, qui permet d'afficher l'évolution pour tous les pays.
 
 ```r
 library(shiny)
@@ -365,7 +365,7 @@ Vous remarquerez que nous avons ajouter la librairie `tidyverse` (contenant en p
 
 ### Texte
 
-Nous allons ici indiquer les valeurs pour la progression (dans l'`infoBox`) et le volume totale (dans la `valueBox`) pour toutes les villes. Pour cela, nous devons aussi définir deux éléments :
+Nous allons ici indiquer les valeurs pour la progression (dans l'`infoBox`) et le volume totale (dans la `valueBox`) pour tous les pays. Pour cela, nous devons aussi définir deux éléments :
 
 - dans l'**UI** : un objet nommé `textOutput("nom")` indiquant où, dans l'interface, s'affichera le texte ;
 - dans le **serveur** : on affectera le retour de la fonction `renderText()` à l'objet `nom`.
