@@ -15,7 +15,7 @@ Vous devez améliorer le tableau de bord, en réalisant les éléments suivants 
 - Ajouter un TOP 20 pour une année choisie par l'utilisateur, dans la seconde partie (vide pour le moment)
 - Ajouter un graphique d'évolution en base 100 avec le choix des pays (cf `checkboxGroupInput`), dans la troisième partie (vide aussi)
     - le code ci-dessous vous permet de calculer les valeurs en base 100 en 1996 pour chaque pays et chaque année
-        ```
+        ```r
 prod %>%
   select(Country, Year, Documents) %>%
   pivot_wider(names_from = Year, values_from = Documents, names_prefix = "Year") %>%
