@@ -1,6 +1,6 @@
 # Visualisation de données - Tableau
 
-Vous trouverez le déroulé filmé de cette séance dans [cette vidéo](https://youtu.be/WIEtQsNUVL4).
+<!-- Vous trouverez le déroulé filmé de cette séance dans [cette vidéo](https://youtu.be/WIEtQsNUVL4).-->
 
 ## Introduction et données
 
