@@ -200,8 +200,9 @@ shinyApp(
     ),
     dashboardSidebar(
       sidebarMenu(
-        menuItem("Vue globale", tabName = "global", icon = icon("list-ol")),
-        menuItem("Par pays", tabName = "pays", icon = icon("globe-europe")),
+        menuItem("Vue globale", tabName = "tab_global", icon = icon("list-ol")),
+        menuItem("Par année", tabName = "tab_annee", icon = icon("calendar")),
+        menuItem("Base 100", tabName = "tab_base100", icon = icon("percent")),
         menuItem("Données", icon = icon("database"), href = "http://www.scimagojr.com/"),
         menuItem("Liste des icônes", icon = icon("font-awesome"), href = "http://fontawesome.io/icons/")
       )
@@ -242,8 +243,12 @@ shinyApp(
           )
         ),
         tabItem(
-          "pays",
+          "tab_annee",
           "Vide pour le moment"
+        ),
+        tabItem(
+          "tab_base100",
+          "Vide aussi"
         )
       )
     ),
@@ -290,8 +295,9 @@ shinyApp(
     ),
     dashboardSidebar(
       sidebarMenu(
-        menuItem("Vue globale", tabName = "global", icon = icon("list-ol")),
-        menuItem("Par pays", tabName = "pays", icon = icon("globe-europe")),
+        menuItem("Vue globale", tabName = "tab_global", icon = icon("list-ol")),
+        menuItem("Par année", tabName = "tab_annee", icon = icon("calendar")),
+        menuItem("Base 100", tabName = "tab_base100", icon = icon("percent")),
         menuItem("Données", icon = icon("database"), href = "http://www.scimagojr.com/"),
         menuItem("Liste des icônes", icon = icon("font-awesome"), href = "http://fontawesome.io/icons/")
       )
@@ -332,8 +338,12 @@ shinyApp(
           )
         ),
         tabItem(
-          "pays",
+          "tab_annee",
           "Vide pour le moment"
+        ),
+        tabItem(
+          "tab_base100",
+          "Vide aussi"
         )
       )
     ),
@@ -381,8 +391,9 @@ shinyApp(
     ),
     dashboardSidebar(
       sidebarMenu(
-        menuItem("Vue globale", tabName = "global", icon = icon("list-ol")),
-        menuItem("Par pays", tabName = "pays", icon = icon("globe-europe")),
+        menuItem("Vue globale", tabName = "tab_global", icon = icon("list-ol")),
+        menuItem("Par année", tabName = "tab_annee", icon = icon("calendar")),
+        menuItem("Base 100", tabName = "tab_base100", icon = icon("percent")),
         menuItem("Données", icon = icon("database"), href = "http://www.scimagojr.com/"),
         menuItem("Liste des icônes", icon = icon("font-awesome"), href = "http://fontawesome.io/icons/")
       )
@@ -423,8 +434,12 @@ shinyApp(
           )
         ),
         tabItem(
-          "pays",
+          "tab_annee",
           "Vide pour le moment"
+        ),
+        tabItem(
+          "tab_base100",
+          "Vide aussi"
         )
       )
     ),
@@ -490,8 +505,9 @@ shinyApp(
     ),
     dashboardSidebar(
       sidebarMenu(
-        menuItem("Vue globale", tabName = "global", icon = icon("list-ol")),
-        menuItem("Par pays", tabName = "pays", icon = icon("globe-europe")),
+        menuItem("Vue globale", tabName = "tab_global", icon = icon("list-ol")),
+        menuItem("Par année", tabName = "tab_annee", icon = icon("calendar")),
+        menuItem("Base 100", tabName = "tab_base100", icon = icon("percent")),
         menuItem("Données", icon = icon("database"), href = "http://www.scimagojr.com/"),
         menuItem("Liste des icônes", icon = icon("font-awesome"), href = "http://fontawesome.io/icons/")
       )
@@ -532,8 +548,12 @@ shinyApp(
           )
         ),
         tabItem(
-          "pays",
+          "tab_annee",
           "Vide pour le moment"
+        ),
+        tabItem(
+          "tab_base100",
+          "Vide aussi"
         )
       )
     ),
@@ -609,8 +629,9 @@ shinyApp(
     ),
     dashboardSidebar(
       sidebarMenu(
-        menuItem("Vue globale", tabName = "global", icon = icon("list-ol")),
-        menuItem("Par pays", tabName = "pays", icon = icon("globe-europe")),
+        menuItem("Vue globale", tabName = "tab_global", icon = icon("list-ol")),
+        menuItem("Par année", tabName = "tab_annee", icon = icon("calendar")),
+        menuItem("Base 100", tabName = "tab_base100", icon = icon("percent")),
         menuItem("Données", icon = icon("database"), href = "http://www.scimagojr.com/"),
         menuItem("Liste des icônes", icon = icon("font-awesome"), href = "http://fontawesome.io/icons/")
       )
@@ -656,8 +677,12 @@ shinyApp(
           )
         ),
         tabItem(
-          "pays",
+          "tab_annee",
           "Vide pour le moment"
+        ),
+        tabItem(
+          "tab_base100",
+          "Vide aussi"
         )
       )
     ),
@@ -741,8 +766,9 @@ shinyApp(
     ),
     dashboardSidebar(
       sidebarMenu(
-        menuItem("Vue globale", tabName = "global", icon = icon("list-ol")),
-        menuItem("Par pays", tabName = "pays", icon = icon("globe-europe")),
+        menuItem("Vue globale", tabName = "tab_global", icon = icon("list-ol")),
+        menuItem("Par année", tabName = "tab_annee", icon = icon("calendar")),
+        menuItem("Base 100", tabName = "tab_base100", icon = icon("percent")),
         menuItem("Données", icon = icon("database"), href = "http://www.scimagojr.com/"),
         menuItem("Liste des icônes", icon = icon("font-awesome"), href = "http://fontawesome.io/icons/")
       )
@@ -788,8 +814,12 @@ shinyApp(
           )
         ),
         tabItem(
-          "pays",
+          "tab_annee",
           "Vide pour le moment"
+        ),
+        tabItem(
+          "tab_base100",
+          "Vide aussi"
         )
       )
     ),
