@@ -8,7 +8,7 @@ Vous devez rendre votre fichier `.twbx` (obtenable en choisissant *Exporter le t
 
 ## A FAIRE
 
-A partir du résultat du TP sur Tableau, disponible via [ce fichier](Résultat TP.twbx), réaliser les *feuilles* suivantes :
+A partir du résultat du TP sur Tableau, réaliser les *feuilles* suivantes :
 
 - Le nuage de points entre le nombre moyen de documents produits par an et le nombre moyen de citations par an, pour chaque pays, avec
     - le nom de chaque pays indiqué sur le graphique
