@@ -566,9 +566,9 @@ shinyApp(
 
 ## Interaction avec l'utilisateur
 
-Notre *dashboard* est malheureusement dit *statique* pour le moment, car l'utilisateur ne peut pas interagir avec, ce qui est souvent demandé. Par exemple, sur ce cas, il serait intéressant de pouvoir choisir une ville, pour ne voir que les informations de celle-ci (évolution, progression, ...).
+Notre *dashboard* est malheureusement dit *statique* pour le moment, car l'utilisateur ne peut pas interagir avec, ce qui est souvent demandé. Par exemple, sur ce cas, il serait intéressant de pouvoir choisir un pays, pour ne voir que les informations de celui-ci (évolution, progression, ...).
 
-Pour cela, nous allons introduire la notions d'**inputs** (ou **entrées**). Nous allons ajouter un élément dans l'*UI* : un `selectInput()`, qui correspond à une liste de choix. Dans cette fonction, nous devrons déterminer le nom de la variable créée (qui nous permettra de connaître le choix de l'utilisateur), le label à afficher et la liste de choix. Pour cette dernière, nous allons prendre la liste des villes en ajoutant le choix "Toutes les villes". Pour utiliser cette variable créer, dans le *server*, nous la récupérons avec le nom donné, dans l'objet `input` (cf code ci-dessous).
+Pour cela, nous allons introduire la notions d'**inputs** (ou **entrées**). Nous allons ajouter un élément dans l'*UI* : un `selectInput()`, qui correspond à une liste de choix. Dans cette fonction, nous devrons déterminer le nom de la variable créée (qui nous permettra de connaître le choix de l'utilisateur), le label à afficher et la liste de choix. Pour cette dernière, nous allons prendre la liste des pays en ajoutant le choix "Tous les pays". Pour utiliser cette variable créer, dans le *server*, nous la récupérons avec le nom donné, dans l'objet `input` (cf code ci-dessous).
 
 Nous allons utiliser ce choix à deux moments pour le moment :
 
@@ -579,34 +579,49 @@ Nous allons utiliser ce choix à deux moments pour le moment :
 ```
 library(shiny)
 library(shinydashboard)
-library(dplyr)
-library(ggplot2)
+library(tidyverse)
 
-evol_globale = txhousing %>%
-  group_by(year) %>%
-  summarise(volume = sum(volume, na.rm = T))
+prod = read.csv("https://fxjollois.github.io/donnees/scimagojr/scimagojr.csv")
+
+prod_global = prod %>%
+  group_by(Year) %>%
+  summarise(Documents = sum(Documents))
+
+top10_prod = prod %>%
+  group_by(Country) %>%
+  summarise(Documents = sum(Documents)) %>%
+  arrange(desc(Documents)) %>%
+  head(10)
+
+top10_evol = prod %>%
+  filter(Year %in% c(1996, 2020)) %>%
+  select(Country, Year, Documents) %>%
+  pivot_wider(names_from = Year, values_from = Documents, names_prefix = "Year") %>%
+  mutate(Evolution = 100 * (Year2020 / Year1996 - 1)) %>%
+  arrange(desc(Evolution)) %>%
+  head(10)
 
 shinyApp(
   ui = dashboardPage(
     dashboardHeader(
-      title = "Texas Housing Dashboard",
+      title = "Dashboard sur la Production scientifique",
       titleWidth = 300
     ),
     dashboardSidebar(
       sidebarMenu(
-        menuItem("Vue globale", tabName = "vue", icon = icon("dashboard")),
-        menuItem("TOPs", tabName = "top", icon = icon("list-ol")),
-        menuItem("Données", icon = icon("database"), href = "https://www.recenter.tamu.edu/"),
+        menuItem("Vue globale", tabName = "global", icon = icon("list-ol")),
+        menuItem("Par pays", tabName = "pays", icon = icon("globe-europe")),
+        menuItem("Données", icon = icon("database"), href = "http://www.scimagojr.com/"),
         menuItem("Liste des icônes", icon = icon("font-awesome"), href = "http://fontawesome.io/icons/")
       )
     ),
     dashboardBody(
       tabItems(
         tabItem(
-          "vue",
+          "global",
           box(
-            title = "Evolution du volume de ventes",
-            footer = "en US$",
+            title = "Evolution de la production scientifique",
+            footer = "Nombre de documents scientifiques par année",
             status = "info",
             solidHeader = TRUE,
             width = 8,
@@ -614,93 +629,75 @@ shinyApp(
           ),
           box(
             width = 4,
-            selectInput("ville", "Ville choisie", 
-                        choices = c("Toutes les villes", unique(txhousing$city)))
+            selectInput("pays", "Pays choisis", 
+                        choices = c("Tous les pays", sort(unique(prod$Country))))
           ),
           infoBox(
             title = "Progression",
             value = textOutput("progression"),
-            subtitle = "Entre 2000 et 2015",
-            icon = icon("line-chart"),
+            subtitle = "Entre 1996 et 2020",
+            icon = icon("chart-line"),
             fill = TRUE,
             color = "light-blue",
             width = 4
           ),
           valueBox(
             value = textOutput("volume"),
-            subtitle = "Volume totale des ventes (en milliards)",
-            icon = icon("usd"),
+            subtitle = "Nombre de documents scientifiques produits sur la periode 1996-2020",
+            icon = icon("newspaper"),
             color = "green",
             width = 4
           ),
           tabBox(
-            title = "Informations",
+            title = "TOP 10",
             width = 4,
-            tabPanel(title = "Prix médian", tableOutput("info_prix")),
-            tabPanel(title = "Nombre", tableOutput("info_nombre"))
+            tabPanel(title = "Production", tableOutput("top_prod")),
+            tabPanel(title = "Evolution", tableOutput("top_evol"))
           )
         ),
         tabItem(
-          "top",
-          box(title = "Ville", width = 4, "TOP des meilleures villes"),
-          box(title = "Année", width = 4, "TOP des meilleurs années"),
-          box(title = "Mois", width = 4, "TOP des meilleurs mois")
+          "pays",
+          "Vide pour le moment"
         )
       )
     ),
-    title = "Texas Housing",
+    title = "Production scientifique",
     skin = "red"
   ),
   server = function(input, output) {
     output$evolution <- renderPlot({
-      if (input$ville == "Toutes les villes") {
-        evol = evol_globale
+      if (input$pays == "Tous les pays") {
+        df = prod_global
       } else {
-        evol = txhousing %>%
-          filter(city == input$ville) %>%
-          group_by(year) %>%
-          summarise(volume = sum(volume, na.rm = T))
+        df = prod %>%
+          filter(Country == input$pays) %>%
+          group_by(Year) %>%
+          summarise(Documents = sum(Documents))
       }
-      ggplot(evol, aes(year, volume)) +
+      ggplot(df, aes(Year, Documents)) +
         geom_line() +
         theme_minimal() +
-        labs(x = "", y = "Volume des ventes")
+        labs(x = "", y = "Nombre de documents")
     })
-    
     output$progression <- renderText({
-      if (input$ville == "Toutes les villes") {
-        evol = evol_globale
+      if (input$pays == "Tous les pays") {
+        df = prod_global
       } else {
-        evol = txhousing %>%
-          filter(city == input$ville) %>%
-          group_by(year) %>%
-          summarise(volume = sum(volume, na.rm = T))
+        df = prod %>%
+          filter(Country == input$pays) %>%
+          group_by(Year) %>%
+          summarise(Documents = sum(Documents))
       }
-      paste(round(tail(evol$volume, 1) / head(evol$volume, 1) * 100), "%")
+      paste(round(tail(df$Documents, 1) / head(df$Documents, 1) * 100), "%")
     })
     output$volume <- renderText({
-      round(sum(evol_globale$volume, na.rm = T) / 1e+9, 1)
+      round(sum(prod_global$Documents, na.rm = T), 1)
     })
-    
-    output$info_prix <- renderTable({
-      data.frame(
-        Statistique = c("Minimum", "Médiane", "Maximum"),
-        Valeur = c(
-          min(txhousing$median, na.rm = T),
-          median(txhousing$median, na.rm = T),
-          max(txhousing$median, na.rm = T)
-        )
-      )
+    output$top_prod <- renderTable({
+      top10_prod
     })
-    output$info_nombre <- renderTable({
-      data.frame(
-        Statistique = c("Minimum", "Médiane", "Maximum"),
-        Valeur = c(
-          min(txhousing$sales, na.rm = T),
-          median(txhousing$sales, na.rm = T),
-          max(txhousing$sales, na.rm = T)
-        )
-      )
+    output$top_evol <- renderTable({
+      top10_evol
     })
   }
 )
@@ -709,39 +706,54 @@ shinyApp(
 
 ## Variable réactive
 
-Dans le code ci-dessus, il y a deux fois le test sur le choix de la ville, pour avoir le tableau d'évolution qui nous sert à la fois pour le graphique et pour la progression. L'idéal serait de faire une fonction permettant de calculer ce tableau, directement après le choix d'une ville par l'utilisateur. Pour cela, nous devons utiliser la fonction `reactive()`, tel que ci-dessous.
+Dans le code ci-dessus, il y a deux fois le test sur le choix du pays, pour avoir le tableau d'évolution qui nous sert à la fois pour le graphique et pour la progression. L'idéal serait de faire une fonction permettant de calculer ce tableau, directement après le choix d'un pays par l'utilisateur. Pour cela, nous devons utiliser la fonction `reactive()`, tel que ci-dessous.
 
 ```
 library(shiny)
 library(shinydashboard)
-library(dplyr)
-library(ggplot2)
+library(tidyverse)
 
-evol_globale = txhousing %>%
-  group_by(year) %>%
-  summarise(volume = sum(volume, na.rm = T))
+prod = read.csv("https://fxjollois.github.io/donnees/scimagojr/scimagojr.csv")
+
+prod_global = prod %>%
+  group_by(Year) %>%
+  summarise(Documents = sum(Documents))
+
+top10_prod = prod %>%
+  group_by(Country) %>%
+  summarise(Documents = sum(Documents)) %>%
+  arrange(desc(Documents)) %>%
+  head(10)
+
+top10_evol = prod %>%
+  filter(Year %in% c(1996, 2020)) %>%
+  select(Country, Year, Documents) %>%
+  pivot_wider(names_from = Year, values_from = Documents, names_prefix = "Year") %>%
+  mutate(Evolution = 100 * (Year2020 / Year1996 - 1)) %>%
+  arrange(desc(Evolution)) %>%
+  head(10)
 
 shinyApp(
   ui = dashboardPage(
     dashboardHeader(
-      title = "Texas Housing Dashboard",
+      title = "Dashboard sur la Production scientifique",
       titleWidth = 300
     ),
     dashboardSidebar(
       sidebarMenu(
-        menuItem("Vue globale", tabName = "vue", icon = icon("dashboard")),
-        menuItem("TOPs", tabName = "top", icon = icon("list-ol")),
-        menuItem("Données", icon = icon("database"), href = "https://www.recenter.tamu.edu/"),
+        menuItem("Vue globale", tabName = "global", icon = icon("list-ol")),
+        menuItem("Par pays", tabName = "pays", icon = icon("globe-europe")),
+        menuItem("Données", icon = icon("database"), href = "http://www.scimagojr.com/"),
         menuItem("Liste des icônes", icon = icon("font-awesome"), href = "http://fontawesome.io/icons/")
       )
     ),
     dashboardBody(
       tabItems(
         tabItem(
-          "vue",
+          "global",
           box(
-            title = "Evolution du volume de ventes",
-            footer = "en US$",
+            title = "Evolution de la production scientifique",
+            footer = "Nombre de documents scientifiques par année",
             status = "info",
             solidHeader = TRUE,
             width = 8,
@@ -749,90 +761,72 @@ shinyApp(
           ),
           box(
             width = 4,
-            selectInput("ville", "Ville choisie", 
-                        choices = c("Toutes les villes", unique(txhousing$city)))
+            selectInput("pays", "Pays choisis", 
+                        choices = c("Tous les pays", sort(unique(prod$Country))))
           ),
           infoBox(
             title = "Progression",
             value = textOutput("progression"),
-            subtitle = "Entre 2000 et 2015",
-            icon = icon("line-chart"),
+            subtitle = "Entre 1996 et 2020",
+            icon = icon("chart-line"),
             fill = TRUE,
             color = "light-blue",
             width = 4
           ),
           valueBox(
             value = textOutput("volume"),
-            subtitle = "Volume totale des ventes (en milliards)",
-            icon = icon("usd"),
+            subtitle = "Nombre de documents scientifiques produits sur la periode 1996-2020",
+            icon = icon("newspaper"),
             color = "green",
             width = 4
           ),
           tabBox(
-            title = "Informations",
+            title = "TOP 10",
             width = 4,
-            tabPanel(title = "Prix médian", tableOutput("info_prix")),
-            tabPanel(title = "Nombre", tableOutput("info_nombre"))
+            tabPanel(title = "Production", tableOutput("top_prod")),
+            tabPanel(title = "Evolution", tableOutput("top_evol"))
           )
         ),
         tabItem(
-          "top",
-          box(title = "Ville", width = 4, "TOP des meilleures villes"),
-          box(title = "Année", width = 4, "TOP des meilleurs années"),
-          box(title = "Mois", width = 4, "TOP des meilleurs mois")
+          "pays",
+          "Vide pour le moment"
         )
       )
     ),
-    title = "Texas Housing",
+    title = "Production scientifique",
     skin = "red"
   ),
   server = function(input, output) {
-    donnees <- reactive({
-      if (input$ville == "Toutes les villes") {
-        evol = evol_globale
+    donnees = reactive({
+      if (input$pays == "Tous les pays") {
+        df = prod_global
       } else {
-        evol = txhousing %>%
-          filter(city == input$ville) %>%
-          group_by(year) %>%
-          summarise(volume = sum(volume, na.rm = T))
+        df = prod %>%
+          filter(Country == input$pays) %>%
+          group_by(Year) %>%
+          summarise(Documents = sum(Documents))
       }
-      evol
+      df
     })
     
     output$evolution <- renderPlot({
-      ggplot(donnees(), aes(year, volume)) +
+      ggplot(donnees(), aes(Year, Documents)) +
         geom_line() +
         theme_minimal() +
-        labs(x = "", y = "Volume des ventes")
+        labs(x = "", y = "Nombre de documents")
     })
-    
     output$progression <- renderText({
-      evol = donnees()
-      paste(round(tail(evol$volume, 1) / head(evol$volume, 1) * 100), "%")
+      df = donnees()
+      paste(round(tail(df$Documents, 1) / head(df$Documents, 1) * 100), "%")
     })
     output$volume <- renderText({
-      round(sum(evol_globale$volume, na.rm = T) / 1e+9, 1)
+      round(sum(prod_global$Documents, na.rm = T), 1)
     })
-    
-    output$info_prix <- renderTable({
-      data.frame(
-        Statistique = c("Minimum", "Médiane", "Maximum"),
-        Valeur = c(
-          min(txhousing$median, na.rm = T),
-          median(txhousing$median, na.rm = T),
-          max(txhousing$median, na.rm = T)
-        )
-      )
+    output$top_prod <- renderTable({
+      top10_prod
     })
-    output$info_nombre <- renderTable({
-      data.frame(
-        Statistique = c("Minimum", "Médiane", "Maximum"),
-        Valeur = c(
-          min(txhousing$sales, na.rm = T),
-          median(txhousing$sales, na.rm = T),
-          max(txhousing$sales, na.rm = T)
-        )
-      )
+    output$top_evol <- renderTable({
+      top10_evol
     })
   }
 )
