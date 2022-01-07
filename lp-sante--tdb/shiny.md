@@ -210,7 +210,7 @@ shinyApp(
     dashboardBody(
       tabItems(
         tabItem(
-          "global",
+          "tab_global",
           box(
             title = "Evolution de la production scientifique",
             footer = "Nombre de documents scientifiques par année",
@@ -305,7 +305,7 @@ shinyApp(
     dashboardBody(
       tabItems(
         tabItem(
-          "global",
+          "tab_global",
           box(
             title = "Evolution de la production scientifique",
             footer = "Nombre de documents scientifiques par année",
@@ -401,7 +401,7 @@ shinyApp(
     dashboardBody(
       tabItems(
         tabItem(
-          "global",
+          "tab_global",
           box(
             title = "Evolution de la production scientifique",
             footer = "Nombre de documents scientifiques par année",
@@ -515,7 +515,7 @@ shinyApp(
     dashboardBody(
       tabItems(
         tabItem(
-          "global",
+          "tab_global",
           box(
             title = "Evolution de la production scientifique",
             footer = "Nombre de documents scientifiques par année",
@@ -639,7 +639,7 @@ shinyApp(
     dashboardBody(
       tabItems(
         tabItem(
-          "global",
+          "tab_global",
           box(
             title = "Evolution de la production scientifique",
             footer = "Nombre de documents scientifiques par année",
@@ -776,7 +776,7 @@ shinyApp(
     dashboardBody(
       tabItems(
         tabItem(
-          "global",
+          "tab_global",
           box(
             title = "Evolution de la production scientifique",
             footer = "Nombre de documents scientifiques par année",
