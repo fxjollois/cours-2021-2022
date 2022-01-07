@@ -83,7 +83,7 @@ shinyApp(
   ui = dashboardPage(
     dashboardHeader(
       title = "Dashboard sur la Production scientifique",
-      titleWidth = 300
+      titleWidth = 500
     ),
     dashboardSidebar(),
     dashboardBody(),
@@ -196,7 +196,7 @@ shinyApp(
   ui = dashboardPage(
     dashboardHeader(
       title = "Dashboard sur la Production scientifique",
-      titleWidth = 300
+      titleWidth = 500
     ),
     dashboardSidebar(
       sidebarMenu(
@@ -291,7 +291,7 @@ shinyApp(
   ui = dashboardPage(
     dashboardHeader(
       title = "Dashboard sur la Production scientifique",
-      titleWidth = 300
+      titleWidth = 500
     ),
     dashboardSidebar(
       sidebarMenu(
@@ -387,7 +387,7 @@ shinyApp(
   ui = dashboardPage(
     dashboardHeader(
       title = "Dashboard sur la Production scientifique",
-      titleWidth = 300
+      titleWidth = 500
     ),
     dashboardSidebar(
       sidebarMenu(
@@ -501,7 +501,7 @@ shinyApp(
   ui = dashboardPage(
     dashboardHeader(
       title = "Dashboard sur la Production scientifique",
-      titleWidth = 300
+      titleWidth = 500
     ),
     dashboardSidebar(
       sidebarMenu(
@@ -625,7 +625,7 @@ shinyApp(
   ui = dashboardPage(
     dashboardHeader(
       title = "Dashboard sur la Production scientifique",
-      titleWidth = 300
+      titleWidth = 500
     ),
     dashboardSidebar(
       sidebarMenu(
@@ -762,7 +762,7 @@ shinyApp(
   ui = dashboardPage(
     dashboardHeader(
       title = "Dashboard sur la Production scientifique",
-      titleWidth = 300
+      titleWidth = 500
     ),
     dashboardSidebar(
       sidebarMenu(
