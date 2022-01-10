@@ -27,7 +27,7 @@ Vous pouvez aussi proposer d'autres choix (Australie, Etats-Unis, Canada entre a
 - Importation et nettoyage des données (suppression des avis automatiques, recherche de données aberrantes, ...)
 - Parc locatif à disposition (description, cartographie, avis donnés, ...)
 - Similitudes et différences entre les villes (coût, parc, équipement, nombre d'avis, ...)
-- Modélisation du coût d'une location : **qu'est-ce qui influent sur le prix d'une location ?**
+- Modélisation du coût d'une location : **qu'est-ce qui influe sur le prix d'une location ?**
     - globale sur le pays/la région
     - par ville
     - analyser les résultats (modèles identiques ? différents ? pourquoi ? comment ?)
