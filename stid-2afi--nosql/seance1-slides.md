@@ -331,6 +331,7 @@ Exemples :
 
 - Pas adapté aux données reliées ou complexes
 - Maintenance lourde
+- Spécification nécesssaire de la structure
 
 ---
 
