@@ -338,7 +338,7 @@ Exemples :
 # Graph Database
 
 - Modèle basé sur la théorie des graphes
-- Adapté à la manipulation d'objets structuré en réseau : cartographie, réseaux sociaux, ...
+- Adapté à la manipulation d'objets structurés en réseau : cartographie, réseaux sociaux, ...
 - 2 composants principaux :
     - Base de stockage des objets (chaque objet est un noeud du graphe)
     - Description des relations entre objets (avec possiblement des propriétés)
@@ -354,11 +354,9 @@ Exemples :
 
 # Graph Database (suite)
 
-Typiquement adapté aux traitements des problématiques de type réseaux sociaux ou de cartographie, et donc beaucoup plus rapide qu'un SGBDR dans un tel cadre
-
 Particulièrement adapté à ce qu'on appelle le *Web sémantique* et les moteurs de recommandation
 
---
+
 **Pour**
 
 - Très efficace pour les données liées
@@ -367,7 +365,7 @@ Particulièrement adapté à ce qu'on appelle le *Web sémantique* et les moteur
 
 **Contre**
 
-- Partitionnement (de type *sharding*)
+- Partitionnement difficile à gérer
 
 ---
 
