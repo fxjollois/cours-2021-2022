@@ -321,22 +321,11 @@ Exemples :
 
 # Column-Oriented Store (suite)
 
-Il existe deux sous-types de ce genre de système :
-
-- Stockage des colonnes sans compression et de manière séparée
-- Regroupement de plusieurs colonnes dans des familles de colonnes
-
-Bien qu'ils soient étiquetés dans le même groupe pour les BD NoSQL, ces deux types ne répondent pas aux mêmes besoins et il est important de savoir ce qu'on veut faire pour choisir entre les deux
-
----
-
-# Column-Oriented Store (suite)
-
 **Pour**
 
-- Prise en compte très facile de données *sparse* (type **B**) (pas de valeur `NULL` présente dans les données)
-- Parfait pour les datawarehouses (type **A**) et pour les opérations de type agrégation
-- Très grande flexibilité (type **B**)
+- Prise en compte très facile de données *sparse* (pas de valeur `NULL` présente dans les données)
+- Parfait pour les datawarehouses et pour les opérations de type agrégation
+- Très grande flexibilité 
 
 **Contre**
 
