@@ -255,7 +255,6 @@ Exemples :
 - Interface de requêtage très simple et souvent accessible facilement, par n'importe quel langage
 - Performances très élevées en lecture et en écriture
 
---
 **Contre** :
 
 - Modèle très (trop ?) simple
@@ -297,7 +296,6 @@ Pas de prototypage ou de modélisation des données en amont nécessaires
 - Mise à l'échelle aisée
 - Requêtage sur le contenu des documents possible
 
---
 **Contre**
 
 - pas fait pour des données liées
@@ -340,7 +338,6 @@ Bien qu'ils soient étiquetés dans le même groupe pour les BD NoSQL, ces deux 
 - Parfait pour les datawarehouses (type **A**) et pour les opérations de type agrégation
 - Très grande flexibilité (type **B**)
 
---
 **Contre**
 
 - Pas adapté aux données reliées ou complexes
@@ -378,7 +375,6 @@ Particulièrement adapté à ce qu'on appelle le *Web sémantique* et les moteur
 - Modèles d'interrogation établis et performant
 - Capacité de gérer des (très) grosses quantités de données
 
---
 **Contre**
 
 - Partitionnement (de type *sharding*)
