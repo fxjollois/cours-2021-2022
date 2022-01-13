@@ -401,8 +401,8 @@ Particulièrement adapté à ce qu'on appelle le *Web sémantique* et les moteur
 
 - *Key-Value Store*
     - dépôt de données avec besoins de requêtage très simples
-    - système de stockage de cache ou dÊ¼information de sessions distribuées
-    - profils, préférences dÊ¼utilisateur, paniers d'achat, capteurs, logs
+    - système de stockage de cache ou d'information de sessions distribuées
+    - profils, préférences d'utilisateur, paniers d'achat, capteurs, logs
 
 --
 - *Column Store*
@@ -413,10 +413,10 @@ Particulièrement adapté à ce qu'on appelle le *Web sémantique* et les moteur
 
 ---
 
-# Utilisations principales par type de BD (suite)
+# Utilisations principales par type de BD
 
 - *Document Store*
-    - Enregistrement dÊ¼événements
+    - Enregistrement d'événements
     - Systèmes de gestion de contenu (CMS)
     - Web analytique ou analytique temps-réel
     - Catalogue de produits
