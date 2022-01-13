@@ -74,12 +74,12 @@ Il a donc fallu développer de nouveaux outils avec les caractéristiques suivan
 On distingue deux grands types de passage à l'échelle
 
 --
-**Vertical scaling** (ou *scaling up*)
+### Vertical scaling (ou *scaling up*)
 
 - on augmente la capacité de l'unique serveur
 
 --
-**Horizontal scaling** (ou *scaling out*)
+### Horizontal scaling (ou *scaling out*)
 
 - on ajoute des petits serveurs
 
