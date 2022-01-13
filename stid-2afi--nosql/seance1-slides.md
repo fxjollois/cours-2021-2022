@@ -172,7 +172,7 @@ Il existe trois propriétés essentielles d'un système distribué :
 - **Partition Tolerance** (resistance au partitionnement) : le système continue de fonctionner même si un des noeuds est inopérant
 
 --
-**Problème** : Aucun système distribué ne peut respecter ces trois propriétés.
+> **Problème** : Aucun système distribué ne peut respecter ces trois propriétés.
 
 ---
 
