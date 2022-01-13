@@ -25,10 +25,12 @@
 - [TP2 : Agrégats et autres](tp2)
 - [TP3 : Récapitulatif](tp3)
 
+<!--
 - [TP4 : Mongo dans R](tp4)
 - [TP5 : Dashboard dans R sur données dans MongoDB](tp5)
 
 - [TP6 : Explicatifs sur la correction](tp6.html)
   - [Fichiers source](dashboard.zip)
+-->
 
 > Merci de suivre [ces instructions](../infos-mongo) pour pouvoir utiliser sur votre ordinateur personnel.
