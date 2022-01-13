@@ -165,7 +165,7 @@ Pourquoi on en (re)parle
 Proposé par Brewer (2000), puis amélioré par la suite par Gilbert et Lynch.
 
 --
-Il existe trois propriétés essentielles d'un système :
+Il existe trois propriétés essentielles d'un système distribué :
 
 - **Consistency** (cohérence) : les données sont cohérentes entre tous les noeuds
 - **Availability** (disponibilité) : les données sont disponibles à n'importe quel moment
