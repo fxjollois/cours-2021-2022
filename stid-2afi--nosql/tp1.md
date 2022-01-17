@@ -2,69 +2,72 @@
 
 > NB : Pour réaliser ce TP chez vous, vous devez avoir installé le serveur Mongo, ainsi que Compass et le Shell. Les instructions sont disponibles sur [cette page](index.md).
 
-## Intégration de données de type `JSON`
+## Quelques informations sur MongoDB
 
-### Création d'une base et d'une collection
+**MongoDB** est une base de données NoSQL distribué de type *Document Store* ([site web](http://www.mongodb.com/)) 
 
-Nous allons ici créer une premi!ère base de données, que l'on nommera `test`, contenant une seule collection pour le moment, nommée `essais`.
-
-1. Ouvrir Compass
-1. Cliquer directement sur *Connect* (votre serveur étant local, il n'y a pas besoin de le spécifier)
-    - Vous devriez voir 3 bases de données déjà existantes : `admin`, `config` et `local`
-1. Cliquer sur *CREATE DATABASE* affiché en haut
-1. Il faut maintenant nommer la nouvelle base de données, et la collection dans laquelle nous allons mettre les données :
-    - *Database Name* : `test`
-    - *Collection Name*: `restaurants`
-1. Cliquer maintenant sur *CREATE DATABASE* 
-1. Vous devriez voir apparaître la base `test` à gauche (et la collection `restaurants` lorsque vous cliquez sur la petite flèche à droite de `test`)
-
-Lorsque vous cliquez sur la collection, dans la base, vous voyez le détail de son contenu. Pour le moment, notre collection `restaurants` est vide. Il n'y a donc rien. Il est possible d'importer des documents directement.
-
-### Importation des données
-
-Nous allons importer maintenant les données dans notre collection ainsi créée. Vous devez avoir téléchargé le [fichier `restaurants.json`](restaurants.json) <restaurants.json> (11.9 Mo - cela peut prendre un peu de temps).
-
-Une fois téléchargé, suivez la procédure suivante pour l'ajouter dans Mongo :
-
-1. Cliquer sur `restaurants` pour voir le contenu de la collection (vide donc pour le moment)
-1. Cliquer sur *ADD DATA* en haut et choisissez *Import File* (ou cliquer sur *Import data* directement)
-1. Sélectionner le fichier téléchargé, et choisir aussi *JSON*
-1. Cliquer sur *IMPORT*
-1. Une fois l'opération terminé (25359 documents ajoutés), cliquer sur *DONE*
-
-Votre première base est maitenant créée avec une collection de 25359 restaurants donc.
-
-### Connexion à Mongo via le shell
-
-Nous allons maintenant vérifier que l'opération s'est bien déroulé et qu'on peut accéder à ces données dans le terminal Mongo. 
-
-1. Lancer le shell Mongo
-1. Taper la commande `show dbs` pour afficher les bases de données existantes
-    - Vous devriez donc voir 4 bases (et leur taille)
-1. Pour utiliser la base `test`, taper la commande `use test`
-1. Taper la commande `show collections` pour voir les collections dans ces bases
-    - Il ne doit y en avoir qu'une seule donc
-1. Pour voir le nombre de documents de cette collection, taper la commande `db.restaurants.count()`
-
-Vous devriez donc avoir un résultat comme ci-dessous. 
-
+- Principe de base : les données sont dans des **documents**
+    - Stocké en *Binary JSON* (`BSON` - du `JSON` amélioré)
+    - Exemple de `JSON`
+```json
+{
+    "address": {
+        "building": "469",
+        "coord": [
+            -73.9617,
+            40.6629
+        ],
+        "street": "Flatbush Avenue",
+        "zipcode": "11225"
+    },
+    "borough": "Brooklyn",
+    "cuisine": "Hamburgers",
+    "grades": [
+        {
+            "date": "2014-12-30 01:00:00",
+            "grade": "A",
+            "score": 8
+        },
+        {
+            "date": "2014-07-01 02:00:00",
+            "grade": "B",
+            "score": 23
+        }
+    ],
+    "name": "Wendy'S",
+    "restaurant_id": "30112340"
+}
 ```
-> show dbs
-admin   0.000GB
-config  0.000GB
-local   0.000GB
-test   0.004GB
-> use test
-switched to db test
-> show collections
-restaurants
-> db.restaurants.count()
-25359
-```
+
+- Pas de schéma des documents définis en amont
+	- Contrairement à un BD relationnel ou NoSQL de type *Column Store*
+
+- Documents similaires rassemblés dans des **collections**
+    - Les documents d'une même collection peuvent n'avoir aucun point commun entre eux
+    - Plusieurs collections possibles dans une base de données
+    - Plusieurs bases de données possibles dans Mongo
+
+- Un document contient (généralement) l'ensemble des informations
+	- pas (ou très peu) de jointure à faire idéalement
+
+- BD respectant **CP** (dans le théorème *CAP*)
+	- propriétés ACID au niveau d'un document
+
+## Langage d'interrogation
+
+- Pas de SQL (bien évidemment), ni de langage proche
+- Définition d'un langage propre
+    - `find()` : pour tout ce qui est restriction et projection
+    - `aggregate()` : pour tout ce qui est calcul de variable, d'aggrégats et de manipulations diverses
+    - ...
+- Langage JavaScript dans la console, permettant plus que les accès aux données
+	- définition de variables
+	- boucles
+	- ...
 
 ## Recherche d'information
 
-Mongo utilise le langage `JavaScript` pour la programmation dans le shell, avec un ensemble de méthodes permettant la gestion de la base et des données (ce qui nous concerne peu), mais aussi bien évidemment pour la recherche d'information. 
+Mongo utilise donc le langage `JavaScript` pour la programmation dans le shell, avec un ensemble de méthodes permettant la gestion de la base et des données (ce qui nous concerne peu), mais aussi bien évidemment pour la recherche d'information. 
 
 ### Dénombrements
 

@@ -19,7 +19,6 @@
 -->
 
 - [Initiation au NoSQL](https://docs.google.com/presentation/d/e/2PACX-1vQbcPbGBUb6IoRmdSm1qhHDf0U6o4_Qjp1tXiX8T3pRq9DJ-aud4afUewsfPbD72b4P0FoukeePVkvH/pub?start=false&loop=false&delayms=3000)
-- [Introduction à MongoDB](seance2-slides.html)
 
 - [TP1 : Premiers pas](tp1)
 - [TP2 : Agrégats et autres](tp2)
