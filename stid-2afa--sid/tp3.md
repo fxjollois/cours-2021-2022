@@ -1,6 +1,6 @@
 # Restitution avec Tableau
 
-Nous allons utiliser la base [ca_tout.mdb](ca_tout.mdb) (à télécharger donc) dans l'outil **Tableau**.
+Nous allons utiliser la base [ca_tout.mdb](ca_tout.mdb) (à télécharger donc) dans l'outil **Tableau**. Si vous êtes sous Mac ou si le chargement a du mal avec Tableau, vous devez utiliser le fichier [ca_tout.csv](ca_tout.csv).
 
 ## Connexion de la base dans Tableau
 
@@ -30,8 +30,8 @@ Ensuite, nous allons définir les hiérarchies
         3. Sous-groupe
 - Hiérarchie année
     - Faites de même pour créer la hiérarchie année :
-        1. Année
-        2. Mois (nom - l'ordre devrait être le bon)
+        1. Année (si celle-ci est en vert, faire un clic-droit puis choisir "Convertir en Dimension")
+        2. Mois (nom - l'ordre devrait être le bon maintenant)
             
 ## Création d'une reporting par département
 
