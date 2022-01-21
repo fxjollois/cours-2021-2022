@@ -2,9 +2,9 @@
 
 ## Rendu
 
-Vous devez rendre votre fichier `.twbx` (obtenable en choisissant *Exporter le tableau complet* - ceci permet d'intégrer les données dans le fichier) dans l'espace Moodle ci-dessous.
+Vous devez rendre votre fichier `.twbx` (obtenable en choisissant *Exporter le tableau complet* - ceci permet d'intégrer les données dans le fichier) dans l'espace ci-dessous (dépôt de fichier).
 
-<https://moodle.u-paris.fr/mod/assign/view.php?id=405645>
+<https://cloud.parisdescartes.fr/index.php/s/aZizRF8fCBAAiBL>
 
 **ATTENTION** : Indiquer vos **noms** dans le nom du fichier, sinon je ne pourrais pas savoir qui a fait quoi (et vous auriez 0 comme note du coup... )
 
