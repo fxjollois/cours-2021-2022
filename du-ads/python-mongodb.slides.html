@@ -14530,7 +14530,7 @@ div.jp-OutputPrompt {
 <h2 id="Interaction-entre-Python-et-MongoDB">Interaction entre Python et MongoDB<a class="anchor-link" href="#Interaction-entre-Python-et-MongoDB">&#182;</a></h2><p>Utilisation du package <a href="https://docs.mongodb.com/drivers/pymongo/"><code>pymongo</code></a></p>
 <h3 id="Connexion-&#224;-un-serveur-distant">Connexion &#224; un serveur distant<a class="anchor-link" href="#Connexion-&#224;-un-serveur-distant">&#182;</a></h3><ul>
 <li>Utilisation d'une URI spécifique, avec login et passeword intégrés</li>
-<li>Si connexion serveur local (suite à installation selon <a href="../infos-mongo">ces instructions</a>, pas besoin de mettre de paramètre à la fonction <code>pymongo.MongoClient()</code></li>
+<li>Si connexion serveur local (suite à installation selon <a href="../infos-mongo">ces instructions</a>), pas besoin de mettre de paramètre à la fonction <code>pymongo.MongoClient()</code></li>
 </ul>
 
 </div>
@@ -14542,7 +14542,7 @@ div.jp-OutputPrompt {
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pymongo</span>
 <span class="n">URI</span> <span class="o">=</span> <span class="s1">&#39;mongodb+srv://user:user@cluster0.ougec.mongodb.net/test&#39;</span>
-<span class="n">client</span> <span class="o">=</span> <span class="n">pymongo</span><span class="o">.</span><span class="n">MongoClient</span><span class="p">(</span><span class="n">URI</span><span class="p">)</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">pymongo</span><span class="o">.</span><span class="n">MongoClient</span><span class="p">(</span><span class="n">URI</span><span class="p">)</span> <span class="c1"># enlever le paramètre URI si connexion locale</span>
 <span class="n">db</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">test</span>
 </pre></div>
 
@@ -14637,7 +14637,7 @@ div.jp-OutputPrompt {
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>&lt;pymongo.cursor.Cursor at 0x10d6e4730&gt;</pre>
+<pre>&lt;pymongo.cursor.Cursor at 0x109fac760&gt;</pre>
 </div>
 
 </div>
@@ -14680,21 +14680,22 @@ div.jp-OutputPrompt {
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>[{&#39;_id&#39;: ObjectId(&#39;600e865f65af9ee45325bea3&#39;),
-  &#39;address&#39;: {&#39;building&#39;: &#39;469&#39;,
-   &#39;coord&#39;: [-73.961704, 40.662942],
-   &#39;street&#39;: &#39;Flatbush Avenue&#39;,
-   &#39;zipcode&#39;: &#39;11225&#39;},
-  &#39;borough&#39;: &#39;Brooklyn&#39;,
-  &#39;cuisine&#39;: &#39;Hamburgers&#39;,
-  &#39;grades&#39;: [{&#39;date&#39;: datetime.datetime(2014, 12, 30, 0, 0),
+<pre>[{&#39;_id&#39;: ObjectId(&#39;60006d6aa7aafd5a6d45ca9a&#39;),
+  &#39;address&#39;: {&#39;building&#39;: &#39;1007&#39;,
+   &#39;coord&#39;: [-73.856077, 40.848447],
+   &#39;street&#39;: &#39;Morris Park Ave&#39;,
+   &#39;zipcode&#39;: &#39;10462&#39;},
+  &#39;borough&#39;: &#39;Bronx&#39;,
+  &#39;cuisine&#39;: &#39;Bakery&#39;,
+  &#39;grades&#39;: [{&#39;date&#39;: datetime.datetime(2014, 3, 3, 0, 0),
     &#39;grade&#39;: &#39;A&#39;,
-    &#39;score&#39;: 8},
-   {&#39;date&#39;: datetime.datetime(2014, 7, 1, 0, 0), &#39;grade&#39;: &#39;B&#39;, &#39;score&#39;: 23},
-   {&#39;date&#39;: datetime.datetime(2013, 4, 30, 0, 0), &#39;grade&#39;: &#39;A&#39;, &#39;score&#39;: 12},
-   {&#39;date&#39;: datetime.datetime(2012, 5, 8, 0, 0), &#39;grade&#39;: &#39;A&#39;, &#39;score&#39;: 12}],
-  &#39;name&#39;: &#34;Wendy&#39;S&#34;,
-  &#39;restaurant_id&#39;: &#39;30112340&#39;}]</pre>
+    &#39;score&#39;: 2},
+   {&#39;date&#39;: datetime.datetime(2013, 9, 11, 0, 0), &#39;grade&#39;: &#39;A&#39;, &#39;score&#39;: 6},
+   {&#39;date&#39;: datetime.datetime(2013, 1, 24, 0, 0), &#39;grade&#39;: &#39;A&#39;, &#39;score&#39;: 10},
+   {&#39;date&#39;: datetime.datetime(2011, 11, 23, 0, 0), &#39;grade&#39;: &#39;A&#39;, &#39;score&#39;: 9},
+   {&#39;date&#39;: datetime.datetime(2011, 3, 10, 0, 0), &#39;grade&#39;: &#39;B&#39;, &#39;score&#39;: 14}],
+  &#39;name&#39;: &#39;Morris Park Bake Shop&#39;,
+  &#39;restaurant_id&#39;: &#39;30075445&#39;}]</pre>
 </div>
 
 </div>
@@ -15515,7 +15516,17 @@ div.jp-OutputPrompt {
   <tbody>
     <tr>
       <th>0</th>
-      <td>600e865f65af9ee45325bea3</td>
+      <td>60006d6aa7aafd5a6d45ca9a</td>
+      <td>{'building': '1007', 'coord': [-73.856077, 40....</td>
+      <td>Bronx</td>
+      <td>Bakery</td>
+      <td>[{'date': 2014-03-03 00:00:00, 'grade': 'A', '...</td>
+      <td>Morris Park Bake Shop</td>
+      <td>30075445</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>60006d6aa7aafd5a6d45ca9b</td>
       <td>{'building': '469', 'coord': [-73.961704, 40.6...</td>
       <td>Brooklyn</td>
       <td>Hamburgers</td>
@@ -15524,44 +15535,34 @@ div.jp-OutputPrompt {
       <td>30112340</td>
     </tr>
     <tr>
-      <th>1</th>
-      <td>600e865f65af9ee45325beb6</td>
-      <td>{'building': '129-08', 'coord': [-73.839297, 4...</td>
-      <td>Queens</td>
-      <td>Delicatessen</td>
-      <td>[{'date': 2014-08-16 00:00:00, 'grade': 'A', '...</td>
-      <td>Sal'S Deli</td>
-      <td>40361618</td>
-    </tr>
-    <tr>
       <th>2</th>
-      <td>600e865f65af9ee45325beb2</td>
-      <td>{'building': '265-15', 'coord': [-73.7032601, ...</td>
-      <td>Queens</td>
-      <td>Ice Cream, Gelato, Yogurt, Ices</td>
-      <td>[{'date': 2014-10-28 00:00:00, 'grade': 'A', '...</td>
-      <td>Carvel Ice Cream</td>
-      <td>40361322</td>
+      <td>60006d6aa7aafd5a6d45ca9c</td>
+      <td>{'building': '351', 'coord': [-73.985135599999...</td>
+      <td>Manhattan</td>
+      <td>Irish</td>
+      <td>[{'date': 2014-09-06 00:00:00, 'grade': 'A', '...</td>
+      <td>Dj Reynolds Pub And Restaurant</td>
+      <td>30191841</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>600e865f65af9ee45325beb3</td>
-      <td>{'building': '6909', 'coord': [-74.0259567, 40...</td>
+      <td>60006d6aa7aafd5a6d45ca9d</td>
+      <td>{'building': '2780', 'coord': [-73.98241999999...</td>
       <td>Brooklyn</td>
-      <td>Delicatessen</td>
-      <td>[{'date': 2014-08-21 00:00:00, 'grade': 'A', '...</td>
-      <td>Nordic Delicacies</td>
-      <td>40361390</td>
+      <td>American</td>
+      <td>[{'date': 2014-06-10 00:00:00, 'grade': 'A', '...</td>
+      <td>Riviera Caterer</td>
+      <td>40356018</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>600e865f65af9ee45325beab</td>
-      <td>{'building': '1839', 'coord': [-73.9482609, 40...</td>
-      <td>Brooklyn</td>
-      <td>Ice Cream, Gelato, Yogurt, Ices</td>
-      <td>[{'date': 2014-07-14 00:00:00, 'grade': 'A', '...</td>
-      <td>Taste The Tropics Ice Cream</td>
-      <td>40356731</td>
+      <td>60006d6aa7aafd5a6d45ca9e</td>
+      <td>{'building': '97-22', 'coord': [-73.8601152, 4...</td>
+      <td>Queens</td>
+      <td>Jewish/Kosher</td>
+      <td>[{'date': 2014-11-24 00:00:00, 'grade': 'Z', '...</td>
+      <td>Tov Kosher Kitchen</td>
+      <td>40356068</td>
     </tr>
   </tbody>
 </table>
@@ -15636,67 +15637,67 @@ div.jp-OutputPrompt {
   <tbody>
     <tr>
       <th>0</th>
-      <td>600e86ad65af9ee45325e07b</td>
+      <td>60006d6ca7aafd5a6d45ec73</td>
       <td>{'street': 'Columbus Avenue'}</td>
       <td>Manhattan</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>600e86c565af9ee45325ea76</td>
-      <td>{'street': 'East   86 Street'}</td>
-      <td>Manhattan</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>600e86c565af9ee45325ea75</td>
+      <td>60006d6ca7aafd5a6d45f66d</td>
       <td>{'street': 'West   44 Street'}</td>
       <td>Manhattan</td>
     </tr>
     <tr>
+      <th>2</th>
+      <td>60006d6ca7aafd5a6d45f66e</td>
+      <td>{'street': 'East   86 Street'}</td>
+      <td>Manhattan</td>
+    </tr>
+    <tr>
       <th>3</th>
-      <td>600e86cd65af9ee45325f23d</td>
+      <td>60006d6ca7aafd5a6d45fe35</td>
       <td>{'street': 'North End Avenue'}</td>
       <td>Manhattan</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>600e86cd65af9ee45325f387</td>
+      <td>60006d6ca7aafd5a6d45ff7f</td>
       <td>{'street': 'Fulton Street'}</td>
       <td>Brooklyn</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>600e86e265af9ee45326083f</td>
+      <td>60006d6da7aafd5a6d461437</td>
       <td>{'street': 'Jfk International Airport'}</td>
       <td>Queens</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>600e86e965af9ee453260cf9</td>
+      <td>60006d6da7aafd5a6d4618f1</td>
       <td>{'street': 'Grand Central Terminal'}</td>
       <td>Manhattan</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>600e86e965af9ee453260d84</td>
+      <td>60006d6da7aafd5a6d46197c</td>
       <td>{'street': 'Jfk International Airport'}</td>
       <td>Queens</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>600e86ef65af9ee453261582</td>
-      <td>{'street': 'Flatbush Avenue'}</td>
-      <td>Brooklyn</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>600e86ef65af9ee453261580</td>
+      <td>60006d6ea7aafd5a6d462178</td>
       <td>{'street': 'Old Fulton Street'}</td>
       <td>Brooklyn</td>
     </tr>
     <tr>
+      <th>9</th>
+      <td>60006d6ea7aafd5a6d46217a</td>
+      <td>{'street': 'Flatbush Avenue'}</td>
+      <td>Brooklyn</td>
+    </tr>
+    <tr>
       <th>10</th>
-      <td>600e86f465af9ee453261d5d</td>
+      <td>60006d6ea7aafd5a6d462955</td>
       <td>{'street': '3Rd Ave'}</td>
       <td>Manhattan</td>
     </tr>
@@ -15780,12 +15781,12 @@ div.jp-OutputPrompt {
     </tr>
     <tr>
       <th>1</th>
-      <td>{'street': 'East   86 Street'}</td>
+      <td>{'street': 'West   44 Street'}</td>
       <td>Manhattan</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>{'street': 'West   44 Street'}</td>
+      <td>{'street': 'East   86 Street'}</td>
       <td>Manhattan</td>
     </tr>
     <tr>
@@ -15815,12 +15816,12 @@ div.jp-OutputPrompt {
     </tr>
     <tr>
       <th>8</th>
-      <td>{'street': 'Flatbush Avenue'}</td>
+      <td>{'street': 'Old Fulton Street'}</td>
       <td>Brooklyn</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>{'street': 'Old Fulton Street'}</td>
+      <td>{'street': 'Flatbush Avenue'}</td>
       <td>Brooklyn</td>
     </tr>
     <tr>
@@ -16023,12 +16024,12 @@ div.jp-OutputPrompt {
     </tr>
     <tr>
       <th>3</th>
-      <td>{'street': 'Flatbush Avenue'}</td>
+      <td>{'street': 'Old Fulton Street'}</td>
       <td>Brooklyn</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>{'street': 'Old Fulton Street'}</td>
+      <td>{'street': 'Flatbush Avenue'}</td>
       <td>Brooklyn</td>
     </tr>
   </tbody>
@@ -16178,46 +16179,50 @@ div.jp-OutputPrompt {
 <h3 id="Aggr&#233;gation">Aggr&#233;gation<a class="anchor-link" href="#Aggr&#233;gation">&#182;</a></h3><p>Cette fonction va prendre en paramètre un <code>pipeline</code> : tableau composé d'une suite d'opérations</p>
 <table>
 <thead><tr>
-<th>Fonction</th>
-<th>Opération</th>
+<th style="text-align:left">Fonction</th>
+<th style="text-align:left">Opération</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>$limit</code></td>
-<td>restriction à un petit nombre de documents (très utiles pour tester son calcul)</td>
+<td style="text-align:left"><code>$limit</code></td>
+<td style="text-align:left">restriction à un petit nombre de documents (très utiles pour tester son calcul)</td>
 </tr>
 <tr>
-<td><code>$sort</code></td>
-<td>tri sur les documents</td>
+<td style="text-align:left"><code>$sort</code></td>
+<td style="text-align:left">tri sur les documents</td>
 </tr>
 <tr>
-<td><code>$match</code></td>
-<td>restriction sur les documents à utiliser</td>
+<td style="text-align:left"><code>$match</code></td>
+<td style="text-align:left">restriction sur les documents à utiliser</td>
 </tr>
 <tr>
-<td><code>$unwind</code></td>
-<td>séparation d'un document en plusieurs sur la base d'un tableau</td>
+<td style="text-align:left"><code>$unwind</code></td>
+<td style="text-align:left">séparation d'un document en plusieurs sur la base d'un tableau</td>
 </tr>
 <tr>
-<td><code>$addFields</code></td>
-<td>ajout d'un champs dans les documents</td>
+<td style="text-align:left"><code>$addFields</code></td>
+<td style="text-align:left">ajout d'un champs dans les documents</td>
 </tr>
 <tr>
-<td><code>$project</code></td>
-<td>redéfinition des documents</td>
+<td style="text-align:left"><code>$project</code></td>
+<td style="text-align:left">redéfinition des documents</td>
 </tr>
 <tr>
-<td><code>$group</code></td>
-<td>regroupements et calculs d'aggégrats</td>
+<td style="text-align:left"><code>$group</code></td>
+<td style="text-align:left">regroupements et calculs d'aggégrats</td>
 </tr>
 <tr>
-<td><code>$lookup</code></td>
-<td>jointure avec une autre collection</td>
+<td style="text-align:left"><code>$sortByCount</code></td>
+<td style="text-align:left">regroupement, calcul de dénombrement et tri déccroissant en une opération</td>
 </tr>
 <tr>
-<td>...</td>
-<td></td>
+<td style="text-align:left"><code>$lookup</code></td>
+<td style="text-align:left">jointure avec une autre collection</td>
+</tr>
+<tr>
+<td style="text-align:left">...</td>
+<td style="text-align:left"></td>
 </tr>
 </tbody>
 </table>
@@ -16235,6 +16240,7 @@ div.jp-OutputPrompt {
 <li>un document avec un tableau à <em>n</em> éléments deviendra <em>n</em> documents avec chacun un des éléments du tableau en lieu et place de celui-ci</li>
 </ul>
 </li>
+<li><code>$sortByCount</code> : nom du champs sur lequel on veut le dénombrement et le tri décroissant selon le résultat</li>
 </ul>
 
 </div>
@@ -16349,7 +16355,17 @@ div.jp-OutputPrompt {
   <tbody>
     <tr>
       <th>0</th>
-      <td>600e865f65af9ee45325bea3</td>
+      <td>60006d6aa7aafd5a6d45ca9a</td>
+      <td>{'building': '1007', 'coord': [-73.856077, 40....</td>
+      <td>Bronx</td>
+      <td>Bakery</td>
+      <td>[{'date': 2014-03-03 00:00:00, 'grade': 'A', '...</td>
+      <td>Morris Park Bake Shop</td>
+      <td>30075445</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>60006d6aa7aafd5a6d45ca9b</td>
       <td>{'building': '469', 'coord': [-73.961704, 40.6...</td>
       <td>Brooklyn</td>
       <td>Hamburgers</td>
@@ -16358,78 +16374,8 @@ div.jp-OutputPrompt {
       <td>30112340</td>
     </tr>
     <tr>
-      <th>1</th>
-      <td>600e865f65af9ee45325beb6</td>
-      <td>{'building': '129-08', 'coord': [-73.839297, 4...</td>
-      <td>Queens</td>
-      <td>Delicatessen</td>
-      <td>[{'date': 2014-08-16 00:00:00, 'grade': 'A', '...</td>
-      <td>Sal'S Deli</td>
-      <td>40361618</td>
-    </tr>
-    <tr>
       <th>2</th>
-      <td>600e865f65af9ee45325beb2</td>
-      <td>{'building': '265-15', 'coord': [-73.7032601, ...</td>
-      <td>Queens</td>
-      <td>Ice Cream, Gelato, Yogurt, Ices</td>
-      <td>[{'date': 2014-10-28 00:00:00, 'grade': 'A', '...</td>
-      <td>Carvel Ice Cream</td>
-      <td>40361322</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>600e865f65af9ee45325beb3</td>
-      <td>{'building': '6909', 'coord': [-74.0259567, 40...</td>
-      <td>Brooklyn</td>
-      <td>Delicatessen</td>
-      <td>[{'date': 2014-08-21 00:00:00, 'grade': 'A', '...</td>
-      <td>Nordic Delicacies</td>
-      <td>40361390</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>600e865f65af9ee45325beab</td>
-      <td>{'building': '1839', 'coord': [-73.9482609, 40...</td>
-      <td>Brooklyn</td>
-      <td>Ice Cream, Gelato, Yogurt, Ices</td>
-      <td>[{'date': 2014-07-14 00:00:00, 'grade': 'A', '...</td>
-      <td>Taste The Tropics Ice Cream</td>
-      <td>40356731</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>600e865f65af9ee45325becc</td>
-      <td>{'building': '1418', 'coord': [-73.95685019999...</td>
-      <td>Manhattan</td>
-      <td>Continental</td>
-      <td>[{'date': 2014-06-02 00:00:00, 'grade': 'A', '...</td>
-      <td>Lorenzo &amp; Maria'S</td>
-      <td>40363630</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>600e865f65af9ee45325beb0</td>
-      <td>{'building': '705', 'coord': [-73.9653967, 40....</td>
-      <td>Brooklyn</td>
-      <td>Jewish/Kosher</td>
-      <td>[{'date': 2014-11-10 00:00:00, 'grade': 'A', '...</td>
-      <td>Seuda Foods</td>
-      <td>40360045</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>600e865f65af9ee45325bec5</td>
-      <td>{'building': '1236', 'coord': [-73.8893654, 40...</td>
-      <td>Bronx</td>
-      <td>Chinese</td>
-      <td>[{'date': 2013-12-30 00:00:00, 'grade': 'A', '...</td>
-      <td>Happy Garden</td>
-      <td>40363289</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>600e865f65af9ee45325bea4</td>
+      <td>60006d6aa7aafd5a6d45ca9c</td>
       <td>{'building': '351', 'coord': [-73.985135599999...</td>
       <td>Manhattan</td>
       <td>Irish</td>
@@ -16438,14 +16384,74 @@ div.jp-OutputPrompt {
       <td>30191841</td>
     </tr>
     <tr>
-      <th>9</th>
-      <td>600e865f65af9ee45325bec6</td>
-      <td>{'building': '625', 'coord': [-73.990494, 40.7...</td>
-      <td>Manhattan</td>
+      <th>3</th>
+      <td>60006d6aa7aafd5a6d45ca9d</td>
+      <td>{'building': '2780', 'coord': [-73.98241999999...</td>
+      <td>Brooklyn</td>
       <td>American</td>
-      <td>[{'date': 2014-06-09 00:00:00, 'grade': 'A', '...</td>
-      <td>Cafe Metro</td>
-      <td>40363298</td>
+      <td>[{'date': 2014-06-10 00:00:00, 'grade': 'A', '...</td>
+      <td>Riviera Caterer</td>
+      <td>40356018</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>60006d6aa7aafd5a6d45ca9e</td>
+      <td>{'building': '97-22', 'coord': [-73.8601152, 4...</td>
+      <td>Queens</td>
+      <td>Jewish/Kosher</td>
+      <td>[{'date': 2014-11-24 00:00:00, 'grade': 'Z', '...</td>
+      <td>Tov Kosher Kitchen</td>
+      <td>40356068</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>60006d6aa7aafd5a6d45ca9f</td>
+      <td>{'building': '8825', 'coord': [-73.8803827, 40...</td>
+      <td>Queens</td>
+      <td>American</td>
+      <td>[{'date': 2014-11-15 00:00:00, 'grade': 'Z', '...</td>
+      <td>Brunos On The Boulevard</td>
+      <td>40356151</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>60006d6aa7aafd5a6d45caa0</td>
+      <td>{'building': '2206', 'coord': [-74.1377286, 40...</td>
+      <td>Staten Island</td>
+      <td>Jewish/Kosher</td>
+      <td>[{'date': 2014-10-06 00:00:00, 'grade': 'A', '...</td>
+      <td>Kosher Island</td>
+      <td>40356442</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>60006d6aa7aafd5a6d45caa1</td>
+      <td>{'building': '7114', 'coord': [-73.9068506, 40...</td>
+      <td>Brooklyn</td>
+      <td>Delicatessen</td>
+      <td>[{'date': 2014-05-29 00:00:00, 'grade': 'A', '...</td>
+      <td>Wilken'S Fine Food</td>
+      <td>40356483</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>60006d6aa7aafd5a6d45caa2</td>
+      <td>{'building': '6409', 'coord': [-74.00528899999...</td>
+      <td>Brooklyn</td>
+      <td>American</td>
+      <td>[{'date': 2014-07-18 00:00:00, 'grade': 'A', '...</td>
+      <td>Regina Caterers</td>
+      <td>40356649</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>60006d6aa7aafd5a6d45caa3</td>
+      <td>{'building': '1839', 'coord': [-73.9482609, 40...</td>
+      <td>Brooklyn</td>
+      <td>Ice Cream, Gelato, Yogurt, Ices</td>
+      <td>[{'date': 2014-07-14 00:00:00, 'grade': 'A', '...</td>
+      <td>Taste The Tropics Ice Cream</td>
+      <td>40356731</td>
     </tr>
   </tbody>
 </table>
@@ -16529,27 +16535,17 @@ div.jp-OutputPrompt {
   <tbody>
     <tr>
       <th>0</th>
-      <td>600e865f65af9ee45325bec6</td>
-      <td>{'building': '625', 'coord': [-73.990494, 40.7...</td>
-      <td>Manhattan</td>
+      <td>60006d6aa7aafd5a6d45ca9f</td>
+      <td>{'building': '8825', 'coord': [-73.8803827, 40...</td>
+      <td>Queens</td>
       <td>American</td>
-      <td>[{'date': 2014-06-09 00:00:00, 'grade': 'A', '...</td>
-      <td>Cafe Metro</td>
-      <td>40363298</td>
+      <td>[{'date': 2014-11-15 00:00:00, 'grade': 'Z', '...</td>
+      <td>Brunos On The Boulevard</td>
+      <td>40356151</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>600e865f65af9ee45325beb2</td>
-      <td>{'building': '265-15', 'coord': [-73.7032601, ...</td>
-      <td>Queens</td>
-      <td>Ice Cream, Gelato, Yogurt, Ices</td>
-      <td>[{'date': 2014-10-28 00:00:00, 'grade': 'A', '...</td>
-      <td>Carvel Ice Cream</td>
-      <td>40361322</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>600e865f65af9ee45325bea4</td>
+      <td>60006d6aa7aafd5a6d45ca9c</td>
       <td>{'building': '351', 'coord': [-73.985135599999...</td>
       <td>Manhattan</td>
       <td>Irish</td>
@@ -16558,58 +16554,48 @@ div.jp-OutputPrompt {
       <td>30191841</td>
     </tr>
     <tr>
+      <th>2</th>
+      <td>60006d6aa7aafd5a6d45caa0</td>
+      <td>{'building': '2206', 'coord': [-74.1377286, 40...</td>
+      <td>Staten Island</td>
+      <td>Jewish/Kosher</td>
+      <td>[{'date': 2014-10-06 00:00:00, 'grade': 'A', '...</td>
+      <td>Kosher Island</td>
+      <td>40356442</td>
+    </tr>
+    <tr>
       <th>3</th>
-      <td>600e865f65af9ee45325bec5</td>
-      <td>{'building': '1236', 'coord': [-73.8893654, 40...</td>
+      <td>60006d6aa7aafd5a6d45ca9a</td>
+      <td>{'building': '1007', 'coord': [-73.856077, 40....</td>
       <td>Bronx</td>
-      <td>Chinese</td>
-      <td>[{'date': 2013-12-30 00:00:00, 'grade': 'A', '...</td>
-      <td>Happy Garden</td>
-      <td>40363289</td>
+      <td>Bakery</td>
+      <td>[{'date': 2014-03-03 00:00:00, 'grade': 'A', '...</td>
+      <td>Morris Park Bake Shop</td>
+      <td>30075445</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>600e865f65af9ee45325becc</td>
-      <td>{'building': '1418', 'coord': [-73.95685019999...</td>
-      <td>Manhattan</td>
-      <td>Continental</td>
-      <td>[{'date': 2014-06-02 00:00:00, 'grade': 'A', '...</td>
-      <td>Lorenzo &amp; Maria'S</td>
-      <td>40363630</td>
+      <td>60006d6aa7aafd5a6d45caa2</td>
+      <td>{'building': '6409', 'coord': [-74.00528899999...</td>
+      <td>Brooklyn</td>
+      <td>American</td>
+      <td>[{'date': 2014-07-18 00:00:00, 'grade': 'A', '...</td>
+      <td>Regina Caterers</td>
+      <td>40356649</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>600e865f65af9ee45325beb3</td>
-      <td>{'building': '6909', 'coord': [-74.0259567, 40...</td>
+      <td>60006d6aa7aafd5a6d45ca9d</td>
+      <td>{'building': '2780', 'coord': [-73.98241999999...</td>
       <td>Brooklyn</td>
-      <td>Delicatessen</td>
-      <td>[{'date': 2014-08-21 00:00:00, 'grade': 'A', '...</td>
-      <td>Nordic Delicacies</td>
-      <td>40361390</td>
+      <td>American</td>
+      <td>[{'date': 2014-06-10 00:00:00, 'grade': 'A', '...</td>
+      <td>Riviera Caterer</td>
+      <td>40356018</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>600e865f65af9ee45325beb6</td>
-      <td>{'building': '129-08', 'coord': [-73.839297, 4...</td>
-      <td>Queens</td>
-      <td>Delicatessen</td>
-      <td>[{'date': 2014-08-16 00:00:00, 'grade': 'A', '...</td>
-      <td>Sal'S Deli</td>
-      <td>40361618</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>600e865f65af9ee45325beb0</td>
-      <td>{'building': '705', 'coord': [-73.9653967, 40....</td>
-      <td>Brooklyn</td>
-      <td>Jewish/Kosher</td>
-      <td>[{'date': 2014-11-10 00:00:00, 'grade': 'A', '...</td>
-      <td>Seuda Foods</td>
-      <td>40360045</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>600e865f65af9ee45325beab</td>
+      <td>60006d6aa7aafd5a6d45caa3</td>
       <td>{'building': '1839', 'coord': [-73.9482609, 40...</td>
       <td>Brooklyn</td>
       <td>Ice Cream, Gelato, Yogurt, Ices</td>
@@ -16618,14 +16604,34 @@ div.jp-OutputPrompt {
       <td>40356731</td>
     </tr>
     <tr>
-      <th>9</th>
-      <td>600e865f65af9ee45325bea3</td>
+      <th>7</th>
+      <td>60006d6aa7aafd5a6d45ca9e</td>
+      <td>{'building': '97-22', 'coord': [-73.8601152, 4...</td>
+      <td>Queens</td>
+      <td>Jewish/Kosher</td>
+      <td>[{'date': 2014-11-24 00:00:00, 'grade': 'Z', '...</td>
+      <td>Tov Kosher Kitchen</td>
+      <td>40356068</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>60006d6aa7aafd5a6d45ca9b</td>
       <td>{'building': '469', 'coord': [-73.961704, 40.6...</td>
       <td>Brooklyn</td>
       <td>Hamburgers</td>
       <td>[{'date': 2014-12-30 00:00:00, 'grade': 'A', '...</td>
       <td>Wendy'S</td>
       <td>30112340</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>60006d6aa7aafd5a6d45caa1</td>
+      <td>{'building': '7114', 'coord': [-73.9068506, 40...</td>
+      <td>Brooklyn</td>
+      <td>Delicatessen</td>
+      <td>[{'date': 2014-05-29 00:00:00, 'grade': 'A', '...</td>
+      <td>Wilken'S Fine Food</td>
+      <td>40356483</td>
     </tr>
   </tbody>
 </table>
@@ -16713,27 +16719,27 @@ div.jp-OutputPrompt {
   <tbody>
     <tr>
       <th>0</th>
-      <td>600e865f65af9ee45325beb3</td>
-      <td>{'building': '6909', 'coord': [-74.0259567, 40...</td>
+      <td>60006d6aa7aafd5a6d45caa2</td>
+      <td>{'building': '6409', 'coord': [-74.00528899999...</td>
       <td>Brooklyn</td>
-      <td>Delicatessen</td>
-      <td>[{'date': 2014-08-21 00:00:00, 'grade': 'A', '...</td>
-      <td>Nordic Delicacies</td>
-      <td>40361390</td>
+      <td>American</td>
+      <td>[{'date': 2014-07-18 00:00:00, 'grade': 'A', '...</td>
+      <td>Regina Caterers</td>
+      <td>40356649</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>600e865f65af9ee45325beb0</td>
-      <td>{'building': '705', 'coord': [-73.9653967, 40....</td>
+      <td>60006d6aa7aafd5a6d45ca9d</td>
+      <td>{'building': '2780', 'coord': [-73.98241999999...</td>
       <td>Brooklyn</td>
-      <td>Jewish/Kosher</td>
-      <td>[{'date': 2014-11-10 00:00:00, 'grade': 'A', '...</td>
-      <td>Seuda Foods</td>
-      <td>40360045</td>
+      <td>American</td>
+      <td>[{'date': 2014-06-10 00:00:00, 'grade': 'A', '...</td>
+      <td>Riviera Caterer</td>
+      <td>40356018</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>600e865f65af9ee45325beab</td>
+      <td>60006d6aa7aafd5a6d45caa3</td>
       <td>{'building': '1839', 'coord': [-73.9482609, 40...</td>
       <td>Brooklyn</td>
       <td>Ice Cream, Gelato, Yogurt, Ices</td>
@@ -16743,13 +16749,23 @@ div.jp-OutputPrompt {
     </tr>
     <tr>
       <th>3</th>
-      <td>600e865f65af9ee45325bea3</td>
+      <td>60006d6aa7aafd5a6d45ca9b</td>
       <td>{'building': '469', 'coord': [-73.961704, 40.6...</td>
       <td>Brooklyn</td>
       <td>Hamburgers</td>
       <td>[{'date': 2014-12-30 00:00:00, 'grade': 'A', '...</td>
       <td>Wendy'S</td>
       <td>30112340</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>60006d6aa7aafd5a6d45caa1</td>
+      <td>{'building': '7114', 'coord': [-73.9068506, 40...</td>
+      <td>Brooklyn</td>
+      <td>Delicatessen</td>
+      <td>[{'date': 2014-05-29 00:00:00, 'grade': 'A', '...</td>
+      <td>Wilken'S Fine Food</td>
+      <td>40356483</td>
     </tr>
   </tbody>
 </table>
@@ -16837,7 +16853,7 @@ div.jp-OutputPrompt {
   <tbody>
     <tr>
       <th>0</th>
-      <td>600e865f65af9ee45325bead</td>
+      <td>60006d6aa7aafd5a6d45caa5</td>
       <td>{'building': '7715', 'coord': [-73.9973325, 40...</td>
       <td>Brooklyn</td>
       <td>American</td>
@@ -16847,7 +16863,17 @@ div.jp-OutputPrompt {
     </tr>
     <tr>
       <th>1</th>
-      <td>600e865f65af9ee45325beae</td>
+      <td>60006d6aa7aafd5a6d45caa9</td>
+      <td>{'building': '203', 'coord': [-73.978220400000...</td>
+      <td>Brooklyn</td>
+      <td>Ice Cream, Gelato, Yogurt, Ices</td>
+      <td>[{'date': 2014-02-10 00:00:00, 'grade': 'A', '...</td>
+      <td>Carvel Ice Cream</td>
+      <td>40360076</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>60006d6aa7aafd5a6d45caa6</td>
       <td>{'building': '1269', 'coord': [-73.871194, 40....</td>
       <td>Brooklyn</td>
       <td>Chinese</td>
@@ -16856,8 +16882,8 @@ div.jp-OutputPrompt {
       <td>40358429</td>
     </tr>
     <tr>
-      <th>2</th>
-      <td>600e865f65af9ee45325beb3</td>
+      <th>3</th>
+      <td>60006d6aa7aafd5a6d45caab</td>
       <td>{'building': '6909', 'coord': [-74.0259567, 40...</td>
       <td>Brooklyn</td>
       <td>Delicatessen</td>
@@ -16866,18 +16892,8 @@ div.jp-OutputPrompt {
       <td>40361390</td>
     </tr>
     <tr>
-      <th>3</th>
-      <td>600e865f65af9ee45325bedb</td>
-      <td>{'building': '178', 'coord': [-73.962521299999...</td>
-      <td>Brooklyn</td>
-      <td>Steak</td>
-      <td>[{'date': 2014-03-08 00:00:00, 'grade': 'A', '...</td>
-      <td>Peter Luger Steakhouse</td>
-      <td>40364335</td>
-    </tr>
-    <tr>
       <th>4</th>
-      <td>600e865f65af9ee45325beaa</td>
+      <td>60006d6aa7aafd5a6d45caa2</td>
       <td>{'building': '6409', 'coord': [-74.00528899999...</td>
       <td>Brooklyn</td>
       <td>American</td>
@@ -16887,7 +16903,17 @@ div.jp-OutputPrompt {
     </tr>
     <tr>
       <th>5</th>
-      <td>600e865f65af9ee45325beb0</td>
+      <td>60006d6aa7aafd5a6d45ca9d</td>
+      <td>{'building': '2780', 'coord': [-73.98241999999...</td>
+      <td>Brooklyn</td>
+      <td>American</td>
+      <td>[{'date': 2014-06-10 00:00:00, 'grade': 'A', '...</td>
+      <td>Riviera Caterer</td>
+      <td>40356018</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>60006d6aa7aafd5a6d45caa8</td>
       <td>{'building': '705', 'coord': [-73.9653967, 40....</td>
       <td>Brooklyn</td>
       <td>Jewish/Kosher</td>
@@ -16896,18 +16922,8 @@ div.jp-OutputPrompt {
       <td>40360045</td>
     </tr>
     <tr>
-      <th>6</th>
-      <td>600e865f65af9ee45325becf</td>
-      <td>{'building': '1031', 'coord': [-73.9075537, 40...</td>
-      <td>Brooklyn</td>
-      <td>American</td>
-      <td>[{'date': 2014-02-05 00:00:00, 'grade': 'A', '...</td>
-      <td>Sonny'S Heros</td>
-      <td>40363744</td>
-    </tr>
-    <tr>
       <th>7</th>
-      <td>600e865f65af9ee45325beab</td>
+      <td>60006d6aa7aafd5a6d45caa3</td>
       <td>{'building': '1839', 'coord': [-73.9482609, 40...</td>
       <td>Brooklyn</td>
       <td>Ice Cream, Gelato, Yogurt, Ices</td>
@@ -16917,7 +16933,7 @@ div.jp-OutputPrompt {
     </tr>
     <tr>
       <th>8</th>
-      <td>600e865f65af9ee45325bea3</td>
+      <td>60006d6aa7aafd5a6d45ca9b</td>
       <td>{'building': '469', 'coord': [-73.961704, 40.6...</td>
       <td>Brooklyn</td>
       <td>Hamburgers</td>
@@ -16927,13 +16943,13 @@ div.jp-OutputPrompt {
     </tr>
     <tr>
       <th>9</th>
-      <td>600e865f65af9ee45325bebc</td>
-      <td>{'building': '531', 'coord': [-73.9634876, 40....</td>
+      <td>60006d6aa7aafd5a6d45caa1</td>
+      <td>{'building': '7114', 'coord': [-73.9068506, 40...</td>
       <td>Brooklyn</td>
-      <td>Hamburgers</td>
-      <td>[{'date': 2014-03-18 00:00:00, 'grade': 'A', '...</td>
-      <td>White Castle</td>
-      <td>40362344</td>
+      <td>Delicatessen</td>
+      <td>[{'date': 2014-05-29 00:00:00, 'grade': 'A', '...</td>
+      <td>Wilken'S Fine Food</td>
+      <td>40356483</td>
     </tr>
   </tbody>
 </table>
@@ -17020,7 +17036,57 @@ div.jp-OutputPrompt {
   <tbody>
     <tr>
       <th>0</th>
-      <td>600e865f65af9ee45325bea3</td>
+      <td>60006d6aa7aafd5a6d45ca9a</td>
+      <td>{'building': '1007', 'coord': [-73.856077, 40....</td>
+      <td>Bronx</td>
+      <td>Bakery</td>
+      <td>{'date': 2014-03-03 00:00:00, 'grade': 'A', 's...</td>
+      <td>Morris Park Bake Shop</td>
+      <td>30075445</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>60006d6aa7aafd5a6d45ca9a</td>
+      <td>{'building': '1007', 'coord': [-73.856077, 40....</td>
+      <td>Bronx</td>
+      <td>Bakery</td>
+      <td>{'date': 2013-09-11 00:00:00, 'grade': 'A', 's...</td>
+      <td>Morris Park Bake Shop</td>
+      <td>30075445</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>60006d6aa7aafd5a6d45ca9a</td>
+      <td>{'building': '1007', 'coord': [-73.856077, 40....</td>
+      <td>Bronx</td>
+      <td>Bakery</td>
+      <td>{'date': 2013-01-24 00:00:00, 'grade': 'A', 's...</td>
+      <td>Morris Park Bake Shop</td>
+      <td>30075445</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>60006d6aa7aafd5a6d45ca9a</td>
+      <td>{'building': '1007', 'coord': [-73.856077, 40....</td>
+      <td>Bronx</td>
+      <td>Bakery</td>
+      <td>{'date': 2011-11-23 00:00:00, 'grade': 'A', 's...</td>
+      <td>Morris Park Bake Shop</td>
+      <td>30075445</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>60006d6aa7aafd5a6d45ca9a</td>
+      <td>{'building': '1007', 'coord': [-73.856077, 40....</td>
+      <td>Bronx</td>
+      <td>Bakery</td>
+      <td>{'date': 2011-03-10 00:00:00, 'grade': 'B', 's...</td>
+      <td>Morris Park Bake Shop</td>
+      <td>30075445</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>60006d6aa7aafd5a6d45ca9b</td>
       <td>{'building': '469', 'coord': [-73.961704, 40.6...</td>
       <td>Brooklyn</td>
       <td>Hamburgers</td>
@@ -17029,8 +17095,8 @@ div.jp-OutputPrompt {
       <td>30112340</td>
     </tr>
     <tr>
-      <th>1</th>
-      <td>600e865f65af9ee45325bea3</td>
+      <th>6</th>
+      <td>60006d6aa7aafd5a6d45ca9b</td>
       <td>{'building': '469', 'coord': [-73.961704, 40.6...</td>
       <td>Brooklyn</td>
       <td>Hamburgers</td>
@@ -17039,8 +17105,8 @@ div.jp-OutputPrompt {
       <td>30112340</td>
     </tr>
     <tr>
-      <th>2</th>
-      <td>600e865f65af9ee45325bea3</td>
+      <th>7</th>
+      <td>60006d6aa7aafd5a6d45ca9b</td>
       <td>{'building': '469', 'coord': [-73.961704, 40.6...</td>
       <td>Brooklyn</td>
       <td>Hamburgers</td>
@@ -17049,8 +17115,8 @@ div.jp-OutputPrompt {
       <td>30112340</td>
     </tr>
     <tr>
-      <th>3</th>
-      <td>600e865f65af9ee45325bea3</td>
+      <th>8</th>
+      <td>60006d6aa7aafd5a6d45ca9b</td>
       <td>{'building': '469', 'coord': [-73.961704, 40.6...</td>
       <td>Brooklyn</td>
       <td>Hamburgers</td>
@@ -17059,144 +17125,124 @@ div.jp-OutputPrompt {
       <td>30112340</td>
     </tr>
     <tr>
-      <th>4</th>
-      <td>600e865f65af9ee45325beb6</td>
-      <td>{'building': '129-08', 'coord': [-73.839297, 4...</td>
-      <td>Queens</td>
-      <td>Delicatessen</td>
-      <td>{'date': 2014-08-16 00:00:00, 'grade': 'A', 's...</td>
-      <td>Sal'S Deli</td>
-      <td>40361618</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>600e865f65af9ee45325beb6</td>
-      <td>{'building': '129-08', 'coord': [-73.839297, 4...</td>
-      <td>Queens</td>
-      <td>Delicatessen</td>
-      <td>{'date': 2013-08-27 00:00:00, 'grade': 'A', 's...</td>
-      <td>Sal'S Deli</td>
-      <td>40361618</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>600e865f65af9ee45325beb6</td>
-      <td>{'building': '129-08', 'coord': [-73.839297, 4...</td>
-      <td>Queens</td>
-      <td>Delicatessen</td>
-      <td>{'date': 2012-09-20 00:00:00, 'grade': 'A', 's...</td>
-      <td>Sal'S Deli</td>
-      <td>40361618</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>600e865f65af9ee45325beb6</td>
-      <td>{'building': '129-08', 'coord': [-73.839297, 4...</td>
-      <td>Queens</td>
-      <td>Delicatessen</td>
-      <td>{'date': 2011-09-29 00:00:00, 'grade': 'A', 's...</td>
-      <td>Sal'S Deli</td>
-      <td>40361618</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>600e865f65af9ee45325beb2</td>
-      <td>{'building': '265-15', 'coord': [-73.7032601, ...</td>
-      <td>Queens</td>
-      <td>Ice Cream, Gelato, Yogurt, Ices</td>
-      <td>{'date': 2014-10-28 00:00:00, 'grade': 'A', 's...</td>
-      <td>Carvel Ice Cream</td>
-      <td>40361322</td>
-    </tr>
-    <tr>
       <th>9</th>
-      <td>600e865f65af9ee45325beb2</td>
-      <td>{'building': '265-15', 'coord': [-73.7032601, ...</td>
-      <td>Queens</td>
-      <td>Ice Cream, Gelato, Yogurt, Ices</td>
-      <td>{'date': 2013-09-18 00:00:00, 'grade': 'A', 's...</td>
-      <td>Carvel Ice Cream</td>
-      <td>40361322</td>
+      <td>60006d6aa7aafd5a6d45ca9c</td>
+      <td>{'building': '351', 'coord': [-73.985135599999...</td>
+      <td>Manhattan</td>
+      <td>Irish</td>
+      <td>{'date': 2014-09-06 00:00:00, 'grade': 'A', 's...</td>
+      <td>Dj Reynolds Pub And Restaurant</td>
+      <td>30191841</td>
     </tr>
     <tr>
       <th>10</th>
-      <td>600e865f65af9ee45325beb2</td>
-      <td>{'building': '265-15', 'coord': [-73.7032601, ...</td>
-      <td>Queens</td>
-      <td>Ice Cream, Gelato, Yogurt, Ices</td>
-      <td>{'date': 2012-09-20 00:00:00, 'grade': 'A', 's...</td>
-      <td>Carvel Ice Cream</td>
-      <td>40361322</td>
+      <td>60006d6aa7aafd5a6d45ca9c</td>
+      <td>{'building': '351', 'coord': [-73.985135599999...</td>
+      <td>Manhattan</td>
+      <td>Irish</td>
+      <td>{'date': 2013-07-22 00:00:00, 'grade': 'A', 's...</td>
+      <td>Dj Reynolds Pub And Restaurant</td>
+      <td>30191841</td>
     </tr>
     <tr>
       <th>11</th>
-      <td>600e865f65af9ee45325beb3</td>
-      <td>{'building': '6909', 'coord': [-74.0259567, 40...</td>
-      <td>Brooklyn</td>
-      <td>Delicatessen</td>
-      <td>{'date': 2014-08-21 00:00:00, 'grade': 'A', 's...</td>
-      <td>Nordic Delicacies</td>
-      <td>40361390</td>
+      <td>60006d6aa7aafd5a6d45ca9c</td>
+      <td>{'building': '351', 'coord': [-73.985135599999...</td>
+      <td>Manhattan</td>
+      <td>Irish</td>
+      <td>{'date': 2012-07-31 00:00:00, 'grade': 'A', 's...</td>
+      <td>Dj Reynolds Pub And Restaurant</td>
+      <td>30191841</td>
     </tr>
     <tr>
       <th>12</th>
-      <td>600e865f65af9ee45325beb3</td>
-      <td>{'building': '6909', 'coord': [-74.0259567, 40...</td>
-      <td>Brooklyn</td>
-      <td>Delicatessen</td>
-      <td>{'date': 2014-03-05 00:00:00, 'grade': 'A', 's...</td>
-      <td>Nordic Delicacies</td>
-      <td>40361390</td>
+      <td>60006d6aa7aafd5a6d45ca9c</td>
+      <td>{'building': '351', 'coord': [-73.985135599999...</td>
+      <td>Manhattan</td>
+      <td>Irish</td>
+      <td>{'date': 2011-12-29 00:00:00, 'grade': 'A', 's...</td>
+      <td>Dj Reynolds Pub And Restaurant</td>
+      <td>30191841</td>
     </tr>
     <tr>
       <th>13</th>
-      <td>600e865f65af9ee45325beb3</td>
-      <td>{'building': '6909', 'coord': [-74.0259567, 40...</td>
+      <td>60006d6aa7aafd5a6d45ca9d</td>
+      <td>{'building': '2780', 'coord': [-73.98241999999...</td>
       <td>Brooklyn</td>
-      <td>Delicatessen</td>
-      <td>{'date': 2013-01-10 00:00:00, 'grade': 'A', 's...</td>
-      <td>Nordic Delicacies</td>
-      <td>40361390</td>
+      <td>American</td>
+      <td>{'date': 2014-06-10 00:00:00, 'grade': 'A', 's...</td>
+      <td>Riviera Caterer</td>
+      <td>40356018</td>
     </tr>
     <tr>
       <th>14</th>
-      <td>600e865f65af9ee45325beab</td>
-      <td>{'building': '1839', 'coord': [-73.9482609, 40...</td>
+      <td>60006d6aa7aafd5a6d45ca9d</td>
+      <td>{'building': '2780', 'coord': [-73.98241999999...</td>
       <td>Brooklyn</td>
-      <td>Ice Cream, Gelato, Yogurt, Ices</td>
-      <td>{'date': 2014-07-14 00:00:00, 'grade': 'A', 's...</td>
-      <td>Taste The Tropics Ice Cream</td>
-      <td>40356731</td>
+      <td>American</td>
+      <td>{'date': 2013-06-05 00:00:00, 'grade': 'A', 's...</td>
+      <td>Riviera Caterer</td>
+      <td>40356018</td>
     </tr>
     <tr>
       <th>15</th>
-      <td>600e865f65af9ee45325beab</td>
-      <td>{'building': '1839', 'coord': [-73.9482609, 40...</td>
+      <td>60006d6aa7aafd5a6d45ca9d</td>
+      <td>{'building': '2780', 'coord': [-73.98241999999...</td>
       <td>Brooklyn</td>
-      <td>Ice Cream, Gelato, Yogurt, Ices</td>
-      <td>{'date': 2013-07-10 00:00:00, 'grade': 'A', 's...</td>
-      <td>Taste The Tropics Ice Cream</td>
-      <td>40356731</td>
+      <td>American</td>
+      <td>{'date': 2012-04-13 00:00:00, 'grade': 'A', 's...</td>
+      <td>Riviera Caterer</td>
+      <td>40356018</td>
     </tr>
     <tr>
       <th>16</th>
-      <td>600e865f65af9ee45325beab</td>
-      <td>{'building': '1839', 'coord': [-73.9482609, 40...</td>
+      <td>60006d6aa7aafd5a6d45ca9d</td>
+      <td>{'building': '2780', 'coord': [-73.98241999999...</td>
       <td>Brooklyn</td>
-      <td>Ice Cream, Gelato, Yogurt, Ices</td>
-      <td>{'date': 2012-07-11 00:00:00, 'grade': 'A', 's...</td>
-      <td>Taste The Tropics Ice Cream</td>
-      <td>40356731</td>
+      <td>American</td>
+      <td>{'date': 2011-10-12 00:00:00, 'grade': 'A', 's...</td>
+      <td>Riviera Caterer</td>
+      <td>40356018</td>
     </tr>
     <tr>
       <th>17</th>
-      <td>600e865f65af9ee45325beab</td>
-      <td>{'building': '1839', 'coord': [-73.9482609, 40...</td>
-      <td>Brooklyn</td>
-      <td>Ice Cream, Gelato, Yogurt, Ices</td>
-      <td>{'date': 2012-02-23 00:00:00, 'grade': 'A', 's...</td>
-      <td>Taste The Tropics Ice Cream</td>
-      <td>40356731</td>
+      <td>60006d6aa7aafd5a6d45ca9e</td>
+      <td>{'building': '97-22', 'coord': [-73.8601152, 4...</td>
+      <td>Queens</td>
+      <td>Jewish/Kosher</td>
+      <td>{'date': 2014-11-24 00:00:00, 'grade': 'Z', 's...</td>
+      <td>Tov Kosher Kitchen</td>
+      <td>40356068</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>60006d6aa7aafd5a6d45ca9e</td>
+      <td>{'building': '97-22', 'coord': [-73.8601152, 4...</td>
+      <td>Queens</td>
+      <td>Jewish/Kosher</td>
+      <td>{'date': 2013-01-17 00:00:00, 'grade': 'A', 's...</td>
+      <td>Tov Kosher Kitchen</td>
+      <td>40356068</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>60006d6aa7aafd5a6d45ca9e</td>
+      <td>{'building': '97-22', 'coord': [-73.8601152, 4...</td>
+      <td>Queens</td>
+      <td>Jewish/Kosher</td>
+      <td>{'date': 2012-08-02 00:00:00, 'grade': 'A', 's...</td>
+      <td>Tov Kosher Kitchen</td>
+      <td>40356068</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>60006d6aa7aafd5a6d45ca9e</td>
+      <td>{'building': '97-22', 'coord': [-73.8601152, 4...</td>
+      <td>Queens</td>
+      <td>Jewish/Kosher</td>
+      <td>{'date': 2011-12-15 00:00:00, 'grade': 'B', 's...</td>
+      <td>Tov Kosher Kitchen</td>
+      <td>40356068</td>
     </tr>
   </tbody>
 </table>
@@ -17281,7 +17327,17 @@ div.jp-OutputPrompt {
   <tbody>
     <tr>
       <th>0</th>
-      <td>600e865f65af9ee45325bea3</td>
+      <td>60006d6aa7aafd5a6d45ca9a</td>
+      <td>{'building': '1007', 'coord': [-73.856077, 40....</td>
+      <td>Bronx</td>
+      <td>Bakery</td>
+      <td>{'date': 2011-03-10 00:00:00, 'grade': 'B', 's...</td>
+      <td>Morris Park Bake Shop</td>
+      <td>30075445</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>60006d6aa7aafd5a6d45ca9b</td>
       <td>{'building': '469', 'coord': [-73.961704, 40.6...</td>
       <td>Brooklyn</td>
       <td>Hamburgers</td>
@@ -17290,44 +17346,14 @@ div.jp-OutputPrompt {
       <td>30112340</td>
     </tr>
     <tr>
-      <th>1</th>
-      <td>600e865f65af9ee45325becc</td>
-      <td>{'building': '1418', 'coord': [-73.95685019999...</td>
-      <td>Manhattan</td>
-      <td>Continental</td>
-      <td>{'date': 2013-03-18 00:00:00, 'grade': 'B', 's...</td>
-      <td>Lorenzo &amp; Maria'S</td>
-      <td>40363630</td>
-    </tr>
-    <tr>
       <th>2</th>
-      <td>600e865f65af9ee45325becc</td>
-      <td>{'building': '1418', 'coord': [-73.95685019999...</td>
-      <td>Manhattan</td>
-      <td>Continental</td>
-      <td>{'date': 2011-07-06 00:00:00, 'grade': 'B', 's...</td>
-      <td>Lorenzo &amp; Maria'S</td>
-      <td>40363630</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>600e865f65af9ee45325beb0</td>
-      <td>{'building': '705', 'coord': [-73.9653967, 40....</td>
-      <td>Brooklyn</td>
+      <td>60006d6aa7aafd5a6d45ca9e</td>
+      <td>{'building': '97-22', 'coord': [-73.8601152, 4...</td>
+      <td>Queens</td>
       <td>Jewish/Kosher</td>
-      <td>{'date': 2011-12-30 00:00:00, 'grade': 'B', 's...</td>
-      <td>Seuda Foods</td>
-      <td>40360045</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>600e865f65af9ee45325bec5</td>
-      <td>{'building': '1236', 'coord': [-73.8893654, 40...</td>
-      <td>Bronx</td>
-      <td>Chinese</td>
-      <td>{'date': 2012-06-12 00:00:00, 'grade': 'B', 's...</td>
-      <td>Happy Garden</td>
-      <td>40363289</td>
+      <td>{'date': 2011-12-15 00:00:00, 'grade': 'B', 's...</td>
+      <td>Tov Kosher Kitchen</td>
+      <td>40356068</td>
     </tr>
   </tbody>
 </table>
@@ -17412,7 +17438,57 @@ div.jp-OutputPrompt {
   <tbody>
     <tr>
       <th>0</th>
-      <td>600e865f65af9ee45325bea3</td>
+      <td>60006d6aa7aafd5a6d45ca9a</td>
+      <td>{'building': '1007', 'coord': [-73.856077, 40....</td>
+      <td>Bronx</td>
+      <td>Bakery</td>
+      <td>{'date': 2014-03-03 00:00:00, 'grade': 'A', 's...</td>
+      <td>Morris Park Bake Shop</td>
+      <td>30075445</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>60006d6aa7aafd5a6d45ca9a</td>
+      <td>{'building': '1007', 'coord': [-73.856077, 40....</td>
+      <td>Bronx</td>
+      <td>Bakery</td>
+      <td>{'date': 2013-09-11 00:00:00, 'grade': 'A', 's...</td>
+      <td>Morris Park Bake Shop</td>
+      <td>30075445</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>60006d6aa7aafd5a6d45ca9a</td>
+      <td>{'building': '1007', 'coord': [-73.856077, 40....</td>
+      <td>Bronx</td>
+      <td>Bakery</td>
+      <td>{'date': 2013-01-24 00:00:00, 'grade': 'A', 's...</td>
+      <td>Morris Park Bake Shop</td>
+      <td>30075445</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>60006d6aa7aafd5a6d45ca9a</td>
+      <td>{'building': '1007', 'coord': [-73.856077, 40....</td>
+      <td>Bronx</td>
+      <td>Bakery</td>
+      <td>{'date': 2011-11-23 00:00:00, 'grade': 'A', 's...</td>
+      <td>Morris Park Bake Shop</td>
+      <td>30075445</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>60006d6aa7aafd5a6d45ca9a</td>
+      <td>{'building': '1007', 'coord': [-73.856077, 40....</td>
+      <td>Bronx</td>
+      <td>Bakery</td>
+      <td>{'date': 2011-03-10 00:00:00, 'grade': 'B', 's...</td>
+      <td>Morris Park Bake Shop</td>
+      <td>30075445</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>60006d6aa7aafd5a6d45ca9b</td>
       <td>{'building': '469', 'coord': [-73.961704, 40.6...</td>
       <td>Brooklyn</td>
       <td>Hamburgers</td>
@@ -17421,8 +17497,8 @@ div.jp-OutputPrompt {
       <td>30112340</td>
     </tr>
     <tr>
-      <th>1</th>
-      <td>600e865f65af9ee45325bea3</td>
+      <th>6</th>
+      <td>60006d6aa7aafd5a6d45ca9b</td>
       <td>{'building': '469', 'coord': [-73.961704, 40.6...</td>
       <td>Brooklyn</td>
       <td>Hamburgers</td>
@@ -17431,8 +17507,8 @@ div.jp-OutputPrompt {
       <td>30112340</td>
     </tr>
     <tr>
-      <th>2</th>
-      <td>600e865f65af9ee45325bea3</td>
+      <th>7</th>
+      <td>60006d6aa7aafd5a6d45ca9b</td>
       <td>{'building': '469', 'coord': [-73.961704, 40.6...</td>
       <td>Brooklyn</td>
       <td>Hamburgers</td>
@@ -17441,8 +17517,8 @@ div.jp-OutputPrompt {
       <td>30112340</td>
     </tr>
     <tr>
-      <th>3</th>
-      <td>600e865f65af9ee45325bea3</td>
+      <th>8</th>
+      <td>60006d6aa7aafd5a6d45ca9b</td>
       <td>{'building': '469', 'coord': [-73.961704, 40.6...</td>
       <td>Brooklyn</td>
       <td>Hamburgers</td>
@@ -17451,134 +17527,44 @@ div.jp-OutputPrompt {
       <td>30112340</td>
     </tr>
     <tr>
-      <th>4</th>
-      <td>600e865f65af9ee45325becc</td>
-      <td>{'building': '1418', 'coord': [-73.95685019999...</td>
-      <td>Manhattan</td>
-      <td>Continental</td>
-      <td>{'date': 2014-06-02 00:00:00, 'grade': 'A', 's...</td>
-      <td>Lorenzo &amp; Maria'S</td>
-      <td>40363630</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>600e865f65af9ee45325becc</td>
-      <td>{'building': '1418', 'coord': [-73.95685019999...</td>
-      <td>Manhattan</td>
-      <td>Continental</td>
-      <td>{'date': 2013-12-27 00:00:00, 'grade': 'A', 's...</td>
-      <td>Lorenzo &amp; Maria'S</td>
-      <td>40363630</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>600e865f65af9ee45325becc</td>
-      <td>{'building': '1418', 'coord': [-73.95685019999...</td>
-      <td>Manhattan</td>
-      <td>Continental</td>
-      <td>{'date': 2013-03-18 00:00:00, 'grade': 'B', 's...</td>
-      <td>Lorenzo &amp; Maria'S</td>
-      <td>40363630</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>600e865f65af9ee45325becc</td>
-      <td>{'building': '1418', 'coord': [-73.95685019999...</td>
-      <td>Manhattan</td>
-      <td>Continental</td>
-      <td>{'date': 2012-02-01 00:00:00, 'grade': 'A', 's...</td>
-      <td>Lorenzo &amp; Maria'S</td>
-      <td>40363630</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>600e865f65af9ee45325becc</td>
-      <td>{'building': '1418', 'coord': [-73.95685019999...</td>
-      <td>Manhattan</td>
-      <td>Continental</td>
-      <td>{'date': 2011-07-06 00:00:00, 'grade': 'B', 's...</td>
-      <td>Lorenzo &amp; Maria'S</td>
-      <td>40363630</td>
-    </tr>
-    <tr>
       <th>9</th>
-      <td>600e865f65af9ee45325beb0</td>
-      <td>{'building': '705', 'coord': [-73.9653967, 40....</td>
-      <td>Brooklyn</td>
+      <td>60006d6aa7aafd5a6d45ca9e</td>
+      <td>{'building': '97-22', 'coord': [-73.8601152, 4...</td>
+      <td>Queens</td>
       <td>Jewish/Kosher</td>
-      <td>{'date': 2014-11-10 00:00:00, 'grade': 'A', 's...</td>
-      <td>Seuda Foods</td>
-      <td>40360045</td>
+      <td>{'date': 2014-11-24 00:00:00, 'grade': 'Z', 's...</td>
+      <td>Tov Kosher Kitchen</td>
+      <td>40356068</td>
     </tr>
     <tr>
       <th>10</th>
-      <td>600e865f65af9ee45325beb0</td>
-      <td>{'building': '705', 'coord': [-73.9653967, 40....</td>
-      <td>Brooklyn</td>
+      <td>60006d6aa7aafd5a6d45ca9e</td>
+      <td>{'building': '97-22', 'coord': [-73.8601152, 4...</td>
+      <td>Queens</td>
       <td>Jewish/Kosher</td>
-      <td>{'date': 2013-10-10 00:00:00, 'grade': 'A', 's...</td>
-      <td>Seuda Foods</td>
-      <td>40360045</td>
+      <td>{'date': 2013-01-17 00:00:00, 'grade': 'A', 's...</td>
+      <td>Tov Kosher Kitchen</td>
+      <td>40356068</td>
     </tr>
     <tr>
       <th>11</th>
-      <td>600e865f65af9ee45325beb0</td>
-      <td>{'building': '705', 'coord': [-73.9653967, 40....</td>
-      <td>Brooklyn</td>
+      <td>60006d6aa7aafd5a6d45ca9e</td>
+      <td>{'building': '97-22', 'coord': [-73.8601152, 4...</td>
+      <td>Queens</td>
       <td>Jewish/Kosher</td>
-      <td>{'date': 2012-10-04 00:00:00, 'grade': 'A', 's...</td>
-      <td>Seuda Foods</td>
-      <td>40360045</td>
+      <td>{'date': 2012-08-02 00:00:00, 'grade': 'A', 's...</td>
+      <td>Tov Kosher Kitchen</td>
+      <td>40356068</td>
     </tr>
     <tr>
       <th>12</th>
-      <td>600e865f65af9ee45325beb0</td>
-      <td>{'building': '705', 'coord': [-73.9653967, 40....</td>
-      <td>Brooklyn</td>
+      <td>60006d6aa7aafd5a6d45ca9e</td>
+      <td>{'building': '97-22', 'coord': [-73.8601152, 4...</td>
+      <td>Queens</td>
       <td>Jewish/Kosher</td>
-      <td>{'date': 2012-05-21 00:00:00, 'grade': 'A', 's...</td>
-      <td>Seuda Foods</td>
-      <td>40360045</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>600e865f65af9ee45325beb0</td>
-      <td>{'building': '705', 'coord': [-73.9653967, 40....</td>
-      <td>Brooklyn</td>
-      <td>Jewish/Kosher</td>
-      <td>{'date': 2011-12-30 00:00:00, 'grade': 'B', 's...</td>
-      <td>Seuda Foods</td>
-      <td>40360045</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>600e865f65af9ee45325bec5</td>
-      <td>{'building': '1236', 'coord': [-73.8893654, 40...</td>
-      <td>Bronx</td>
-      <td>Chinese</td>
-      <td>{'date': 2013-12-30 00:00:00, 'grade': 'A', 's...</td>
-      <td>Happy Garden</td>
-      <td>40363289</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>600e865f65af9ee45325bec5</td>
-      <td>{'building': '1236', 'coord': [-73.8893654, 40...</td>
-      <td>Bronx</td>
-      <td>Chinese</td>
-      <td>{'date': 2013-01-08 00:00:00, 'grade': 'A', 's...</td>
-      <td>Happy Garden</td>
-      <td>40363289</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>600e865f65af9ee45325bec5</td>
-      <td>{'building': '1236', 'coord': [-73.8893654, 40...</td>
-      <td>Bronx</td>
-      <td>Chinese</td>
-      <td>{'date': 2012-06-12 00:00:00, 'grade': 'B', 's...</td>
-      <td>Happy Garden</td>
-      <td>40363289</td>
+      <td>{'date': 2011-12-15 00:00:00, 'grade': 'B', 's...</td>
+      <td>Tov Kosher Kitchen</td>
+      <td>40356068</td>
     </tr>
   </tbody>
 </table>
@@ -17661,63 +17647,63 @@ div.jp-OutputPrompt {
   <tbody>
     <tr>
       <th>0</th>
-      <td>600e865f65af9ee45325bea3</td>
+      <td>60006d6aa7aafd5a6d45ca9a</td>
+      <td>Bronx</td>
+      <td>Morris Park Bake Shop</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>60006d6aa7aafd5a6d45ca9b</td>
       <td>Brooklyn</td>
       <td>Wendy'S</td>
     </tr>
     <tr>
-      <th>1</th>
-      <td>600e865f65af9ee45325beb6</td>
-      <td>Queens</td>
-      <td>Sal'S Deli</td>
-    </tr>
-    <tr>
       <th>2</th>
-      <td>600e865f65af9ee45325beb2</td>
-      <td>Queens</td>
-      <td>Carvel Ice Cream</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>600e865f65af9ee45325beb3</td>
-      <td>Brooklyn</td>
-      <td>Nordic Delicacies</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>600e865f65af9ee45325beab</td>
-      <td>Brooklyn</td>
-      <td>Taste The Tropics Ice Cream</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>600e865f65af9ee45325becc</td>
-      <td>Manhattan</td>
-      <td>Lorenzo &amp; Maria'S</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>600e865f65af9ee45325beb0</td>
-      <td>Brooklyn</td>
-      <td>Seuda Foods</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>600e865f65af9ee45325bec5</td>
-      <td>Bronx</td>
-      <td>Happy Garden</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>600e865f65af9ee45325bea4</td>
+      <td>60006d6aa7aafd5a6d45ca9c</td>
       <td>Manhattan</td>
       <td>Dj Reynolds Pub And Restaurant</td>
     </tr>
     <tr>
+      <th>3</th>
+      <td>60006d6aa7aafd5a6d45ca9d</td>
+      <td>Brooklyn</td>
+      <td>Riviera Caterer</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>60006d6aa7aafd5a6d45ca9e</td>
+      <td>Queens</td>
+      <td>Tov Kosher Kitchen</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>60006d6aa7aafd5a6d45ca9f</td>
+      <td>Queens</td>
+      <td>Brunos On The Boulevard</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>60006d6aa7aafd5a6d45caa0</td>
+      <td>Staten Island</td>
+      <td>Kosher Island</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>60006d6aa7aafd5a6d45caa1</td>
+      <td>Brooklyn</td>
+      <td>Wilken'S Fine Food</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>60006d6aa7aafd5a6d45caa2</td>
+      <td>Brooklyn</td>
+      <td>Regina Caterers</td>
+    </tr>
+    <tr>
       <th>9</th>
-      <td>600e865f65af9ee45325bec6</td>
-      <td>Manhattan</td>
-      <td>Cafe Metro</td>
+      <td>60006d6aa7aafd5a6d45caa3</td>
+      <td>Brooklyn</td>
+      <td>Taste The Tropics Ice Cream</td>
     </tr>
   </tbody>
 </table>
@@ -17799,83 +17785,83 @@ div.jp-OutputPrompt {
   <tbody>
     <tr>
       <th>0</th>
-      <td>600e865f65af9ee45325bea3</td>
+      <td>60006d6aa7aafd5a6d45ca9a</td>
+      <td>Bronx</td>
+      <td>Bakery</td>
+      <td>Morris Park Bake Shop</td>
+      <td>30075445</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>60006d6aa7aafd5a6d45ca9b</td>
       <td>Brooklyn</td>
       <td>Hamburgers</td>
       <td>Wendy'S</td>
       <td>30112340</td>
     </tr>
     <tr>
-      <th>1</th>
-      <td>600e865f65af9ee45325beb6</td>
-      <td>Queens</td>
-      <td>Delicatessen</td>
-      <td>Sal'S Deli</td>
-      <td>40361618</td>
-    </tr>
-    <tr>
       <th>2</th>
-      <td>600e865f65af9ee45325beb2</td>
-      <td>Queens</td>
-      <td>Ice Cream, Gelato, Yogurt, Ices</td>
-      <td>Carvel Ice Cream</td>
-      <td>40361322</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>600e865f65af9ee45325beb3</td>
-      <td>Brooklyn</td>
-      <td>Delicatessen</td>
-      <td>Nordic Delicacies</td>
-      <td>40361390</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>600e865f65af9ee45325beab</td>
-      <td>Brooklyn</td>
-      <td>Ice Cream, Gelato, Yogurt, Ices</td>
-      <td>Taste The Tropics Ice Cream</td>
-      <td>40356731</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>600e865f65af9ee45325becc</td>
-      <td>Manhattan</td>
-      <td>Continental</td>
-      <td>Lorenzo &amp; Maria'S</td>
-      <td>40363630</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>600e865f65af9ee45325beb0</td>
-      <td>Brooklyn</td>
-      <td>Jewish/Kosher</td>
-      <td>Seuda Foods</td>
-      <td>40360045</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>600e865f65af9ee45325bec5</td>
-      <td>Bronx</td>
-      <td>Chinese</td>
-      <td>Happy Garden</td>
-      <td>40363289</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>600e865f65af9ee45325bea4</td>
+      <td>60006d6aa7aafd5a6d45ca9c</td>
       <td>Manhattan</td>
       <td>Irish</td>
       <td>Dj Reynolds Pub And Restaurant</td>
       <td>30191841</td>
     </tr>
     <tr>
-      <th>9</th>
-      <td>600e865f65af9ee45325bec6</td>
-      <td>Manhattan</td>
+      <th>3</th>
+      <td>60006d6aa7aafd5a6d45ca9d</td>
+      <td>Brooklyn</td>
       <td>American</td>
-      <td>Cafe Metro</td>
-      <td>40363298</td>
+      <td>Riviera Caterer</td>
+      <td>40356018</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>60006d6aa7aafd5a6d45ca9e</td>
+      <td>Queens</td>
+      <td>Jewish/Kosher</td>
+      <td>Tov Kosher Kitchen</td>
+      <td>40356068</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>60006d6aa7aafd5a6d45ca9f</td>
+      <td>Queens</td>
+      <td>American</td>
+      <td>Brunos On The Boulevard</td>
+      <td>40356151</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>60006d6aa7aafd5a6d45caa0</td>
+      <td>Staten Island</td>
+      <td>Jewish/Kosher</td>
+      <td>Kosher Island</td>
+      <td>40356442</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>60006d6aa7aafd5a6d45caa1</td>
+      <td>Brooklyn</td>
+      <td>Delicatessen</td>
+      <td>Wilken'S Fine Food</td>
+      <td>40356483</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>60006d6aa7aafd5a6d45caa2</td>
+      <td>Brooklyn</td>
+      <td>American</td>
+      <td>Regina Caterers</td>
+      <td>40356649</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>60006d6aa7aafd5a6d45caa3</td>
+      <td>Brooklyn</td>
+      <td>Ice Cream, Gelato, Yogurt, Ices</td>
+      <td>Taste The Tropics Ice Cream</td>
+      <td>40356731</td>
     </tr>
   </tbody>
 </table>
@@ -17956,73 +17942,73 @@ div.jp-OutputPrompt {
   <tbody>
     <tr>
       <th>0</th>
-      <td>600e865f65af9ee45325bea3</td>
+      <td>60006d6aa7aafd5a6d45ca9a</td>
+      <td>Bronx</td>
+      <td>Morris Park Bake Shop</td>
+      <td>Morris Park Ave</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>60006d6aa7aafd5a6d45ca9b</td>
       <td>Brooklyn</td>
       <td>Wendy'S</td>
       <td>Flatbush Avenue</td>
     </tr>
     <tr>
-      <th>1</th>
-      <td>600e865f65af9ee45325beb6</td>
-      <td>Queens</td>
-      <td>Sal'S Deli</td>
-      <td>20 Avenue</td>
-    </tr>
-    <tr>
       <th>2</th>
-      <td>600e865f65af9ee45325beb2</td>
-      <td>Queens</td>
-      <td>Carvel Ice Cream</td>
-      <td>Hillside Avenue</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>600e865f65af9ee45325beb3</td>
-      <td>Brooklyn</td>
-      <td>Nordic Delicacies</td>
-      <td>3 Avenue</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>600e865f65af9ee45325beab</td>
-      <td>Brooklyn</td>
-      <td>Taste The Tropics Ice Cream</td>
-      <td>Nostrand Avenue</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>600e865f65af9ee45325becc</td>
-      <td>Manhattan</td>
-      <td>Lorenzo &amp; Maria'S</td>
-      <td>Third Avenue</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>600e865f65af9ee45325beb0</td>
-      <td>Brooklyn</td>
-      <td>Seuda Foods</td>
-      <td>Kings Highway</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>600e865f65af9ee45325bec5</td>
-      <td>Bronx</td>
-      <td>Happy Garden</td>
-      <td>238 Spofford Ave</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>600e865f65af9ee45325bea4</td>
+      <td>60006d6aa7aafd5a6d45ca9c</td>
       <td>Manhattan</td>
       <td>Dj Reynolds Pub And Restaurant</td>
       <td>West   57 Street</td>
     </tr>
     <tr>
+      <th>3</th>
+      <td>60006d6aa7aafd5a6d45ca9d</td>
+      <td>Brooklyn</td>
+      <td>Riviera Caterer</td>
+      <td>Stillwell Avenue</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>60006d6aa7aafd5a6d45ca9e</td>
+      <td>Queens</td>
+      <td>Tov Kosher Kitchen</td>
+      <td>63 Road</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>60006d6aa7aafd5a6d45ca9f</td>
+      <td>Queens</td>
+      <td>Brunos On The Boulevard</td>
+      <td>Astoria Boulevard</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>60006d6aa7aafd5a6d45caa0</td>
+      <td>Staten Island</td>
+      <td>Kosher Island</td>
+      <td>Victory Boulevard</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>60006d6aa7aafd5a6d45caa1</td>
+      <td>Brooklyn</td>
+      <td>Wilken'S Fine Food</td>
+      <td>Avenue U</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>60006d6aa7aafd5a6d45caa2</td>
+      <td>Brooklyn</td>
+      <td>Regina Caterers</td>
+      <td>11 Avenue</td>
+    </tr>
+    <tr>
       <th>9</th>
-      <td>600e865f65af9ee45325bec6</td>
-      <td>Manhattan</td>
-      <td>Cafe Metro</td>
-      <td>8 Avenue</td>
+      <td>60006d6aa7aafd5a6d45caa3</td>
+      <td>Brooklyn</td>
+      <td>Taste The Tropics Ice Cream</td>
+      <td>Nostrand Avenue</td>
     </tr>
   </tbody>
 </table>
@@ -18103,73 +18089,73 @@ div.jp-OutputPrompt {
   <tbody>
     <tr>
       <th>0</th>
-      <td>600e865f65af9ee45325bea3</td>
+      <td>60006d6aa7aafd5a6d45ca9a</td>
+      <td>Bronx</td>
+      <td>Morris Park Bake Shop</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>60006d6aa7aafd5a6d45ca9b</td>
       <td>Brooklyn</td>
       <td>Wendy'S</td>
       <td>4</td>
     </tr>
     <tr>
-      <th>1</th>
-      <td>600e865f65af9ee45325beb6</td>
-      <td>Queens</td>
-      <td>Sal'S Deli</td>
-      <td>4</td>
-    </tr>
-    <tr>
       <th>2</th>
-      <td>600e865f65af9ee45325beb2</td>
-      <td>Queens</td>
-      <td>Carvel Ice Cream</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>600e865f65af9ee45325beb3</td>
-      <td>Brooklyn</td>
-      <td>Nordic Delicacies</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>600e865f65af9ee45325beab</td>
-      <td>Brooklyn</td>
-      <td>Taste The Tropics Ice Cream</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>600e865f65af9ee45325becc</td>
-      <td>Manhattan</td>
-      <td>Lorenzo &amp; Maria'S</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>600e865f65af9ee45325beb0</td>
-      <td>Brooklyn</td>
-      <td>Seuda Foods</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>600e865f65af9ee45325bec5</td>
-      <td>Bronx</td>
-      <td>Happy Garden</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>600e865f65af9ee45325bea4</td>
+      <td>60006d6aa7aafd5a6d45ca9c</td>
       <td>Manhattan</td>
       <td>Dj Reynolds Pub And Restaurant</td>
       <td>4</td>
     </tr>
     <tr>
-      <th>9</th>
-      <td>600e865f65af9ee45325bec6</td>
-      <td>Manhattan</td>
-      <td>Cafe Metro</td>
+      <th>3</th>
+      <td>60006d6aa7aafd5a6d45ca9d</td>
+      <td>Brooklyn</td>
+      <td>Riviera Caterer</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>60006d6aa7aafd5a6d45ca9e</td>
+      <td>Queens</td>
+      <td>Tov Kosher Kitchen</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>60006d6aa7aafd5a6d45ca9f</td>
+      <td>Queens</td>
+      <td>Brunos On The Boulevard</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>60006d6aa7aafd5a6d45caa0</td>
+      <td>Staten Island</td>
+      <td>Kosher Island</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>60006d6aa7aafd5a6d45caa1</td>
+      <td>Brooklyn</td>
+      <td>Wilken'S Fine Food</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>60006d6aa7aafd5a6d45caa2</td>
+      <td>Brooklyn</td>
+      <td>Regina Caterers</td>
       <td>5</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>60006d6aa7aafd5a6d45caa3</td>
+      <td>Brooklyn</td>
+      <td>Taste The Tropics Ice Cream</td>
+      <td>4</td>
     </tr>
   </tbody>
 </table>
@@ -18251,70 +18237,70 @@ div.jp-OutputPrompt {
   <tbody>
     <tr>
       <th>0</th>
-      <td>600e86ad65af9ee45325de05</td>
-      <td>Manhattan</td>
-      <td>Nomado 33</td>
+      <td>60006d6ca7aafd5a6d45f30a</td>
+      <td>Brooklyn</td>
+      <td>Silver Krust West Indian Restaurant</td>
       <td>9</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>600e869765af9ee45325dbce</td>
+      <td>60006d6ba7aafd5a6d45e7c6</td>
       <td>Brooklyn</td>
       <td>Lai Lai Gourmet</td>
       <td>9</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>600e86cd65af9ee45325f527</td>
+      <td>60006d6da7aafd5a6d46011f</td>
       <td>Manhattan</td>
       <td>Pure Food</td>
       <td>9</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>600e86c165af9ee45325e712</td>
-      <td>Brooklyn</td>
-      <td>Silver Krust West Indian Restaurant</td>
+      <td>60006d6ca7aafd5a6d45f9cf</td>
+      <td>Manhattan</td>
+      <td>Breeze Thai-French Kitchen</td>
       <td>9</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>600e868465af9ee45325d765</td>
+      <td>60006d6ba7aafd5a6d45e35d</td>
       <td>Manhattan</td>
       <td>Benton</td>
       <td>9</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>600e86c965af9ee45325edd7</td>
+      <td>60006d6ca7aafd5a6d45e9fd</td>
       <td>Manhattan</td>
-      <td>Breeze Thai-French Kitchen</td>
+      <td>Nomado 33</td>
       <td>9</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>600e868465af9ee45325d8d6</td>
+      <td>60006d6ba7aafd5a6d45e4ce</td>
       <td>Brooklyn</td>
       <td>Noodle Station</td>
       <td>9</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>600e868465af9ee45325d73a</td>
+      <td>60006d6ba7aafd5a6d45e332</td>
       <td>Manhattan</td>
       <td>S'Mac</td>
       <td>9</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>600e866065af9ee45325c13e</td>
-      <td>Brooklyn</td>
-      <td>Green Pavilion Restaurant &amp; Sports Lounge</td>
+      <td>60006d6aa7aafd5a6d45ceeb</td>
+      <td>Manhattan</td>
+      <td>World Cup Cafe</td>
       <td>8</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>600e866a65af9ee45325c33a</td>
+      <td>60006d6aa7aafd5a6d45cf32</td>
       <td>Brooklyn</td>
       <td>Fifth Ave Cafe /Diner</td>
       <td>8</td>
@@ -18398,73 +18384,73 @@ div.jp-OutputPrompt {
   <tbody>
     <tr>
       <th>0</th>
-      <td>600e865f65af9ee45325bea3</td>
+      <td>60006d6aa7aafd5a6d45ca9a</td>
+      <td>Bronx</td>
+      <td>Morris Park Bake Shop</td>
+      <td>{'date': 2014-03-03 00:00:00, 'grade': 'A', 's...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>60006d6aa7aafd5a6d45ca9b</td>
       <td>Brooklyn</td>
       <td>Wendy'S</td>
       <td>{'date': 2014-12-30 00:00:00, 'grade': 'A', 's...</td>
     </tr>
     <tr>
-      <th>1</th>
-      <td>600e865f65af9ee45325beb6</td>
-      <td>Queens</td>
-      <td>Sal'S Deli</td>
-      <td>{'date': 2014-08-16 00:00:00, 'grade': 'A', 's...</td>
-    </tr>
-    <tr>
       <th>2</th>
-      <td>600e865f65af9ee45325beb2</td>
-      <td>Queens</td>
-      <td>Carvel Ice Cream</td>
-      <td>{'date': 2014-10-28 00:00:00, 'grade': 'A', 's...</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>600e865f65af9ee45325beb3</td>
-      <td>Brooklyn</td>
-      <td>Nordic Delicacies</td>
-      <td>{'date': 2014-08-21 00:00:00, 'grade': 'A', 's...</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>600e865f65af9ee45325beab</td>
-      <td>Brooklyn</td>
-      <td>Taste The Tropics Ice Cream</td>
-      <td>{'date': 2014-07-14 00:00:00, 'grade': 'A', 's...</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>600e865f65af9ee45325becc</td>
-      <td>Manhattan</td>
-      <td>Lorenzo &amp; Maria'S</td>
-      <td>{'date': 2014-06-02 00:00:00, 'grade': 'A', 's...</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>600e865f65af9ee45325beb0</td>
-      <td>Brooklyn</td>
-      <td>Seuda Foods</td>
-      <td>{'date': 2014-11-10 00:00:00, 'grade': 'A', 's...</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>600e865f65af9ee45325bec5</td>
-      <td>Bronx</td>
-      <td>Happy Garden</td>
-      <td>{'date': 2013-12-30 00:00:00, 'grade': 'A', 's...</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>600e865f65af9ee45325bea4</td>
+      <td>60006d6aa7aafd5a6d45ca9c</td>
       <td>Manhattan</td>
       <td>Dj Reynolds Pub And Restaurant</td>
       <td>{'date': 2014-09-06 00:00:00, 'grade': 'A', 's...</td>
     </tr>
     <tr>
+      <th>3</th>
+      <td>60006d6aa7aafd5a6d45ca9d</td>
+      <td>Brooklyn</td>
+      <td>Riviera Caterer</td>
+      <td>{'date': 2014-06-10 00:00:00, 'grade': 'A', 's...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>60006d6aa7aafd5a6d45ca9e</td>
+      <td>Queens</td>
+      <td>Tov Kosher Kitchen</td>
+      <td>{'date': 2014-11-24 00:00:00, 'grade': 'Z', 's...</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>60006d6aa7aafd5a6d45ca9f</td>
+      <td>Queens</td>
+      <td>Brunos On The Boulevard</td>
+      <td>{'date': 2014-11-15 00:00:00, 'grade': 'Z', 's...</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>60006d6aa7aafd5a6d45caa0</td>
+      <td>Staten Island</td>
+      <td>Kosher Island</td>
+      <td>{'date': 2014-10-06 00:00:00, 'grade': 'A', 's...</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>60006d6aa7aafd5a6d45caa1</td>
+      <td>Brooklyn</td>
+      <td>Wilken'S Fine Food</td>
+      <td>{'date': 2014-05-29 00:00:00, 'grade': 'A', 's...</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>60006d6aa7aafd5a6d45caa2</td>
+      <td>Brooklyn</td>
+      <td>Regina Caterers</td>
+      <td>{'date': 2014-07-18 00:00:00, 'grade': 'A', 's...</td>
+    </tr>
+    <tr>
       <th>9</th>
-      <td>600e865f65af9ee45325bec6</td>
-      <td>Manhattan</td>
-      <td>Cafe Metro</td>
-      <td>{'date': 2014-06-09 00:00:00, 'grade': 'A', 's...</td>
+      <td>60006d6aa7aafd5a6d45caa3</td>
+      <td>Brooklyn</td>
+      <td>Taste The Tropics Ice Cream</td>
+      <td>{'date': 2014-07-14 00:00:00, 'grade': 'A', 's...</td>
     </tr>
   </tbody>
 </table>
@@ -18481,7 +18467,7 @@ div.jp-OutputPrompt {
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h4 id="Calcul-d'agr&#233;gat-(suite)">Calcul d'agr&#233;gat (suite)<a class="anchor-link" href="#Calcul-d'agr&#233;gat-(suite)">&#182;</a></h4><ul>
-<li>On peut aussi faire des opérations sur les chaînes, tel que la mise en majuscule du nom</li>
+<li><code>$first</code> permet aussi de garder uniquement le premier élément du tableau <code>grades</code> de façon explicite (<code>$last</code> pour le dernier)</li>
 </ul>
 
 </div>
@@ -18494,7 +18480,7 @@ div.jp-OutputPrompt {
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">restaurants</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span>
     <span class="p">[</span>
         <span class="p">{</span> <span class="s2">&quot;$limit&quot;</span><span class="p">:</span> <span class="mi">10</span> <span class="p">},</span>
-        <span class="p">{</span> <span class="s2">&quot;$project&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;nom&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;$toUpper&quot;</span><span class="p">:</span> <span class="s2">&quot;$name&quot;</span> <span class="p">},</span> <span class="s2">&quot;borough&quot;</span><span class="p">:</span> <span class="mi">1</span> <span class="p">}</span> <span class="p">}</span>
+        <span class="p">{</span> <span class="s2">&quot;$project&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;borough&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;grade&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;$first&quot;</span><span class="p">:</span> <span class="s2">&quot;$grades&quot;</span> <span class="p">}</span> <span class="p">}</span> <span class="p">}</span>
     <span class="p">]</span>
 <span class="p">)</span>
 <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
@@ -18538,69 +18524,80 @@ div.jp-OutputPrompt {
       <th></th>
       <th>_id</th>
       <th>borough</th>
-      <th>nom</th>
+      <th>name</th>
+      <th>grade</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>600e865f65af9ee45325bea3</td>
-      <td>Brooklyn</td>
-      <td>WENDY'S</td>
+      <td>60006d6aa7aafd5a6d45ca9a</td>
+      <td>Bronx</td>
+      <td>Morris Park Bake Shop</td>
+      <td>{'date': 2014-03-03 00:00:00, 'grade': 'A', 's...</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>600e865f65af9ee45325beb6</td>
-      <td>Queens</td>
-      <td>SAL'S DELI</td>
+      <td>60006d6aa7aafd5a6d45ca9b</td>
+      <td>Brooklyn</td>
+      <td>Wendy'S</td>
+      <td>{'date': 2014-12-30 00:00:00, 'grade': 'A', 's...</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>600e865f65af9ee45325beb2</td>
-      <td>Queens</td>
-      <td>CARVEL ICE CREAM</td>
+      <td>60006d6aa7aafd5a6d45ca9c</td>
+      <td>Manhattan</td>
+      <td>Dj Reynolds Pub And Restaurant</td>
+      <td>{'date': 2014-09-06 00:00:00, 'grade': 'A', 's...</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>600e865f65af9ee45325beb3</td>
+      <td>60006d6aa7aafd5a6d45ca9d</td>
       <td>Brooklyn</td>
-      <td>NORDIC DELICACIES</td>
+      <td>Riviera Caterer</td>
+      <td>{'date': 2014-06-10 00:00:00, 'grade': 'A', 's...</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>600e865f65af9ee45325beab</td>
-      <td>Brooklyn</td>
-      <td>TASTE THE TROPICS ICE CREAM</td>
+      <td>60006d6aa7aafd5a6d45ca9e</td>
+      <td>Queens</td>
+      <td>Tov Kosher Kitchen</td>
+      <td>{'date': 2014-11-24 00:00:00, 'grade': 'Z', 's...</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>600e865f65af9ee45325becc</td>
-      <td>Manhattan</td>
-      <td>LORENZO &amp; MARIA'S</td>
+      <td>60006d6aa7aafd5a6d45ca9f</td>
+      <td>Queens</td>
+      <td>Brunos On The Boulevard</td>
+      <td>{'date': 2014-11-15 00:00:00, 'grade': 'Z', 's...</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>600e865f65af9ee45325beb0</td>
-      <td>Brooklyn</td>
-      <td>SEUDA FOODS</td>
+      <td>60006d6aa7aafd5a6d45caa0</td>
+      <td>Staten Island</td>
+      <td>Kosher Island</td>
+      <td>{'date': 2014-10-06 00:00:00, 'grade': 'A', 's...</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>600e865f65af9ee45325bec5</td>
-      <td>Bronx</td>
-      <td>HAPPY GARDEN</td>
+      <td>60006d6aa7aafd5a6d45caa1</td>
+      <td>Brooklyn</td>
+      <td>Wilken'S Fine Food</td>
+      <td>{'date': 2014-05-29 00:00:00, 'grade': 'A', 's...</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>600e865f65af9ee45325bea4</td>
-      <td>Manhattan</td>
-      <td>DJ REYNOLDS PUB AND RESTAURANT</td>
+      <td>60006d6aa7aafd5a6d45caa2</td>
+      <td>Brooklyn</td>
+      <td>Regina Caterers</td>
+      <td>{'date': 2014-07-18 00:00:00, 'grade': 'A', 's...</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>600e865f65af9ee45325bec6</td>
-      <td>Manhattan</td>
-      <td>CAFE METRO</td>
+      <td>60006d6aa7aafd5a6d45caa3</td>
+      <td>Brooklyn</td>
+      <td>Taste The Tropics Ice Cream</td>
+      <td>{'date': 2014-07-14 00:00:00, 'grade': 'A', 's...</td>
     </tr>
   </tbody>
 </table>
@@ -18617,7 +18614,7 @@ div.jp-OutputPrompt {
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h4 id="Calcul-d'agr&#233;gat-(suite)">Calcul d'agr&#233;gat (suite)<a class="anchor-link" href="#Calcul-d'agr&#233;gat-(suite)">&#182;</a></h4><ul>
-<li>On peut aussi vouloir ajouter un champs, comme ici le nombre d'évaluations</li>
+<li>On peut aussi faire des opérations sur les chaînes, tel que la mise en majuscule du nom</li>
 </ul>
 
 </div>
@@ -18630,7 +18627,7 @@ div.jp-OutputPrompt {
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">restaurants</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span>
     <span class="p">[</span>
         <span class="p">{</span> <span class="s2">&quot;$limit&quot;</span><span class="p">:</span> <span class="mi">10</span> <span class="p">},</span>
-        <span class="p">{</span> <span class="s2">&quot;$addFields&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;nb_grades&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;$size&quot;</span><span class="p">:</span> <span class="s2">&quot;$grades&quot;</span> <span class="p">}</span> <span class="p">}</span> <span class="p">}</span>
+        <span class="p">{</span> <span class="s2">&quot;$project&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;nom&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;$toUpper&quot;</span><span class="p">:</span> <span class="s2">&quot;$name&quot;</span> <span class="p">},</span> <span class="s2">&quot;borough&quot;</span><span class="p">:</span> <span class="mi">1</span> <span class="p">}</span> <span class="p">}</span>
     <span class="p">]</span>
 <span class="p">)</span>
 <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
@@ -18673,125 +18670,70 @@ div.jp-OutputPrompt {
     <tr style="text-align: right;">
       <th></th>
       <th>_id</th>
-      <th>address</th>
       <th>borough</th>
-      <th>cuisine</th>
-      <th>grades</th>
-      <th>name</th>
-      <th>restaurant_id</th>
-      <th>nb_grades</th>
+      <th>nom</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>600e865f65af9ee45325bea3</td>
-      <td>{'building': '469', 'coord': [-73.961704, 40.6...</td>
-      <td>Brooklyn</td>
-      <td>Hamburgers</td>
-      <td>[{'date': 2014-12-30 00:00:00, 'grade': 'A', '...</td>
-      <td>Wendy'S</td>
-      <td>30112340</td>
-      <td>4</td>
+      <td>60006d6aa7aafd5a6d45ca9a</td>
+      <td>Bronx</td>
+      <td>MORRIS PARK BAKE SHOP</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>600e865f65af9ee45325beb6</td>
-      <td>{'building': '129-08', 'coord': [-73.839297, 4...</td>
-      <td>Queens</td>
-      <td>Delicatessen</td>
-      <td>[{'date': 2014-08-16 00:00:00, 'grade': 'A', '...</td>
-      <td>Sal'S Deli</td>
-      <td>40361618</td>
-      <td>4</td>
+      <td>60006d6aa7aafd5a6d45ca9b</td>
+      <td>Brooklyn</td>
+      <td>WENDY'S</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>600e865f65af9ee45325beb2</td>
-      <td>{'building': '265-15', 'coord': [-73.7032601, ...</td>
-      <td>Queens</td>
-      <td>Ice Cream, Gelato, Yogurt, Ices</td>
-      <td>[{'date': 2014-10-28 00:00:00, 'grade': 'A', '...</td>
-      <td>Carvel Ice Cream</td>
-      <td>40361322</td>
-      <td>3</td>
+      <td>60006d6aa7aafd5a6d45ca9c</td>
+      <td>Manhattan</td>
+      <td>DJ REYNOLDS PUB AND RESTAURANT</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>600e865f65af9ee45325beb3</td>
-      <td>{'building': '6909', 'coord': [-74.0259567, 40...</td>
+      <td>60006d6aa7aafd5a6d45ca9d</td>
       <td>Brooklyn</td>
-      <td>Delicatessen</td>
-      <td>[{'date': 2014-08-21 00:00:00, 'grade': 'A', '...</td>
-      <td>Nordic Delicacies</td>
-      <td>40361390</td>
-      <td>3</td>
+      <td>RIVIERA CATERER</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>600e865f65af9ee45325beab</td>
-      <td>{'building': '1839', 'coord': [-73.9482609, 40...</td>
-      <td>Brooklyn</td>
-      <td>Ice Cream, Gelato, Yogurt, Ices</td>
-      <td>[{'date': 2014-07-14 00:00:00, 'grade': 'A', '...</td>
-      <td>Taste The Tropics Ice Cream</td>
-      <td>40356731</td>
-      <td>4</td>
+      <td>60006d6aa7aafd5a6d45ca9e</td>
+      <td>Queens</td>
+      <td>TOV KOSHER KITCHEN</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>600e865f65af9ee45325becc</td>
-      <td>{'building': '1418', 'coord': [-73.95685019999...</td>
-      <td>Manhattan</td>
-      <td>Continental</td>
-      <td>[{'date': 2014-06-02 00:00:00, 'grade': 'A', '...</td>
-      <td>Lorenzo &amp; Maria'S</td>
-      <td>40363630</td>
-      <td>5</td>
+      <td>60006d6aa7aafd5a6d45ca9f</td>
+      <td>Queens</td>
+      <td>BRUNOS ON THE BOULEVARD</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>600e865f65af9ee45325beb0</td>
-      <td>{'building': '705', 'coord': [-73.9653967, 40....</td>
-      <td>Brooklyn</td>
-      <td>Jewish/Kosher</td>
-      <td>[{'date': 2014-11-10 00:00:00, 'grade': 'A', '...</td>
-      <td>Seuda Foods</td>
-      <td>40360045</td>
-      <td>5</td>
+      <td>60006d6aa7aafd5a6d45caa0</td>
+      <td>Staten Island</td>
+      <td>KOSHER ISLAND</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>600e865f65af9ee45325bec5</td>
-      <td>{'building': '1236', 'coord': [-73.8893654, 40...</td>
-      <td>Bronx</td>
-      <td>Chinese</td>
-      <td>[{'date': 2013-12-30 00:00:00, 'grade': 'A', '...</td>
-      <td>Happy Garden</td>
-      <td>40363289</td>
-      <td>3</td>
+      <td>60006d6aa7aafd5a6d45caa1</td>
+      <td>Brooklyn</td>
+      <td>WILKEN'S FINE FOOD</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>600e865f65af9ee45325bea4</td>
-      <td>{'building': '351', 'coord': [-73.985135599999...</td>
-      <td>Manhattan</td>
-      <td>Irish</td>
-      <td>[{'date': 2014-09-06 00:00:00, 'grade': 'A', '...</td>
-      <td>Dj Reynolds Pub And Restaurant</td>
-      <td>30191841</td>
-      <td>4</td>
+      <td>60006d6aa7aafd5a6d45caa2</td>
+      <td>Brooklyn</td>
+      <td>REGINA CATERERS</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>600e865f65af9ee45325bec6</td>
-      <td>{'building': '625', 'coord': [-73.990494, 40.7...</td>
-      <td>Manhattan</td>
-      <td>American</td>
-      <td>[{'date': 2014-06-09 00:00:00, 'grade': 'A', '...</td>
-      <td>Cafe Metro</td>
-      <td>40363298</td>
-      <td>5</td>
+      <td>60006d6aa7aafd5a6d45caa3</td>
+      <td>Brooklyn</td>
+      <td>TASTE THE TROPICS ICE CREAM</td>
     </tr>
   </tbody>
 </table>
@@ -18808,7 +18750,7 @@ div.jp-OutputPrompt {
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h4 id="Calcul-d'agr&#233;gat-(suite)">Calcul d'agr&#233;gat (suite)<a class="anchor-link" href="#Calcul-d'agr&#233;gat-(suite)">&#182;</a></h4><ul>
-<li>On extrait ici les trois premières lettres du quartier</li>
+<li>On peut aussi vouloir ajouter un champs, comme ici le nombre d'évaluations</li>
 </ul>
 
 </div>
@@ -18821,10 +18763,7 @@ div.jp-OutputPrompt {
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">restaurants</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span>
     <span class="p">[</span>
         <span class="p">{</span> <span class="s2">&quot;$limit&quot;</span><span class="p">:</span> <span class="mi">10</span> <span class="p">},</span>
-        <span class="p">{</span> <span class="s2">&quot;$project&quot;</span><span class="p">:</span> <span class="p">{</span> 
-            <span class="s2">&quot;nom&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;$toUpper&quot;</span><span class="p">:</span> <span class="s2">&quot;$name&quot;</span> <span class="p">},</span> 
-            <span class="s2">&quot;quartier&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;$substr&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;$borough&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span> <span class="p">]</span> <span class="p">}</span> 
-        <span class="p">}</span> <span class="p">}</span>
+        <span class="p">{</span> <span class="s2">&quot;$addFields&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;nb_grades&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;$size&quot;</span><span class="p">:</span> <span class="s2">&quot;$grades&quot;</span> <span class="p">}</span> <span class="p">}</span> <span class="p">}</span>
     <span class="p">]</span>
 <span class="p">)</span>
 <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
@@ -18867,70 +18806,125 @@ div.jp-OutputPrompt {
     <tr style="text-align: right;">
       <th></th>
       <th>_id</th>
-      <th>nom</th>
-      <th>quartier</th>
+      <th>address</th>
+      <th>borough</th>
+      <th>cuisine</th>
+      <th>grades</th>
+      <th>name</th>
+      <th>restaurant_id</th>
+      <th>nb_grades</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>600e865f65af9ee45325bea3</td>
-      <td>WENDY'S</td>
-      <td>Bro</td>
+      <td>60006d6aa7aafd5a6d45ca9a</td>
+      <td>{'building': '1007', 'coord': [-73.856077, 40....</td>
+      <td>Bronx</td>
+      <td>Bakery</td>
+      <td>[{'date': 2014-03-03 00:00:00, 'grade': 'A', '...</td>
+      <td>Morris Park Bake Shop</td>
+      <td>30075445</td>
+      <td>5</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>600e865f65af9ee45325beb6</td>
-      <td>SAL'S DELI</td>
-      <td>Que</td>
+      <td>60006d6aa7aafd5a6d45ca9b</td>
+      <td>{'building': '469', 'coord': [-73.961704, 40.6...</td>
+      <td>Brooklyn</td>
+      <td>Hamburgers</td>
+      <td>[{'date': 2014-12-30 00:00:00, 'grade': 'A', '...</td>
+      <td>Wendy'S</td>
+      <td>30112340</td>
+      <td>4</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>600e865f65af9ee45325beb2</td>
-      <td>CARVEL ICE CREAM</td>
-      <td>Que</td>
+      <td>60006d6aa7aafd5a6d45ca9c</td>
+      <td>{'building': '351', 'coord': [-73.985135599999...</td>
+      <td>Manhattan</td>
+      <td>Irish</td>
+      <td>[{'date': 2014-09-06 00:00:00, 'grade': 'A', '...</td>
+      <td>Dj Reynolds Pub And Restaurant</td>
+      <td>30191841</td>
+      <td>4</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>600e865f65af9ee45325beb3</td>
-      <td>NORDIC DELICACIES</td>
-      <td>Bro</td>
+      <td>60006d6aa7aafd5a6d45ca9d</td>
+      <td>{'building': '2780', 'coord': [-73.98241999999...</td>
+      <td>Brooklyn</td>
+      <td>American</td>
+      <td>[{'date': 2014-06-10 00:00:00, 'grade': 'A', '...</td>
+      <td>Riviera Caterer</td>
+      <td>40356018</td>
+      <td>4</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>600e865f65af9ee45325beab</td>
-      <td>TASTE THE TROPICS ICE CREAM</td>
-      <td>Bro</td>
+      <td>60006d6aa7aafd5a6d45ca9e</td>
+      <td>{'building': '97-22', 'coord': [-73.8601152, 4...</td>
+      <td>Queens</td>
+      <td>Jewish/Kosher</td>
+      <td>[{'date': 2014-11-24 00:00:00, 'grade': 'Z', '...</td>
+      <td>Tov Kosher Kitchen</td>
+      <td>40356068</td>
+      <td>4</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>600e865f65af9ee45325becc</td>
-      <td>LORENZO &amp; MARIA'S</td>
-      <td>Man</td>
+      <td>60006d6aa7aafd5a6d45ca9f</td>
+      <td>{'building': '8825', 'coord': [-73.8803827, 40...</td>
+      <td>Queens</td>
+      <td>American</td>
+      <td>[{'date': 2014-11-15 00:00:00, 'grade': 'Z', '...</td>
+      <td>Brunos On The Boulevard</td>
+      <td>40356151</td>
+      <td>4</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>600e865f65af9ee45325beb0</td>
-      <td>SEUDA FOODS</td>
-      <td>Bro</td>
+      <td>60006d6aa7aafd5a6d45caa0</td>
+      <td>{'building': '2206', 'coord': [-74.1377286, 40...</td>
+      <td>Staten Island</td>
+      <td>Jewish/Kosher</td>
+      <td>[{'date': 2014-10-06 00:00:00, 'grade': 'A', '...</td>
+      <td>Kosher Island</td>
+      <td>40356442</td>
+      <td>4</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>600e865f65af9ee45325bec5</td>
-      <td>HAPPY GARDEN</td>
-      <td>Bro</td>
+      <td>60006d6aa7aafd5a6d45caa1</td>
+      <td>{'building': '7114', 'coord': [-73.9068506, 40...</td>
+      <td>Brooklyn</td>
+      <td>Delicatessen</td>
+      <td>[{'date': 2014-05-29 00:00:00, 'grade': 'A', '...</td>
+      <td>Wilken'S Fine Food</td>
+      <td>40356483</td>
+      <td>6</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>600e865f65af9ee45325bea4</td>
-      <td>DJ REYNOLDS PUB AND RESTAURANT</td>
-      <td>Man</td>
+      <td>60006d6aa7aafd5a6d45caa2</td>
+      <td>{'building': '6409', 'coord': [-74.00528899999...</td>
+      <td>Brooklyn</td>
+      <td>American</td>
+      <td>[{'date': 2014-07-18 00:00:00, 'grade': 'A', '...</td>
+      <td>Regina Caterers</td>
+      <td>40356649</td>
+      <td>5</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>600e865f65af9ee45325bec6</td>
-      <td>CAFE METRO</td>
-      <td>Man</td>
+      <td>60006d6aa7aafd5a6d45caa3</td>
+      <td>{'building': '1839', 'coord': [-73.9482609, 40...</td>
+      <td>Brooklyn</td>
+      <td>Ice Cream, Gelato, Yogurt, Ices</td>
+      <td>[{'date': 2014-07-14 00:00:00, 'grade': 'A', '...</td>
+      <td>Taste The Tropics Ice Cream</td>
+      <td>40356731</td>
+      <td>4</td>
     </tr>
   </tbody>
 </table>
@@ -18947,10 +18941,7 @@ div.jp-OutputPrompt {
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h4 id="Calcul-d'agr&#233;gat-(suite)">Calcul d'agr&#233;gat (suite)<a class="anchor-link" href="#Calcul-d'agr&#233;gat-(suite)">&#182;</a></h4><ul>
-<li>On fait de même, mais on met en majuscule et on note <em>BRX</em> pour le <em>Bronx</em><ul>
-<li>on garde le quartier d'origine pour vérification ici</li>
-</ul>
-</li>
+<li>On extrait ici les trois premières lettres du quartier</li>
 </ul>
 
 </div>
@@ -18963,15 +18954,9 @@ div.jp-OutputPrompt {
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">restaurants</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span>
     <span class="p">[</span>
         <span class="p">{</span> <span class="s2">&quot;$limit&quot;</span><span class="p">:</span> <span class="mi">10</span> <span class="p">},</span>
-        <span class="p">{</span> <span class="s2">&quot;$addFields&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;quartier&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;$toUpper&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;$substr&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;$borough&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span> <span class="p">]</span> <span class="p">}</span> <span class="p">}</span> <span class="p">}},</span>
         <span class="p">{</span> <span class="s2">&quot;$project&quot;</span><span class="p">:</span> <span class="p">{</span> 
             <span class="s2">&quot;nom&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;$toUpper&quot;</span><span class="p">:</span> <span class="s2">&quot;$name&quot;</span> <span class="p">},</span> 
-            <span class="s2">&quot;quartier&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;$cond&quot;</span><span class="p">:</span> <span class="p">{</span> 
-                <span class="s2">&quot;if&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;$eq&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;$borough&quot;</span><span class="p">,</span> <span class="s2">&quot;Bronx&quot;</span><span class="p">]</span> <span class="p">},</span> 
-                <span class="s2">&quot;then&quot;</span><span class="p">:</span> <span class="s2">&quot;BRX&quot;</span><span class="p">,</span> 
-                <span class="s2">&quot;else&quot;</span><span class="p">:</span> <span class="s2">&quot;$quartier&quot;</span> 
-            <span class="p">}</span> <span class="p">},</span>
-            <span class="s2">&quot;borough&quot;</span><span class="p">:</span> <span class="mi">1</span>
+            <span class="s2">&quot;quartier&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;$substr&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;$borough&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span> <span class="p">]</span> <span class="p">}</span> 
         <span class="p">}</span> <span class="p">}</span>
     <span class="p">]</span>
 <span class="p">)</span>
@@ -19015,6 +19000,154 @@ div.jp-OutputPrompt {
     <tr style="text-align: right;">
       <th></th>
       <th>_id</th>
+      <th>nom</th>
+      <th>quartier</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>60006d6aa7aafd5a6d45ca9a</td>
+      <td>MORRIS PARK BAKE SHOP</td>
+      <td>Bro</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>60006d6aa7aafd5a6d45ca9b</td>
+      <td>WENDY'S</td>
+      <td>Bro</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>60006d6aa7aafd5a6d45ca9c</td>
+      <td>DJ REYNOLDS PUB AND RESTAURANT</td>
+      <td>Man</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>60006d6aa7aafd5a6d45ca9d</td>
+      <td>RIVIERA CATERER</td>
+      <td>Bro</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>60006d6aa7aafd5a6d45ca9e</td>
+      <td>TOV KOSHER KITCHEN</td>
+      <td>Que</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>60006d6aa7aafd5a6d45ca9f</td>
+      <td>BRUNOS ON THE BOULEVARD</td>
+      <td>Que</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>60006d6aa7aafd5a6d45caa0</td>
+      <td>KOSHER ISLAND</td>
+      <td>Sta</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>60006d6aa7aafd5a6d45caa1</td>
+      <td>WILKEN'S FINE FOOD</td>
+      <td>Bro</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>60006d6aa7aafd5a6d45caa2</td>
+      <td>REGINA CATERERS</td>
+      <td>Bro</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>60006d6aa7aafd5a6d45caa3</td>
+      <td>TASTE THE TROPICS ICE CREAM</td>
+      <td>Bro</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div></section></section><section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h4 id="Calcul-d'agr&#233;gat-(suite)">Calcul d'agr&#233;gat (suite)<a class="anchor-link" href="#Calcul-d'agr&#233;gat-(suite)">&#182;</a></h4><ul>
+<li>On fait de même, mais on met en majuscule et on note <em>BRX</em> pour le <em>Bronx</em><ul>
+<li>on garde le quartier d'origine pour vérification ici</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[40]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">restaurants</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="p">{</span> <span class="s2">&quot;$limit&quot;</span><span class="p">:</span> <span class="mi">10</span> <span class="p">},</span>
+        <span class="p">{</span> <span class="s2">&quot;$addFields&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;quartier&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;$toUpper&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;$substr&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;$borough&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span> <span class="p">]</span> <span class="p">}</span> <span class="p">}</span> <span class="p">}},</span>
+        <span class="p">{</span> <span class="s2">&quot;$project&quot;</span><span class="p">:</span> <span class="p">{</span> 
+            <span class="s2">&quot;nom&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;$toUpper&quot;</span><span class="p">:</span> <span class="s2">&quot;$name&quot;</span> <span class="p">},</span> 
+            <span class="s2">&quot;quartier&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;$cond&quot;</span><span class="p">:</span> <span class="p">{</span> 
+                <span class="s2">&quot;if&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;$eq&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;$borough&quot;</span><span class="p">,</span> <span class="s2">&quot;Bronx&quot;</span><span class="p">]</span> <span class="p">},</span> 
+                <span class="s2">&quot;then&quot;</span><span class="p">:</span> <span class="s2">&quot;BRX&quot;</span><span class="p">,</span> 
+                <span class="s2">&quot;else&quot;</span><span class="p">:</span> <span class="s2">&quot;$quartier&quot;</span> 
+            <span class="p">}</span> <span class="p">},</span>
+            <span class="s2">&quot;borough&quot;</span><span class="p">:</span> <span class="mi">1</span>
+        <span class="p">}</span> <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+<span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[40]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>_id</th>
       <th>borough</th>
       <th>nom</th>
       <th>quartier</th>
@@ -19023,73 +19156,73 @@ div.jp-OutputPrompt {
   <tbody>
     <tr>
       <th>0</th>
-      <td>600e865f65af9ee45325bea3</td>
+      <td>60006d6aa7aafd5a6d45ca9a</td>
+      <td>Bronx</td>
+      <td>MORRIS PARK BAKE SHOP</td>
+      <td>BRX</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>60006d6aa7aafd5a6d45ca9b</td>
       <td>Brooklyn</td>
       <td>WENDY'S</td>
       <td>BRO</td>
     </tr>
     <tr>
-      <th>1</th>
-      <td>600e865f65af9ee45325beb6</td>
-      <td>Queens</td>
-      <td>SAL'S DELI</td>
-      <td>QUE</td>
-    </tr>
-    <tr>
       <th>2</th>
-      <td>600e865f65af9ee45325beb2</td>
-      <td>Queens</td>
-      <td>CARVEL ICE CREAM</td>
-      <td>QUE</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>600e865f65af9ee45325beb3</td>
-      <td>Brooklyn</td>
-      <td>NORDIC DELICACIES</td>
-      <td>BRO</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>600e865f65af9ee45325beab</td>
-      <td>Brooklyn</td>
-      <td>TASTE THE TROPICS ICE CREAM</td>
-      <td>BRO</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>600e865f65af9ee45325becc</td>
-      <td>Manhattan</td>
-      <td>LORENZO &amp; MARIA'S</td>
-      <td>MAN</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>600e865f65af9ee45325beb0</td>
-      <td>Brooklyn</td>
-      <td>SEUDA FOODS</td>
-      <td>BRO</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>600e865f65af9ee45325bec5</td>
-      <td>Bronx</td>
-      <td>HAPPY GARDEN</td>
-      <td>BRX</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>600e865f65af9ee45325bea4</td>
+      <td>60006d6aa7aafd5a6d45ca9c</td>
       <td>Manhattan</td>
       <td>DJ REYNOLDS PUB AND RESTAURANT</td>
       <td>MAN</td>
     </tr>
     <tr>
+      <th>3</th>
+      <td>60006d6aa7aafd5a6d45ca9d</td>
+      <td>Brooklyn</td>
+      <td>RIVIERA CATERER</td>
+      <td>BRO</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>60006d6aa7aafd5a6d45ca9e</td>
+      <td>Queens</td>
+      <td>TOV KOSHER KITCHEN</td>
+      <td>QUE</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>60006d6aa7aafd5a6d45ca9f</td>
+      <td>Queens</td>
+      <td>BRUNOS ON THE BOULEVARD</td>
+      <td>QUE</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>60006d6aa7aafd5a6d45caa0</td>
+      <td>Staten Island</td>
+      <td>KOSHER ISLAND</td>
+      <td>STA</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>60006d6aa7aafd5a6d45caa1</td>
+      <td>Brooklyn</td>
+      <td>WILKEN'S FINE FOOD</td>
+      <td>BRO</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>60006d6aa7aafd5a6d45caa2</td>
+      <td>Brooklyn</td>
+      <td>REGINA CATERERS</td>
+      <td>BRO</td>
+    </tr>
+    <tr>
       <th>9</th>
-      <td>600e865f65af9ee45325bec6</td>
-      <td>Manhattan</td>
-      <td>CAFE METRO</td>
-      <td>MAN</td>
+      <td>60006d6aa7aafd5a6d45caa3</td>
+      <td>Brooklyn</td>
+      <td>TASTE THE TROPICS ICE CREAM</td>
+      <td>BRO</td>
     </tr>
   </tbody>
 </table>
@@ -19113,7 +19246,7 @@ div.jp-OutputPrompt {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[40]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[41]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">restaurants</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span>
@@ -19137,7 +19270,7 @@ div.jp-OutputPrompt {
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[40]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[41]:</div>
 
 
 
@@ -19192,7 +19325,7 @@ div.jp-OutputPrompt {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[41]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[42]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">restaurants</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span>
@@ -19216,7 +19349,7 @@ div.jp-OutputPrompt {
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[41]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[42]:</div>
 
 
 
@@ -19246,13 +19379,13 @@ div.jp-OutputPrompt {
   <tbody>
     <tr>
       <th>0</th>
-      <td>Queens</td>
-      <td>5656</td>
+      <td>Manhattan</td>
+      <td>10259</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>Manhattan</td>
-      <td>10259</td>
+      <td>Queens</td>
+      <td>5656</td>
     </tr>
     <tr>
       <th>2</th>
@@ -19261,13 +19394,222 @@ div.jp-OutputPrompt {
     </tr>
     <tr>
       <th>3</th>
+      <td>Bronx</td>
+      <td>2338</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Missing</td>
+      <td>51</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Brooklyn</td>
+      <td>6086</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div></section></section><section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h4 id="Calcul-d'agr&#233;gat-(suite)">Calcul d'agr&#233;gat (suite)<a class="anchor-link" href="#Calcul-d'agr&#233;gat-(suite)">&#182;</a></h4><ul>
+<li>Une fois le dénombrement fait, on peut aussi trié le résultat</li>
+</ul>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[43]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">restaurants</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="p">{</span><span class="s2">&quot;$group&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;$borough&quot;</span><span class="p">,</span> <span class="s2">&quot;NbRestos&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;$sum&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}}},</span>
+        <span class="p">{</span><span class="s2">&quot;$sort&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;NbRestos&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">}}</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+<span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[43]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>_id</th>
+      <th>NbRestos</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Manhattan</td>
+      <td>10259</td>
+    </tr>
+    <tr>
+      <th>1</th>
       <td>Brooklyn</td>
       <td>6086</td>
     </tr>
     <tr>
-      <th>4</th>
+      <th>2</th>
+      <td>Queens</td>
+      <td>5656</td>
+    </tr>
+    <tr>
+      <th>3</th>
       <td>Bronx</td>
       <td>2338</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Staten Island</td>
+      <td>969</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Missing</td>
+      <td>51</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div></section></section><section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h4 id="Calcul-d'agr&#233;gat-(suite)">Calcul d'agr&#233;gat (suite)<a class="anchor-link" href="#Calcul-d'agr&#233;gat-(suite)">&#182;</a></h4><ul>
+<li>La même opération est réalisable directement avec <code>$sortByCount</code></li>
+</ul>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[44]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">restaurants</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="p">{</span><span class="s2">&quot;$sortByCount&quot;</span><span class="p">:</span> <span class="s2">&quot;$borough&quot;</span><span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+<span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[44]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>_id</th>
+      <th>count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Manhattan</td>
+      <td>10259</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Brooklyn</td>
+      <td>6086</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Queens</td>
+      <td>5656</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Bronx</td>
+      <td>2338</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Staten Island</td>
+      <td>969</td>
     </tr>
     <tr>
       <th>5</th>
@@ -19296,7 +19638,7 @@ div.jp-OutputPrompt {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[42]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[45]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">restaurants</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span>
@@ -19322,7 +19664,7 @@ div.jp-OutputPrompt {
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[42]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[45]:</div>
 
 
 
@@ -19377,7 +19719,7 @@ div.jp-OutputPrompt {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[43]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[46]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">restaurants</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span>
@@ -19403,7 +19745,7 @@ div.jp-OutputPrompt {
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[43]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[46]:</div>
 
 
 
@@ -19486,7 +19828,7 @@ div.jp-OutputPrompt {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[44]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[47]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">restaurants</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span>
@@ -19520,7 +19862,7 @@ div.jp-OutputPrompt {
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[44]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[47]:</div>
 
 
 
@@ -19560,42 +19902,42 @@ div.jp-OutputPrompt {
     </tr>
     <tr>
       <th>2</th>
-      <td>{'quartier': 'Manhattan', 'rue': 'W 44Th St'}</td>
+      <td>{'quartier': 'Manhattan', 'rue': 'Oliver St'}</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>{'quartier': 'Queens', 'rue': '100Th St'}</td>
+      <td>{'quartier': 'Brooklyn', 'rue': '78Th St'}</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>{'quartier': 'Manhattan', 'rue': 'W 37Th St'}</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>{'quartier': 'Queens', 'rue': '95Th St'}</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>6</th>
       <td>{'quartier': 'Brooklyn', 'rue': 'Stockholm St'}</td>
       <td>0.0</td>
     </tr>
     <tr>
+      <th>5</th>
+      <td>{'quartier': 'Manhattan', 'rue': 'West  123 St...</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>{'quartier': 'Queens', 'rue': '100Th St'}</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
       <th>7</th>
-      <td>{'quartier': 'Bronx', 'rue': 'East 208 Street'}</td>
+      <td>{'quartier': 'Manhattan', 'rue': 'River Terrace'}</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>{'quartier': 'Manhattan', 'rue': 'Pleasant Ave...</td>
+      <td>{'quartier': 'Queens', 'rue': '95Th St'}</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>{'quartier': 'Manhattan', 'rue': 'River Terrace'}</td>
+      <td>{'quartier': 'Manhattan', 'rue': 'Pleasant Ave...</td>
       <td>0.0</td>
     </tr>
   </tbody>
@@ -19624,7 +19966,7 @@ div.jp-OutputPrompt {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[45]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[48]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">restaurants</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span>
@@ -19654,7 +19996,7 @@ div.jp-OutputPrompt {
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[45]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[48]:</div>
 
 
 
@@ -19685,63 +20027,63 @@ div.jp-OutputPrompt {
   <tbody>
     <tr>
       <th>0</th>
-      <td>Lorenzo &amp; Maria'S</td>
-      <td>[B, A]</td>
-      <td>[A, A, B, A, B]</td>
+      <td>Tov Kosher Kitchen</td>
+      <td>[B, Z, A]</td>
+      <td>[Z, A, A, B]</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>Happy Garden</td>
-      <td>[B, A]</td>
-      <td>[A, A, B]</td>
+      <td>Riviera Caterer</td>
+      <td>[A]</td>
+      <td>[A, A, A, A]</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>Dj Reynolds Pub And Restaurant</td>
+      <td>Kosher Island</td>
       <td>[A]</td>
       <td>[A, A, A, A]</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>Carvel Ice Cream</td>
-      <td>[A]</td>
-      <td>[A, A, A]</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Taste The Tropics Ice Cream</td>
-      <td>[A]</td>
-      <td>[A, A, A, A]</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>Cafe Metro</td>
-      <td>[A]</td>
-      <td>[A, A, A, A, A]</td>
-    </tr>
-    <tr>
-      <th>6</th>
       <td>Wendy'S</td>
       <td>[B, A]</td>
       <td>[A, B, A, A]</td>
     </tr>
     <tr>
-      <th>7</th>
-      <td>Nordic Delicacies</td>
-      <td>[A]</td>
-      <td>[A, A, A]</td>
+      <th>4</th>
+      <td>Morris Park Bake Shop</td>
+      <td>[B, A]</td>
+      <td>[A, A, A, A, B]</td>
     </tr>
     <tr>
-      <th>8</th>
-      <td>Sal'S Deli</td>
+      <th>5</th>
+      <td>Wilken'S Fine Food</td>
+      <td>[A]</td>
+      <td>[A, A, A, A, A, A]</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Regina Caterers</td>
+      <td>[A]</td>
+      <td>[A, A, A, A, A]</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Dj Reynolds Pub And Restaurant</td>
       <td>[A]</td>
       <td>[A, A, A, A]</td>
     </tr>
     <tr>
+      <th>8</th>
+      <td>Brunos On The Boulevard</td>
+      <td>[Z, A]</td>
+      <td>[Z, A, A, A]</td>
+    </tr>
+    <tr>
       <th>9</th>
-      <td>Seuda Foods</td>
-      <td>[B, A]</td>
-      <td>[A, A, A, A, B]</td>
+      <td>Taste The Tropics Ice Cream</td>
+      <td>[A]</td>
+      <td>[A, A, A, A]</td>
     </tr>
   </tbody>
 </table>
@@ -19763,7 +20105,7 @@ div.jp-OutputPrompt {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[46]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[49]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">cursor</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">restaurants</span><span class="o">.</span><span class="n">find</span><span class="p">(</span>
@@ -19786,7 +20128,7 @@ div.jp-OutputPrompt {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[47]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[50]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">cursor</span><span class="p">)</span>
@@ -19805,7 +20147,7 @@ div.jp-OutputPrompt {
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[47]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[50]:</div>
 
 
 
@@ -19900,11 +20242,2036 @@ div.jp-OutputPrompt {
 
 </div>
 
-</div>
+</div></section></section><section><section>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Gestion-des-variables-sp&#233;ciales-dans-le-DataFrame">Gestion des variables sp&#233;ciales dans le DataFrame<a class="anchor-link" href="#Gestion-des-variables-sp&#233;ciales-dans-le-DataFrame">&#182;</a></h2><p>Une fois importées dans un <code>DataFrame</code>, les champs complexes (comme <code>address</code> et <code>grades</code>) sont des variables d'un type un peu particulier.</p>
 
 </div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[52]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">restaurants</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">limit</span> <span class="o">=</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">df</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[52]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>_id</th>
+      <th>address</th>
+      <th>borough</th>
+      <th>cuisine</th>
+      <th>grades</th>
+      <th>name</th>
+      <th>restaurant_id</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>60006d6aa7aafd5a6d45ca9a</td>
+      <td>{'building': '1007', 'coord': [-73.856077, 40....</td>
+      <td>Bronx</td>
+      <td>Bakery</td>
+      <td>[{'date': 2014-03-03 00:00:00, 'grade': 'A', '...</td>
+      <td>Morris Park Bake Shop</td>
+      <td>30075445</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>60006d6aa7aafd5a6d45ca9b</td>
+      <td>{'building': '469', 'coord': [-73.961704, 40.6...</td>
+      <td>Brooklyn</td>
+      <td>Hamburgers</td>
+      <td>[{'date': 2014-12-30 00:00:00, 'grade': 'A', '...</td>
+      <td>Wendy'S</td>
+      <td>30112340</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>60006d6aa7aafd5a6d45ca9c</td>
+      <td>{'building': '351', 'coord': [-73.985135599999...</td>
+      <td>Manhattan</td>
+      <td>Irish</td>
+      <td>[{'date': 2014-09-06 00:00:00, 'grade': 'A', '...</td>
+      <td>Dj Reynolds Pub And Restaurant</td>
+      <td>30191841</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>60006d6aa7aafd5a6d45ca9d</td>
+      <td>{'building': '2780', 'coord': [-73.98241999999...</td>
+      <td>Brooklyn</td>
+      <td>American</td>
+      <td>[{'date': 2014-06-10 00:00:00, 'grade': 'A', '...</td>
+      <td>Riviera Caterer</td>
+      <td>40356018</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>60006d6aa7aafd5a6d45ca9e</td>
+      <td>{'building': '97-22', 'coord': [-73.8601152, 4...</td>
+      <td>Queens</td>
+      <td>Jewish/Kosher</td>
+      <td>[{'date': 2014-11-24 00:00:00, 'grade': 'Z', '...</td>
+      <td>Tov Kosher Kitchen</td>
+      <td>40356068</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>60006d6aa7aafd5a6d45ca9f</td>
+      <td>{'building': '8825', 'coord': [-73.8803827, 40...</td>
+      <td>Queens</td>
+      <td>American</td>
+      <td>[{'date': 2014-11-15 00:00:00, 'grade': 'Z', '...</td>
+      <td>Brunos On The Boulevard</td>
+      <td>40356151</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>60006d6aa7aafd5a6d45caa0</td>
+      <td>{'building': '2206', 'coord': [-74.1377286, 40...</td>
+      <td>Staten Island</td>
+      <td>Jewish/Kosher</td>
+      <td>[{'date': 2014-10-06 00:00:00, 'grade': 'A', '...</td>
+      <td>Kosher Island</td>
+      <td>40356442</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>60006d6aa7aafd5a6d45caa1</td>
+      <td>{'building': '7114', 'coord': [-73.9068506, 40...</td>
+      <td>Brooklyn</td>
+      <td>Delicatessen</td>
+      <td>[{'date': 2014-05-29 00:00:00, 'grade': 'A', '...</td>
+      <td>Wilken'S Fine Food</td>
+      <td>40356483</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>60006d6aa7aafd5a6d45caa2</td>
+      <td>{'building': '6409', 'coord': [-74.00528899999...</td>
+      <td>Brooklyn</td>
+      <td>American</td>
+      <td>[{'date': 2014-07-18 00:00:00, 'grade': 'A', '...</td>
+      <td>Regina Caterers</td>
+      <td>40356649</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>60006d6aa7aafd5a6d45caa3</td>
+      <td>{'building': '1839', 'coord': [-73.9482609, 40...</td>
+      <td>Brooklyn</td>
+      <td>Ice Cream, Gelato, Yogurt, Ices</td>
+      <td>[{'date': 2014-07-14 00:00:00, 'grade': 'A', '...</td>
+      <td>Taste The Tropics Ice Cream</td>
+      <td>40356731</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div></section></section><section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Variables-ayant-des-dictionnaires-comme-valeurs">Variables ayant des dictionnaires comme valeurs<a class="anchor-link" href="#Variables-ayant-des-dictionnaires-comme-valeurs">&#182;</a></h3><p>Le champs <code>address</code> est une liste de dictionnaires, ayant chacun plusieurs champs (ici tous les mêmes).</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[53]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">address</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[53]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>0    {&#39;building&#39;: &#39;1007&#39;, &#39;coord&#39;: [-73.856077, 40....
+1    {&#39;building&#39;: &#39;469&#39;, &#39;coord&#39;: [-73.961704, 40.6...
+2    {&#39;building&#39;: &#39;351&#39;, &#39;coord&#39;: [-73.985135599999...
+3    {&#39;building&#39;: &#39;2780&#39;, &#39;coord&#39;: [-73.98241999999...
+4    {&#39;building&#39;: &#39;97-22&#39;, &#39;coord&#39;: [-73.8601152, 4...
+5    {&#39;building&#39;: &#39;8825&#39;, &#39;coord&#39;: [-73.8803827, 40...
+6    {&#39;building&#39;: &#39;2206&#39;, &#39;coord&#39;: [-74.1377286, 40...
+7    {&#39;building&#39;: &#39;7114&#39;, &#39;coord&#39;: [-73.9068506, 40...
+8    {&#39;building&#39;: &#39;6409&#39;, &#39;coord&#39;: [-74.00528899999...
+9    {&#39;building&#39;: &#39;1839&#39;, &#39;coord&#39;: [-73.9482609, 40...
+Name: address, dtype: object</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div></section></section><section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h4 id="Manipulation-simple">Manipulation simple<a class="anchor-link" href="#Manipulation-simple">&#182;</a></h4><ul>
+<li>Nom du bâtiment et rue concaténés dans une nouvelle variable de <code>df</code><ul>
+<li>utilisation de <em>list comprehension</em></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[54]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">info</span> <span class="o">=</span> <span class="p">[</span><span class="n">e</span><span class="p">[</span><span class="s2">&quot;building&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span> <span class="o">+</span> <span class="n">e</span><span class="p">[</span><span class="s2">&quot;street&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">address</span><span class="p">])</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[54]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>_id</th>
+      <th>address</th>
+      <th>borough</th>
+      <th>cuisine</th>
+      <th>grades</th>
+      <th>name</th>
+      <th>restaurant_id</th>
+      <th>info</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>60006d6aa7aafd5a6d45ca9a</td>
+      <td>{'building': '1007', 'coord': [-73.856077, 40....</td>
+      <td>Bronx</td>
+      <td>Bakery</td>
+      <td>[{'date': 2014-03-03 00:00:00, 'grade': 'A', '...</td>
+      <td>Morris Park Bake Shop</td>
+      <td>30075445</td>
+      <td>1007, Morris Park Ave</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>60006d6aa7aafd5a6d45ca9b</td>
+      <td>{'building': '469', 'coord': [-73.961704, 40.6...</td>
+      <td>Brooklyn</td>
+      <td>Hamburgers</td>
+      <td>[{'date': 2014-12-30 00:00:00, 'grade': 'A', '...</td>
+      <td>Wendy'S</td>
+      <td>30112340</td>
+      <td>469, Flatbush Avenue</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>60006d6aa7aafd5a6d45ca9c</td>
+      <td>{'building': '351', 'coord': [-73.985135599999...</td>
+      <td>Manhattan</td>
+      <td>Irish</td>
+      <td>[{'date': 2014-09-06 00:00:00, 'grade': 'A', '...</td>
+      <td>Dj Reynolds Pub And Restaurant</td>
+      <td>30191841</td>
+      <td>351, West   57 Street</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>60006d6aa7aafd5a6d45ca9d</td>
+      <td>{'building': '2780', 'coord': [-73.98241999999...</td>
+      <td>Brooklyn</td>
+      <td>American</td>
+      <td>[{'date': 2014-06-10 00:00:00, 'grade': 'A', '...</td>
+      <td>Riviera Caterer</td>
+      <td>40356018</td>
+      <td>2780, Stillwell Avenue</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>60006d6aa7aafd5a6d45ca9e</td>
+      <td>{'building': '97-22', 'coord': [-73.8601152, 4...</td>
+      <td>Queens</td>
+      <td>Jewish/Kosher</td>
+      <td>[{'date': 2014-11-24 00:00:00, 'grade': 'Z', '...</td>
+      <td>Tov Kosher Kitchen</td>
+      <td>40356068</td>
+      <td>97-22, 63 Road</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>60006d6aa7aafd5a6d45ca9f</td>
+      <td>{'building': '8825', 'coord': [-73.8803827, 40...</td>
+      <td>Queens</td>
+      <td>American</td>
+      <td>[{'date': 2014-11-15 00:00:00, 'grade': 'Z', '...</td>
+      <td>Brunos On The Boulevard</td>
+      <td>40356151</td>
+      <td>8825, Astoria Boulevard</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>60006d6aa7aafd5a6d45caa0</td>
+      <td>{'building': '2206', 'coord': [-74.1377286, 40...</td>
+      <td>Staten Island</td>
+      <td>Jewish/Kosher</td>
+      <td>[{'date': 2014-10-06 00:00:00, 'grade': 'A', '...</td>
+      <td>Kosher Island</td>
+      <td>40356442</td>
+      <td>2206, Victory Boulevard</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>60006d6aa7aafd5a6d45caa1</td>
+      <td>{'building': '7114', 'coord': [-73.9068506, 40...</td>
+      <td>Brooklyn</td>
+      <td>Delicatessen</td>
+      <td>[{'date': 2014-05-29 00:00:00, 'grade': 'A', '...</td>
+      <td>Wilken'S Fine Food</td>
+      <td>40356483</td>
+      <td>7114, Avenue U</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>60006d6aa7aafd5a6d45caa2</td>
+      <td>{'building': '6409', 'coord': [-74.00528899999...</td>
+      <td>Brooklyn</td>
+      <td>American</td>
+      <td>[{'date': 2014-07-18 00:00:00, 'grade': 'A', '...</td>
+      <td>Regina Caterers</td>
+      <td>40356649</td>
+      <td>6409, 11 Avenue</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>60006d6aa7aafd5a6d45caa3</td>
+      <td>{'building': '1839', 'coord': [-73.9482609, 40...</td>
+      <td>Brooklyn</td>
+      <td>Ice Cream, Gelato, Yogurt, Ices</td>
+      <td>[{'date': 2014-07-14 00:00:00, 'grade': 'A', '...</td>
+      <td>Taste The Tropics Ice Cream</td>
+      <td>40356731</td>
+      <td>1839, Nostrand Avenue</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div></section></section><section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h4 id="Manipulation-plus-complexe">Manipulation plus complexe<a class="anchor-link" href="#Manipulation-plus-complexe">&#182;</a></h4><ul>
+<li>Transformation de la liste en un <code>DataFrame</code></li>
+</ul>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[55]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">e</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">address</span><span class="p">])</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[55]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>building</th>
+      <th>coord</th>
+      <th>street</th>
+      <th>zipcode</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1007</td>
+      <td>[-73.856077, 40.848447]</td>
+      <td>Morris Park Ave</td>
+      <td>10462</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>469</td>
+      <td>[-73.961704, 40.662942]</td>
+      <td>Flatbush Avenue</td>
+      <td>11225</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>351</td>
+      <td>[-73.98513559999999, 40.7676919]</td>
+      <td>West   57 Street</td>
+      <td>10019</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2780</td>
+      <td>[-73.98241999999999, 40.579505]</td>
+      <td>Stillwell Avenue</td>
+      <td>11224</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>97-22</td>
+      <td>[-73.8601152, 40.7311739]</td>
+      <td>63 Road</td>
+      <td>11374</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>8825</td>
+      <td>[-73.8803827, 40.7643124]</td>
+      <td>Astoria Boulevard</td>
+      <td>11369</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>2206</td>
+      <td>[-74.1377286, 40.6119572]</td>
+      <td>Victory Boulevard</td>
+      <td>10314</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>7114</td>
+      <td>[-73.9068506, 40.6199034]</td>
+      <td>Avenue U</td>
+      <td>11234</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>6409</td>
+      <td>[-74.00528899999999, 40.628886]</td>
+      <td>11 Avenue</td>
+      <td>11219</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>1839</td>
+      <td>[-73.9482609, 40.6408271]</td>
+      <td>Nostrand Avenue</td>
+      <td>11226</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div></section></section><section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h4 id="Idem-en-int&#233;grant-le-r&#233;sultat-dans-le-DataFrame--original">Idem en int&#233;grant le r&#233;sultat dans le <code>DataFrame</code>  original<a class="anchor-link" href="#Idem-en-int&#233;grant-le-r&#233;sultat-dans-le-DataFrame--original">&#182;</a></h4>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[56]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pandas</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;address&quot;</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">),</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">e</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">address</span><span class="p">])],</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[56]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>_id</th>
+      <th>borough</th>
+      <th>cuisine</th>
+      <th>grades</th>
+      <th>name</th>
+      <th>restaurant_id</th>
+      <th>building</th>
+      <th>coord</th>
+      <th>street</th>
+      <th>zipcode</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>60006d6aa7aafd5a6d45ca9a</td>
+      <td>Bronx</td>
+      <td>Bakery</td>
+      <td>[{'date': 2014-03-03 00:00:00, 'grade': 'A', '...</td>
+      <td>Morris Park Bake Shop</td>
+      <td>30075445</td>
+      <td>1007</td>
+      <td>[-73.856077, 40.848447]</td>
+      <td>Morris Park Ave</td>
+      <td>10462</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>60006d6aa7aafd5a6d45ca9b</td>
+      <td>Brooklyn</td>
+      <td>Hamburgers</td>
+      <td>[{'date': 2014-12-30 00:00:00, 'grade': 'A', '...</td>
+      <td>Wendy'S</td>
+      <td>30112340</td>
+      <td>469</td>
+      <td>[-73.961704, 40.662942]</td>
+      <td>Flatbush Avenue</td>
+      <td>11225</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>60006d6aa7aafd5a6d45ca9c</td>
+      <td>Manhattan</td>
+      <td>Irish</td>
+      <td>[{'date': 2014-09-06 00:00:00, 'grade': 'A', '...</td>
+      <td>Dj Reynolds Pub And Restaurant</td>
+      <td>30191841</td>
+      <td>351</td>
+      <td>[-73.98513559999999, 40.7676919]</td>
+      <td>West   57 Street</td>
+      <td>10019</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>60006d6aa7aafd5a6d45ca9d</td>
+      <td>Brooklyn</td>
+      <td>American</td>
+      <td>[{'date': 2014-06-10 00:00:00, 'grade': 'A', '...</td>
+      <td>Riviera Caterer</td>
+      <td>40356018</td>
+      <td>2780</td>
+      <td>[-73.98241999999999, 40.579505]</td>
+      <td>Stillwell Avenue</td>
+      <td>11224</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>60006d6aa7aafd5a6d45ca9e</td>
+      <td>Queens</td>
+      <td>Jewish/Kosher</td>
+      <td>[{'date': 2014-11-24 00:00:00, 'grade': 'Z', '...</td>
+      <td>Tov Kosher Kitchen</td>
+      <td>40356068</td>
+      <td>97-22</td>
+      <td>[-73.8601152, 40.7311739]</td>
+      <td>63 Road</td>
+      <td>11374</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>60006d6aa7aafd5a6d45ca9f</td>
+      <td>Queens</td>
+      <td>American</td>
+      <td>[{'date': 2014-11-15 00:00:00, 'grade': 'Z', '...</td>
+      <td>Brunos On The Boulevard</td>
+      <td>40356151</td>
+      <td>8825</td>
+      <td>[-73.8803827, 40.7643124]</td>
+      <td>Astoria Boulevard</td>
+      <td>11369</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>60006d6aa7aafd5a6d45caa0</td>
+      <td>Staten Island</td>
+      <td>Jewish/Kosher</td>
+      <td>[{'date': 2014-10-06 00:00:00, 'grade': 'A', '...</td>
+      <td>Kosher Island</td>
+      <td>40356442</td>
+      <td>2206</td>
+      <td>[-74.1377286, 40.6119572]</td>
+      <td>Victory Boulevard</td>
+      <td>10314</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>60006d6aa7aafd5a6d45caa1</td>
+      <td>Brooklyn</td>
+      <td>Delicatessen</td>
+      <td>[{'date': 2014-05-29 00:00:00, 'grade': 'A', '...</td>
+      <td>Wilken'S Fine Food</td>
+      <td>40356483</td>
+      <td>7114</td>
+      <td>[-73.9068506, 40.6199034]</td>
+      <td>Avenue U</td>
+      <td>11234</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>60006d6aa7aafd5a6d45caa2</td>
+      <td>Brooklyn</td>
+      <td>American</td>
+      <td>[{'date': 2014-07-18 00:00:00, 'grade': 'A', '...</td>
+      <td>Regina Caterers</td>
+      <td>40356649</td>
+      <td>6409</td>
+      <td>[-74.00528899999999, 40.628886]</td>
+      <td>11 Avenue</td>
+      <td>11219</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>60006d6aa7aafd5a6d45caa3</td>
+      <td>Brooklyn</td>
+      <td>Ice Cream, Gelato, Yogurt, Ices</td>
+      <td>[{'date': 2014-07-14 00:00:00, 'grade': 'A', '...</td>
+      <td>Taste The Tropics Ice Cream</td>
+      <td>40356731</td>
+      <td>1839</td>
+      <td>[-73.9482609, 40.6408271]</td>
+      <td>Nostrand Avenue</td>
+      <td>11226</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div></section></section><section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Variables-ayant-des-tableaux-comme-valeurs">Variables ayant des tableaux comme valeurs<a class="anchor-link" href="#Variables-ayant-des-tableaux-comme-valeurs">&#182;</a></h3><p>Le champs <code>grades</code> est une liste de tableaux, ayant chacun potentiellement plusieurs valeurs (des dictionnaires de plus)</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[57]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">grades</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[57]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>0    [{&#39;date&#39;: 2014-03-03 00:00:00, &#39;grade&#39;: &#39;A&#39;, &#39;...
+1    [{&#39;date&#39;: 2014-12-30 00:00:00, &#39;grade&#39;: &#39;A&#39;, &#39;...
+2    [{&#39;date&#39;: 2014-09-06 00:00:00, &#39;grade&#39;: &#39;A&#39;, &#39;...
+3    [{&#39;date&#39;: 2014-06-10 00:00:00, &#39;grade&#39;: &#39;A&#39;, &#39;...
+4    [{&#39;date&#39;: 2014-11-24 00:00:00, &#39;grade&#39;: &#39;Z&#39;, &#39;...
+5    [{&#39;date&#39;: 2014-11-15 00:00:00, &#39;grade&#39;: &#39;Z&#39;, &#39;...
+6    [{&#39;date&#39;: 2014-10-06 00:00:00, &#39;grade&#39;: &#39;A&#39;, &#39;...
+7    [{&#39;date&#39;: 2014-05-29 00:00:00, &#39;grade&#39;: &#39;A&#39;, &#39;...
+8    [{&#39;date&#39;: 2014-07-18 00:00:00, &#39;grade&#39;: &#39;A&#39;, &#39;...
+9    [{&#39;date&#39;: 2014-07-14 00:00:00, &#39;grade&#39;: &#39;A&#39;, &#39;...
+Name: grades, dtype: object</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div></section></section><section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h4 id="Manipulation-simple">Manipulation simple<a class="anchor-link" href="#Manipulation-simple">&#182;</a></h4><ul>
+<li>Récupération d'un élément du tableau (premier ou dernier)</li>
+</ul>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[58]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">derniere</span> <span class="o">=</span> <span class="p">[</span><span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">grades</span><span class="p">],</span> <span class="n">premiere</span> <span class="o">=</span> <span class="p">[</span><span class="n">e</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">grades</span><span class="p">])</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;grades&quot;</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[58]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>_id</th>
+      <th>address</th>
+      <th>borough</th>
+      <th>cuisine</th>
+      <th>name</th>
+      <th>restaurant_id</th>
+      <th>derniere</th>
+      <th>premiere</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>60006d6aa7aafd5a6d45ca9a</td>
+      <td>{'building': '1007', 'coord': [-73.856077, 40....</td>
+      <td>Bronx</td>
+      <td>Bakery</td>
+      <td>Morris Park Bake Shop</td>
+      <td>30075445</td>
+      <td>{'date': 2014-03-03 00:00:00, 'grade': 'A', 's...</td>
+      <td>{'date': 2011-03-10 00:00:00, 'grade': 'B', 's...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>60006d6aa7aafd5a6d45ca9b</td>
+      <td>{'building': '469', 'coord': [-73.961704, 40.6...</td>
+      <td>Brooklyn</td>
+      <td>Hamburgers</td>
+      <td>Wendy'S</td>
+      <td>30112340</td>
+      <td>{'date': 2014-12-30 00:00:00, 'grade': 'A', 's...</td>
+      <td>{'date': 2012-05-08 00:00:00, 'grade': 'A', 's...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>60006d6aa7aafd5a6d45ca9c</td>
+      <td>{'building': '351', 'coord': [-73.985135599999...</td>
+      <td>Manhattan</td>
+      <td>Irish</td>
+      <td>Dj Reynolds Pub And Restaurant</td>
+      <td>30191841</td>
+      <td>{'date': 2014-09-06 00:00:00, 'grade': 'A', 's...</td>
+      <td>{'date': 2011-12-29 00:00:00, 'grade': 'A', 's...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>60006d6aa7aafd5a6d45ca9d</td>
+      <td>{'building': '2780', 'coord': [-73.98241999999...</td>
+      <td>Brooklyn</td>
+      <td>American</td>
+      <td>Riviera Caterer</td>
+      <td>40356018</td>
+      <td>{'date': 2014-06-10 00:00:00, 'grade': 'A', 's...</td>
+      <td>{'date': 2011-10-12 00:00:00, 'grade': 'A', 's...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>60006d6aa7aafd5a6d45ca9e</td>
+      <td>{'building': '97-22', 'coord': [-73.8601152, 4...</td>
+      <td>Queens</td>
+      <td>Jewish/Kosher</td>
+      <td>Tov Kosher Kitchen</td>
+      <td>40356068</td>
+      <td>{'date': 2014-11-24 00:00:00, 'grade': 'Z', 's...</td>
+      <td>{'date': 2011-12-15 00:00:00, 'grade': 'B', 's...</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>60006d6aa7aafd5a6d45ca9f</td>
+      <td>{'building': '8825', 'coord': [-73.8803827, 40...</td>
+      <td>Queens</td>
+      <td>American</td>
+      <td>Brunos On The Boulevard</td>
+      <td>40356151</td>
+      <td>{'date': 2014-11-15 00:00:00, 'grade': 'Z', 's...</td>
+      <td>{'date': 2012-02-10 00:00:00, 'grade': 'A', 's...</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>60006d6aa7aafd5a6d45caa0</td>
+      <td>{'building': '2206', 'coord': [-74.1377286, 40...</td>
+      <td>Staten Island</td>
+      <td>Jewish/Kosher</td>
+      <td>Kosher Island</td>
+      <td>40356442</td>
+      <td>{'date': 2014-10-06 00:00:00, 'grade': 'A', 's...</td>
+      <td>{'date': 2012-01-24 00:00:00, 'grade': 'A', 's...</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>60006d6aa7aafd5a6d45caa1</td>
+      <td>{'building': '7114', 'coord': [-73.9068506, 40...</td>
+      <td>Brooklyn</td>
+      <td>Delicatessen</td>
+      <td>Wilken'S Fine Food</td>
+      <td>40356483</td>
+      <td>{'date': 2014-05-29 00:00:00, 'grade': 'A', 's...</td>
+      <td>{'date': 2011-10-14 00:00:00, 'grade': 'A', 's...</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>60006d6aa7aafd5a6d45caa2</td>
+      <td>{'building': '6409', 'coord': [-74.00528899999...</td>
+      <td>Brooklyn</td>
+      <td>American</td>
+      <td>Regina Caterers</td>
+      <td>40356649</td>
+      <td>{'date': 2014-07-18 00:00:00, 'grade': 'A', 's...</td>
+      <td>{'date': 2011-08-17 00:00:00, 'grade': 'A', 's...</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>60006d6aa7aafd5a6d45caa3</td>
+      <td>{'building': '1839', 'coord': [-73.9482609, 40...</td>
+      <td>Brooklyn</td>
+      <td>Ice Cream, Gelato, Yogurt, Ices</td>
+      <td>Taste The Tropics Ice Cream</td>
+      <td>40356731</td>
+      <td>{'date': 2014-07-14 00:00:00, 'grade': 'A', 's...</td>
+      <td>{'date': 2012-02-23 00:00:00, 'grade': 'A', 's...</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div></section></section><section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h4 id="Manipulation-plus-complexe">Manipulation plus complexe<a class="anchor-link" href="#Manipulation-plus-complexe">&#182;</a></h4><ul>
+<li>Transformation de la liste de tableaux en un seul <code>DataFrame</code><ul>
+<li><code>zip()</code> permet d'itérer sur plusieurs tableaux en même temps</li>
+<li><code>concat()</code> permet de concaténer les tableaux entre eux</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[59]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dfgrades</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">g</span><span class="p">)</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">_id</span> <span class="o">=</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">_id</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">grades</span><span class="p">)])</span>
+<span class="n">dfgrades</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[59]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>date</th>
+      <th>grade</th>
+      <th>score</th>
+      <th>_id</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2014-03-03</td>
+      <td>A</td>
+      <td>2</td>
+      <td>60006d6aa7aafd5a6d45ca9a</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2013-09-11</td>
+      <td>A</td>
+      <td>6</td>
+      <td>60006d6aa7aafd5a6d45ca9a</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2013-01-24</td>
+      <td>A</td>
+      <td>10</td>
+      <td>60006d6aa7aafd5a6d45ca9a</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2011-11-23</td>
+      <td>A</td>
+      <td>9</td>
+      <td>60006d6aa7aafd5a6d45ca9a</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2011-03-10</td>
+      <td>B</td>
+      <td>14</td>
+      <td>60006d6aa7aafd5a6d45ca9a</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>2014-12-30</td>
+      <td>A</td>
+      <td>8</td>
+      <td>60006d6aa7aafd5a6d45ca9b</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2014-07-01</td>
+      <td>B</td>
+      <td>23</td>
+      <td>60006d6aa7aafd5a6d45ca9b</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2013-04-30</td>
+      <td>A</td>
+      <td>12</td>
+      <td>60006d6aa7aafd5a6d45ca9b</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2012-05-08</td>
+      <td>A</td>
+      <td>12</td>
+      <td>60006d6aa7aafd5a6d45ca9b</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>2014-09-06</td>
+      <td>A</td>
+      <td>2</td>
+      <td>60006d6aa7aafd5a6d45ca9c</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2013-07-22</td>
+      <td>A</td>
+      <td>11</td>
+      <td>60006d6aa7aafd5a6d45ca9c</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2012-07-31</td>
+      <td>A</td>
+      <td>12</td>
+      <td>60006d6aa7aafd5a6d45ca9c</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2011-12-29</td>
+      <td>A</td>
+      <td>12</td>
+      <td>60006d6aa7aafd5a6d45ca9c</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>2014-06-10</td>
+      <td>A</td>
+      <td>5</td>
+      <td>60006d6aa7aafd5a6d45ca9d</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2013-06-05</td>
+      <td>A</td>
+      <td>7</td>
+      <td>60006d6aa7aafd5a6d45ca9d</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2012-04-13</td>
+      <td>A</td>
+      <td>12</td>
+      <td>60006d6aa7aafd5a6d45ca9d</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2011-10-12</td>
+      <td>A</td>
+      <td>12</td>
+      <td>60006d6aa7aafd5a6d45ca9d</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>2014-11-24</td>
+      <td>Z</td>
+      <td>20</td>
+      <td>60006d6aa7aafd5a6d45ca9e</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2013-01-17</td>
+      <td>A</td>
+      <td>13</td>
+      <td>60006d6aa7aafd5a6d45ca9e</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2012-08-02</td>
+      <td>A</td>
+      <td>13</td>
+      <td>60006d6aa7aafd5a6d45ca9e</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2011-12-15</td>
+      <td>B</td>
+      <td>25</td>
+      <td>60006d6aa7aafd5a6d45ca9e</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>2014-11-15</td>
+      <td>Z</td>
+      <td>38</td>
+      <td>60006d6aa7aafd5a6d45ca9f</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2014-05-02</td>
+      <td>A</td>
+      <td>10</td>
+      <td>60006d6aa7aafd5a6d45ca9f</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2013-03-02</td>
+      <td>A</td>
+      <td>7</td>
+      <td>60006d6aa7aafd5a6d45ca9f</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2012-02-10</td>
+      <td>A</td>
+      <td>13</td>
+      <td>60006d6aa7aafd5a6d45ca9f</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>2014-10-06</td>
+      <td>A</td>
+      <td>9</td>
+      <td>60006d6aa7aafd5a6d45caa0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2014-05-20</td>
+      <td>A</td>
+      <td>12</td>
+      <td>60006d6aa7aafd5a6d45caa0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2013-04-04</td>
+      <td>A</td>
+      <td>12</td>
+      <td>60006d6aa7aafd5a6d45caa0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2012-01-24</td>
+      <td>A</td>
+      <td>9</td>
+      <td>60006d6aa7aafd5a6d45caa0</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>2014-05-29</td>
+      <td>A</td>
+      <td>10</td>
+      <td>60006d6aa7aafd5a6d45caa1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2014-01-14</td>
+      <td>A</td>
+      <td>10</td>
+      <td>60006d6aa7aafd5a6d45caa1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2013-08-03</td>
+      <td>A</td>
+      <td>8</td>
+      <td>60006d6aa7aafd5a6d45caa1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2012-07-18</td>
+      <td>A</td>
+      <td>10</td>
+      <td>60006d6aa7aafd5a6d45caa1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2012-03-09</td>
+      <td>A</td>
+      <td>13</td>
+      <td>60006d6aa7aafd5a6d45caa1</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2011-10-14</td>
+      <td>A</td>
+      <td>9</td>
+      <td>60006d6aa7aafd5a6d45caa1</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>2014-07-18</td>
+      <td>A</td>
+      <td>12</td>
+      <td>60006d6aa7aafd5a6d45caa2</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2013-07-30</td>
+      <td>A</td>
+      <td>12</td>
+      <td>60006d6aa7aafd5a6d45caa2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2013-02-13</td>
+      <td>A</td>
+      <td>11</td>
+      <td>60006d6aa7aafd5a6d45caa2</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2012-08-16</td>
+      <td>A</td>
+      <td>2</td>
+      <td>60006d6aa7aafd5a6d45caa2</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2011-08-17</td>
+      <td>A</td>
+      <td>11</td>
+      <td>60006d6aa7aafd5a6d45caa2</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>2014-07-14</td>
+      <td>A</td>
+      <td>12</td>
+      <td>60006d6aa7aafd5a6d45caa3</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2013-07-10</td>
+      <td>A</td>
+      <td>8</td>
+      <td>60006d6aa7aafd5a6d45caa3</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2012-07-11</td>
+      <td>A</td>
+      <td>5</td>
+      <td>60006d6aa7aafd5a6d45caa3</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2012-02-23</td>
+      <td>A</td>
+      <td>8</td>
+      <td>60006d6aa7aafd5a6d45caa3</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div></section></section><section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h4 id="Combinaison-avec-les-donn&#233;es-originales">Combinaison avec les donn&#233;es originales<a class="anchor-link" href="#Combinaison-avec-les-donn&#233;es-originales">&#182;</a></h4><ul>
+<li>Jointure entre les deux <code>DataFrames</code> avec <code>merge()</code></li>
+</ul>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[60]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pandas</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;grades&quot;</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">),</span> <span class="n">dfgrades</span><span class="o">.</span><span class="n">reset_index</span><span class="p">())</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[60]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>_id</th>
+      <th>address</th>
+      <th>borough</th>
+      <th>cuisine</th>
+      <th>name</th>
+      <th>restaurant_id</th>
+      <th>index</th>
+      <th>date</th>
+      <th>grade</th>
+      <th>score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>60006d6aa7aafd5a6d45ca9a</td>
+      <td>{'building': '1007', 'coord': [-73.856077, 40....</td>
+      <td>Bronx</td>
+      <td>Bakery</td>
+      <td>Morris Park Bake Shop</td>
+      <td>30075445</td>
+      <td>0</td>
+      <td>2014-03-03</td>
+      <td>A</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>60006d6aa7aafd5a6d45ca9a</td>
+      <td>{'building': '1007', 'coord': [-73.856077, 40....</td>
+      <td>Bronx</td>
+      <td>Bakery</td>
+      <td>Morris Park Bake Shop</td>
+      <td>30075445</td>
+      <td>1</td>
+      <td>2013-09-11</td>
+      <td>A</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>60006d6aa7aafd5a6d45ca9a</td>
+      <td>{'building': '1007', 'coord': [-73.856077, 40....</td>
+      <td>Bronx</td>
+      <td>Bakery</td>
+      <td>Morris Park Bake Shop</td>
+      <td>30075445</td>
+      <td>2</td>
+      <td>2013-01-24</td>
+      <td>A</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>60006d6aa7aafd5a6d45ca9a</td>
+      <td>{'building': '1007', 'coord': [-73.856077, 40....</td>
+      <td>Bronx</td>
+      <td>Bakery</td>
+      <td>Morris Park Bake Shop</td>
+      <td>30075445</td>
+      <td>3</td>
+      <td>2011-11-23</td>
+      <td>A</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>60006d6aa7aafd5a6d45ca9a</td>
+      <td>{'building': '1007', 'coord': [-73.856077, 40....</td>
+      <td>Bronx</td>
+      <td>Bakery</td>
+      <td>Morris Park Bake Shop</td>
+      <td>30075445</td>
+      <td>4</td>
+      <td>2011-03-10</td>
+      <td>B</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>60006d6aa7aafd5a6d45ca9b</td>
+      <td>{'building': '469', 'coord': [-73.961704, 40.6...</td>
+      <td>Brooklyn</td>
+      <td>Hamburgers</td>
+      <td>Wendy'S</td>
+      <td>30112340</td>
+      <td>0</td>
+      <td>2014-12-30</td>
+      <td>A</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>60006d6aa7aafd5a6d45ca9b</td>
+      <td>{'building': '469', 'coord': [-73.961704, 40.6...</td>
+      <td>Brooklyn</td>
+      <td>Hamburgers</td>
+      <td>Wendy'S</td>
+      <td>30112340</td>
+      <td>1</td>
+      <td>2014-07-01</td>
+      <td>B</td>
+      <td>23</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>60006d6aa7aafd5a6d45ca9b</td>
+      <td>{'building': '469', 'coord': [-73.961704, 40.6...</td>
+      <td>Brooklyn</td>
+      <td>Hamburgers</td>
+      <td>Wendy'S</td>
+      <td>30112340</td>
+      <td>2</td>
+      <td>2013-04-30</td>
+      <td>A</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>60006d6aa7aafd5a6d45ca9b</td>
+      <td>{'building': '469', 'coord': [-73.961704, 40.6...</td>
+      <td>Brooklyn</td>
+      <td>Hamburgers</td>
+      <td>Wendy'S</td>
+      <td>30112340</td>
+      <td>3</td>
+      <td>2012-05-08</td>
+      <td>A</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>60006d6aa7aafd5a6d45ca9c</td>
+      <td>{'building': '351', 'coord': [-73.985135599999...</td>
+      <td>Manhattan</td>
+      <td>Irish</td>
+      <td>Dj Reynolds Pub And Restaurant</td>
+      <td>30191841</td>
+      <td>0</td>
+      <td>2014-09-06</td>
+      <td>A</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>60006d6aa7aafd5a6d45ca9c</td>
+      <td>{'building': '351', 'coord': [-73.985135599999...</td>
+      <td>Manhattan</td>
+      <td>Irish</td>
+      <td>Dj Reynolds Pub And Restaurant</td>
+      <td>30191841</td>
+      <td>1</td>
+      <td>2013-07-22</td>
+      <td>A</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>60006d6aa7aafd5a6d45ca9c</td>
+      <td>{'building': '351', 'coord': [-73.985135599999...</td>
+      <td>Manhattan</td>
+      <td>Irish</td>
+      <td>Dj Reynolds Pub And Restaurant</td>
+      <td>30191841</td>
+      <td>2</td>
+      <td>2012-07-31</td>
+      <td>A</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>60006d6aa7aafd5a6d45ca9c</td>
+      <td>{'building': '351', 'coord': [-73.985135599999...</td>
+      <td>Manhattan</td>
+      <td>Irish</td>
+      <td>Dj Reynolds Pub And Restaurant</td>
+      <td>30191841</td>
+      <td>3</td>
+      <td>2011-12-29</td>
+      <td>A</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>60006d6aa7aafd5a6d45ca9d</td>
+      <td>{'building': '2780', 'coord': [-73.98241999999...</td>
+      <td>Brooklyn</td>
+      <td>American</td>
+      <td>Riviera Caterer</td>
+      <td>40356018</td>
+      <td>0</td>
+      <td>2014-06-10</td>
+      <td>A</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>60006d6aa7aafd5a6d45ca9d</td>
+      <td>{'building': '2780', 'coord': [-73.98241999999...</td>
+      <td>Brooklyn</td>
+      <td>American</td>
+      <td>Riviera Caterer</td>
+      <td>40356018</td>
+      <td>1</td>
+      <td>2013-06-05</td>
+      <td>A</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>60006d6aa7aafd5a6d45ca9d</td>
+      <td>{'building': '2780', 'coord': [-73.98241999999...</td>
+      <td>Brooklyn</td>
+      <td>American</td>
+      <td>Riviera Caterer</td>
+      <td>40356018</td>
+      <td>2</td>
+      <td>2012-04-13</td>
+      <td>A</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>60006d6aa7aafd5a6d45ca9d</td>
+      <td>{'building': '2780', 'coord': [-73.98241999999...</td>
+      <td>Brooklyn</td>
+      <td>American</td>
+      <td>Riviera Caterer</td>
+      <td>40356018</td>
+      <td>3</td>
+      <td>2011-10-12</td>
+      <td>A</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>60006d6aa7aafd5a6d45ca9e</td>
+      <td>{'building': '97-22', 'coord': [-73.8601152, 4...</td>
+      <td>Queens</td>
+      <td>Jewish/Kosher</td>
+      <td>Tov Kosher Kitchen</td>
+      <td>40356068</td>
+      <td>0</td>
+      <td>2014-11-24</td>
+      <td>Z</td>
+      <td>20</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>60006d6aa7aafd5a6d45ca9e</td>
+      <td>{'building': '97-22', 'coord': [-73.8601152, 4...</td>
+      <td>Queens</td>
+      <td>Jewish/Kosher</td>
+      <td>Tov Kosher Kitchen</td>
+      <td>40356068</td>
+      <td>1</td>
+      <td>2013-01-17</td>
+      <td>A</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>60006d6aa7aafd5a6d45ca9e</td>
+      <td>{'building': '97-22', 'coord': [-73.8601152, 4...</td>
+      <td>Queens</td>
+      <td>Jewish/Kosher</td>
+      <td>Tov Kosher Kitchen</td>
+      <td>40356068</td>
+      <td>2</td>
+      <td>2012-08-02</td>
+      <td>A</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>60006d6aa7aafd5a6d45ca9e</td>
+      <td>{'building': '97-22', 'coord': [-73.8601152, 4...</td>
+      <td>Queens</td>
+      <td>Jewish/Kosher</td>
+      <td>Tov Kosher Kitchen</td>
+      <td>40356068</td>
+      <td>3</td>
+      <td>2011-12-15</td>
+      <td>B</td>
+      <td>25</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>60006d6aa7aafd5a6d45ca9f</td>
+      <td>{'building': '8825', 'coord': [-73.8803827, 40...</td>
+      <td>Queens</td>
+      <td>American</td>
+      <td>Brunos On The Boulevard</td>
+      <td>40356151</td>
+      <td>0</td>
+      <td>2014-11-15</td>
+      <td>Z</td>
+      <td>38</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>60006d6aa7aafd5a6d45ca9f</td>
+      <td>{'building': '8825', 'coord': [-73.8803827, 40...</td>
+      <td>Queens</td>
+      <td>American</td>
+      <td>Brunos On The Boulevard</td>
+      <td>40356151</td>
+      <td>1</td>
+      <td>2014-05-02</td>
+      <td>A</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>60006d6aa7aafd5a6d45ca9f</td>
+      <td>{'building': '8825', 'coord': [-73.8803827, 40...</td>
+      <td>Queens</td>
+      <td>American</td>
+      <td>Brunos On The Boulevard</td>
+      <td>40356151</td>
+      <td>2</td>
+      <td>2013-03-02</td>
+      <td>A</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>60006d6aa7aafd5a6d45ca9f</td>
+      <td>{'building': '8825', 'coord': [-73.8803827, 40...</td>
+      <td>Queens</td>
+      <td>American</td>
+      <td>Brunos On The Boulevard</td>
+      <td>40356151</td>
+      <td>3</td>
+      <td>2012-02-10</td>
+      <td>A</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>60006d6aa7aafd5a6d45caa0</td>
+      <td>{'building': '2206', 'coord': [-74.1377286, 40...</td>
+      <td>Staten Island</td>
+      <td>Jewish/Kosher</td>
+      <td>Kosher Island</td>
+      <td>40356442</td>
+      <td>0</td>
+      <td>2014-10-06</td>
+      <td>A</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>60006d6aa7aafd5a6d45caa0</td>
+      <td>{'building': '2206', 'coord': [-74.1377286, 40...</td>
+      <td>Staten Island</td>
+      <td>Jewish/Kosher</td>
+      <td>Kosher Island</td>
+      <td>40356442</td>
+      <td>1</td>
+      <td>2014-05-20</td>
+      <td>A</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>60006d6aa7aafd5a6d45caa0</td>
+      <td>{'building': '2206', 'coord': [-74.1377286, 40...</td>
+      <td>Staten Island</td>
+      <td>Jewish/Kosher</td>
+      <td>Kosher Island</td>
+      <td>40356442</td>
+      <td>2</td>
+      <td>2013-04-04</td>
+      <td>A</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>60006d6aa7aafd5a6d45caa0</td>
+      <td>{'building': '2206', 'coord': [-74.1377286, 40...</td>
+      <td>Staten Island</td>
+      <td>Jewish/Kosher</td>
+      <td>Kosher Island</td>
+      <td>40356442</td>
+      <td>3</td>
+      <td>2012-01-24</td>
+      <td>A</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>60006d6aa7aafd5a6d45caa1</td>
+      <td>{'building': '7114', 'coord': [-73.9068506, 40...</td>
+      <td>Brooklyn</td>
+      <td>Delicatessen</td>
+      <td>Wilken'S Fine Food</td>
+      <td>40356483</td>
+      <td>0</td>
+      <td>2014-05-29</td>
+      <td>A</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>60006d6aa7aafd5a6d45caa1</td>
+      <td>{'building': '7114', 'coord': [-73.9068506, 40...</td>
+      <td>Brooklyn</td>
+      <td>Delicatessen</td>
+      <td>Wilken'S Fine Food</td>
+      <td>40356483</td>
+      <td>1</td>
+      <td>2014-01-14</td>
+      <td>A</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>60006d6aa7aafd5a6d45caa1</td>
+      <td>{'building': '7114', 'coord': [-73.9068506, 40...</td>
+      <td>Brooklyn</td>
+      <td>Delicatessen</td>
+      <td>Wilken'S Fine Food</td>
+      <td>40356483</td>
+      <td>2</td>
+      <td>2013-08-03</td>
+      <td>A</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>60006d6aa7aafd5a6d45caa1</td>
+      <td>{'building': '7114', 'coord': [-73.9068506, 40...</td>
+      <td>Brooklyn</td>
+      <td>Delicatessen</td>
+      <td>Wilken'S Fine Food</td>
+      <td>40356483</td>
+      <td>3</td>
+      <td>2012-07-18</td>
+      <td>A</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>60006d6aa7aafd5a6d45caa1</td>
+      <td>{'building': '7114', 'coord': [-73.9068506, 40...</td>
+      <td>Brooklyn</td>
+      <td>Delicatessen</td>
+      <td>Wilken'S Fine Food</td>
+      <td>40356483</td>
+      <td>4</td>
+      <td>2012-03-09</td>
+      <td>A</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>60006d6aa7aafd5a6d45caa1</td>
+      <td>{'building': '7114', 'coord': [-73.9068506, 40...</td>
+      <td>Brooklyn</td>
+      <td>Delicatessen</td>
+      <td>Wilken'S Fine Food</td>
+      <td>40356483</td>
+      <td>5</td>
+      <td>2011-10-14</td>
+      <td>A</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>60006d6aa7aafd5a6d45caa2</td>
+      <td>{'building': '6409', 'coord': [-74.00528899999...</td>
+      <td>Brooklyn</td>
+      <td>American</td>
+      <td>Regina Caterers</td>
+      <td>40356649</td>
+      <td>0</td>
+      <td>2014-07-18</td>
+      <td>A</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>60006d6aa7aafd5a6d45caa2</td>
+      <td>{'building': '6409', 'coord': [-74.00528899999...</td>
+      <td>Brooklyn</td>
+      <td>American</td>
+      <td>Regina Caterers</td>
+      <td>40356649</td>
+      <td>1</td>
+      <td>2013-07-30</td>
+      <td>A</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>60006d6aa7aafd5a6d45caa2</td>
+      <td>{'building': '6409', 'coord': [-74.00528899999...</td>
+      <td>Brooklyn</td>
+      <td>American</td>
+      <td>Regina Caterers</td>
+      <td>40356649</td>
+      <td>2</td>
+      <td>2013-02-13</td>
+      <td>A</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>60006d6aa7aafd5a6d45caa2</td>
+      <td>{'building': '6409', 'coord': [-74.00528899999...</td>
+      <td>Brooklyn</td>
+      <td>American</td>
+      <td>Regina Caterers</td>
+      <td>40356649</td>
+      <td>3</td>
+      <td>2012-08-16</td>
+      <td>A</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>39</th>
+      <td>60006d6aa7aafd5a6d45caa2</td>
+      <td>{'building': '6409', 'coord': [-74.00528899999...</td>
+      <td>Brooklyn</td>
+      <td>American</td>
+      <td>Regina Caterers</td>
+      <td>40356649</td>
+      <td>4</td>
+      <td>2011-08-17</td>
+      <td>A</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th>40</th>
+      <td>60006d6aa7aafd5a6d45caa3</td>
+      <td>{'building': '1839', 'coord': [-73.9482609, 40...</td>
+      <td>Brooklyn</td>
+      <td>Ice Cream, Gelato, Yogurt, Ices</td>
+      <td>Taste The Tropics Ice Cream</td>
+      <td>40356731</td>
+      <td>0</td>
+      <td>2014-07-14</td>
+      <td>A</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>60006d6aa7aafd5a6d45caa3</td>
+      <td>{'building': '1839', 'coord': [-73.9482609, 40...</td>
+      <td>Brooklyn</td>
+      <td>Ice Cream, Gelato, Yogurt, Ices</td>
+      <td>Taste The Tropics Ice Cream</td>
+      <td>40356731</td>
+      <td>1</td>
+      <td>2013-07-10</td>
+      <td>A</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>60006d6aa7aafd5a6d45caa3</td>
+      <td>{'building': '1839', 'coord': [-73.9482609, 40...</td>
+      <td>Brooklyn</td>
+      <td>Ice Cream, Gelato, Yogurt, Ices</td>
+      <td>Taste The Tropics Ice Cream</td>
+      <td>40356731</td>
+      <td>2</td>
+      <td>2012-07-11</td>
+      <td>A</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>60006d6aa7aafd5a6d45caa3</td>
+      <td>{'building': '1839', 'coord': [-73.9482609, 40...</td>
+      <td>Brooklyn</td>
+      <td>Ice Cream, Gelato, Yogurt, Ices</td>
+      <td>Taste The Tropics Ice Cream</td>
+      <td>40356731</td>
+      <td>3</td>
+      <td>2012-02-23</td>
+      <td>A</td>
+      <td>8</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
 </div></section></section>
 </div>
 </div>
