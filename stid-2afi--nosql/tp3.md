@@ -2,9 +2,9 @@
 
 ## Données
 
-Dans ce TP, nous allons utiliser les données [world.json](world.json), recensant les pays du monde (en l'état à la fin du siècle dernier). Pour pouvoir les utiliser, vous devez réaliser les étapes suivantes :
+Dans ce TP, nous allons utiliser les données [world-mongodb.json](https://fxjollois.github.io/donnees/World/world-mongodb.json), recensant les pays du monde (en l'état à la fin du siècle dernier). Pour pouvoir les utiliser, vous devez réaliser les étapes suivantes :
 
-1. Télécharger le fichier <world.json>
+1. Télécharger le fichier <world-mongodb.json>
 1. Dans *Compass*, créer une base de données `test` et une collection `world`
 1. Importer les données dans cette collection
 1. Vérifier que tout est ok en lancant le shell
