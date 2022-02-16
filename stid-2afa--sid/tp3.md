@@ -32,6 +32,7 @@ Ensuite, nous allons définir les hiérarchies
     - Faites de même pour créer la hiérarchie année :
         1. Année (si celle-ci est en vert, faire un clic-droit puis choisir "Convertir en Dimension")
         2. Mois (nom - l'ordre devrait être le bon maintenant)
+        
             
 ## Création d'une reporting par département
 
