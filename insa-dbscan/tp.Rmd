@@ -1,0 +1,197 @@
+---
+title: "Application de DBSCAN"
+author: "FX Jollois"
+date: "11 mars 2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Données
+
+Nous allons continuer à utiliser le jeu de données "Spotify" ([csv à télécharger](spotify-2017songs.csv) si nécessaire). Pour cela, nous allons les charger, et utiliser les packages `readr` (chargement de données), `tidyr` (rotation de données) et `dplyr` (manipulation de données). Ces trois packages proviennent du [`tidyverse`](https://www.tidyverse.org/) (en plus de `ggplot2` - réalisation de graphiques), ensemble de packages très puissants pour l'analyse de données. 
+
+```{r import, warning=FALSE, message=FALSE}
+library(readr)
+library(tidyr)
+library(dplyr)
+library(ggplot2)
+
+songs = read_csv("spotify-2017songs.csv")
+songs_num = songs %>%
+  select(acousticness, danceability, energy, instrumentalness, liveness, speechiness, valence) %>%
+  # mutate_all(scale) %>%
+  tibble()
+```
+
+```{r show-data, echo=FALSE}
+library(DT)
+datatable(songs_num) %>%
+  formatRound(1:7, 2)
+```
+
+## Recherche des paramètres
+
+Nous sommes en dimension 7, la proposition de base est donc de choisir $MinPts = 14$. Nous allons nous basé sur cette option.
+
+Pour $\varepsilon$, nous devons créer le graphique des $k\text{-}dist$ (avec $k=14$) de chaque point, triées dans l'ordre décroissant. Ici, nous avons 2017 individus, ce qui reste raisonnable. Dans le cas de données de tailles plus importantes, nous aurions dû procédé à un échantillonage (voire plusieurs) pour chercher cette valeur.
+
+Nous calculons d'abord la matrice de distance :
+
+```{r distance}
+d = dist(songs_num)
+```
+
+```{r distance-show, echo=FALSE}
+round(dist(songs_num[1:10,]), 4)
+```
+
+Ensuite, nous la transformons en matrice (pour la manipuler ensuite)
+
+```{r matrix}
+m = as.matrix(d)
+```
+
+```{r matrix-show, echo=FALSE}
+round(m[1:10,1:10], 4)
+```
+
+Maintenant, pour chaque ligne (ou colonne, résultat identique), on trie les valeurs par ordre croissants.
+
+```{r matrix-sort}
+m_tri = apply(m, 2, sort)
+```
+
+```{r matrix-sort-show, echo=FALSE}
+round(m_tri[1:20,1:10], 4)
+```
+
+Ensuite, on récupère la $k+1$ième valeur la plus petite ($+1$ car on aura le 0), donc la $k+1$ième ligne.
+
+```{r kdist}
+v = m_tri[15,]
+```
+
+```{r kdist-show, echo=FALSE}
+round(head(v, 10), 4)
+```
+
+On créé un `data.frame` (plus exactement un `tibble` pour rester dans l'environnement `tidyverse`) contenant ces valeurs triées dans l'ordre décroissant.
+
+```{r kdist-to-matrix}
+df = tibble(n = 1:2017, kdist = sort(v, decreasing = TRUE)) %>%
+  mutate(diff = c(NA, -diff(kdist)))
+```
+
+```{r kdits-to-matrix-show, echo=FALSE}
+datatable(df)
+```
+
+On va pouvoir afficher le graphique des $k\text{-}dist$ triées par ordre décroissant, et chercher un coude.
+
+```{r kdits-plot, fig.align='center', warning=FALSE}
+coeff = 50
+ggplot(df) +
+  geom_vline(xintercept = c(170, 247), alpha = 0.25, lty = 2) +
+  geom_hline(yintercept = df$kdist[c(170, 247)], alpha = 0.25, lty = 2) +
+  geom_line(aes(n, diff * coeff), color = "red", alpha = 0.5) +
+  geom_line(aes(n, kdist)) +
+  scale_y_continuous(name = "k-dist (k = 14)", sec.axis = sec_axis( trans=~. / coeff, name="Différence (en rouge)")) +
+  theme_minimal()
+```
+
+On remarque 2 pics en terme de différence, vers $\varepsilon=0.343$ et $\varepsilon=0.314$ (on testera probablement d'autres valeurs).
+
+Nous pouvons chercher avec une valeur différente de $MinPts$ ($k$). Testez différentes valeurs (ici $k=5$).
+
+```{r autre-kdist, fig.align='center', warning=FALSE}
+k = 5
+ggplot(tibble(n = 1:2017, kdist = sort(m_tri[k+1,], decreasing = TRUE)) %>%
+         mutate(diff = c(NA, -diff(kdist)))) +
+  geom_line(aes(n, kdist)) +
+  labs(y = paste0("k-dist avec k=",k)) +
+  theme_minimal()
+```
+
+
+## Recherche de la partition 
+
+On applique donc la mthode DBSCAN avec $\varepsilon=0.343$ et $MinPts=14$ dans un premier temps. On utilise ici la fonction `dbscan` du package `dbscan`. 
+
+```{r dbscan1}
+library(dbscan)
+res = dbscan(songs_num, eps = .343, minPts = 14)
+res
+```
+
+
+On voit tout de suite que notre choix de $\varepsilon=2$ était mauvais. Nous obtenons une seule classe, avec 35 individus considérés comme *outliers*. Nous allons tester l'autre valeur $\varepsilon=0.314$.
+
+```{r dbscan2}
+res = dbscan(songs_num, eps = .314, minPts = 14)
+res
+```
+
+
+On trouve encore une seule classe. On peut modifier aussi $MinPts$  pour avoir plus de classes. On va le doubler.
+
+
+```{r dbscan3}
+res = dbscan(songs_num, eps = .314, minPts = 28)
+res
+```
+
+Après quelques tests, on peut affiner un peu en choisissant $\varepsilon=0.32$ et $MinPts=42$.
+
+```{r dbscan4}
+res = dbscan(songs_num, eps = 0.32, minPts = 42)
+res
+```
+
+Nous obtenons ici 3 classes (une très grande et 2 petites), ainsi que 202 points *outliers*. Voici la caractérisation des classes :
+
+```{r centres}
+centres = songs_num %>%
+  mutate(classe = res$cluster) %>%
+  group_by(classe) %>%
+  summarise_all(mean)
+```
+
+```{r centres-show, echo=FALSE}
+datatable(centres) %>%
+  formatRound(2:8, 2)
+```
+
+## Représentation sur l'ACP
+
+En clustering, il est très courant d'utiliser l'ACP pour représenter les individus et la partition obtenue.
+
+```{r acp, fig.align='center'}
+library(FactoMineR)
+acp = PCA(songs_num %>%
+  mutate(classe = res$cluster), scale.unit = FALSE, quali.sup = 8)
+```
+
+Les deux premiers facteurs représentent presque 50% de l'information totale du nuage de points, ce qui est beaucoup dans un cadre réel. Les variables ne sont pour autant pas très corrélées aux axes. Toutefois, on peut dire les élémetns suivants :
+
+- l'axe 1 oppose les chansons énergiques et joyeuses (à droite du graphique) aux chansons acoustiques et plus instrumentales (à gauche donc) ;
+- l'axe 2 oppose les chansons acoustiques (en bas sur le graphique) aux chansons instrumentales (en haut).
+
+```{r acp-ind, fig.align='center'}
+acp_ind = tibble(data.frame(acp$ind$coord)) %>% 
+         mutate(classe = res$cluster)
+ggplot(acp_ind, aes(Dim.1, Dim.2, color = factor(classe))) +
+  geom_point() +
+  theme_minimal()
+```
+
+La représentation graphique nous montre deux phénomènes intéressants dans l'étude de nos données :
+
+- Elles sont cantonnées dans un carré, ce qui est logique car comprise entre 0 et 1 (et nous avons fait le choix de ne pas les standardiser ni pour DBSCAN, ni pour l'ACP) ;
+- Il y une masse de chansons très similaires (en vert à droite donc), et d'autres éparpillées dans l'espace sans séparation claire (il y a un continuum).
+
+C'est ce dernier phénomène qui tend à regrouper tous les individus dans une même classe avec DBSCAN. 
+
+
