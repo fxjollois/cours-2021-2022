@@ -20,9 +20,10 @@
 
 ## Autres
 
-### INSA ROUEN, Mastère ESD
+### INSA ROUEN
 
-- [Introduction au Machine Learning en Python](insa-ms-esd--ml)
+- [Introduction au Machine Learning en Python](insa-ms-esd--ml) (Mastère ESD)
+- [Introduction à DBSCAN](insa-dbscan)
 
 ### IUT Cherbourg, Département TC, 2ème année
 
