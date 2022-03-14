@@ -23,9 +23,9 @@
 - [TP1 : Premiers pas](tp1)
 - [TP2 : Agrégats et autres](tp2)
 - [TP3 : Récapitulatif](tp3)
+- [TP4 : Mongo dans Python](tp4)
 
 <!--
-- [TP4 : Mongo dans R](tp4)
 - [TP5 : Dashboard dans R sur données dans MongoDB](tp5)
 
 - [TP6 : Explicatifs sur la correction](tp6.html)
