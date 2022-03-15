@@ -1,13 +1,13 @@
 # TP2 : Agrégats dans Mongo
 
-Il est bien évidemment possible de réaliser des calculs d'agrégats (de type somme, moyenne, minimum et maximum) dans MongoDB,
+Il est bien évidemment possible de réaliser des calculs d'agrégats (de type somme, moyenne, minimum et maximum) dans MongoDB, 
 avec la fonction `aggregate()`. Celle-ci permet beaucoup d'autres opérations.
 
 ## Fonctions possibles
 
-Cette fonction va prendre en paramètre un tableau nommé `pipeline` : tableau composé d'une suite d'opérations.
+Cette fonction va prendre en paramètre un tableau nommé `pipeline` : tableau composé d'une suite d'opérations. 
 
-> Chaque opération sera faite après la précédente. L'ordre des opérations a donc une importance cruciale. Et le même opérateur
+> Chaque opération sera faite après la précédente. L'ordre des opérations a donc une importance cruciale. Et le même opérateur 
 peut apparaître plusieurs fois.
 
 Voici quelques unes des opérations possibles :
@@ -27,7 +27,7 @@ Voici quelques unes des opérations possibles :
 
 ## Syntaxe des opérations dans le `pipeline`
 
-### `$limit`
+### `$limit` 
 
 On indique juste avec un entier le nombre de document que l'on veut afficher.
 
@@ -47,7 +47,7 @@ db.restaurants.aggregate([
 ]).pretty()
 ```
 
-### `$sort`
+### `$sort` 
 
 On indique de façon identique à celle du paramètre `sort` de la fonction `find()`
 
@@ -60,13 +60,13 @@ db.restaurants.aggregate([
 ]).pretty()
 ```
 
-### `$match`
+### `$match` 
 
 Ici, c'est identique à celle du paramètre `query` des autres fonctions
 
 - Idem en se restreignant à *Brooklyn*
     - Notez que nous obtenons uniquement 5 restaurants au final
-
+    
 ```js
 db.restaurants.aggregate([
     { $limit: 10 },
@@ -86,9 +86,9 @@ db.restaurants.aggregate([
 ]).pretty()
 ```
 
-### `$unwind`
+### `$unwind` 
 
-Le but de cette opération est d'**exploser** un tableau dans un document.
+Le but de cette opération est d'**exploser** un tableau dans un document. 
 
 > Un document avec un tableau à *n* éléments deviendra *n* documents avec chacun un des éléments du tableau en lieu et place de celui-ci
 
@@ -124,7 +124,7 @@ db.restaurants.aggregate([
 ]).pretty()
 ```
 
-### `$addFields` et  `$project`
+### `$addFields` et  `$project` 
 
 On souhaite ici rédéfinir les documents en ajoutant des éléments (`$addFields`) ou en se restreignant à certains éléments
 (`$project`)
@@ -133,7 +133,7 @@ On souhaite ici rédéfinir les documents en ajoutant des éléments (`$addField
     - valable uniquement dans `$project`
 - `{ "champs": { "$opérateur" : expression }}` : permet de définir un nouveau champs
 - `{ "nouveau_champs": "$ancien_champs" }` : renommage d'un champs
-
+    
 Quelques opérateurs utiles pour la projection (plus d'info [ici](https://docs.mongodb.com/manual/reference/operator/aggregation/))
 
 - `$arrayElemAt` : élément d'un tableau
@@ -155,7 +155,7 @@ db.restaurants.aggregate([
 
 - On souhaite ici ne garder que le nom et le quartier des 10 premiers restaurants
     - Notez l'ordre (alphabétique) des variables, et pas celui de la déclaration
-
+    
 ```js
 db.restaurants.aggregate([
     { $limit: 10 },
@@ -163,7 +163,7 @@ db.restaurants.aggregate([
 ]).pretty()
 ```
 
-- Ici, on supprime l'adresse et les évaluations
+- Ici, on supprime l'adresse et les évaluations 
 
 ```js
 db.restaurants.aggregate([
@@ -172,7 +172,7 @@ db.restaurants.aggregate([
 ]).pretty()
 ```
 
-- En plus du nom et du quartier, on récupère l'adresse mais dans un nouveau champs
+- En plus du nom et du quartier, on récupère l'adresse mais dans un nouveau champs 
 
 ```js
 db.restaurants.aggregate([
@@ -225,9 +225,9 @@ db.restaurants.aggregate([
 ```js
 db.restaurants.aggregate([
     { $limit: 10 },
-    { $project: {
-        nom: { $toUpper: "$name" },
-        quartier: { $substr: [ "$borough", 0, 3 ] }
+    { $project: { 
+        nom: { $toUpper: "$name" }, 
+        quartier: { $substr: [ "$borough", 0, 3 ] } 
     } }
 ]).pretty()
 ```
@@ -239,17 +239,17 @@ db.restaurants.aggregate([
 db.restaurants.aggregate([
     { $limit: 10 },
     { $addFields: { quartier: { $toUpper: { $substr: [ "$borough", 0, 3 ] } } }},
-    { $project: {
-        nom: { $toUpper: "$name" },
+    { $project: { 
+        nom: { $toUpper: "$name" }, 
         quartier: { $cond: { if: { $eq: ["$borough", "Bronx"] }, then: "BRX", else: "$quartier" } },
         borough: 1
     } }
 ]).pretty()
 ```
 
-### `$group`
+### `$group` 
 
-Cet opérateur permet le calcul d'agrégats tel qu'on le connaît.
+Cet opérateur permet le calcul d'agrégats tel qu'on le connaît. 
 
 - `_id` : déclaration du critère de regroupement
     - chaîne de caractères : pas de regroupement (tous les documents)
@@ -258,7 +258,7 @@ Cet opérateur permet le calcul d'agrégats tel qu'on le connaît.
 - Calculs d'agrégats à faire :
     - `$sum` : somme (soit de valeur fixe - 1 pour faire un décompte donc, soit d'un champs spécifique)
     - `$avg, $min, $max`
-    - `$addToSet` : regroupement des valeurs distinctes d'un champs dans un tableau
+    - `$addToSet` : regroupement des valeurs distinctes d'un champs dans un tableau 
     - `$push` : aggrégation de champs dans un tableau
 
 - On calcule ici le nombre total de restaurants
@@ -290,7 +290,7 @@ db.restaurants.aggregate([
 -  Il est bien évidemment possible de faire ce calcul par quartier et de les trier selon les notes obtenues (dans l'ordre décroissant)
 
 ```js
-db.restaurants.aggregate([
+db.restaurants.aggregate([ 
     { $unwind: "$grades" },
     { $group: { _id: "$borough", score: { $avg: "$grades.score" }}},
     { $sort: { score: -1 }}
@@ -302,14 +302,14 @@ db.restaurants.aggregate([
 
 ```js
 db.restaurants.aggregate([
-    { $project: {
-        borough: 1, street: "$address.street",
-        eval: { $arrayElemAt: [ "$grades", 0 ]}
+    { $project: { 
+        borough: 1, street: "$address.street", 
+        eval: { $arrayElemAt: [ "$grades", 0 ]} 
     } },
     { $match: { eval: { $exists: true } } },
     { $match: { "eval.score": { $gte: 0 } } },
-    { $group: {
-        _id: { quartier: "$borough", rue: "$street" },
+    { $group: { 
+        _id: { quartier: "$borough", rue: "$street" }, 
         score: { $avg: "$eval.score" }
     }},
     { $sort: { score: 1 }},
@@ -325,8 +325,8 @@ db.restaurants.aggregate([
 db.restaurants.aggregate([
     { $limit: 10 },
     { $unwind: "$grades" },
-    { $group: {
-        _id: "$name",
+    { $group: { 
+        _id: "$name", 
         avec_addToSet: { $addToSet: "$grades.grade" },
         avec_push: { $push: "$grades.grade" }
     }}
@@ -384,3 +384,5 @@ db.restaurants.aggregate([
         2. tri à prévoir
         3. regroupement avec `push`
         4. `slice` pour prendre une partie d'un tableau
+
+
