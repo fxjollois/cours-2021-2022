@@ -1,17 +1,6 @@
 # Evaluation 2
 
-Pendant cette évaluation, nous allons travailler sur des données de vente, stockées dans la collection `sales` de la base de données `sample_supplies`, disponible sur mon serveur.
-
-Pour vous y connecter, uniquement via un ordinateur de l'IUT, vous devez utiliser le code suivant :
-
-```r
-library(mongolite)
-
-m = mongo(
-  collection = "sales",
-  db = "sample_supplies",
-  url = "mongodb+srv://user:user@cluster0.ougec.mongodb.net/")
-```
+Pendant cette évaluation, nous allons travailler sur des données de vente, stockées dans la collection `sales` de la base de données `test`, disponible sur mon serveur. Pour vous y connecter de l'IUT, vous pouvez le shell, comme dans les premiers TPs.
 
 Voici, ci-dessous, un exemple de document disponible dans cette collection.
 
@@ -88,7 +77,7 @@ Enfin, chaque achat contient un ou plusieurs produits (ici 3), dont les informat
 
 Dans cette évaluation, vous devrez utiliser la multiplication dans un agrégat. Vous trouverez des informations sur <a href="https://docs.mongodb.com/manual/reference/operator/aggregation/multiply/" target="_blank">cette page</a>.
 
-Si dans un document dans une collection `rectangle`, vous avez un champs `largeur` et un champs `longueur`, vous pouvez obtenir la surface de cette façon (dans le shell de Mongo - à traduire en R):
+Si dans un document dans une collection `rectangle`, vous avez un champs `largeur` et un champs `longueur`, vous pouvez obtenir la surface de cette façon :
 
 ```js
 db.rectangle.aggregate([
@@ -102,4 +91,4 @@ db.rectangle.aggregate([
 
 Merci de répondre aux questions en utilisant le formulaire ci-dessous :
 
-<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSf80r1m6zj014FmQtGPOV74AWf4gx09bbtVAqxu0iqKhxdp2Q/viewform?embedded=true" width="640" height="3000" frameborder="0" marginheight="0" marginwidth="0">Chargement…</iframe>
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfLqU4jP7frIA_9gw0AGX9fIBwkgEf3yabWX4bypt_VWEHcNQ/viewform?embedded=true" width="640" height="951" frameborder="0" marginheight="0" marginwidth="0">Chargement…</iframe>
