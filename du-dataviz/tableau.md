@@ -16,7 +16,7 @@ Ce fichier comporte les variables suivantes :
 - `Citations` : nombre de citations de documents produits
 - `Self.Citations` : nombre de citations dans un document du même pays
 - `Citations.per.Document` : nombre moyen de citations
-- `H.index` : nombre $h$ d'articles ayant eu au moins $h$ citations (pour plus d'information : [h-index sur Wikipedia](https://fr.wikipedia.org/wiki/Indice_h))
+- `H.index` : nombre *h* d'articles ayant eu au moins *h* citations (pour plus d'information : [h-index sur Wikipedia](https://fr.wikipedia.org/wiki/Indice_h))
 
 ## Première réalisation
 
