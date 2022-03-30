@@ -53,7 +53,7 @@ Voici les différentes étapes à suivre pour réaliser une première dataviz as
     - Faire un Glisser/Déplacer de *Ligne de constante* dans le graphique
     - Choisir la case pour `Year` et indiquer l'année 2002
     - Avec un clic droit sur la ligne, il est possible de la modifier (type de ligne, couleur, étiquette, ...)
-- Faire de même pour 2014
+- Faire de même pour 2015
 - Toujours dans **Analyse**
     - Faire un Glisser/Déplacer de *Ligne de moyenne* maintenant
     - Sélectionner le croisement `SOMME ...` et *Table*
@@ -110,7 +110,15 @@ Voici les différentes étapes à suivre pour réaliser une première dataviz as
 - Dans **Montrez-moi**, choisir les diagrammes en barres empilées
 - Changer le titre et le nom de la feuille
 
-> Nous avons l'évolution de la contribution des 10 pus gros pays producteurs scientifiques (un peu biaisé ici, car c'est la répartition entre les 10, mais c'est révélateur tout de même)
+> Nous avons l'évolution de la contribution des 10 plus gros pays producteurs scientifiques (un peu biaisé ici, car c'est la répartition entre les 10, mais c'est révélateur tout de même)
+
+On peut ajuster l'ordre des pays en fonction de leur production scientifique :
+
+- Dans la légende à droite, cliquer sur la flèche à côté de `Country`, puis sur *Trier*
+- Choisir *Champ*, *Ordre décroissant*, `Documents` comme nom du champ et *Somme* pour l'agrégation
+- Fermer la fenêtre
+
+> Nous avons maintenant les 10 pays triés par ordre décroissant 
 
 ### Cinquième feuille : *Evolution par pays, en base 100*
 
@@ -138,11 +146,14 @@ Voici les différentes étapes à suivre pour réaliser une première dataviz as
     - Choisir *Afficher le filtre*
 - Il est maintenant possible de choisir les pays à afficher dans le graphique
     - Regarder l'évolution impressionnante de certains pays tels que :
+        - `North Korea`
         - `Macao`
         - `Montenegro`
         - `Afghanistan`
+        - `Iraq`
         - `Iran`
         - `Qatar`
+        - `Indonesia`
         - ...
 
 ### Sixième feuille : *TOP par année, à taille variable*
@@ -157,8 +168,8 @@ Voici les différentes étapes à suivre pour réaliser une première dataviz as
 - Faire un clic-droit dans le vide du panneau de gauche et choisir *Créer un paramètre...*
     - Nommer le `pChoixAnnee`
     - Choisir *Entier* comme type et cliquer sur *Plage* pour définir la plage de valeurs possibles 
-    - Plutôt que de chercher les années min et max, nous pouvons les récupérer directement. Cliquer sur *Définir à partir du champ...* et sélectionner `Year`
-    - Choisir `2018` comme valeur actuelle puis cliquer sur *OK*
+    - Plutôt que de chercher les années min et max, nous pouvons les récupérer directement. Cliquer sur *Définir des valeurs depuis* et sélectionner `Year`
+    - Choisir `2020` comme valeur actuelle puis cliquer sur *OK*
 - Faire un clic-droit dans le vide du panneau de gauche et choisir *Créer un champs calculé...* et nommer-le `cChoixAnnee`
     - Entrer la formule suivante dans le cadre dédié 
 ```
@@ -167,7 +178,7 @@ IF ([Year] = [pChoixAnnee]) THEN 1 ELSE 0 END
     - Faire un clic sur la flèche à droite du champ `Choix année` et cliquer sur *Convertir en dimension*
     - Glisser-déplacer cette dimension dans le panneau *Filtres*
         - Sélectionner la valeur 1 et cliquer sur *OK*
-- Pour afficher le contrôle du paramètre, cliquer sur la flèche à droite du paramètre dans le panneau de gauche et choisir *Afficher le contrôle de paramètre*
+- Pour afficher le contrôle du paramètre, cliquer sur la flèche à droite du paramètre dans le panneau de gauche et choisir *Afficher le paramètre*
 
 > Nous avons maintenant le tableau par année choisie
 
@@ -214,13 +225,15 @@ IF ([Year] = [pChoixAnnee]) THEN [Documents] ELSE 0 END
 
 ### Au final
 
-Vous devriez avoir à la fin ce [tableau](https://public.tableau.com/profile/fx.jollois#!/vizhome/DUDataviz-2019-2020-Rsultat1/Histoire1?publish=yes)
+Vous devriez avoir à la fin quelque chose proche de ce [résultat](https://public.tableau.com/profile/fx.jollois#!/vizhome/DUDataviz-2019-2020-Rsultat1/Histoire1?publish=yes).
 
 ## A FAIRE
 
-Espace de dépôt du travail (pensez à mettre votre nom dans le nom du fichier ) : <https://cloud.parisdescartes.fr/index.php/s/RDMjcfYTkeQQsc4>
+Espace de dépôt du travail (pensez à mettre votre nom dans le nom du fichier ) : 
 
-Réaliser les *feuilles* suivantes :
+<https://cloud.parisdescartes.fr/index.php/s/RDMjcfYTkeQQsc4>
+
+### Réaliser les *feuilles* suivantes :
 
 - Le nuage de points entre le nombre moyen de documents produits par an et le nombre moyen de citations par an, pour chaque pays, avec
     - le nom de chaque pays indiqué sur le graphique
@@ -239,10 +252,13 @@ Réaliser les *feuilles* suivantes :
     - idem pour l'année
     - une couleur dépendante du nombre de documents produits
 
-De plus, réaliser :
+### De plus, réaliser :
 
 - Un *dashboard* intégrant le TOP et la dernière carte, avec
     - le contrôle du nombre de pays, sous forme de *radio button* (bouton rond avec sélection unique)
     - le contrôle de l'année, sous forme de *slider*
 - Une *story* regroupant tous ces éléments de manière cohérente
 
+### Modifier les *feuilles*
+
+- Modifier la feuille **Contribution** (4ème) en ajoutant la production des autres pays (dans une modalité *Autres*)
