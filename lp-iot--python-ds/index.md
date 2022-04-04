@@ -4,10 +4,10 @@
 
 Ce cours est une introduction à l'utilisation de `python` pour la science des données.
 
-- [Introduction à Python](seance1-intro)
-- [ACP](seance2-ACP)
-- [Classification](seance3-classification)
-- [Application](seance4-application) 
+- [Introduction à Python](seance1-intro.html)
+- [ACP](seance2-ACP.html)
+- [Classification](seance3-classification.html)
+- [Application](seance4-application.html) 
 
 <!--
 
