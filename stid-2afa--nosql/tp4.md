@@ -12,12 +12,25 @@ library(mongolite)
 
 ### Connexion vers la collection
 
-La première opération est de créer une connexion entre R et MongoDB en utilisant la fonction `mongo()`. Celle-ci prend en paramètre la base et la collection, plus si besoin l'adresse du serveur. S'elle n'y est pas, elle se connecte en local (ce qui est notre cas normalement).
+La première opération est de créer une connexion entre R et MongoDB en utilisant la fonction `mongo()`. Celle-ci prend en paramètre la base et la collection, plus si besoin l'adresse du serveur. Si elle n'y est pas, elle se connecte en local.
+
+Pour créer l'adresse sur le serveur de données, nous exécutons le code suivant :
+
+```r
+USER = "user"
+PASS = "user"
+HOST = "cluster0.ougec.mongodb.net"
+
+URI = sprintf("mongodb+srv://%s:%s@%s/", USER, PASS, HOST)
+```
+
+Pour se connecter, on utilise le code :
 
 ```r
 m = mongo(
   collection = "restaurants", 
-  db = "test")
+  db = "test",
+  url = URI)
 ```
 
 Par le biais de l'objet ainsi créé (`m`), on a accès aux différentes fonctions que l'on a vu dans Mongo (précisemment `count()`, `distinct()`, `find()` et `aggregate()`).
