@@ -15,9 +15,11 @@ Ce cours est une introduction à l'utilisation de `python` pour la science des d
     - [correction](seance4-application-correction.html)
 
 
+- [Sujet du TP](tpnote-sujet.html)
+
+
 <!--
 
-- [Sujet du TP](tpnote-sujet.html)
 
 A garder pour mettre en md :
 jupyter nbconvert --to markdown
