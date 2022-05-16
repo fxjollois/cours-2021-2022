@@ -113,7 +113,7 @@ Pour réaliser cela, vous devez effectuer les étapes suivantes :
 1. Créer une nouvelle application Shiny, à 2 fichiers
 1. Créer le squelette de l'interface (partie UI donc)
 	- Pour l'utilisation de `shinydashboard`, n'hésitez pas à aller sur [cette page](https://rstudio.github.io/shinydashboard/)
-	- Quelques éléments d'information sont disponibles aussi sur [cette page](https://fxjollois.github.io/cours-2020-2021/lp-sante--tdb/shiny.html)
+	- Quelques éléments d'information sont disponibles aussi sur [cette page](https://fxjollois.github.io/cours-2021-2022/lp-sante--tdb/shiny.html)
 1. Créer la partie serveur
 	- En amont de la fonction `shinyServer()`, il est possible de créer les `data.frame` et le `ggplot` nécessaires pour notre application
 1. On pourra idéalement intégrer des éléments communs à l'UI et au serveur dans le fichier `global.r`, qui est automatiquement appelé lors du démarrage d'une application shiny.
