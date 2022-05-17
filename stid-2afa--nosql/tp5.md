@@ -98,31 +98,25 @@ Nous souhaitons donc avoir un tableau de bord, composé de plusieurs parties, av
         - ces TOP/FLOP doivent prendre en compte le genre et l'année choisie ci-dessus
     
     <svg width="300" height="230">
-        <rect x=  5 y=  5 width= 90 height= 20 class="bloc" />    <text x= 50 y= 20>1</text>
-        <rect x=105 y=  5 width= 90 height= 20 class="bloc" />    <text x=150 y= 20>2</text>
+        <rect x=  5 y=  5 width=140 height= 20 class="bloc" />    <text x= 75 y= 20>1</text>
+        <rect x=155 y=  5 width=140 height= 20 class="bloc" />    <text x=225 y= 20>2</text>
         <rect x=  5 y= 35 width=290 height= 50 class="bloc" />    <text x=150 y= 60>3</text>
-        <rect x=  5 y= 95 width= 90 height= 20 class="bloc" />    <text x= 50 y=110>4</text>
-        <rect x=105 y= 95 width= 90 height= 20 class="bloc" />    <text x=150 y=110>5</text>
+        <rect x=  5 y= 95 width=140 height= 20 class="bloc" />    <text x= 75 y=110>4</text>
+        <rect x=155 y= 95 width=140 height= 20 class="bloc" />    <text x=225 y=110>5</text>
         <rect x=  5 y=125 width= 90 height=100 class="bloc" />    <text x= 50 y=180>7</text>
         <rect x=105 y=125 width= 90 height=100 class="bloc" />    <text x=150 y=180>8</text>
         <rect x=205 y=125 width= 90 height=100 class="bloc" />    <text x=250 y=180>9</text>
     </svg>
 
-Pour réaliser cela, vous devez effectuer les étapes suivantes :
+Vous trouverez dans le fichier [tp5.zip](tp5.zip) le début du TP (3 fichiers `ui.R`, `server.R` et `global.R`).
 
-1. Créer une nouvelle application Shiny, à 2 fichiers
-1. Créer le squelette de l'interface (partie UI donc)
+Pour finaliser l'application, vous devez effectuer les étapes suivantes :
+
+- Compléter le squelette de l'interface (partie UI donc) en intégrant les `...Output()` nécessaires
 	- Pour l'utilisation de `shinydashboard`, n'hésitez pas à aller sur [cette page](https://rstudio.github.io/shinydashboard/)
 	- Quelques éléments d'information sont disponibles aussi sur [cette page](https://fxjollois.github.io/cours-2021-2022/lp-sante--tdb/shiny.html)
-1. Créer la partie serveur
-	- En amont de la fonction `shinyServer()`, il est possible de créer les `data.frame` et le `ggplot` nécessaires pour notre application
-1. On pourra idéalement intégrer des éléments communs à l'UI et au serveur dans le fichier `global.r`, qui est automatiquement appelé lors du démarrage d'une application shiny.
+- Créer la partie serveur
+- On pourra idéalement intégrer des éléments communs à l'UI et au serveur dans le fichier `global.r`, qui est automatiquement appelé lors du démarrage d'une application shiny.
 
-**ATTENTION** : vous devez considéré que les données puissent être dynamiques, c'est-à-dire qu'il faut que vous fassiez les récupérations de données à la volée, et pas tout intégrer à R puis faire les calculs ensuite.
+**ATTENTION** : vous devez considérer que les données puissent être dynamiques, c'est-à-dire qu'il faut que vous fassiez les récupérations de données à la volée, et pas tout intégrer à R puis faire les calculs ensuite.
 
-
-
-<!--
-		- Tableau des restaurants n'ayant que des évaluations à 0 (nom, quartier et rue)
-	- Tableau des restaurants avec les dernières évaluations les plus élevées (20 restaurants affichés ici)
--->
