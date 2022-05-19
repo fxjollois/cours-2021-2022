@@ -74,7 +74,7 @@ Nous souhaitons donc avoir un tableau de bord, composé de plusieurs parties, av
 
 - **Général** donnant des informations globales sur les films
     - Nombre de films (bloc 1 ci-dessous), d'acteurs (bloc 2) et de pays (bloc 3)
-    - TOP (en nombre de films) sur les genres (bloc 4), les acteurs (bloc 5) et les pays (bloc 6)
+    - TOP5 (en nombre de films) sur les genres (bloc 4), les acteurs (bloc 5) et les pays (bloc 6)
     - Distribution du nombre de films pour chaque année de sortie (bloc 7)
     
     <style>
@@ -110,13 +110,10 @@ Nous souhaitons donc avoir un tableau de bord, composé de plusieurs parties, av
 
 Vous trouverez dans le fichier [tp5.zip](tp5.zip) le début du TP (3 fichiers `ui.R`, `server.R` et `global.R`).
 
-Pour finaliser l'application, vous devez effectuer les étapes suivantes :
+Pour finaliser l'application, vous devez modifier **uniquement** le fichier `server.R` en remplacant tous les codes nécessaires, indiqués directement dans le fichier.
 
-- Compléter le squelette de l'interface (partie UI donc) en intégrant les `...Output()` nécessaires
-	- Pour l'utilisation de `shinydashboard`, n'hésitez pas à aller sur [cette page](https://rstudio.github.io/shinydashboard/)
-	- Quelques éléments d'information sont disponibles aussi sur [cette page](https://fxjollois.github.io/cours-2021-2022/lp-sante--tdb/shiny.html)
-- Créer la partie serveur
-- On pourra idéalement intégrer des éléments communs à l'UI et au serveur dans le fichier `global.r`, qui est automatiquement appelé lors du démarrage d'une application shiny.
+## Rendu
 
-**ATTENTION** : vous devez considérer que les données puissent être dynamiques, c'est-à-dire qu'il faut que vous fassiez les récupérations de données à la volée, et pas tout intégrer à R puis faire les calculs ensuite.
+Vous devez déposer votre fichier `server.R` dans l'espace dédié sur Moodle à cette adresse :
 
+<https://moodle.u-paris.fr/course/view.php?id=10312>
