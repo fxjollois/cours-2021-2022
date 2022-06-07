@@ -7,7 +7,7 @@ Nous travaillons sur les données de production scientifique (au format `CSV` ce
 
 ## Objectif
 
-<p class="codepen" data-height="300" data-default-tab="js,result" data-slug-hash="OJQogOx" data-user="fxjollois" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+<p class="codepen" data-height="300" data-default-tab="result" data-slug-hash="OJQogOx" data-user="fxjollois" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
   <span>See the Pen <a href="https://codepen.io/fxjollois/pen/OJQogOx">
   scimagojr : TOPn</a> by FX Jollois (<a href="https://codepen.io/fxjollois">@fxjollois</a>)
   on <a href="https://codepen.io">CodePen</a>.</span>
@@ -45,7 +45,7 @@ Dans le fichier `d3js--base.js`, nous pouvons déjà tester la librairie pour re
 d3.select("head").append("title").html("Base travail d3js");
 ```
 
-> A FAIRE : ajouter un titre ("TOP de l'année choisie" par exemple) de niveau `<h2>` en début de la page
+> **A FAIRE** : ajouter un titre ("TOP de l'année choisie" par exemple) de niveau `<h2>` en début de la page
 
 #### Taille du TOP
 
@@ -71,7 +71,7 @@ choix_taille
 
 Si vous affichez la console du navigateur, lors d'un changement de taille, vous devriez vous écrit la nouvelle taille choisie.
 
-> A FAIRE : créer dans un nouveau `fieldset` (stockée dans une variable nommée `champs1_bis`) intitulé "Choisir si vous souhaitez un FLOP" une [`checkbox`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/Input/checkbox) nommée `flop`, décochée par défaut et avec comme label `FLOP`
+> **A FAIRE** : créer dans un nouveau `fieldset` (stockée dans une variable nommée `champs1_bis`) intitulé "Choisir si vous souhaitez un FLOP" une [`checkbox`](https://developer.mozilla.org/fr/docs/Web/HTML/Element/Input/checkbox) nommée `flop`, décochée par défaut et avec comme label `FLOP`
 
 #### Année du TOP
 
@@ -84,7 +84,7 @@ choix_annee.append("legend").html("Choisir une année");
 choix_annee.append("select").attr("name", "annee").attr("id", "choix_annee");
 ```
 
-> A FAIRE : créer un nouveau fieldset dans lequel l'utilisateur pour choisir ou non une région spécifique du globe, nommé `choix_region` par exemple (voire plusieurs régions).
+> **A FAIRE** : créer un nouveau fieldset dans lequel l'utilisateur pour choisir ou non une région spécifique du globe, nommé `choix_region` par exemple (voire plusieurs régions).
 
 #### Structure du tableau représentant le TOP
 
@@ -104,7 +104,7 @@ d3.select("#top").select("table")
     .attr("id", "table_top");
 ```
 
-> A FAIRE : Ajouter la colonne *Région* (qui est plus ou moins le continent) juste après le pays, et la colonne H-index à la fin.
+> **A FAIRE** : Ajouter la colonne *Région* (qui est plus ou moins le continent) juste après le pays, et la colonne H-index à la fin.
 
 #### Fonctions utiles
 
@@ -128,7 +128,7 @@ var generateRow = function(d) {
 }
 ```
 
-> A FAIRE : compléter la fonction `generateRow()` pour ajouter les informations manquantes (la région est dans la variable `Region` et le H-index dans la variable `Hindex`)
+> **A FAIRE** : compléter la fonction `generateRow()` pour ajouter les informations manquantes (la région est dans la variable `Region` et le H-index dans la variable `Hindex`)
 
 #### Récupération des données
 
@@ -159,7 +159,7 @@ d3.csv(
     })
 ```
 
-> A FAIRE : Ajouter les champs `Region` (sans modification) et `Hindex` à chaque élément dans la fonction dédiée, à partir des champs `Region` et `H index` (attention à l'espace - il faut aussi le transformer en entier).
+> **A FAIRE** : Ajouter les champs `Region` (sans modification) et `Hindex` à chaque élément dans la fonction dédiée, à partir des champs `Region` et `H index` (attention à l'espace - il faut aussi le transformer en entier).
 
 #### Mise à jour du choix des années
 
@@ -174,7 +174,7 @@ d3.select("#choix_annee").selectAll("option")
     .html(function(d) {return d;});
 ```
 
-> A FAIRE : Mettez à jour les régions dans le `select` que vous avez créé, en sélectionnant toutes les régions au départ.
+> **A FAIRE** : Mettez à jour les régions dans le `select` que vous avez créé, en sélectionnant toutes les régions au départ.
     
 #### Remplissage du tableau
 
@@ -192,7 +192,7 @@ d3.select("#table_top").selectAll("tr")
     .html(function(d) { return generateRow(d); })
 ```
 
-> A FAIRE : Filtrez avec les régions sélectionnées (toutes au départ par défaut).
+> **A FAIRE** : Filtrez avec les régions sélectionnées (toutes au départ par défaut).
     
 #### Changement de taille
 
@@ -225,7 +225,7 @@ choix_annee.on("change", function() {
         .html(function(d) { return generateRow(d); })
 ```
 
-> A FAIRE : Gérer le changement de région (dans ce cas, c'est la position dans la liste qu'il faudra regarder et plus le rang), et le changement de type TOP/FLOP (il faudra trier les données, par exemple avec la fonction ...)
+> **A FAIRE** : Gérer le changement de région (dans ce cas, c'est la position dans la liste qu'il faudra regarder et plus le rang), et le changement de type TOP/FLOP (il faudra trier les données, par exemple avec la fonction ...)
 
 ### Fichier CSS
 
