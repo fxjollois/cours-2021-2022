@@ -4,7 +4,7 @@
 
 Dans ce cours, nous allons aborder l'utilisation du logiciel [**Tableau**](https://www.tableau.com/fr-fr), outil phare dans le domaine de la **BI** et de la **Visualisation de données**.
 
-Dans cette présentation de l'outil, nous allons utiliser les données synthétiques de la production scientifique mondiale de 1996 à 2020 ([lien vers le fichier Excel](https://fxjollois.github.io/donnees/scimagojr/scimagojr.xlsx) - source : [SCImago Journal & Country Rank](http://www.scimagojr.com/help.php))
+Dans cette présentation de l'outil, nous allons utiliser les données synthétiques de la production scientifique mondiale de 1996 à l'année précédente ([lien vers le fichier Excel](https://fxjollois.github.io/donnees/scimagojr/scimagojr.xlsx) - source : [SCImago Journal & Country Rank](http://www.scimagojr.com/help.php))
 
 Ce fichier comporte les variables suivantes :
 

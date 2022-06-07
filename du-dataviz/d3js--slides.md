@@ -422,7 +422,7 @@ console.log(echelle(0))     // renvoie 50
 console.log(echelle(1000))  // renvoie 100
 ```
 
-**Vers des couleurs** : Dégradé de couleurs défini automatique
+**Vers des couleurs** : Dégradé de couleurs défini automatiquement
 
 ```js
 var echelle = d3.scaleLinear()
@@ -477,7 +477,7 @@ class: inverse
 
 ## Création d'un graphique
 
-Dans l'exemple ci-après, création d'un diagramme en barres représentant le prix moyen de chaque type de logement
+Dans l'exemple ci-après, création d'un diagramme en barres représentant le prix moyen de chaque type de logement (les données sont en dur dans le code).
 
 | Type            | Nombre | Prix moyen |
 |:----------------|-------:|-----------:|
@@ -485,5 +485,11 @@ Dans l'exemple ci-après, création d'un diagramme en barres représentant le pr
 | Private room    |   5827 |         56 |
 | Shared room     |    464 |         40 |
 
-> <a href="https://plnkr.co/edit/dAITTEWo4EJmYZnQjGVv?preview" target="_blank">Cliquer ici</a> pour accéder à l'exemple
-  
+
+---
+
+<iframe height="500" style="width: 100%;" scrolling="no" title="Untitled" src="https://codepen.io/fxjollois/embed/MWQqomz?default-tab=js%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/fxjollois/pen/MWQqomz">
+  Untitled</a> by FX Jollois (<a href="https://codepen.io/fxjollois">@fxjollois</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
