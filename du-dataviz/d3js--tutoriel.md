@@ -222,10 +222,11 @@ choix_annee.on("change", function() {
         .data(data_annee)
         .enter()
         .append("tr")
-        .style("visibility", function(d, i) { 
-            return (i+1) > parseInt(d3.select('input[name="taille"]:checked').node().value) ? "hidden" : "visible";
+        .style("display", function(d, i) { 
+            return (i+1) > parseInt(d3.select('input[name="taille"]:checked').node().value) ? "none" : "table-row";
         })
-        .html(function(d) { return generateRow(d); })
+        .html(function(d) { return generateRow(d); });
+});
 ```
 
 > **A FAIRE** : Gérer le changement de région (dans ce cas, c'est la position dans la liste qu'il faudra regarder et plus le rang), et le changement de type TOP/FLOP (il faudra trier les données, par exemple avec la fonction ...)
